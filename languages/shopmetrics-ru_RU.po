@@ -1,0 +1,4553 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShopMetrics for WooCommerce 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/shopmetrics\n"
+"POT-Creation-Date: 2025-06-08T21:31:11+00:00\n"
+"PO-Revision-Date: 2025-06-07T15:13:18+00:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: shopmetrics\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+#: shopmetrics.php includes/class-shopmetrics-admin.php:618
+msgid "ShopMetrics for WooCommerce"
+msgstr "ShopMetrics для WooCommerce"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: shopmetrics.php
+msgid "https://financiarme.es/"
+msgstr "https://financiarme.es/"
+
+#. Description of the plugin
+#: shopmetrics.php
+#, fuzzy
+msgid ""
+"Advanced analytics and business intelligence for WooCommerce stores. Get "
+"real-time insights into your store's performance, track inventory levels, "
+"and boost sales with abandoned cart recovery."
+msgstr ""
+"уровни запасов и увеличивайте продажи с помощью восстановления заброшенных "
+"корзин."
+
+#. Author of the plugin
+#: shopmetrics.php
+#, fuzzy
+msgid "FinanciarMe"
+msgstr "Финансы"
+
+#: admin/partials/settings-cart-recovery.php:29
+msgid "Abandoned Cart Recovery"
+msgstr "Восстановление заброшенной корзины"
+
+#: admin/partials/settings-cart-recovery.php:33
+msgid "Configure settings for tracking and recovering abandoned carts."
+msgstr "Настройте параметры отслеживания и восстановления заброшенных корзин."
+
+#: admin/partials/settings-cart-recovery.php:40
+msgid "Cart Abandonment Threshold (hours)"
+msgstr "Порог забрасывания корзины (часов)"
+
+#: admin/partials/settings-cart-recovery.php:52
+msgid "Number of hours of inactivity before a cart is considered abandoned."
+msgstr ""
+"Количество часов бездействия, после которых корзина считается заброшенной."
+
+#: admin/partials/settings-cart-recovery.php:60
+msgid "Enable Recovery Emails"
+msgstr "Включить письма восстановления"
+
+#: admin/partials/settings-cart-recovery.php:70
+msgid "Send email notifications for abandoned carts"
+msgstr "Отправлять уведомления по электронной почте о заброшенных корзинах"
+
+#: admin/partials/settings-cart-recovery.php:78
+msgid "Email Delay (hours)"
+msgstr "Задержка электронной почты (часов)"
+
+#: admin/partials/settings-cart-recovery.php:90
+msgid ""
+"How many hours to wait after cart abandonment before sending the recovery "
+"email."
+msgstr ""
+"Сколько часов ждать после заброса корзины перед отправкой письма "
+"восстановления.Сколько часов ждать после заброса корзины перед отправкой "
+"письма восстановления."
+
+#: admin/partials/settings-cart-recovery.php:98
+msgid "Include Coupon"
+msgstr "Включить купон"
+
+#: admin/partials/settings-cart-recovery.php:108
+msgid "Include a coupon code in recovery emails"
+msgstr "Включить код купона в письма восстановления"
+
+#: admin/partials/settings-cart-recovery.php:116
+msgid "Coupon Code"
+msgstr "Код купона"
+
+#: admin/partials/settings-cart-recovery.php:123
+msgid "-- Select a coupon --"
+msgstr "-- Выберите купон --"
+
+#: admin/partials/settings-cart-recovery.php:140
+msgid "Select an existing WooCommerce coupon to include in recovery emails."
+msgstr ""
+"Выберите существующий купон WooCommerce для включения в письма "
+"восстановления."
+
+#: admin/partials/settings-cart-recovery.php:150
+msgid "Recovery Email Content"
+msgstr "Содержимое письма восстановления"
+
+#: admin/partials/settings-cart-recovery.php:154
+msgid "Customize the email message sent to customers with abandoned carts."
+msgstr ""
+"Настройте текст письма, отправляемого клиентам с заброшенными корзинами."
+
+#: admin/partials/settings-cart-recovery.php:161
+msgid "From Name"
+msgstr "Имя отправителя"
+
+#: admin/partials/settings-cart-recovery.php:171
+msgid "The name that appears in the \"From\" field of recovery emails."
+msgstr "Имя, которое отображается в поле \"От\" в письмах восстановления."
+
+#: admin/partials/settings-cart-recovery.php:179
+msgid "From Email"
+msgstr "Email отправителя"
+
+#: admin/partials/settings-cart-recovery.php:189
+msgid ""
+"The email address that appears in the \"From\" field of recovery emails."
+msgstr ""
+"Email адрес, который отображается в поле \"От\" в письмах восстановления."
+
+#: admin/partials/settings-cart-recovery.php:197
+msgid "Email Subject"
+msgstr "Тема письма"
+
+#: admin/partials/settings-cart-recovery.php:204
+#: includes/class-shopmetrics-cart-recovery.php:252
+#: includes/class-shopmetrics-cart-recovery.php:807
+msgid "Did you forget something in your cart?"
+msgstr "Вы что-то забыли в корзине?"
+
+#: admin/partials/settings-cart-recovery.php:207
+msgid "Available variables: {site_name}"
+msgstr "Доступные переменные: {site_name}"
+
+#: admin/partials/settings-cart-recovery.php:215
+msgid "Recovery Button Text"
+msgstr "Текст кнопки восстановления"
+
+#: admin/partials/settings-cart-recovery.php:222
+#: includes/class-shopmetrics-cart-recovery.php:253
+#: includes/class-shopmetrics-cart-recovery.php:808
+msgid "Complete Your Purchase"
+msgstr "Завершить покупку"
+
+#: admin/partials/settings-cart-recovery.php:225
+msgid "Text displayed on the recovery button in the email."
+msgstr "Текст, отображаемый на кнопке восстановления в письме."
+
+#: admin/partials/settings-cart-recovery.php:233
+msgid "Recovery Link Expiry (days)"
+msgstr "Срок действия ссылки восстановления (дней)"
+
+#: admin/partials/settings-cart-recovery.php:245
+msgid "Number of days before the recovery link expires."
+msgstr "Количество дней до истечения срока действия ссылки восстановления."
+
+#: admin/partials/settings-cart-recovery.php:253
+msgid "Email Content"
+msgstr "Содержимое письма"
+
+#: admin/partials/settings-cart-recovery.php:271
+msgid ""
+"Available variables: {site_name}, {cart_items}, {cart_total}, "
+"{recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}"
+msgstr ""
+"Доступные переменные: {site_name}, {cart_items}, {cart_total}, "
+"{recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}"
+"Доступные переменные: {site_name}, {cart_items}, {cart_total}, "
+"{recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}"
+
+#: admin/partials/settings-cart-recovery.php:275
+msgid "HTML Email Customization"
+msgstr "Настройка HTML писем"
+
+#: admin/partials/settings-cart-recovery.php:277
+msgid ""
+"You have full control over the HTML structure of your emails, including the "
+"header and footer. The editor above allows you to customize the entire email "
+"template."
+msgstr ""
+"У вас есть полный контроль над HTML-структурой ваших писем, включая "
+"заголовок и подвал. Редактор выше позволяет настроить весь шаблон письма.У "
+"вас есть полный контроль над HTML-структурой ваших писем, включая заголовок "
+"и подвал. Редактор выше позволяет настроить весь шаблон письма."
+
+#: admin/partials/settings-cart-recovery.php:280
+msgid ""
+"The template includes responsive styling suitable for most email clients. If "
+"you make changes to the HTML structure, be sure to test your emails "
+"thoroughly."
+msgstr ""
+"Шаблон включает адаптивную стилизацию, подходящую для большинства почтовых "
+"клиентов. Если вы вносите изменения в HTML-структуру, обязательно тщательно "
+"тестируйте ваши письма.Шаблон включает адаптивную стилизацию, подходящую для "
+"большинства почтовых клиентов. Если вы вносите изменения в HTML-структуру, "
+"обязательно тщательно тестируйте ваши письма."
+
+#: admin/partials/settings-cart-recovery.php:285
+msgid "About {cart_items} Display"
+msgstr "О отображении {cart_items}"
+
+#: admin/partials/settings-cart-recovery.php:287
+msgid "Cart items are now displayed as attractive product cards with:"
+msgstr ""
+"Товары корзины теперь отображаются как привлекательные карточки товаров с:"
+
+#: admin/partials/settings-cart-recovery.php:290
+msgid "Product image (when available)"
+msgstr "Изображение товара (если доступно)"
+
+#: admin/partials/settings-cart-recovery.php:291
+msgid "Product title"
+msgstr "Название товара"
+
+#: admin/partials/settings-cart-recovery.php:292
+msgid "Price and quantity information"
+msgstr "Информация о цене и количестве"
+
+#: admin/partials/settings-cart-recovery.php:293
+msgid "Clickable links to product pages"
+msgstr "Кликабельные ссылки на страницы товаров"
+
+#: admin/partials/settings-cart-recovery.php:296
+msgid ""
+"This visual presentation helps customers recognize their items more easily "
+"and increases the likelihood of cart recovery."
+msgstr ""
+"Такое визуальное представление помогает клиентам легче узнавать свои товары "
+"и увеличивает вероятность восстановления корзины.Такое визуальное "
+"представление помогает клиентам легче узнавать свои товары и увеличивает "
+"вероятность восстановления корзины."
+
+#: admin/partials/settings-cart-recovery.php:307
+msgid "Test Email"
+msgstr "Тестовое письмо"
+
+#: admin/partials/settings-cart-recovery.php:311
+msgid ""
+"Send a test recovery email to verify how notifications appear to your "
+"customers. This helps ensure that your recovery emails look professional and "
+"contain all necessary information."
+msgstr ""
+"Отправьте тестовое письмо восстановления, чтобы проверить, как уведомления "
+"выглядят для ваших клиентов. Это помогает убедиться, что ваши письма "
+"восстановления выглядят профессионально и содержат всю необходимую "
+"информацию.Отправьте тестовое письмо восстановления, чтобы проверить, как "
+"уведомления выглядят для ваших клиентов. Это помогает убедиться, что ваши "
+"письма восстановления выглядят профессионально и содержат всю необходимую "
+"информацию."
+
+#: admin/partials/settings-cart-recovery.php:317
+msgid "Send Test Email"
+msgstr "Отправить тестовое письмо"
+
+#: admin/partials/settings-cart-recovery.php:324
+msgid ""
+"The test email will be sent to your WordPress admin email address with "
+"sample cart data to preview the layout and formatting."
+msgstr ""
+"Тестовое письмо будет отправлено на ваш admin email WordPress с образцами "
+"данных корзины для предварительного просмотра макета и "
+"форматирования.Тестовое письмо будет отправлено на ваш admin email WordPress "
+"с образцами данных корзины для предварительного просмотра макета и "
+"форматирования."
+
+#: admin/partials/settings-data-sources.php:23
+msgid "WooCommerce Integration"
+msgstr "Интеграция с WooCommerce"
+
+#: admin/partials/settings-data-sources.php:27
+#, fuzzy
+msgid ""
+"Configure how your WooCommerce store integrates with FinanciarMe Analytics."
+msgstr ""
+"Настройте интеграцию вашего магазина WooCommerce с ShopMetrics "
+"Analytics.Настройте интеграцию вашего магазина WooCommerce с ShopMetrics "
+"Analytics."
+
+#: admin/partials/settings-data-sources.php:34
+msgid "Inventory Synchronization"
+msgstr "Синхронизация запасов"
+
+#: admin/partials/settings-data-sources.php:36
+#, fuzzy
+msgid ""
+"Configure how inventory data is synchronized with FinanciarMe Analytics."
+msgstr ""
+"Настройте синхронизацию данных инвентаря с ShopMetrics Analytics.Настройте "
+"синхронизацию данных склада с ShopMetrics Analytics."
+
+#: admin/partials/settings-data-sources.php:39
+#: admin/partials/settings-main.php:14
+msgid "Scheduled Snapshots"
+msgstr "Запланированные снимки"
+
+#: admin/partials/settings-data-sources.php:40
+#: admin/partials/settings-main.php:15
+msgid ""
+"Inventory snapshots are scheduled to run automatically once per day. This "
+"keeps your stock data up to date in the dashboard."
+msgstr ""
+"Снимки склада запланированы на автоматический запуск раз в день. Это "
+"поддерживает актуальность данных о запасах на панели."
+
+#: admin/partials/settings-data-sources.php:46
+#: admin/partials/settings-main.php:21
+msgid "Next scheduled snapshot:"
+msgstr "Следующий запланированный снимок:"
+
+#: admin/partials/settings-data-sources.php:49
+#: admin/partials/settings-main.php:24
+msgid ""
+"No snapshot is currently scheduled. This may indicate an issue with your "
+"WordPress scheduled tasks."
+msgstr ""
+"В настоящее время снимок не запланирован. Это может указывать на проблему с "
+"запланированными задачами WordPress."
+
+#: admin/partials/settings-data-sources.php:50
+#: admin/partials/settings-data-sources.php:532
+#: admin/partials/settings-data-sources.php:537
+#: admin/partials/settings-main.php:25
+msgid "Fix Schedule"
+msgstr "Исправить расписание"
+
+#: admin/partials/settings-data-sources.php:53
+#: admin/partials/settings-main.php:28
+msgid ""
+"Action Scheduler is not active. This plugin is required for WooCommerce and "
+"should be active. Please check your WordPress installation."
+msgstr ""
+"Action Scheduler не активен. Этот плагин необходим для WooCommerce и должен "
+"быть активным. Проверьте вашу установку WordPress."
+
+#: admin/partials/settings-data-sources.php:59
+#: admin/partials/settings-main.php:4
+msgid "Manual Inventory Snapshot"
+msgstr "Ручной снимок запасов"
+
+#: admin/partials/settings-data-sources.php:60
+#: admin/partials/settings-main.php:5
+#, fuzzy
+msgid ""
+"If your stock data is not updating automatically, you can trigger a manual "
+"snapshot here. This will collect current inventory data from your store and "
+"send it to FinanciarMe Analytics."
+msgstr ""
+"Если данные о запасах не обновляются автоматически, вы можете запустить "
+"ручной снимок здесь. Это соберет текущие данные о запасах из вашего магазина "
+"и отправит их в ShopMetrics Analytics."
+
+#: admin/partials/settings-data-sources.php:63
+#: admin/partials/settings-main.php:8
+msgid "Take Inventory Snapshot Now"
+msgstr "Сделать снимок запасов сейчас"
+
+#: admin/partials/settings-data-sources.php:73
+msgid "Stock Monitoring"
+msgstr "Мониторинг запасов"
+
+#: admin/partials/settings-data-sources.php:75
+msgid "Configure settings related to stock monitoring and tracking."
+msgstr "Настройте параметры мониторинга и отслеживания запасов."
+
+#: admin/partials/settings-data-sources.php:78
+msgid "WooCommerce Stock Settings"
+msgstr "Настройки запасов WooCommerce"
+
+#: admin/partials/settings-data-sources.php:85
+#, fuzzy
+msgid ""
+"Your current WooCommerce stock settings are displayed below. These settings "
+"affect how FinanciarMe Analytics identifies low stock items."
+msgstr ""
+"Ваши текущие настройки запасов WooCommerce отображены ниже. Эти настройки "
+"влияют на то, как ShopMetrics Analytics определяет товары с низкими запасами."
+
+#: admin/partials/settings-data-sources.php:89
+msgid "Stock Management"
+msgstr "Управление запасами"
+
+#: admin/partials/settings-data-sources.php:93
+msgid "Enabled"
+msgstr "Включено"
+
+#: admin/partials/settings-data-sources.php:96
+msgid "Disabled"
+msgstr "Отключено"
+
+#: admin/partials/settings-data-sources.php:100
+msgid "Manage in WooCommerce Settings →"
+msgstr "Управление в настройках WooCommerce →"
+
+#: admin/partials/settings-data-sources.php:106
+#: includes/class-shopmetrics-snapshotter.php:302
+msgid "Low Stock Threshold"
+msgstr "Порог низких запасов"
+
+#: admin/partials/settings-data-sources.php:110
+#, fuzzy
+msgid ""
+"When product stock reaches this amount, FinanciarMe Analytics will mark it "
+"as Low Stock."
+msgstr ""
+"Когда запас продукта достигает этого количества, ShopMetrics Analytics "
+"помечает его как Низкий запас."
+
+#: admin/partials/settings-data-sources.php:115
+msgid "Out of Stock Threshold"
+msgstr "Порог отсутствия на складе"
+
+#: admin/partials/settings-data-sources.php:119
+msgid ""
+"When product stock reaches this amount, WooCommerce considers it out of "
+"stock."
+msgstr ""
+"Когда запас продукта достигает этого количества, WooCommerce считает его "
+"отсутствующим на складе."
+
+#: admin/partials/settings-data-sources.php:128
+msgid "Low Stock Notifications"
+msgstr "Уведомления о низких запасах"
+
+#: admin/partials/settings-data-sources.php:129
+msgid ""
+"Configure email notifications for products that reach their low stock "
+"threshold."
+msgstr ""
+"Настройте уведомления по электронной почте для продуктов, которые достигли "
+"порога низких запасов."
+
+#: admin/partials/settings-data-sources.php:156
+msgid "Enable Low Stock Notifications"
+msgstr "Включить уведомления о низких запасах"
+
+#: admin/partials/settings-data-sources.php:163
+#: includes/class-shopmetrics-admin.php:1160
+msgid ""
+"Check this box to enable daily email notifications for products that have "
+"reached their low stock threshold."
+msgstr ""
+"Установите этот флажок, чтобы включить ежедневные уведомления по электронной "
+"почте для продуктов, которые достигли порога низких запасов."
+
+#: admin/partials/settings-data-sources.php:168
+msgid "Notification Recipients"
+msgstr "Получатели уведомлений"
+
+#: admin/partials/settings-data-sources.php:173
+#: includes/class-shopmetrics-admin.php:1179
+msgid "e.g., admin@example.com, manager@example.com"
+msgstr "например, admin@example.com, manager@example.com"
+
+#: admin/partials/settings-data-sources.php:175
+msgid ""
+"Enter one or more email addresses, separated by commas. If empty, "
+"notifications will be sent to the site administrator's email."
+msgstr ""
+"Введите один или несколько адресов электронной почты, разделенных запятыми. "
+"Если пусто, уведомления будут отправлены на электронную почту администратора "
+"сайта."
+
+#: admin/partials/settings-data-sources.php:187
+msgid "Cost of Goods Settings"
+msgstr "Настройки себестоимости товаров"
+
+#: admin/partials/settings-data-sources.php:189
+msgid ""
+"Configure Cost of Goods Sold (COGS) tracking to enable accurate profit "
+"calculations for your products."
+msgstr ""
+"Настройте отслеживание себестоимости проданных товаров (COGS), чтобы "
+"включить точные расчеты прибыли для ваших продуктов."
+
+#: admin/partials/settings-data-sources.php:192
+msgid "COGS Meta Key Detection"
+msgstr "Обнаружение мета-ключа COGS"
+
+#: admin/partials/settings-data-sources.php:193
+msgid ""
+"The plugin needs to know which WooCommerce meta key stores your product cost "
+"information."
+msgstr ""
+"Плагину нужно знать, какой мета-ключ WooCommerce хранит информацию о "
+"стоимости ваших продуктов."
+
+#: admin/partials/settings-data-sources.php:197
+#: includes/class-shopmetrics-admin.php:1053
+msgid "Currently Saved Key:"
+msgstr "Текущий сохраненный ключ:"
+
+#: admin/partials/settings-data-sources.php:201
+#: includes/class-shopmetrics-admin.php:216
+#: includes/class-shopmetrics-admin.php:255
+#: includes/class-shopmetrics-admin.php:702
+#: includes/class-shopmetrics-admin.php:703
+#: includes/class-shopmetrics-admin.php:1054
+msgid "Not set"
+msgstr "Не установлено"
+
+#: admin/partials/settings-data-sources.php:205
+#: includes/class-shopmetrics-admin.php:1058
+msgid "Auto-detect COGS Meta Key"
+msgstr "Автоопределение мета-ключа COGS"
+
+#: admin/partials/settings-data-sources.php:208
+#: includes/class-shopmetrics-admin.php:1061
+msgid "Select Key Manually"
+msgstr "Выбрать ключ вручную"
+
+#: admin/partials/settings-data-sources.php:217
+#: includes/class-shopmetrics-admin.php:1070
+#: includes/class-shopmetrics-admin.php:2067
+msgid "-- Select a Key --"
+msgstr "-- Выберите ключ --"
+
+#: admin/partials/settings-data-sources.php:218
+#: includes/class-shopmetrics-admin.php:1071
+#: includes/class-shopmetrics-admin.php:2065
+msgid "-- Do not use a meta key --"
+msgstr "-- Не использовать мета-ключ --"
+
+#: admin/partials/settings-data-sources.php:221
+msgid ""
+"Select the meta key for COGS. If your key is not listed, ensure orders with "
+"that meta key exist."
+msgstr ""
+"Выберите мета-ключ для COGS. Если ваш ключ не в списке, убедитесь, что "
+"заказы с этим мета-ключом существуют."
+
+#: admin/partials/settings-data-sources.php:233
+#: includes/class-shopmetrics-admin.php:1086
+msgid ""
+"The plugin will attempt to find the Cost of Goods Sold (COGS) for each order "
+"item using this meta key."
+msgstr ""
+"Плагин попытается найти себестоимость товаров (COGS) для каждого элемента "
+"заказа, используя этот мета-ключ."
+
+#. translators: %s: Example meta key
+#: admin/partials/settings-data-sources.php:237
+#, php-format
+msgid ""
+"Common example: %s. This is used by plugins like WooCommerce Cost of Goods."
+msgstr ""
+"Обычный пример: %s. Это используется плагинами типа WooCommerce Cost of "
+"Goods."
+
+#: admin/partials/settings-data-sources.php:245
+#: includes/class-shopmetrics-admin.php:968
+msgid "Default COGS Percentage"
+msgstr "Процент COGS по умолчанию"
+
+#: admin/partials/settings-data-sources.php:246
+msgid ""
+"If per-item COGS is not found via the meta key, you can specify a default "
+"percentage to estimate costs."
+msgstr ""
+"Если COGS на единицу товара не найден через мета-ключ, вы можете указать "
+"процент по умолчанию для оценки затрат."
+
+#: admin/partials/settings-data-sources.php:250
+msgid "Default Percentage"
+msgstr "Процент по умолчанию"
+
+#: admin/partials/settings-data-sources.php:264
+#: includes/class-shopmetrics-admin.php:1114
+msgid "e.g., 60 for 60%"
+msgstr "например, 60 для 60%"
+
+#: admin/partials/settings-data-sources.php:267
+msgid ""
+"If per-item COGS is not found via the meta key, use this percentage of the "
+"item's pre-discount subtotal to estimate COGS (0-100)."
+msgstr ""
+"Если COGS на единицу товара не найден через мета-ключ, используйте этот "
+"процент от предварительной суммы товара до скидки для оценки COGS (0-100)."
+
+#: admin/partials/settings-data-sources.php:269
+#: includes/class-shopmetrics-admin.php:1119
+msgid "Leave blank if you only use meta key COGS or do not want to estimate."
+msgstr ""
+"Оставьте пустым, если используете только мета-ключ COGS или не хотите делать "
+"оценку."
+
+#: admin/partials/settings-data-sources.php:281
+msgid "Visit Tracking"
+msgstr "Отслеживание посещений"
+
+#: admin/partials/settings-data-sources.php:283
+#, fuzzy
+msgid ""
+"Configure how customer visits and website activity are tracked by "
+"FinanciarMe Analytics."
+msgstr ""
+"Настройте, как отслеживаются посещения клиентов и активность на сайте в "
+"ShopMetrics Analytics."
+
+#: admin/partials/settings-data-sources.php:286
+msgid "Tracking Settings"
+msgstr "Настройки отслеживания"
+
+#: admin/partials/settings-data-sources.php:287
+msgid "Control how site visits are tracked and what data is collected."
+msgstr ""
+"Контролируйте, как отслеживаются посещения сайта и какие данные собираются."
+
+#: admin/partials/settings-data-sources.php:291
+#: includes/class-shopmetrics-admin.php:939
+msgid "Enable Visit Tracking"
+msgstr "Включить отслеживание посещений"
+
+#: admin/partials/settings-data-sources.php:298
+msgid ""
+"When enabled, the plugin will track information about site visits, including "
+"pages viewed, referrers, and UTM parameters. This data powers marketing "
+"analytics in the dashboard."
+msgstr ""
+"При включении плагин будет отслеживать информацию о посещениях сайта, "
+"включая просмотренные страницы, источники переходов и UTM параметры. Эти "
+"данные питают маркетинговую аналитику в дашборде."
+
+#: admin/partials/settings-data-sources.php:306
+msgid "Collected Data"
+msgstr "Собираемые данные"
+
+#: admin/partials/settings-data-sources.php:307
+msgid "The following information is collected when visit tracking is enabled:"
+msgstr "Следующая информация собирается при включенном отслеживании посещений:"
+
+#: admin/partials/settings-data-sources.php:310
+msgid "Page URLs:"
+msgstr "URL страниц:"
+
+#: admin/partials/settings-data-sources.php:310
+msgid "The addresses of pages that visitors view on your site"
+msgstr "Адреса страниц, которые посетители просматривают на вашем сайте"
+
+#: admin/partials/settings-data-sources.php:311
+msgid "Page Types:"
+msgstr "Типы страниц:"
+
+#: admin/partials/settings-data-sources.php:311
+msgid "Categories of pages (e.g., product, cart, checkout)"
+msgstr "Категории страниц (например, товар, корзина, оформление заказа)"
+
+#: admin/partials/settings-data-sources.php:312
+msgid "Referrers:"
+msgstr "Источники переходов:"
+
+#: admin/partials/settings-data-sources.php:312
+msgid "Where visitors came from before landing on your site"
+msgstr "Откуда пришли посетители перед попаданием на ваш сайт"
+
+#: admin/partials/settings-data-sources.php:313
+msgid "UTM Parameters:"
+msgstr "UTM параметры:"
+
+#: admin/partials/settings-data-sources.php:313
+msgid "Marketing campaign tags in URLs (source, medium, campaign, etc.)"
+msgstr "Теги маркетинговых кампаний в URL (источник, канал, кампания и т.д.)"
+
+#: admin/partials/settings-data-sources.php:314
+msgid "Session IDs:"
+msgstr "ID сессий:"
+
+#: admin/partials/settings-data-sources.php:314
+msgid ""
+"Anonymous identifiers to group a visitor's activity (stored in browser "
+"session)"
+msgstr ""
+"Анонимные идентификаторы для группировки активности посетителя (хранятся в "
+"сессии браузера)"
+
+#: admin/partials/settings-data-sources.php:318
+msgid ""
+"This data is used to generate marketing attribution reports, conversion "
+"funnels, and customer journey insights. No personally identifiable "
+"information is collected."
+msgstr ""
+"Эти данные используются для создания отчетов об атрибуции маркетинга, "
+"воронок конверсии и аналитики пути клиента. Никакая персональная информация "
+"не собирается."
+
+#: admin/partials/settings-data-sources.php:325
+msgid "Save All Settings"
+msgstr "Сохранить все настройки"
+
+#: admin/partials/settings-data-sources.php:332
+msgid "Ads Platforms Integration"
+msgstr "Интеграция с рекламными платформами"
+
+#: admin/partials/settings-data-sources.php:336
+msgid ""
+"Connect your advertising platforms to display correlation between campaign "
+"expenses and profit. This helps you understand which campaigns are most "
+"profitable for your business."
+msgstr ""
+"Подключите ваши рекламные платформы для отображения корреляции между "
+"расходами на кампании и прибылью. Это поможет понять, какие кампании "
+"наиболее прибыльны для вашего бизнеса."
+
+#: admin/partials/settings-data-sources.php:349
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: admin/partials/settings-data-sources.php:350
+msgid ""
+"Aggregate all advertising platform data in one place for comprehensive "
+"analytics."
+msgstr ""
+"Агрегируйте все данные рекламных платформ в одном месте для комплексной "
+"аналитики."
+
+#: admin/partials/settings-data-sources.php:352
+#: admin/partials/settings-data-sources.php:368
+#: admin/partials/settings-data-sources.php:385
+#: admin/partials/settings-data-sources.php:415
+#: admin/partials/settings-data-sources.php:431
+#: admin/partials/settings-data-sources.php:448
+#: admin/partials/settings-data-sources.php:464
+msgid "Connect"
+msgstr "Подключить"
+
+#: admin/partials/settings-data-sources.php:365
+msgid "Google Ads"
+msgstr "Google Ads"
+
+#: admin/partials/settings-data-sources.php:366
+msgid "Track expenses and performance of your Google Ads campaigns."
+msgstr "Отслеживайте расходы и эффективность ваших кампаний Google Ads."
+
+#: admin/partials/settings-data-sources.php:382
+msgid "Meta Ads"
+msgstr "Meta Ads"
+
+#: admin/partials/settings-data-sources.php:383
+msgid ""
+"Track expenses and performance of your Facebook and Instagram ad campaigns."
+msgstr ""
+"Отслеживайте расходы и эффективность ваших рекламных кампаний Facebook и "
+"Instagram."
+
+#: admin/partials/settings-data-sources.php:395
+msgid "Accounting Platforms Integration"
+msgstr "Интеграция с учетными платформами"
+
+#: admin/partials/settings-data-sources.php:399
+msgid ""
+"Connect your accounting software to calculate the overall profitability of "
+"your business, including not only advertising expenses but also salaries, "
+"operational expenses, and more."
+msgstr ""
+"Подключите ваше учетное программное обеспечение для расчета общей "
+"рентабельности вашего бизнеса, включая не только рекламные расходы, но и "
+"зарплаты, операционные расходы и многое другое."
+
+#: admin/partials/settings-data-sources.php:412
+msgid "QuickBooks Online"
+msgstr "QuickBooks Online"
+
+#: admin/partials/settings-data-sources.php:413
+msgid ""
+"Integrate with QuickBooks to analyze financial data and calculate true "
+"business profitability."
+msgstr ""
+"Интегрируйтесь с QuickBooks для анализа финансовых данных и расчета истинной "
+"прибыльности бизнеса."
+
+#: admin/partials/settings-data-sources.php:428
+msgid "Xero"
+msgstr "Xero"
+
+#: admin/partials/settings-data-sources.php:429
+msgid ""
+"Connect with Xero accounting software to analyze business expenses and "
+"revenue."
+msgstr ""
+"Подключитесь к программному обеспечению учета Xero для анализа деловых "
+"расходов и доходов."
+
+#: admin/partials/settings-data-sources.php:445
+msgid "Zoho Books"
+msgstr "Zoho Books"
+
+#: admin/partials/settings-data-sources.php:446
+msgid ""
+"Integrate with Zoho Books to analyze expense patterns and overall business "
+"profitability."
+msgstr ""
+"Интегрируйтесь с Zoho Books для анализа шаблонов расходов и общей "
+"рентабельности бизнеса."
+
+#: admin/partials/settings-data-sources.php:461
+msgid "Sage"
+msgstr "Sage"
+
+#: admin/partials/settings-data-sources.php:462
+msgid ""
+"Connect with Sage accounting software for comprehensive financial analysis."
+msgstr ""
+"Подключитесь к программному обеспечению учета Sage для всестороннего "
+"финансового анализа."
+
+#: admin/partials/settings-data-sources.php:485
+msgid "Taking snapshot..."
+msgstr "Создание снимка..."
+
+#: admin/partials/settings-data-sources.php:502
+#: admin/partials/settings-data-sources.php:536
+#: admin/partials/settings-subscription.php:529
+#: admin/partials/settings-subscription.php:568
+#: admin/partials/settings-subscription.php:597
+#: admin/partials/settings-subscription.php:602
+#: admin/partials/settings-subscription.php:680
+msgid "An error occurred. Please try again."
+msgstr "Произошла ошибка. Пожалуйста, попробуйте еще раз."
+
+#: admin/partials/settings-data-sources.php:518
+msgid "Fixing..."
+msgstr "Исправление..."
+
+#: admin/partials/settings-data-sources.php:549
+msgid "Integration coming soon! This feature is currently under development."
+msgstr "Интеграция скоро! Эта функция находится в разработке."
+
+#: admin/partials/settings-main.php:1
+msgid "Stock Synchronization"
+msgstr "Синхронизация запасов"
+
+#: admin/partials/settings-settings.php:27
+#, fuzzy
+msgid "FinanciarMe Server connection"
+msgstr "Подключение к серверу ShopMetrics"
+
+#: admin/partials/settings-settings.php:38
+#: admin/partials/settings-settings.php:118
+msgid "Status:"
+msgstr "Статус:"
+
+#: admin/partials/settings-settings.php:39
+msgid "Connected"
+msgstr "Подключено"
+
+#: admin/partials/settings-settings.php:46
+msgid "Connection Details"
+msgstr "Детали подключения"
+
+#: admin/partials/settings-settings.php:51
+#: includes/class-shopmetrics-admin.php:703
+msgid "Site Identifier:"
+msgstr "Идентификатор сайта:"
+
+#: admin/partials/settings-settings.php:52
+#: includes/class-shopmetrics-admin.php:702
+msgid "API Token:"
+msgstr "API токен:"
+
+#: admin/partials/settings-settings.php:53
+#, fuzzy
+msgid "This information could be useful for the FinanciarMe support team."
+msgstr "Эта информация может быть полезна команде поддержки ShopMetrics."
+
+#: admin/partials/settings-settings.php:54
+msgid "Close"
+msgstr "Закрыть"
+
+#: admin/partials/settings-settings.php:60
+msgid ""
+"Manually trigger a synchronization of all historical order data. This runs "
+"in the background and may take time depending on the number of orders."
+msgstr ""
+"Вручную запустите синхронизацию всех исторических данных заказов. Это "
+"выполняется в фоновом режиме и может занять время в зависимости от "
+"количества заказов."
+
+#: admin/partials/settings-settings.php:61
+#: includes/class-shopmetrics-admin.php:3193
+msgid "Sync Historical Data"
+msgstr "Синхронизировать исторические данные"
+
+#: admin/partials/settings-settings.php:67
+msgid "Dangerous Zone!"
+msgstr "Опасная зона!"
+
+#: admin/partials/settings-settings.php:68
+#, fuzzy
+msgid ""
+"Disconnecting your site will remove the local API token. Reconnecting may be "
+"required to resume data synchronization. A future update will allow full "
+"data deletion from FinanciarMe servers upon disconnect."
+msgstr ""
+"Отключение вашего сайта удалит локальный API токен. Повторное подключение "
+"может потребоваться для возобновления синхронизации данных. Будущее "
+"обновление позволит полное удаление данных с серверов ShopMetrics при "
+"отключении."
+
+#: admin/partials/settings-settings.php:74
+msgid "Disconnect Site"
+msgstr "Отключить сайт"
+
+#: admin/partials/settings-settings.php:118
+msgid "Not Connected"
+msgstr "Не подключено"
+
+#: admin/partials/settings-settings.php:119
+#, fuzzy
+msgid ""
+"To start using FinanciarMe Analytics, connect your site. This will securely "
+"register your site and begin an initial synchronization of your historical "
+"order data."
+msgstr ""
+"Чтобы начать использовать ShopMetrics Analytics, подключите ваш сайт. Это "
+"безопасно зарегистрирует ваш сайт и начнет первоначальную синхронизацию "
+"исторических данных заказов."
+
+#: admin/partials/settings-settings.php:122
+#: admin/partials/settings-settings.php:300
+msgid "Connect & Synchronize"
+msgstr "Подключить и синхронизировать"
+
+#: admin/partials/settings-settings.php:131
+msgid "Features & Subscription setup"
+msgstr "Настройка функций и подписки"
+
+#: admin/partials/settings-settings.php:134
+msgid ""
+"Access more features and configuration options in the dedicated sections:"
+msgstr ""
+"Получите доступ к дополнительным функциям и параметрам конфигурации в "
+"специальных разделах:"
+
+#: admin/partials/settings-settings.php:141
+#: includes/class-shopmetrics-admin.php:650
+#: includes/class-shopmetrics-admin.php:651
+msgid "Data Sources"
+msgstr "Источники данных"
+
+#: admin/partials/settings-settings.php:143
+msgid ""
+"Configure visit tracking, connect external data providers, and manage "
+"inventory synchronization."
+msgstr ""
+"Настройте отслеживание посещений, подключите внешних поставщиков данных и "
+"управляйте синхронизацией запасов."
+
+#: admin/partials/settings-settings.php:145
+msgid "Manage Data Sources"
+msgstr "Управление источниками данных"
+
+#: admin/partials/settings-settings.php:153
+#: includes/class-shopmetrics-admin.php:660
+#: includes/class-shopmetrics-admin.php:661
+msgid "Cart Recovery"
+msgstr "Восстановление корзины"
+
+#: admin/partials/settings-settings.php:155
+msgid "Configure automatic cart recovery emails and reduce abandoned carts."
+msgstr ""
+"Настройте автоматические письма восстановления корзины и сократите "
+"количество заброшенных корзин."
+
+#: admin/partials/settings-settings.php:157
+msgid "Configure Cart Recovery"
+msgstr "Настроить восстановление корзины"
+
+#: admin/partials/settings-settings.php:165
+#: includes/class-shopmetrics-admin.php:670
+#: includes/class-shopmetrics-admin.php:671
+msgid "Subscription"
+msgstr "Подписка"
+
+#: admin/partials/settings-settings.php:167
+msgid "Manage your subscription plan and billing information."
+msgstr "Управляйте планом подписки и платежной информацией."
+
+#: admin/partials/settings-settings.php:169
+msgid "Manage Subscription"
+msgstr "Управление подпиской"
+
+#: admin/partials/settings-settings.php:179
+msgid "Log Management"
+msgstr "Управление журналами"
+
+#: admin/partials/settings-settings.php:195
+msgid "Current Log Level:"
+msgstr "Текущий уровень журнала:"
+
+#: admin/partials/settings-settings.php:198
+#, fuzzy
+msgid "(Change in main plugin file: SHOPMETRICS_LOG_LEVEL)"
+msgstr "(Изменить в основном файле плагина: FINANCIARME_LOG_LEVEL)"
+
+#: admin/partials/settings-settings.php:201
+msgid "Log File Size:"
+msgstr "Размер файла журнала:"
+
+#: admin/partials/settings-settings.php:204
+msgid "Log File Location:"
+msgstr "Расположение файла журнала:"
+
+#: admin/partials/settings-settings.php:211
+#: admin/partials/settings-settings.php:338
+msgid "Clear Logs"
+msgstr "Очистить журналы"
+
+#: admin/partials/settings-settings.php:215
+msgid "Download Logs"
+msgstr "Скачать журналы"
+
+#: admin/partials/settings-settings.php:218
+#: admin/partials/settings-settings.php:373
+msgid "Rotate Logs"
+msgstr "Ротация журналов"
+
+#: admin/partials/settings-settings.php:223
+msgid "Log Levels:"
+msgstr "Уровни журнала:"
+
+#: admin/partials/settings-settings.php:225
+msgid "Only critical errors"
+msgstr "Только критические ошибки"
+
+#: admin/partials/settings-settings.php:226
+msgid "Errors and warnings"
+msgstr "Ошибки и предупреждения"
+
+#: admin/partials/settings-settings.php:227
+msgid "Errors, warnings, and key events"
+msgstr "Ошибки, предупреждения и ключевые события"
+
+#: admin/partials/settings-settings.php:228
+msgid "All logging (verbose)"
+msgstr "Все журналы (подробно)"
+
+#: admin/partials/settings-settings.php:231
+#, fuzzy
+msgid ""
+"To change the log level, edit SHOPMETRICS_LOG_LEVEL in the main plugin file."
+msgstr ""
+"Чтобы изменить уровень журнала, отредактируйте FINANCIARME_LOG_LEVEL в "
+"основном файле плагина."
+
+#: admin/partials/settings-settings.php:247
+#, fuzzy
+msgid "Connecting to FinanciarMe..."
+msgstr "Подключение к ShopMetrics..."
+
+#: admin/partials/settings-settings.php:248
+msgid "Connecting..."
+msgstr "Подключение..."
+
+#: admin/partials/settings-settings.php:261
+msgid "Connection successful! Saving credentials..."
+msgstr "Подключение успешно! Сохранение учетных данных..."
+
+#: admin/partials/settings-settings.php:275
+msgid "Connection successful! Refreshing page..."
+msgstr "Подключение успешно! Обновление страницы..."
+
+#: admin/partials/settings-settings.php:280
+msgid "Failed to save connection details: "
+msgstr "Не удалось сохранить данные подключения: "
+
+#: admin/partials/settings-settings.php:285
+msgid "Error saving connection details: "
+msgstr "Ошибка сохранения данных подключения: "
+
+#: admin/partials/settings-settings.php:289
+msgid "Invalid response from the API server. Missing required data."
+msgstr "Неверный ответ от API сервера. Отсутствуют необходимые данные."
+
+#: admin/partials/settings-settings.php:293
+#, fuzzy
+msgid "Error connecting to FinanciarMe API: "
+msgstr "Ошибка подключения к ShopMetrics API: "
+
+#: admin/partials/settings-settings.php:308
+msgid "Are you sure you want to clear all logs?"
+msgstr "Вы уверены, что хотите очистить все журналы?"
+
+#: admin/partials/settings-settings.php:316
+msgid "Clearing..."
+msgstr "Очистка..."
+
+#: admin/partials/settings-settings.php:317
+msgid "Clearing logs..."
+msgstr "Очистка журналов..."
+
+#: admin/partials/settings-settings.php:331
+#: admin/partials/settings-settings.php:366
+msgid "Error:"
+msgstr "Ошибка:"
+
+#: admin/partials/settings-settings.php:335
+#: admin/partials/settings-settings.php:370
+msgid "AJAX error occurred"
+msgstr "Произошла ошибка AJAX"
+
+#: admin/partials/settings-settings.php:350
+msgid "Rotating..."
+msgstr "Ротация..."
+
+#: admin/partials/settings-settings.php:351
+msgid "Rotating logs..."
+msgstr "Ротация журналов..."
+
+#: admin/partials/settings-subscription.php:30
+msgid "Subscription Status"
+msgstr "Статус подписки"
+
+#: admin/partials/settings-subscription.php:37
+msgid "Trial Period"
+msgstr "Пробный период"
+
+#: admin/partials/settings-subscription.php:45
+#, php-format
+msgid "Your trial ends in %d days."
+msgstr "Ваш пробный период заканчивается через %d дней."
+
+#: admin/partials/settings-subscription.php:51
+msgid "Your trial has expired."
+msgstr "Ваш пробный период истек."
+
+#: admin/partials/settings-subscription.php:57
+msgid "Upgrade to Premium"
+msgstr "Обновиться до Премиум"
+
+#: admin/partials/settings-subscription.php:65
+msgid "Active Subscription"
+msgstr "Активная подписка"
+
+#: admin/partials/settings-subscription.php:71
+#, php-format
+msgid "Your subscription is scheduled to cancel on %s."
+msgstr "Ваша подписка запланирована к отмене %s."
+
+#: admin/partials/settings-subscription.php:80
+msgid "Cancel Subscription"
+msgstr "Отменить подписку"
+
+#: admin/partials/settings-subscription.php:89
+msgid "Canceled Subscription"
+msgstr "Отмененная подписка"
+
+#: admin/partials/settings-subscription.php:91
+msgid "Your subscription has been canceled."
+msgstr "Ваша подписка была отменена."
+
+#: admin/partials/settings-subscription.php:95
+msgid "Reactivate Subscription"
+msgstr "Возобновить подписку"
+
+#: admin/partials/settings-subscription.php:103
+msgid "No Active Subscription"
+msgstr "Нет активной подписки"
+
+#: admin/partials/settings-subscription.php:105
+msgid "You do not have an active subscription."
+msgstr "У вас нет активной подписки."
+
+#: admin/partials/settings-subscription.php:109
+msgid "Subscribe Now"
+msgstr "Подписаться сейчас"
+
+#: admin/partials/settings-subscription.php:118
+msgid "Subscription Status Sync"
+msgstr "Синхронизация статуса подписки"
+
+#: admin/partials/settings-subscription.php:119
+#, fuzzy
+msgid ""
+"If your subscription status appears incorrect, you can manually sync it with "
+"the FinanciarMe server."
+msgstr ""
+"Если статус вашей подписки отображается неправильно, вы можете вручную "
+"синхронизировать его с сервером ShopMetrics."
+
+#: admin/partials/settings-subscription.php:121
+msgid "Refresh Subscription Status"
+msgstr "Обновить статус подписки"
+
+#: admin/partials/settings-subscription.php:129
+msgid "Subscription Plans"
+msgstr "Планы подписки"
+
+#: admin/partials/settings-subscription.php:135
+msgid "Free Plan"
+msgstr "Бесплатный план"
+
+#: admin/partials/settings-subscription.php:136
+msgid "$0"
+msgstr "$0"
+
+#: admin/partials/settings-subscription.php:137
+msgid "Forever"
+msgstr "Навсегда"
+
+#: admin/partials/settings-subscription.php:141
+msgid "Up to 20 orders per month"
+msgstr "До 20 заказов в месяц"
+
+#: admin/partials/settings-subscription.php:142
+msgid "Basic Sales Analytics"
+msgstr "Базовая аналитика продаж"
+
+#: admin/partials/settings-subscription.php:143
+msgid "General Dashboard"
+msgstr "Общая панель управления"
+
+#: admin/partials/settings-subscription.php:144
+msgid "Top Products Reports"
+msgstr "Отчеты по топ товарам"
+
+#: admin/partials/settings-subscription.php:145
+msgid "Sales by Time Reports"
+msgstr "Отчеты продаж по времени"
+
+#: admin/partials/settings-subscription.php:146
+msgid "Limited Data Retention (30 days)"
+msgstr "Ограниченное хранение данных (30 дней)"
+
+#: admin/partials/settings-subscription.php:147
+msgid "Email Support"
+msgstr "Поддержка по email"
+
+#: admin/partials/settings-subscription.php:152
+#: admin/partials/settings-subscription.php:212
+msgid "Current Plan"
+msgstr "Текущий план"
+
+#: admin/partials/settings-subscription.php:154
+msgid "Default Plan"
+msgstr "План по умолчанию"
+
+#: admin/partials/settings-subscription.php:162
+msgid "RECOMMENDED"
+msgstr "РЕКОМЕНДУЕТСЯ"
+
+#: admin/partials/settings-subscription.php:163
+msgid "Premium Plan"
+msgstr "Премиум план"
+
+#: admin/partials/settings-subscription.php:165
+msgid "per month"
+msgstr "в месяц"
+
+#: admin/partials/settings-subscription.php:169
+msgid "Select your monthly orders average"
+msgstr "Выберите среднее количество заказов в месяц"
+
+#: admin/partials/settings-subscription.php:186
+msgid "blocks"
+msgstr "блоки"
+
+#: admin/partials/settings-subscription.php:187
+msgid "orders/month"
+msgstr "заказов/месяц"
+
+#: admin/partials/settings-subscription.php:191
+#: admin/partials/settings-subscription.php:491
+msgid "Auto Detect Best Option"
+msgstr "Автоматически выбрать лучший вариант"
+
+#: admin/partials/settings-subscription.php:199
+msgid "All Free Plan Features"
+msgstr "Все функции бесплатного плана"
+
+#: admin/partials/settings-subscription.php:200
+msgid "Advanced Sales & Marketing Analytics"
+msgstr "Расширенная аналитика продаж и маркетинга"
+
+#: admin/partials/settings-subscription.php:201
+msgid "Finance Dashboard with COGS Integration"
+msgstr "Финансовая панель с интеграцией COGS"
+
+#: admin/partials/settings-subscription.php:202
+msgid "Stock Management Dashboard"
+msgstr "Панель управления запасами"
+
+#: admin/partials/settings-subscription.php:203 shopmetrics.php:399
+msgid "Cart Recovery System"
+msgstr "Система восстановления корзины"
+
+#: admin/partials/settings-subscription.php:204
+msgid "Marketing Campaign Tracking"
+msgstr "Отслеживание маркетинговых кампаний"
+
+#: admin/partials/settings-subscription.php:205
+msgid "UTM Parameter Analytics"
+msgstr "Аналитика UTM параметров"
+
+#: admin/partials/settings-subscription.php:206
+msgid "Extended Data Retention (1 year)"
+msgstr "Расширенное хранение данных (1 год)"
+
+#: admin/partials/settings-subscription.php:207
+msgid "Priority Email Support"
+msgstr "Приоритетная поддержка по email"
+
+#: admin/partials/settings-subscription.php:215
+msgid "Reactivate"
+msgstr "Повторно активировать"
+
+#: admin/partials/settings-subscription.php:219
+#: includes/class-shopmetrics-admin.php:2146
+msgid "Upgrade Now"
+msgstr "Обновиться сейчас"
+
+#: admin/partials/settings-subscription.php:228
+msgid "Enterprise Plan"
+msgstr "Корпоративный план"
+
+#: admin/partials/settings-subscription.php:229
+#: admin/partials/settings-subscription.php:250
+msgid "Contact Sales"
+msgstr "Связаться с отделом продаж"
+
+#: admin/partials/settings-subscription.php:230
+msgid "To Get Special Price"
+msgstr "Чтобы получить специальную цену"
+
+#: admin/partials/settings-subscription.php:233
+msgid "For stores processing more than 1000 orders per month"
+msgstr "Для магазинов, обрабатывающих более 1000 заказов в месяц"
+
+#: admin/partials/settings-subscription.php:237
+msgid "All Premium Features"
+msgstr "Все премиум функции"
+
+#: admin/partials/settings-subscription.php:238
+msgid "Unlimited Orders Per Month"
+msgstr "Неограниченное количество заказов в месяц"
+
+#: admin/partials/settings-subscription.php:239
+msgid "Multi-store Analytics"
+msgstr "Аналитика для нескольких магазинов"
+
+#: admin/partials/settings-subscription.php:240
+msgid "Custom Reports"
+msgstr "Пользовательские отчеты"
+
+#: admin/partials/settings-subscription.php:241
+msgid "API Access"
+msgstr "Доступ к API"
+
+#: admin/partials/settings-subscription.php:242
+msgid "Unlimited Data Retention"
+msgstr "Неограниченное хранение данных"
+
+#: admin/partials/settings-subscription.php:243
+msgid "Dedicated Account Manager"
+msgstr "Персональный менеджер аккаунта"
+
+#: admin/partials/settings-subscription.php:244
+msgid "Phone & Email Support"
+msgstr "Поддержка по телефону и email"
+
+#: admin/partials/settings-subscription.php:245
+msgid "Custom Onboarding"
+msgstr "Персональная настройка"
+
+#: admin/partials/settings-subscription.php:260
+msgid "Billing History"
+msgstr "История платежей"
+
+#: admin/partials/settings-subscription.php:263
+msgid "Loading billing history..."
+msgstr "Загрузка истории платежей..."
+
+#: admin/partials/settings-subscription.php:454
+msgid "Analyzing order history..."
+msgstr "Анализ истории заказов..."
+
+#: admin/partials/settings-subscription.php:484
+msgid "Could not analyze order history."
+msgstr "Не удалось проанализировать историю заказов."
+
+#: admin/partials/settings-subscription.php:488
+msgid "An error occurred during analysis."
+msgstr "Произошла ошибка во время анализа."
+
+#: admin/partials/settings-subscription.php:500
+msgid ""
+"Are you sure you want to cancel your subscription? You will lose access to "
+"premium features at the end of your billing cycle."
+msgstr ""
+"Вы уверены, что хотите отменить подписку? Вы потеряете доступ к премиум-"
+"функциям в конце расчетного периода."
+
+#: admin/partials/settings-subscription.php:508
+#: admin/partials/settings-subscription.php:547
+msgid "Processing..."
+msgstr "Обработка..."
+
+#: admin/partials/settings-subscription.php:539
+msgid ""
+"Are you sure you want to reactivate your subscription? You will be billed "
+"according to your previous subscription terms."
+msgstr ""
+"Вы уверены, что хотите повторно активировать подписку? С вас будет взиматься "
+"плата согласно условиям предыдущей подписки."
+
+#: admin/partials/settings-subscription.php:583
+msgid "Preparing checkout..."
+msgstr "Подготовка к оформлению заказа..."
+
+#: admin/partials/settings-subscription.php:621
+msgid "Date"
+msgstr "Дата"
+
+#: admin/partials/settings-subscription.php:622 shopmetrics.php:389
+msgid "Description"
+msgstr "Описание"
+
+#: admin/partials/settings-subscription.php:623
+msgid "Amount"
+msgstr "Сумма"
+
+#: admin/partials/settings-subscription.php:624
+msgid "Status"
+msgstr "Статус"
+
+#: admin/partials/settings-subscription.php:625
+msgid "Invoice"
+msgstr "Счет"
+
+#: admin/partials/settings-subscription.php:631
+#, fuzzy
+msgid "FinanciarMe Analytics Premium Plan"
+msgstr "ShopMetrics Analytics Премиум план"
+
+#: admin/partials/settings-subscription.php:633
+msgid "Paid"
+msgstr "Оплачено"
+
+#: admin/partials/settings-subscription.php:634
+msgid "View"
+msgstr "Просмотр"
+
+#: admin/partials/settings-subscription.php:637
+msgid "No billing history available."
+msgstr "История платежей недоступна."
+
+#: admin/partials/settings-subscription.php:655
+msgid "Syncing subscription status..."
+msgstr "Синхронизация статуса подписки..."
+
+#: admin/partials/settings-subscription.php:675
+msgid "An error occurred."
+msgstr "Произошла ошибка."
+
+#: includes/class-shopmetrics-admin.php:204
+msgid "Are you sure you want to take this action?"
+msgstr "Вы уверены, что хотите выполнить это действие?"
+
+#: includes/class-shopmetrics-admin.php:205
+msgid "Sending..."
+msgstr "Отправка..."
+
+#: includes/class-shopmetrics-admin.php:206
+msgid "Email sent successfully!"
+msgstr "Email отправлен успешно!"
+
+#: includes/class-shopmetrics-admin.php:207
+msgid "Error sending email. Please check server logs."
+msgstr "Ошибка отправки email. Пожалуйста, проверьте журналы сервера."
+
+#: includes/class-shopmetrics-admin.php:208
+msgid "Snapshot schedule fixed!"
+msgstr "Расписание снимков исправлено!"
+
+#: includes/class-shopmetrics-admin.php:209
+msgid "Error fixing schedule."
+msgstr "Ошибка исправления расписания."
+
+#: includes/class-shopmetrics-admin.php:210
+msgid "Snapshot initiated!"
+msgstr "Снимок инициирован!"
+
+#: includes/class-shopmetrics-admin.php:211
+msgid "Error taking snapshot."
+msgstr "Ошибка создания снимка."
+
+#: includes/class-shopmetrics-admin.php:213
+msgid "Detecting COGS meta key..."
+msgstr "Обнаружение мета-ключа COGS..."
+
+#: includes/class-shopmetrics-admin.php:214
+msgid "Use This Key"
+msgstr "Использовать этот ключ"
+
+#: includes/class-shopmetrics-admin.php:215
+#, php-format
+msgid "Selected key: %s"
+msgstr "Выбранный ключ: %s"
+
+#: includes/class-shopmetrics-admin.php:217
+msgid "Loading meta keys..."
+msgstr "Загрузка мета-ключей..."
+
+#: includes/class-shopmetrics-admin.php:218
+#: includes/class-shopmetrics-admin.php:261
+msgid "Error loading meta keys"
+msgstr "Ошибка загрузки мета-ключей"
+
+#: includes/class-shopmetrics-admin.php:219
+#: includes/class-shopmetrics-admin.php:260
+msgid "An error occurred"
+msgstr "Произошла ошибка"
+
+#: includes/class-shopmetrics-admin.php:220
+msgid "Server communication error"
+msgstr "Ошибка связи с сервером"
+
+#: includes/class-shopmetrics-admin.php:221
+#: includes/class-shopmetrics-admin.php:227
+msgid "Last synchronization"
+msgstr "Последняя синхронизация"
+
+#: includes/class-shopmetrics-admin.php:256
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: includes/class-shopmetrics-admin.php:257
+msgid "Yes"
+msgstr "Да"
+
+#: includes/class-shopmetrics-admin.php:258
+msgid "No"
+msgstr "Нет"
+
+#: includes/class-shopmetrics-admin.php:259
+msgid "OK"
+msgstr "ОК"
+
+#: includes/class-shopmetrics-admin.php:262
+msgid "AJAX Error"
+msgstr "Ошибка AJAX"
+
+#: includes/class-shopmetrics-admin.php:388
+#, fuzzy
+msgid "FinanciarMe Analytics Error: Required JavaScript file not found in"
+msgstr "Ошибка ShopMetrics Analytics: Требуемый JavaScript файл не найден в"
+
+#: includes/class-shopmetrics-admin.php:388
+msgid "Please rebuild the React application"
+msgstr "Пожалуйста, пересоберите React приложение"
+
+#: includes/class-shopmetrics-admin.php:604
+#, fuzzy
+msgid ""
+"FinanciarMe Analytics Error: Could not find main JavaScript file for the "
+"dashboard. Please try rebuilding the application."
+msgstr ""
+"Ошибка ShopMetrics Analytics: Не удалось найти основной JavaScript файл для "
+"панели управления. Попробуйте пересобрать приложение."
+
+#: includes/class-shopmetrics-admin.php:619
+msgid "ShopMetrics"
+msgstr "ShopMetrics"
+
+#: includes/class-shopmetrics-admin.php:630
+#: includes/class-shopmetrics-admin.php:631 shopmetrics.php:95
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: includes/class-shopmetrics-admin.php:640
+#: includes/class-shopmetrics-admin.php:641 shopmetrics.php:94
+msgid "Settings"
+msgstr "Настройки"
+
+#: includes/class-shopmetrics-admin.php:701
+msgid "Debug Information"
+msgstr "Отладочная информация"
+
+#: includes/class-shopmetrics-admin.php:702
+msgid "Set"
+msgstr "Установить"
+
+#: includes/class-shopmetrics-admin.php:702
+msgid "length:"
+msgstr "длина:"
+
+#: includes/class-shopmetrics-admin.php:704
+msgid "isConnected:"
+msgstr "подключен:"
+
+#: includes/class-shopmetrics-admin.php:704
+#: includes/class-shopmetrics-admin.php:705
+msgid "true"
+msgstr "истина"
+
+#: includes/class-shopmetrics-admin.php:704
+#: includes/class-shopmetrics-admin.php:705
+msgid "false"
+msgstr "ложь"
+
+#: includes/class-shopmetrics-admin.php:705
+msgid "needsOnboarding:"
+msgstr "требует настройки:"
+
+#: includes/class-shopmetrics-admin.php:720
+#, fuzzy
+msgid "FinanciarMe for WooCommerce - Setup required"
+msgstr "ShopMetrics для WooCommerce - Требуется настройка"
+
+#: includes/class-shopmetrics-admin.php:723
+#, fuzzy
+msgid ""
+"Your site is not connected to FinanciarMe for WooCommerce. The dashboard "
+"requires a connection to display your data."
+msgstr ""
+"Ваш сайт не подключен к ShopMetrics для WooCommerce. Панель управления "
+"требует подключения для отображения ваших данных."
+
+#: includes/class-shopmetrics-admin.php:726
+msgid "Go to the Settings page by clicking the button below"
+msgstr "Перейдите на страницу настроек, нажав кнопку ниже"
+
+#: includes/class-shopmetrics-admin.php:727
+msgid "Click on the \"Connect & Synchronize\" button"
+msgstr "Нажмите на кнопку \"Подключить и синхронизировать\""
+
+#: includes/class-shopmetrics-admin.php:728
+msgid "Wait for the connection process to complete"
+msgstr "Дождитесь завершения процесса подключения"
+
+#: includes/class-shopmetrics-admin.php:729
+msgid "Once connected, return to this page to view your dashboard"
+msgstr ""
+"После подключения вернитесь на эту страницу, чтобы просмотреть панель "
+"управления"
+
+#: includes/class-shopmetrics-admin.php:734
+msgid "Go to Settings Page"
+msgstr "Перейти к странице настроек"
+
+#: includes/class-shopmetrics-admin.php:850
+#, fuzzy
+msgid ""
+"FinanciarMe Analytics Error: Could not find main JavaScript file for the "
+"dashboard. Please rebuild the application."
+msgstr ""
+"Ошибка ShopMetrics Analytics: Не удалось найти основной JavaScript файл для "
+"панели управления. Пожалуйста, пересоберите приложение."
+
+#: includes/class-shopmetrics-admin.php:928
+msgid "General Settings"
+msgstr "Общие настройки"
+
+#: includes/class-shopmetrics-admin.php:948
+msgid "Order Item COGS Meta Key"
+msgstr "Мета-ключ COGS элемента заказа"
+
+#: includes/class-shopmetrics-admin.php:988
+msgid "Enable Low Stock Email Notifications"
+msgstr "Включить email уведомления о низких запасах"
+
+#: includes/class-shopmetrics-admin.php:1008
+msgid "Low Stock Notification Recipient(s)"
+msgstr "Получатель(и) уведомлений о низких запасах"
+
+#: includes/class-shopmetrics-admin.php:1033
+msgid "Order blocks must be between 1 and 10."
+msgstr "Блоки заказов должны быть от 1 до 10."
+
+#: includes/class-shopmetrics-admin.php:1074
+msgid ""
+"Select the meta key for COGS. If your key is not listed, ensure orders with "
+"that meta key exist or check advanced options if available."
+msgstr ""
+"Выберите мета-ключ для COGS. Если ваш ключ не в списке, убедитесь, что "
+"заказы с этим мета-ключом существуют, или проверьте дополнительные опции, "
+"если доступны."
+
+#. translators: %s: Example meta key
+#: includes/class-shopmetrics-admin.php:1090
+#, php-format
+msgid ""
+"Common example: %s. Leave blank or select \"-- Do not use a meta key --\" if "
+"you only want to use the default percentage or not track COGS via item meta."
+msgstr ""
+"Обычный пример: %s. Оставьте пустым или выберите \"-- Не использовать мета-"
+"ключ --\", если хотите использовать только процент по умолчанию или не "
+"отслеживать COGS через мета товара."
+
+#: includes/class-shopmetrics-admin.php:1117
+msgid ""
+"If per-item COGS is not found via the meta key, use this percentage of the "
+"item\\'s pre-discount subtotal to estimate COGS (0-100)."
+msgstr ""
+"Если COGS на единицу товара не найден через мета-ключ, используйте этот "
+"процент от предварительной суммы товара до скидки для оценки COGS (0-100)."
+
+#: includes/class-shopmetrics-admin.php:1136
+msgid "Default COGS Percentage must be a number between 0 and 100, or blank."
+msgstr "Процент COGS по умолчанию должен быть числом от 0 до 100 или пустым."
+
+#: includes/class-shopmetrics-admin.php:1182
+msgid ""
+"Enter one or more email addresses, separated by commas. These addresses will "
+"receive the low stock notifications if enabled."
+msgstr ""
+"Введите один или несколько адресов электронной почты, разделенных запятыми. "
+"Эти адреса будут получать уведомления о низких запасах, если включены."
+
+#: includes/class-shopmetrics-admin.php:1184
+msgid ""
+"If this field is left empty, notifications will be sent to the site "
+"administrator\\'s email by default if notifications are enabled."
+msgstr ""
+"Если это поле остается пустым, уведомления будут отправляться на электронную "
+"почту администратора сайта по умолчанию, если уведомления включены."
+
+#: includes/class-shopmetrics-admin.php:1212
+#, php-format
+msgid "The email address \"%s\" is not valid and has been removed."
+msgstr "Email адрес \"%s\" недействителен и был удален."
+
+#: includes/class-shopmetrics-admin.php:1239
+msgid "Check this box to enable the tracking of website visits."
+msgstr ""
+"Установите этот флажок, чтобы включить отслеживание посещений веб-сайта."
+
+#: includes/class-shopmetrics-admin.php:1428
+#: includes/class-shopmetrics-admin.php:1516
+#: includes/class-shopmetrics-admin.php:1657
+#: includes/class-shopmetrics-admin.php:1738
+#: includes/class-shopmetrics-admin.php:2857
+msgid "Nonce verification failed!"
+msgstr "Проверка nonce не удалась!"
+
+#: includes/class-shopmetrics-admin.php:1433
+#: includes/class-shopmetrics-admin.php:1522
+#: includes/class-shopmetrics-admin.php:2086
+#: includes/class-shopmetrics-admin.php:2309
+#: includes/class-shopmetrics-admin.php:2811
+#: includes/class-shopmetrics-admin.php:2863
+#: includes/class-shopmetrics-admin.php:2978
+msgid "You do not have permission to perform this action."
+msgstr "У вас нет разрешения для выполнения этого действия."
+
+#: includes/class-shopmetrics-admin.php:1442
+msgid "No API token provided."
+msgstr "API токен не предоставлен."
+
+#: includes/class-shopmetrics-admin.php:1490
+msgid "API token processed successfully."
+msgstr "API токен обработан успешно."
+
+#: includes/class-shopmetrics-admin.php:1493
+msgid "API token and Site Identifier processed successfully."
+msgstr "API токен и идентификатор сайта обработаны успешно."
+
+#: includes/class-shopmetrics-admin.php:1495
+msgid "API token processed. Site Identifier failed to save."
+msgstr "API токен обработан. Не удалось сохранить идентификатор сайта."
+
+#: includes/class-shopmetrics-admin.php:1501
+msgid "Failed to save API token."
+msgstr "Не удалось сохранить API токен."
+
+#: includes/class-shopmetrics-admin.php:1528
+msgid "Action Scheduler is required but not active."
+msgstr "Action Scheduler требуется, но не активен."
+
+#: includes/class-shopmetrics-admin.php:1555
+msgid "Historical synchronization is already in progress."
+msgstr "Историческая синхронизация уже выполняется."
+
+#: includes/class-shopmetrics-admin.php:1591
+msgid "Failed to schedule sync action after clearing existing schedule."
+msgstr ""
+"Не удалось запланировать действие синхронизации после очистки существующего "
+"расписания."
+
+#: includes/class-shopmetrics-admin.php:1597
+msgid "Error scheduling synchronization after clearing existing schedule: "
+msgstr ""
+"Ошибка планирования синхронизации после очистки существующего расписания: "
+
+#: includes/class-shopmetrics-admin.php:1603
+msgid ""
+"Historical synchronization rescheduled after clearing previous schedule."
+msgstr ""
+"Историческая синхронизация перепланирована после очистки предыдущего "
+"расписания."
+
+#: includes/class-shopmetrics-admin.php:1609
+msgid "Failed to schedule sync action."
+msgstr "Не удалось запланировать действие синхронизации."
+
+#: includes/class-shopmetrics-admin.php:1612
+msgid "Error scheduling synchronization: "
+msgstr "Ошибка планирования синхронизации: "
+
+#: includes/class-shopmetrics-admin.php:1619
+msgid "Historical data synchronization scheduled successfully."
+msgstr "Синхронизация исторических данных запланирована успешно."
+
+#: includes/class-shopmetrics-admin.php:1662
+#: includes/class-shopmetrics-admin.php:1743
+msgid "You do not have permission."
+msgstr "У вас нет разрешения."
+
+#: includes/class-shopmetrics-admin.php:1752
+msgid "Site is not connected. Cannot manage subscription."
+msgstr "Сайт не подключен. Невозможно управлять подпиской."
+
+#: includes/class-shopmetrics-admin.php:1774
+#, php-format
+msgid "Error communicating with subscription service: %s"
+msgstr "Ошибка связи со службой подписки: %s"
+
+#: includes/class-shopmetrics-admin.php:1784
+msgid "Cancellation requested."
+msgstr "Запрошена отмена."
+
+#: includes/class-shopmetrics-admin.php:1788
+msgid "Unknown error from subscription service."
+msgstr "Неизвестная ошибка службы подписки."
+
+#: includes/class-shopmetrics-admin.php:1790
+#, php-format
+msgid "Subscription service error (Code: %d): %s"
+msgstr "Ошибка службы подписки (Код: %d): %s"
+
+#: includes/class-shopmetrics-admin.php:1808
+#: includes/class-shopmetrics-admin.php:1981
+#: includes/class-shopmetrics-admin.php:2050
+#: includes/class-shopmetrics-admin.php:2179
+#: includes/class-shopmetrics-admin.php:2492
+msgid "Insufficient permissions."
+msgstr "Недостаточно разрешений."
+
+#: includes/class-shopmetrics-admin.php:1817
+msgid "API token not found. Cannot reactivate subscription."
+msgstr "API токен не найден. Невозможно возобновить подписку."
+
+#: includes/class-shopmetrics-admin.php:1840
+msgid "Error communicating with the backend API."
+msgstr "Ошибка связи с backend API."
+
+#: includes/class-shopmetrics-admin.php:1857
+msgid "Subscription successfully reactivated."
+msgstr "Подписка успешно возобновлена."
+
+#: includes/class-shopmetrics-admin.php:1860
+msgid "Unknown error from backend."
+msgstr "Неизвестная ошибка от backend."
+
+#: includes/class-shopmetrics-admin.php:1862
+#, php-format
+msgid "Failed to reactivate subscription. Backend response: %s"
+msgstr "Не удалось возобновить подписку. Ответ backend: %s"
+
+#: includes/class-shopmetrics-admin.php:2012
+msgid "No order item meta keys found in recent orders to scan."
+msgstr ""
+"Не найдены мета-ключи элементов заказа в недавних заказах для сканирования."
+
+#: includes/class-shopmetrics-admin.php:2035
+#, php-format
+msgid "Detected potential COGS key: %s"
+msgstr "Обнаружен потенциальный COGS ключ: %s"
+
+#: includes/class-shopmetrics-admin.php:2037
+msgid ""
+"No common COGS meta key found in recent orders. You can try selecting one "
+"manually."
+msgstr ""
+"Общий мета-ключ COGS не найден в недавних заказах. Вы можете попробовать "
+"выбрать один вручную."
+
+#: includes/class-shopmetrics-admin.php:2058
+msgid "Error fetching meta keys."
+msgstr "Ошибка получения мета-ключей."
+
+#: includes/class-shopmetrics-admin.php:2093
+msgid "Snapshotter component is missing. Cannot trigger snapshot."
+msgstr "Компонент снимков отсутствует. Невозможно запустить снимок."
+
+#: includes/class-shopmetrics-admin.php:2100
+msgid "Snapshotter class or method not found. Cannot trigger snapshot."
+msgstr "Класс или метод снимков не найден. Невозможно запустить снимок."
+
+#: includes/class-shopmetrics-admin.php:2114
+msgid ""
+"Inventory snapshot process has been triggered. Check server logs (PHP error "
+"log, CloudWatch) for details and API send status."
+msgstr ""
+"Процесс снимка запасов был запущен. Проверьте серверные журналы (журнал "
+"ошибок PHP, CloudWatch) для деталей и статуса отправки API."
+
+#: includes/class-shopmetrics-admin.php:2117
+msgid "An error occurred while triggering the snapshot: "
+msgstr "Произошла ошибка при запуске снимка: "
+
+#: includes/class-shopmetrics-admin.php:2145
+msgid ""
+"Cart Recovery is a premium feature. Please upgrade your plan to enable this "
+"functionality."
+msgstr ""
+"Восстановление корзины - это премиум-функция. Пожалуйста, обновите ваш план, "
+"чтобы включить эту функциональность."
+
+#: includes/class-shopmetrics-admin.php:2185
+msgid "Could not identify current user."
+msgstr "Не удалось идентифицировать текущего пользователя."
+
+#: includes/class-shopmetrics-admin.php:2194
+msgid "Could not initialize cart recovery module."
+msgstr "Не удалось инициализировать модуль восстановления корзины."
+
+#: includes/class-shopmetrics-admin.php:2202
+#, php-format
+msgid "Test email sent to %s successfully."
+msgstr "Тестовый email отправлен %s успешно."
+
+#: includes/class-shopmetrics-admin.php:2206
+msgid "Failed to send test email. Please check server logs for more details."
+msgstr ""
+"Не удалось отправить тестовый email. Пожалуйста, проверьте журналы сервера "
+"для получения подробностей."
+
+#: includes/class-shopmetrics-admin.php:2278
+msgid "Sample Product 1"
+msgstr "Образец товара 1"
+
+#: includes/class-shopmetrics-admin.php:2286
+msgid "Sample Product 2"
+msgstr "Образец товара 2"
+
+#: includes/class-shopmetrics-admin.php:2316
+msgid "Snapshotter component is missing."
+msgstr "Компонент снимков отсутствует."
+
+#: includes/class-shopmetrics-admin.php:2323
+msgid "Snapshotter class not found."
+msgstr "Класс снимков не найден."
+
+#: includes/class-shopmetrics-admin.php:2351
+msgid "Snapshot schedule has been fixed."
+msgstr "Расписание снимков исправлено."
+
+#: includes/class-shopmetrics-admin.php:2356
+msgid "Failed to reschedule the snapshot. Please check server logs."
+msgstr ""
+"Не удалось перепланировать снимок. Пожалуйста, проверьте журналы сервера."
+
+#: includes/class-shopmetrics-admin.php:2360
+msgid "An error occurred: "
+msgstr "Произошла ошибка: "
+
+#: includes/class-shopmetrics-admin.php:2423
+#, fuzzy
+msgid ""
+"Please connect your site to FinanciarMe Analytics before configuring data "
+"sources."
+msgstr ""
+"Пожалуйста, подключите ваш сайт к ShopMetrics Analytics перед настройкой "
+"источников данных."
+
+#: includes/class-shopmetrics-admin.php:2425
+#: includes/class-shopmetrics-admin.php:2461
+msgid "Go to Settings"
+msgstr "Перейти к настройкам"
+
+#: includes/class-shopmetrics-admin.php:2459
+#, fuzzy
+msgid ""
+"Please connect your site to FinanciarMe Analytics before managing your "
+"subscription."
+msgstr ""
+"Пожалуйста, подключите ваш сайт к ShopMetrics Analytics перед управлением "
+"подпиской."
+
+#: includes/class-shopmetrics-admin.php:2499
+msgid "WooCommerce is not active. Cannot analyze order history."
+msgstr "WooCommerce не активен. Невозможно проанализировать историю заказов."
+
+#: includes/class-shopmetrics-admin.php:2531
+#, php-format
+msgid ""
+"Your store processes approximately %d orders per month (with 20%% buffer: "
+"%d). This exceeds the Premium Plan limit. Consider contacting sales for an "
+"Enterprise Plan."
+msgstr ""
+"Ваш магазин обрабатывает приблизительно %d заказов в месяц (с 20%% буфером: "
+"%d). Это превышает лимит Премиум плана. Рассмотрите возможность обращения к "
+"отделу продаж для Корпоративного плана."
+
+#: includes/class-shopmetrics-admin.php:2545
+#, php-format
+msgid ""
+"Based on your order history (average %d orders per month, with 20%% buffer: "
+"%d), we recommend %d order blocks for your subscription."
+msgstr ""
+"На основе истории ваших заказов (в среднем %d заказов в месяц, с 20%% "
+"буфером: %d), мы рекомендуем %d блоков заказов для вашей подписки."
+
+#: includes/class-shopmetrics-admin.php:2805
+msgid "Security check failed."
+msgstr "Проверка безопасности не удалась."
+
+#: includes/class-shopmetrics-admin.php:2820
+msgid "Missing API token or site identifier. Please reconnect your site."
+msgstr ""
+"Отсутствует API токен или идентификатор сайта. Пожалуйста, переподключите "
+"ваш сайт."
+
+#: includes/class-shopmetrics-admin.php:2836
+msgid "Subscription status synced successfully."
+msgstr "Статус подписки синхронизирован успешно."
+
+#: includes/class-shopmetrics-admin.php:2842
+msgid ""
+"Failed to sync subscription status. Please try again or contact support."
+msgstr ""
+"Не удалось синхронизировать статус подписки. Пожалуйста, попробуйте еще раз "
+"или обратитесь в поддержку."
+
+#: includes/class-shopmetrics-admin.php:2876
+msgid "No synchronization has been initiated."
+msgstr "Синхронизация не была инициирована."
+
+#: includes/class-shopmetrics-admin.php:2890
+msgid "Synchronization appears to have stalled."
+msgstr "Синхронизация, по-видимому, зависла."
+
+#: includes/class-shopmetrics-admin.php:2971
+msgid "Security verification failed!"
+msgstr "Проверка безопасности не удалась!"
+
+#: includes/class-shopmetrics-admin.php:3001
+msgid ""
+"Sync is currently in progress. Use force reset if you want to override this."
+msgstr ""
+"Синхронизация в настоящее время выполняется. Используйте принудительный "
+"сброс, если хотите это переопределить."
+
+#: includes/class-shopmetrics-admin.php:3063
+msgid "Sync progress reset successfully."
+msgstr "Прогресс синхронизации сброшен успешно."
+
+#: includes/class-shopmetrics-admin.php:3068
+msgid "Failed to reset sync progress."
+msgstr "Не удалось сбросить прогресс синхронизации."
+
+#: includes/class-shopmetrics-admin.php:3181
+msgid "Connect your site to enable historical data synchronization."
+msgstr "Подключите ваш сайт для включения синхронизации исторических данных."
+
+#: includes/class-shopmetrics-admin.php:3197
+#, fuzzy
+msgid ""
+"This will synchronize orders from the past year with FinanciarMe Analytics. "
+"The process will run in the background and may take some time depending on "
+"the number of orders."
+msgstr ""
+"Это синхронизирует заказы за прошлый год с ShopMetrics Analytics. Процесс "
+"будет выполняться в фоновом режиме и может занять время в зависимости от "
+"количества заказов."
+
+#: includes/class-shopmetrics-cart-recovery.php:297
+#: includes/class-shopmetrics-cart-recovery.php:852
+#: templates/cart-recovery-email.php:166
+msgid "Use this coupon code for a special discount:"
+msgstr "Используйте этот код купона для специальной скидки:"
+
+#: includes/class-shopmetrics-cart-recovery.php:517
+#, php-format
+msgid "Quantity: %s"
+msgstr "Количество: %s"
+
+#: includes/class-shopmetrics-cart-recovery.php:523
+msgid "each"
+msgstr "каждый"
+
+#: includes/class-shopmetrics-cart-recovery.php:539
+msgid "Total:"
+msgstr "Итого:"
+
+#: includes/class-shopmetrics-cart-recovery.php:620
+msgid "The recovery link is invalid or has expired."
+msgstr "Ссылка восстановления недействительна или истекла."
+
+#: includes/class-shopmetrics-cart-recovery.php:642
+msgid "Your cart has been restored. You can now complete your purchase."
+msgstr "Ваша корзина восстановлена. Теперь вы можете завершить покупку."
+
+#: includes/class-shopmetrics-cart-recovery.php:644
+msgid ""
+"We couldn't restore your cart. It may have expired or been already processed."
+msgstr ""
+"Мы не смогли восстановить вашу корзину. Возможно, она истекла или уже была "
+"обработана."
+
+#: includes/class-shopmetrics-rest-api.php:122
+msgid ""
+"Action Scheduler library is required but not found. Please ensure "
+"WooCommerce is active."
+msgstr ""
+"Библиотека Action Scheduler необходима, но не найдена. Пожалуйста, "
+"убедитесь, что WooCommerce активен."
+
+#: includes/class-shopmetrics-rest-api.php:141
+msgid "Synchronization is already in progress or scheduled."
+msgstr "Синхронизация уже выполняется или запланирована."
+
+#: includes/class-shopmetrics-rest-api.php:152
+msgid "Failed to schedule the synchronization task."
+msgstr "Не удалось запланировать задачу синхронизации."
+
+#: includes/class-shopmetrics-rest-api.php:160
+msgid "Historical data synchronization has been scheduled."
+msgstr "Синхронизация исторических данных запланирована."
+
+#: includes/class-shopmetrics-rest-api.php:215
+msgid ""
+"Could not reach your site for verification. Please ensure your site is "
+"publicly accessible or check firewall settings."
+msgstr ""
+"Не удалось достичь вашего сайта для проверки. Пожалуйста, убедитесь, что ваш "
+"сайт общедоступен или проверьте настройки брандмауэра."
+
+#: includes/class-shopmetrics-rest-api.php:229
+msgid "Site verification challenge failed. Unexpected response received."
+msgstr "Проверка сайта не удалась. Получен неожиданный ответ."
+
+#: includes/class-shopmetrics-rest-api.php:269
+msgid "Could not register site with the backend service. Please try again."
+msgstr "Не удалось зарегистрировать сайт в backend службе. Попробуйте еще раз."
+
+#: includes/class-shopmetrics-rest-api.php:281
+msgid "Unknown error from backend registration."
+msgstr "Неизвестная ошибка регистрации backend."
+
+#: includes/class-shopmetrics-rest-api.php:284
+#, php-format
+msgid "Backend registration failed: %s"
+msgstr "Регистрация backend не удалась: %s"
+
+#: includes/class-shopmetrics-rest-api.php:296
+msgid "Site connected successfully. Securely saving token..."
+msgstr "Сайт подключен успешно. Безопасное сохранение токена..."
+
+#: includes/class-shopmetrics-rest-api.php:334
+msgid "API Token saved successfully."
+msgstr "API токен сохранен успешно."
+
+#: includes/class-shopmetrics-rest-api.php:340
+msgid "Could not save the API token to the database."
+msgstr "Не удалось сохранить API токен в базу данных."
+
+#: includes/class-shopmetrics-snapshotter.php:294
+#, php-format
+msgid "Low Stock Product Alert - %s"
+msgstr "Предупреждение о низких запасах товара - %s"
+
+#: includes/class-shopmetrics-snapshotter.php:296
+msgid ""
+"The following products/variations are currently at or below their low stock "
+"threshold:"
+msgstr ""
+"Следующие продукты/вариации в настоящее время находятся на уровне или ниже "
+"их порога низких запасов:"
+
+#: includes/class-shopmetrics-snapshotter.php:299
+msgid "Product Name"
+msgstr "Название товара"
+
+#: includes/class-shopmetrics-snapshotter.php:300
+msgid "SKU"
+msgstr "Артикул"
+
+#: includes/class-shopmetrics-snapshotter.php:301
+msgid "Current Stock"
+msgstr "Текущий запас"
+
+#: includes/class-shopmetrics-snapshotter.php:309
+msgid "N/A"
+msgstr "Н/Д"
+
+#: includes/class-shopmetrics-snapshotter.php:316
+#, fuzzy, php-format
+msgid ""
+"This is an automated notification from the FinanciarMe Analytics plugin on "
+"%s."
+msgstr "Это автоматическое уведомление от плагина ShopMetrics Analytics на %s."
+
+#: shopmetrics.php:81
+#, fuzzy
+msgid ""
+"ShopMetrics for WooCommerce requires WooCommerce to be installed and "
+"activated. Please install and activate WooCommerce first."
+msgstr ""
+"ShopMetrics для WooCommerce требует установки и активации WooCommerce. "
+"Пожалуйста, сначала установите и активируйте WooCommerce."
+
+#: shopmetrics.php:100
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: shopmetrics.php:342
+msgid "Every Five Minutes"
+msgstr "Каждые пять минут"
+
+#: shopmetrics.php:348
+msgid "Every Fifteen Minutes"
+msgstr "Каждые пятнадцать минут"
+
+#: shopmetrics.php:391
+#, fuzzy
+msgid ""
+"ShopMetrics for WooCommerce provides advanced analytics, inventory "
+"management, and abandoned cart recovery features to help you optimize your "
+"WooCommerce store performance."
+msgstr ""
+"ShopMetrics для WooCommerce предоставляет расширенную аналитику, управление "
+"запасами и функции восстановления заброшенных корзин, чтобы помочь вам "
+"оптимизировать производительность вашего магазина WooCommerce."
+
+#: shopmetrics.php:393
+msgid "Key Features"
+msgstr "Ключевые функции"
+
+#: shopmetrics.php:395
+msgid "Comprehensive Analytics Dashboard"
+msgstr "Комплексная панель аналитики"
+
+#: shopmetrics.php:396
+msgid ""
+"Get real-time insights into your store's performance with detailed sales, "
+"marketing, and inventory metrics."
+msgstr ""
+"Получите данные о производительности вашего магазина в режиме реального "
+"времени с подробными метриками продаж, маркетинга и запасов."
+
+#: shopmetrics.php:397
+msgid "Inventory Management"
+msgstr "Управление запасами"
+
+#: shopmetrics.php:398
+msgid ""
+"Track inventory levels, receive low stock alerts, and optimize restocking to "
+"prevent stockouts."
+msgstr ""
+"Отслеживайте уровни запасов, получайте уведомления о низких запасах и "
+"оптимизируйте пополнение запасов для предотвращения дефицита."
+
+#: shopmetrics.php:400
+msgid ""
+"Automatically identify and recover abandoned carts to boost sales and "
+"conversion rates."
+msgstr ""
+"Автоматически определяйте и восстанавливайте заброшенные корзины для "
+"увеличения продаж и коэффициентов конверсии."
+
+#: shopmetrics.php:401
+msgid "Financial Reports"
+msgstr "Финансовые отчеты"
+
+#: shopmetrics.php:402
+msgid ""
+"Track COGS, profit margins, and other key financial metrics to optimize your "
+"business performance."
+msgstr ""
+"Отслеживайте COGS, прибыльность и другие ключевые финансовые метрики для "
+"оптимизации производительности вашего бизнеса."
+
+#: shopmetrics.php:405
+msgid ""
+"Our core platform is free, flexible, and amplified by a global community"
+msgstr ""
+"Наша основная платформа бесплатна, гибка и усилена глобальным сообществом"
+
+#: shopmetrics.php:406
+msgid ""
+"The freedom of open-source means you retain full ownership of your store's "
+"content and data forever."
+msgstr ""
+"Свобода открытого исходного кода означает, что вы навсегда сохраняете полное "
+"владение контентом и данными вашего магазина."
+
+#: shopmetrics.php:408
+msgid "Installation"
+msgstr "Установка"
+
+#: shopmetrics.php:410
+msgid ""
+"Upload the plugin files to the `/wp-content/plugins/shopmetrics` directory, "
+"or install the plugin through the WordPress plugins screen directly."
+msgstr ""
+"Загрузите файлы плагина в директорию `/wp-content/plugins/shopmetrics` или "
+"установите плагин напрямую через экран плагинов WordPress."
+
+#: shopmetrics.php:411
+msgid "Activate the plugin through the 'Plugins' screen in WordPress."
+msgstr "Активируйте плагин через экран 'Плагины' в WordPress."
+
+#: shopmetrics.php:412
+#, fuzzy
+msgid ""
+"Use the ShopMetrics Dashboard menu to configure the plugin and start "
+"tracking your analytics."
+msgstr ""
+"Используйте меню Панели управления ShopMetrics для настройки плагина и "
+"начала отслеживания вашей аналитики."
+
+#: shopmetrics.php:415
+msgid "Frequently Asked Questions"
+msgstr "Часто задаваемые вопросы"
+
+#: shopmetrics.php:416
+#, fuzzy
+msgid "Is ShopMetrics compatible with my theme?"
+msgstr "Совместим ли ShopMetrics с моей темой?"
+
+#: shopmetrics.php:417
+#, fuzzy
+msgid ""
+"Yes! ShopMetrics works with any WordPress theme that supports WooCommerce."
+msgstr ""
+"Да! ShopMetrics работает с любой темой WordPress, которая поддерживает "
+"WooCommerce."
+
+#: shopmetrics.php:419
+#, fuzzy
+msgid "Do I need to write code to use ShopMetrics?"
+msgstr "Нужно ли мне писать код для использования ShopMetrics?"
+
+#: shopmetrics.php:420
+#, fuzzy
+msgid ""
+"Not at all. ShopMetrics is designed to be user-friendly and requires no "
+"coding knowledge."
+msgstr ""
+"Вовсе нет. ShopMetrics разработан для удобства пользователей и не требует "
+"знаний программирования."
+
+#: shopmetrics.php:422
+#, fuzzy
+msgid "Does ShopMetrics slow down my website?"
+msgstr "Замедляет ли ShopMetrics мой веб-сайт?"
+
+#: shopmetrics.php:423
+#, fuzzy
+msgid ""
+"No, ShopMetrics is optimized for performance and has minimal impact on your "
+"site speed."
+msgstr ""
+"Нет, ShopMetrics оптимизирован для производительности и оказывает "
+"минимальное влияние на скорость вашего сайта."
+
+#: shopmetrics.php:425
+msgid "Changelog"
+msgstr "История изменений"
+
+#: shopmetrics.php:428
+msgid "Added Dashboard link to plugin actions"
+msgstr "Добавлена ссылка на панель управления в действия плагина"
+
+#: shopmetrics.php:429
+msgid "Added View details modal and Documentation link"
+msgstr "Добавлен модальный просмотр деталей и ссылка на документацию"
+
+#: shopmetrics.php:430
+msgid "Fixed several minor bugs"
+msgstr "Исправлено несколько мелких ошибок"
+
+#: shopmetrics.php:435
+msgid "Initial release"
+msgstr "Первоначальный выпуск"
+
+#: shopmetrics.php:438
+msgid "Screenshots"
+msgstr "Скриншоты"
+
+#: shopmetrics.php:440
+msgid "The main dashboard with analytics overview"
+msgstr "Главная панель с обзором аналитики"
+
+#: shopmetrics.php:441
+msgid "Inventory management interface"
+msgstr "Интерфейс управления запасами"
+
+#: shopmetrics.php:442
+msgid "Cart recovery settings"
+msgstr "Настройки восстановления корзины"
+
+#: shopmetrics.php:443
+msgid "Financial reports panel"
+msgstr "Панель финансовых отчетов"
+
+#: react-app/src/App.js:64
+msgid "General"
+msgstr "Общее"
+
+#: react-app/src/App.js:71
+msgid "Sales"
+msgstr "Продажи"
+
+#: react-app/src/App.js:78
+#, fuzzy
+msgid "Finance"
+msgstr "Финансы"
+
+#: react-app/src/App.js:85
+msgid "Marketing"
+msgstr "Маркетинг"
+
+#: react-app/src/App.js:92
+msgid "Cart & Checkout"
+msgstr "Корзина и оформление"
+
+#: react-app/src/App.js:99
+msgid "Stock"
+msgstr "Склад"
+
+#: react-app/src/components/AuthErrorBanner.js:30
+msgid "Connection Error:"
+msgstr "Ошибка подключения:"
+
+#: react-app/src/components/AuthErrorBanner.js:30
+msgid ""
+"Unable to communicate with ShopMetrics API. Your site may need to "
+"bereconnected."
+msgstr ""
+"Не удается связаться с API ShopMetrics. Возможно, ваш сайт нужно "
+"переподключить."
+
+#: react-app/src/components/AuthErrorBanner.js:44
+msgid "Reconnecting..."
+msgstr "Переподключение..."
+
+#: react-app/src/components/AuthErrorBanner.js:44
+msgid "Reconnect Site"
+msgstr "Переподключить сайт"
+
+#: react-app/src/components/CartDashboard.js:200
+#: react-app/src/components/FinanceDashboard.js:69
+#: react-app/src/components/MarketingDashboard.js:84
+#: react-app/src/components/SalesDashboard.js:73
+msgid "Invalid date range provided."
+msgstr "Предоставлен недействительный диапазон дат."
+
+#: react-app/src/components/CartDashboard.js:206
+#: react-app/src/components/SalesDashboard.js:80
+msgid "Site identifier or API token not provided."
+msgstr "Идентификатор сайта или API токен не предоставлен."
+
+#: react-app/src/components/CartDashboard.js:215
+#: react-app/src/components/SalesDashboard.js:90
+msgid "API URL not configured in window.fmData."
+msgstr "API URL не настроен в window.fmData."
+
+#: react-app/src/components/CartDashboard.js:249
+msgid ""
+"Failed to parse cart data from API response (unexpected data structure)."
+msgstr ""
+"Не удалось разобрать данные корзины из ответа API (неожиданная структура "
+"данных)."
+
+#: react-app/src/components/CartDashboard.js:255
+msgid "Failed to fetch cart stats."
+msgstr "Не удалось получить статистику корзин."
+
+#: react-app/src/components/CartDashboard.js:384
+#: react-app/src/components/StockDashboard.js:852
+msgid "Error: %s"
+msgstr "Ошибка: %s"
+
+#: react-app/src/components/CartDashboard.js:416
+msgid "Active Carts"
+msgstr "Активные корзины"
+
+#: react-app/src/components/CartDashboard.js:421
+msgid "Number of carts currently active (not abandoned, not converted)."
+msgstr ""
+"Количество корзин, которые в настоящее время активны (не заброшены, не "
+"конвертированы)."
+
+#: react-app/src/components/CartDashboard.js:426
+msgid "Active Carts Value"
+msgstr "Активные корзины"
+
+#: react-app/src/components/CartDashboard.js:431
+msgid "Total value of items in all active carts."
+msgstr "Общая стоимость товаров во всех активных корзинах."
+
+#: react-app/src/components/CartDashboard.js:437
+msgid "Average Cart Value"
+msgstr "Средняя стоимость корзины"
+
+#: react-app/src/components/CartDashboard.js:442
+msgid ""
+"Average monetary value of carts (based on backend logic for what constitutes "
+"a\\"
+msgstr ""
+"Не найдены мета-ключи элементов заказа в недавних заказах для сканирования."
+
+#: react-app/src/components/CartDashboard.js:448
+#: react-app/src/components/CartDashboard.js:648
+msgid "Abandoned Carts"
+msgstr "Заброшенные корзины"
+
+#: react-app/src/components/CartDashboard.js:453
+msgid "Number of carts that were initiated but not completed."
+msgstr "Количество корзин, которые были начаты, но не завершены."
+
+#: react-app/src/components/CartDashboard.js:458
+msgid "Abandoned Carts Value"
+msgstr "Стоимость заброшенных корзин"
+
+#: react-app/src/components/CartDashboard.js:463
+msgid "Total value of items in all abandoned carts."
+msgstr "Общая стоимость товаров во всех заброшенных корзинах."
+
+#: react-app/src/components/CartDashboard.js:469
+msgid "Abandoned Cart Rate"
+msgstr "Коэффициент заброшенных корзин"
+
+#: react-app/src/components/CartDashboard.js:474
+msgid ""
+"Percentage of initiated carts that were abandoned (Abandoned Carts / "
+"(AbandonedCarts + Completed Orders))."
+msgstr ""
+"Процент начатых корзин, которые были заброшены (Заброшенные корзины / "
+"(Заброшенные корзины + Завершенные заказы))."
+
+#: react-app/src/components/CartDashboard.js:479
+msgid "Checkouts Started"
+msgstr "Начатые оформления заказов"
+
+#: react-app/src/components/CartDashboard.js:484
+msgid "Number of times users initiated the checkout process."
+msgstr ""
+"Количество раз, когда пользователи инициировали процесс оформления заказа."
+
+#: react-app/src/components/CartDashboard.js:489
+msgid "Checkout Conversion Rate"
+msgstr "Коэффициент конверсии оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:494
+msgid ""
+"Percentage of checkouts started that resulted in a completed order "
+"(CompletedOrders / Checkouts Started)."
+msgstr ""
+"Процент начатых оформлений заказов, которые привели к завершенному заказу "
+"(Завершенные заказы / Начатые оформления)."
+
+#: react-app/src/components/CartDashboard.js:499
+msgid "Checkout Abandonment Rate"
+msgstr "Коэффициент отказа от оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:504
+msgid ""
+"Percentage of users who started checkout but did not complete the "
+"order((Checkouts Started - Orders Completed) / Checkouts Started)."
+msgstr ""
+"Процент пользователей, которые начали оформление заказа, но не завершили его "
+"((Начатые оформления - Завершенные заказы) / Начатые оформления)."
+
+#: react-app/src/components/CartDashboard.js:509
+msgid "Cart to Checkout Start Rate"
+msgstr "Коэффициент перехода от корзины к оформлению заказа"
+
+#: react-app/src/components/CartDashboard.js:514
+msgid ""
+"Percentage of users who viewed their cart and then proceeded to start "
+"thecheckout (Checkouts Started / Viewed Cart Page)."
+msgstr ""
+"Процент пользователей, которые просмотрели свою корзину, а затем перешли к "
+"началу оформления заказа (Начатые оформления / Просмотры страницы корзины)."
+
+#: react-app/src/components/CartDashboard.js:519
+msgid "Avg Items / Active Cart"
+msgstr "Активные корзины"
+
+#: react-app/src/components/CartDashboard.js:524
+msgid "Average number of items in carts that are currently active."
+msgstr ""
+"Среднее количество товаров в корзинах, которые в настоящее время активны."
+
+#: react-app/src/components/CartDashboard.js:529
+msgid "Avg Items / Abandoned Cart"
+msgstr "Среднее количество товаров / Заброшенная корзина"
+
+#: react-app/src/components/CartDashboard.js:534
+msgid "Average number of items in carts that were abandoned."
+msgstr "Среднее количество товаров в корзинах, которые были заброшены."
+
+#: react-app/src/components/CartDashboard.js:546
+msgid "Checkout Funnel Flow"
+msgstr "Поток воронки оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:548
+msgid "Checkout Funnel Flow Help"
+msgstr "Помощь по потоку воронки оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:549
+msgid ""
+"<p>A visual representation of how visitors move through your checkout "
+"process.Shows drop-off points and conversion rates at each stage.</p>"
+msgstr ""
+"<p>Визуальное представление того, как посетители проходят через процесс "
+"оформления заказа. Показывает точки выхода и коэффициенты конверсии на "
+"каждом этапе.</p>"
+
+#: react-app/src/components/CartDashboard.js:581
+msgid "No checkout funnel data available for the selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/CartDashboard.js:582
+msgid ""
+"Cart and checkout events will be tracked once customers begin interacting "
+"withyour store."
+msgstr ""
+"События корзины и оформления заказа будут отслеживаться, как только клиенты "
+"начнут взаимодействовать с вашим магазином."
+
+#: react-app/src/components/CartDashboard.js:590
+#: react-app/src/components/CartDashboard.js:592
+msgid "Top Products in Abandoned Carts"
+msgstr "Топ товаров в заброшенных корзинах"
+
+#: react-app/src/components/CartDashboard.js:593
+msgid ""
+"<p>A bar chart showing which products appear most frequently in "
+"abandonedcarts.</p>"
+msgstr ""
+"<p>Столбчатая диаграмма, показывающая, какие продукты чаще всего появляются "
+"в заброшенных корзинах.</p>"
+
+#: react-app/src/components/CartDashboard.js:616
+#: react-app/src/components/CartDashboard.js:689
+#: react-app/src/components/CartDashboard.js:744
+#: react-app/src/components/FinanceDashboard.js:387
+#: react-app/src/components/MarketingDashboard.js:415
+#: react-app/src/components/MarketingDashboard.js:657
+#: react-app/src/components/SalesDashboard.js:409
+#: react-app/src/components/StockDashboard.js:963
+msgid "Current Period"
+msgstr "Текущий период"
+
+#: react-app/src/components/CartDashboard.js:617
+#: react-app/src/components/CartDashboard.js:698
+#: react-app/src/components/CartDashboard.js:753
+#: react-app/src/components/FinanceDashboard.js:451
+#: react-app/src/components/MarketingDashboard.js:449
+#: react-app/src/components/MarketingDashboard.js:693
+#: react-app/src/components/SalesDashboard.js:445
+#: react-app/src/components/StockDashboard.js:996
+msgid "Previous Period"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/CartDashboard.js:622
+msgid "No abandoned products data available for the selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/CartDashboard.js:623
+msgid "This will populate when customers abandon products in their carts."
+msgstr "Это заполнится, когда клиенты оставят товары в своих корзинах."
+
+#: react-app/src/components/CartDashboard.js:630
+#: react-app/src/components/CartDashboard.js:632
+msgid "Abandoned Cart Value Distribution"
+msgstr "Распределение стоимости заброшенных корзин"
+
+#: react-app/src/components/CartDashboard.js:633
+msgid ""
+"<p>Shows the distribution of abandoned carts by price range, helping "
+"identifyprice thresholds where customers are more likely to abandon their "
+"carts.</p>"
+msgstr ""
+"<p>Показывает распределение заброшенных корзин по ценовым диапазонам, "
+"помогая определить ценовые пороги, при которых клиенты с большей "
+"вероятностью бросают свои корзины.</p>"
+
+#: react-app/src/components/CartDashboard.js:645
+msgid "Price Range"
+msgstr "Ценовой диапазон"
+
+#: react-app/src/components/CartDashboard.js:646
+msgid "Number of Carts"
+msgstr "Количество корзин"
+
+#: react-app/src/components/CartDashboard.js:647
+msgid "carts"
+msgstr "корзины"
+
+#: react-app/src/components/CartDashboard.js:647
+msgid "Count"
+msgstr "Количество"
+
+#: react-app/src/components/CartDashboard.js:653
+msgid "No abandoned cart value data available."
+msgstr "Данные о стоимости заброшенных корзин недоступны."
+
+#: react-app/src/components/CartDashboard.js:654
+msgid ""
+"This chart will populate as customers abandon carts at different price "
+"points."
+msgstr ""
+"Этот график заполнится по мере заброса корзин клиентами с различными "
+"ценовыми точками."
+
+#: react-app/src/components/CartDashboard.js:661
+msgid "Abandoned Cart Rate Trend"
+msgstr "Тенденция коэффициента заброшенных корзин"
+
+#: react-app/src/components/CartDashboard.js:663
+msgid "Abandoned Cart Rate Trend Help"
+msgstr "Помощь по тенденции коэффициента заброшенных корзин"
+
+#: react-app/src/components/CartDashboard.js:664
+msgid ""
+"<p>Shows how the abandoned cart rate has changed over the selected period.</"
+"p>"
+msgstr ""
+"<p>Показывает, как изменился коэффициент заброшенных корзин за выбранный "
+"период.</p>"
+
+#: react-app/src/components/CartDashboard.js:708
+msgid "No abandoned cart rate trend data available."
+msgstr "Данные тенденции коэффициента заброшенных корзин недоступны."
+
+#: react-app/src/components/CartDashboard.js:709
+msgid "This chart will populate as customers use your cart over time."
+msgstr ""
+"Этот график заполнится по мере использования корзины клиентами со временем."
+
+#: react-app/src/components/CartDashboard.js:716
+msgid "Checkout Conversion Rate Trend"
+msgstr "Тенденция коэффициента конверсии оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:718
+msgid "Checkout Conversion Rate Trend Help"
+msgstr "Помощь по тенденции коэффициента конверсии оформления заказа"
+
+#: react-app/src/components/CartDashboard.js:719
+msgid ""
+"<p>Shows how the checkout conversion rate has changed over the "
+"selectedperiod.</p>"
+msgstr ""
+"<p>Показывает, как изменился коэффициент конверсии оформления заказа за "
+"выбранный период.</p>"
+
+#: react-app/src/components/CartDashboard.js:763
+msgid "No checkout conversion rate trend data available."
+msgstr "Данные тенденции коэффициента конверсии оформления заказа недоступны."
+
+#: react-app/src/components/CartDashboard.js:764
+msgid "This chart will populate as customers complete checkouts."
+msgstr ""
+"Этот график заполнится по мере завершения оформления заказов клиентами."
+
+#: react-app/src/components/CompareDatesButton.js:139
+msgid "Compare"
+msgstr "Сравнить"
+
+#: react-app/src/components/CompareDatesButton.js:150
+msgid "Current Period:"
+msgstr "Текущий период:"
+
+#: react-app/src/components/CompareDatesButton.js:153
+msgid "Previous Period:"
+msgstr "Предыдущий период:"
+
+#: react-app/src/components/CompareDatesButton.js:170
+msgid "Reset Comparison"
+msgstr "Сбросить сравнение"
+
+#: react-app/src/components/CompareDatesButton.js:184
+msgid "Compare Periods"
+msgstr "Сравнить периоды"
+
+#: react-app/src/components/ConnectionAlert.js:27
+msgid "Connect to ShopMetrics Analytics"
+msgstr "Подключиться к ShopMetrics Analytics"
+
+#: react-app/src/components/ConnectionAlert.js:28
+msgid ""
+"Your site is not connected to ShopMetrics Analytics. The dashboard requires "
+"aconnection to display your data."
+msgstr ""
+"Ваш сайт не подключен к ShopMetrics Analytics. Панель управления требует "
+"подключения для отображения ваших данных."
+
+#: react-app/src/components/DashboardHeader.js:50
+#: react-app/src/components/LoadingScreen.js:6
+msgid "ShopMetrics Analytics"
+msgstr "ShopMetrics Analytics"
+
+#: react-app/src/components/DashboardHeader.js:55
+msgid "Syncing..."
+msgstr "Переподключение..."
+
+#: react-app/src/components/DateRangeSelector.js:26
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+#: react-app/src/components/DateRangeSelector.js:30
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+#: react-app/src/components/DateRangeSelector.js:34
+msgid "This month"
+msgstr "Последние 3 месяца"
+
+#: react-app/src/components/DateRangeSelector.js:38
+msgid "Last month"
+msgstr "Последние 3 месяца"
+
+#: react-app/src/components/DateRangeSelector.js:42
+msgid "Last 3 months"
+msgstr "Последние 3 месяца"
+
+#: react-app/src/components/DateRangeSelector.js:46
+msgid "Last 6 months"
+msgstr "Последние 3 месяца"
+
+#: react-app/src/components/DateRangeSelector.js:50
+msgid "This year"
+msgstr "Этот год"
+
+#: react-app/src/components/DateRangeSelector.js:54
+msgid "Last year"
+msgstr "Последние 7 дней"
+
+#: react-app/src/components/DateRangeSelector.js:92
+msgid "Select Date Range"
+msgstr "Выберите диапазон дат"
+
+#: react-app/src/components/EmptyState.js:21
+msgid "Connect to See Your Analytics"
+msgstr "Подключитесь, чтобы увидеть вашу аналитику"
+
+#: react-app/src/components/EmptyState.js:22
+msgid "Please connect your site to view your WooCommerce analytics dashboard."
+msgstr "Подключите ваш сайт к ShopMetrics, чтобы увидеть аналитику здесь."
+
+#: react-app/src/components/ErrorBoundary.js:23
+msgid "Dashboard Error"
+msgstr "Панель управления"
+
+#: react-app/src/components/ErrorBoundary.js:24
+msgid "Something went wrong with the ShopMetrics Analytics dashboard."
+msgstr "Что-то пошло не так с панелью ShopMetrics Analytics."
+
+#: react-app/src/components/ErrorBoundary.js:26
+msgid "Error Details"
+msgstr "Детали ошибки"
+
+#: react-app/src/components/ErrorBoundary.js:33
+msgid "Reload Dashboard"
+msgstr "Панель управления"
+
+#: react-app/src/components/FinanceDashboard.js:19
+msgid "Product Revenue"
+msgstr "Общий доход"
+
+#: react-app/src/components/FinanceDashboard.js:22
+msgid "Shipping Charged"
+msgstr "Стоимость доставки"
+
+#: react-app/src/components/FinanceDashboard.js:25
+msgid "Tax Collected"
+msgstr "Подключено"
+
+#: react-app/src/components/FinanceDashboard.js:79
+#: react-app/src/components/MarketingDashboard.js:95
+msgid "API configuration is missing."
+msgstr "Конфигурация API отсутствует."
+
+#: react-app/src/components/FinanceDashboard.js:124
+#: react-app/src/components/MarketingDashboard.js:141
+msgid "Failed to fetch data"
+msgstr "Не удалось получить статистику корзин."
+
+#: react-app/src/components/FinanceDashboard.js:260
+msgid "Profitability insights (Gross Profit, Margin) may be incomplete. Please"
+msgstr ""
+"Показатели прибыльности (валовая прибыль, маржа) могут быть неполными. "
+"Пожалуйста"
+
+#: react-app/src/components/FinanceDashboard.js:271
+msgid "configure your Cost of Goods Sold (COGS) settings"
+msgstr "настройте ваши параметры себестоимости проданных товаров (COGS)"
+
+#: react-app/src/components/FinanceDashboard.js:273
+msgid "for accurate calculations."
+msgstr "для точных расчетов."
+
+#: react-app/src/components/FinanceDashboard.js:285
+msgid "Dismiss COGS configuration alert"
+msgstr "Отклонить предупреждение о конфигурации COGS"
+
+#: react-app/src/components/FinanceDashboard.js:295
+msgid "Gross Profit"
+msgstr "Общая прибыль"
+
+#: react-app/src/components/FinanceDashboard.js:304
+msgid "Total Net Sales minus Total Cost of Goods Sold (COGS)."
+msgstr ""
+"Общие чистые продажи минус общая себестоимость проданных товаров (COGS)."
+
+#: react-app/src/components/FinanceDashboard.js:308
+msgid "Gross Profit Margin"
+msgstr "Маржа валовой прибыли"
+
+#: react-app/src/components/FinanceDashboard.js:317
+msgid "(Gross Profit / Total Net Sales) * 100."
+msgstr "(Валовая прибыль / Общие чистые продажи) * 100."
+
+#: react-app/src/components/FinanceDashboard.js:321
+msgid "Total COGS"
+msgstr "Всего заказов"
+
+#: react-app/src/components/FinanceDashboard.js:330
+msgid "Total Cost of Goods Sold for the items sold in the period."
+msgstr "Общая себестоимость проданных товаров за период."
+
+#: react-app/src/components/FinanceDashboard.js:334
+msgid "Total Tax Collected"
+msgstr "Общий сбор налогов"
+
+#: react-app/src/components/FinanceDashboard.js:342
+msgid "Total sales tax collected from orders in the period."
+msgstr "Общий налог с продаж, собранный с заказов за период."
+
+#: react-app/src/components/FinanceDashboard.js:346
+msgid "Total Shipping Charged"
+msgstr "Общая стоимость доставки"
+
+#: react-app/src/components/FinanceDashboard.js:354
+msgid "Total shipping fees charged to customers in the period."
+msgstr "Общие затраты на доставку, взимаемые с клиентов за период."
+
+#: react-app/src/components/FinanceDashboard.js:358
+msgid "Total Discounts Given"
+msgstr "Всего скидок"
+
+#: react-app/src/components/FinanceDashboard.js:367
+msgid "Total value of order-level discounts applied in the period."
+msgstr "Общая стоимость скидок на уровне заказа, примененных за период."
+
+#: react-app/src/components/FinanceDashboard.js:372
+msgid "Error loading finance data: %s"
+msgstr "Ошибка загрузки финансовых данных: %s"
+
+#: react-app/src/components/FinanceDashboard.js:379
+msgid "Revenue Composition Help"
+msgstr "Помощь по составу доходов"
+
+#: react-app/src/components/FinanceDashboard.js:380
+msgid ""
+"<p>Shows the breakdown of total invoiced value into product revenue (net "
+"sales),shipping fees charged, and taxes collected during the period.</p>"
+msgstr ""
+"<p>Показывает разбивку общей стоимости счетов на доход от продуктов (чистые "
+"продажи), взимаемые сборы за доставку и налоги, собранные в течение периода."
+"</p>"
+
+#: react-app/src/components/FinanceDashboard.js:382
+msgid "Revenue Composition"
+msgstr "Сбросить сравнение"
+
+#: react-app/src/components/FinanceDashboard.js:444
+msgid "No revenue composition data available."
+msgstr "Данные о составе доходов недоступны."
+
+#: react-app/src/components/FinanceDashboard.js:508
+msgid "No revenue composition data for previous period."
+msgstr "Данные о составе доходов за предыдущий период недоступны."
+
+#: react-app/src/components/FinanceDashboard.js:518
+msgid "Top Products by Gross Profit Help"
+msgstr "Помощь по топ товарам по валовой прибыли"
+
+#: react-app/src/components/FinanceDashboard.js:519
+msgid ""
+"<p>Displays the top 10 products ranked by their total gross profit "
+"(ProductRevenue - COGS) during the selected period.</p>"
+msgstr ""
+"<p>Отображает топ-10 продуктов, ранжированных по их общей валовой прибыли "
+"(Доход от продукта - COGS) в течение выбранного периода.</p>"
+
+#: react-app/src/components/FinanceDashboard.js:521
+msgid "Top 10 Products by Gross Profit"
+msgstr "Топ 10 товаров по валовой прибыли"
+
+#: react-app/src/components/FinanceDashboard.js:542
+msgid "Current Gross Profit"
+msgstr "Текущий период"
+
+#: react-app/src/components/FinanceDashboard.js:543
+msgid "Previous Gross Profit"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/FinanceDashboard.js:549
+msgid "No product gross profit data available for this period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/FinanceDashboard.js:556
+msgid "Sales by Payment Method Help"
+msgstr "Помощь по продажам по способу оплаты"
+
+#: react-app/src/components/FinanceDashboard.js:557
+msgid ""
+"<p>Shows the total net sales generated by each payment method during "
+"theselected period.</p>"
+msgstr ""
+"<p>Показывает общие чистые продажи, полученные каждым способом оплаты в "
+"течение выбранного периода.</p>"
+
+#: react-app/src/components/FinanceDashboard.js:559
+msgid "Sales by Payment Method"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/FinanceDashboard.js:569
+msgid "Current Period Sales"
+msgstr "Текущий период"
+
+#: react-app/src/components/FinanceDashboard.js:570
+msgid "Previous Period Sales"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/FinanceDashboard.js:575
+msgid "No sales data by payment method available."
+msgstr "Данные о продажах по способу оплаты недоступны."
+
+#: react-app/src/components/FinanceDashboard.js:582
+msgid "Orders by Payment Method Help"
+msgstr "Помощь по заказам по способу оплаты"
+
+#: react-app/src/components/FinanceDashboard.js:583
+msgid ""
+"<p>Shows the total number of orders processed by each payment method during "
+"theselected period.</p>"
+msgstr ""
+"<p>Показывает общее количество заказов, обработанных каждым способом оплаты "
+"в течение выбранного периода.</p>"
+
+#: react-app/src/components/FinanceDashboard.js:585
+msgid "Orders by Payment Method"
+msgstr "Заказы по статусу"
+
+#: react-app/src/components/FinanceDashboard.js:595
+msgid "Current Period Orders"
+msgstr "Текущий период"
+
+#: react-app/src/components/FinanceDashboard.js:596
+msgid "Previous Period Orders"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/FinanceDashboard.js:601
+msgid "No order count data by payment method available."
+msgstr "Данные о количестве заказов по способу оплаты недоступны."
+
+#: react-app/src/components/FinanceDashboard.js:608
+msgid "Tax Collected Over Time Help"
+msgstr "Помощь по налогам, собранным со временем"
+
+#: react-app/src/components/FinanceDashboard.js:609
+msgid ""
+"<p>Shows the total sales tax collected daily over the selected period.</p>"
+msgstr ""
+"<p>Показывает общий налог с продаж, собранный ежедневно за выбранный период."
+"</p>"
+
+#: react-app/src/components/FinanceDashboard.js:611
+msgid "Tax Collected Over Time"
+msgstr "Налоги, собранные со временем"
+
+#: react-app/src/components/FinanceDashboard.js:621
+msgid "Current Period Tax"
+msgstr "Текущий период"
+
+#: react-app/src/components/FinanceDashboard.js:622
+msgid "Previous Period Tax"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/FinanceDashboard.js:627
+msgid "No tax data available for this period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/FinanceDashboard.js:634
+msgid "Shipping Charged Over Time Help"
+msgstr "Помощь по стоимости доставки со временем"
+
+#: react-app/src/components/FinanceDashboard.js:635
+msgid ""
+"<p>Shows the total shipping fees charged to customers daily over the "
+"selectedperiod.</p>"
+msgstr ""
+"<p>Показывает общие сборы за доставку, взимаемые с клиентов ежедневно в "
+"течение выбранного периода.</p>"
+
+#: react-app/src/components/FinanceDashboard.js:637
+msgid "Shipping Charged Over Time"
+msgstr "Стоимость доставки со временем"
+
+#: react-app/src/components/FinanceDashboard.js:647
+msgid "Current Period Shipping"
+msgstr "Текущий период"
+
+#: react-app/src/components/FinanceDashboard.js:648
+msgid "Previous Period Shipping"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/FinanceDashboard.js:653
+msgid "No shipping data available for this period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/GeneralDashboard.js:88
+msgid "Missing required configuration."
+msgstr "Отсутствует необходимая конфигурация."
+
+#: react-app/src/components/GeneralDashboard.js:141
+msgid "An unknown error occurred while fetching %s."
+msgstr "Произошла неизвестная ошибка при получении %s."
+
+#: react-app/src/components/GeneralDashboard.js:438
+msgid "Total Revenue"
+msgstr "Общая выручка"
+
+#: react-app/src/components/GeneralDashboard.js:444
+msgid "Total revenue generated from all sales within the selected period."
+msgstr "Общая выручка, полученная от всех продаж в выбранном периоде."
+
+#: react-app/src/components/GeneralDashboard.js:448
+#: react-app/src/components/SalesDashboard.js:325
+msgid "Total Orders"
+msgstr "Всего заказов"
+
+#: react-app/src/components/GeneralDashboard.js:453
+msgid "Total number of completed orders placed within the selected period."
+msgstr "Общее количество завершенных заказов, размещенных в выбранный период."
+
+#: react-app/src/components/GeneralDashboard.js:457
+msgid "Average Order Value"
+msgstr "Средняя стоимость заказа"
+
+#: react-app/src/components/GeneralDashboard.js:463
+msgid "Average monetary value of each order (Total Revenue / Total Orders)."
+msgstr ""
+"Средняя денежная стоимость каждого заказа (Общий доход / Общее количество "
+"заказов)."
+
+#: react-app/src/components/GeneralDashboard.js:467
+#: react-app/src/components/GeneralDashboard.js:565
+#: react-app/src/components/GeneralDashboard.js:570
+msgid "Gross Sales"
+msgstr "Продажи"
+
+#: react-app/src/components/GeneralDashboard.js:472
+msgid ""
+"Total revenue from all sales before any deductions like refunds or discounts."
+msgstr ""
+"Общий доход от всех продаж до любых вычетов, таких как возвраты или скидки."
+
+#: react-app/src/components/GeneralDashboard.js:479
+msgid "Refunds Amount"
+msgstr "Коэффициент возвратов"
+
+#: react-app/src/components/GeneralDashboard.js:484
+msgid "Total amount of money refunded to customers."
+msgstr "Общая сумма денег, возвращенная клиентам."
+
+#: react-app/src/components/GeneralDashboard.js:490
+msgid "Orders with Refunds"
+msgstr "Заказы с возвратами"
+
+#: react-app/src/components/GeneralDashboard.js:495
+msgid "Number of orders that have at least one refund associated with them."
+msgstr ""
+"Количество заказов, которые имеют по крайней мере один связанный с ними "
+"возврат."
+
+#: react-app/src/components/GeneralDashboard.js:506
+msgid "Error loading KPIs: %s"
+msgstr "Ошибка загрузки KPI: %s"
+
+#: react-app/src/components/GeneralDashboard.js:507
+#: react-app/src/components/GeneralDashboard.js:508
+msgid "Error loading charts: %s"
+msgstr "Ошибка загрузки графиков: %s"
+
+#: react-app/src/components/GeneralDashboard.js:516
+msgid "Could not load Net Sales data."
+msgstr "Не удалось загрузить данные чистых продаж."
+
+#: react-app/src/components/GeneralDashboard.js:518
+msgid "Net Sales Over Time"
+msgstr "Чистые продажи со временем"
+
+#: react-app/src/components/GeneralDashboard.js:520
+msgid "Net Sales Over Time Help"
+msgstr "Помощь по чистым продажам со временем"
+
+#: react-app/src/components/GeneralDashboard.js:521
+#, fuzzy
+msgid ""
+"<p>Shows the total value of sales after refunds have been deducted, "
+"aggregateddaily over the selected period.</p>"
+msgstr ""
+"<p>Показывает общую стоимость продаж после вычета возвратов, агрегированную "
+"ежедневно за выбранный период.</p>"
+
+#: react-app/src/components/GeneralDashboard.js:531
+#: react-app/src/components/MarketingDashboard.js:748
+#: react-app/src/components/MarketingDashboard.js:802
+msgid "Current Net Sales"
+msgstr "Текущие чистые продажи"
+
+#: react-app/src/components/GeneralDashboard.js:536
+#: react-app/src/components/GeneralDashboard.js:629
+#: react-app/src/components/GeneralDashboard.js:635
+#: react-app/src/components/MarketingDashboard.js:749
+#: react-app/src/components/MarketingDashboard.js:803
+msgid "Previous Net Sales"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/GeneralDashboard.js:547
+msgid "Gross Sales & Orders Help"
+msgstr "Помощь по валовым продажам и заказам"
+
+#: react-app/src/components/GeneralDashboard.js:548
+msgid ""
+"<p>Compares total sales value (before refunds) and the number of orders "
+"receivedeach day.</p>"
+msgstr ""
+"<p>Сравнивает общую стоимость продаж (до возвратов) и количество заказов, "
+"полученных каждый день.</p>"
+
+#: react-app/src/components/GeneralDashboard.js:551
+msgid "Gross Sales & Orders Over Time"
+msgstr "Валовые продажи и заказы со временем"
+
+#: react-app/src/components/GeneralDashboard.js:553
+#: react-app/src/components/GeneralDashboard.js:589
+#: react-app/src/components/GeneralDashboard.js:615
+msgid "Chart Error: %s"
+msgstr "Ошибка графика: %s"
+
+#: react-app/src/components/GeneralDashboard.js:566
+#: react-app/src/components/GeneralDashboard.js:571
+msgid "Previous Gross Sales"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/GeneralDashboard.js:572
+msgid "Orders"
+msgstr "Всего заказов"
+
+#: react-app/src/components/GeneralDashboard.js:573
+#: react-app/src/components/MarketingDashboard.js:776
+#: react-app/src/components/MarketingDashboard.js:830
+msgid "Previous Orders"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/GeneralDashboard.js:577
+msgid "No timeseries data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/GeneralDashboard.js:583
+msgid "Average Order Value (AOV) Help"
+msgstr "Помощь по средней стоимости заказа (AOV)"
+
+#: react-app/src/components/GeneralDashboard.js:584
+msgid ""
+"<p>Shows the average amount spent per order (Gross Sales / Total "
+"Orders)calculated daily.</p>"
+msgstr ""
+"<p>Показывает среднюю сумму, потраченную на заказ (Валовые продажи / Общее "
+"количество заказов), рассчитанную ежедневно.</p>"
+
+#: react-app/src/components/GeneralDashboard.js:587
+msgid "Average Order Value Over Time"
+msgstr "Средняя стоимость заказа со временем"
+
+#: react-app/src/components/GeneralDashboard.js:598
+msgid "AOV"
+msgstr "Средняя стоимость заказа"
+
+#: react-app/src/components/GeneralDashboard.js:599
+msgid "Previous AOV"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/GeneralDashboard.js:603
+msgid "No AOV data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/GeneralDashboard.js:609
+msgid "Top Products Help"
+msgstr "Название товара"
+
+#: react-app/src/components/GeneralDashboard.js:610
+msgid ""
+"<p>Displays the top products ranked by their total net sales amount within "
+"theselected date range.</p>"
+msgstr ""
+"<p>Отображает топ продуктов, ранжированных по их общей сумме чистых продаж в "
+"выбранном диапазоне дат.</p>"
+
+#: react-app/src/components/GeneralDashboard.js:613
+msgid "Top Products by Net Sales"
+msgstr "Топ товаров по чистым продажам"
+
+#: react-app/src/components/GeneralDashboard.js:629
+#: react-app/src/components/GeneralDashboard.js:634
+msgid "Net Sales"
+msgstr "Продажи"
+
+#: react-app/src/components/GeneralDashboard.js:639
+msgid "No product data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/HelpTooltip.js:63
+msgid "More info"
+msgstr "Подробнее"
+
+#: react-app/src/components/MarketingDashboard.js:335
+msgid "Customer Count"
+msgstr "Показатель удержания клиентов"
+
+#: react-app/src/components/MarketingDashboard.js:341
+msgid "Total number of unique customers who made a purchase during the period."
+msgstr ""
+"Общее количество уникальных клиентов, совершивших покупку в течение периода."
+
+#: react-app/src/components/MarketingDashboard.js:345
+msgid "Repeat Customer Rate"
+msgstr "Пользовательский диапазон"
+
+#: react-app/src/components/MarketingDashboard.js:353
+msgid ""
+"Percentage of customers who made more than one purchase during the period."
+msgstr ""
+"Процент клиентов, которые совершили более одной покупки в течение периода."
+
+#: react-app/src/components/MarketingDashboard.js:357
+msgid "Total Visits"
+msgstr "Всего скидок"
+
+#: react-app/src/components/MarketingDashboard.js:363
+msgid "Total number of visits to your website during the period."
+msgstr "Общее количество посещений вашего веб-сайта в течение периода."
+
+#: react-app/src/components/MarketingDashboard.js:367
+msgid "Purchases"
+msgstr "Покупки"
+
+#: react-app/src/components/MarketingDashboard.js:373
+msgid "Total number of completed purchases (orders) during the period."
+msgstr "Общее количество завершенных покупок (заказов) в течение периода."
+
+#: react-app/src/components/MarketingDashboard.js:377
+msgid "Conversion Rate"
+msgstr "Показатель удержания клиентов"
+
+#: react-app/src/components/MarketingDashboard.js:385
+msgid ""
+"Percentage of visits that resulted in a purchase (Purchases / Total Visits)."
+msgstr ""
+"Процент посещений, которые привели к покупке (Покупки / Общее количество "
+"посещений)."
+
+#: react-app/src/components/MarketingDashboard.js:389
+msgid "Top Channel"
+msgstr "Топ канал"
+
+#: react-app/src/components/MarketingDashboard.js:395
+msgid ""
+"The marketing channel that drove the most visits during the period "
+"(e.g.,Google, Facebook, Direct)."
+msgstr ""
+"Маркетинговый канал, который привел наибольшее количество посещений в "
+"течение периода (например, Google, Facebook, Прямой)."
+
+#: react-app/src/components/MarketingDashboard.js:404
+msgid "Sales Funnel Flow Help"
+msgstr "Помощь по потоку воронки продаж"
+
+#: react-app/src/components/MarketingDashboard.js:405
+msgid ""
+"<p>This chart shows how visitors move through keystages:</"
+"p><ul><li><strong>Visits:</strong> Total sitevisits.</li><li><strong>Product "
+"Views:</strong> Visits where at least oneproduct page was seen.</"
+"li><li><strong>Checkout:</strong> Visits where thecheckout page was reached."
+"</li><li><strong>Purchases:</strong> Visits resultingin a completed order.</"
+"li><li><strong>Drop-off:</strong> Visitors leaving ateach stage.</li></ul>"
+msgstr ""
+"<p>Эта диаграмма показывает, как посетители проходят через ключевые этапы:</"
+"p><ul><li><strong>Посещения:</strong> Общие посещения сайта.</"
+"li><li><strong>Просмотры продуктов:</strong> Посещения, где была просмотрена "
+"хотя бы одна страница продукта.</li><li><strong>Оформление заказа:</strong> "
+"Посещения, где была достигнута страница оформления заказа.</"
+"li><li><strong>Покупки:</strong> Посещения, приведшие к завершенному заказу."
+"</li><li><strong>Выход:</strong> Посетители, покидающие на каждом этапе.</"
+"li></ul>"
+
+#: react-app/src/components/MarketingDashboard.js:408
+msgid "Sales Funnel Flow"
+msgstr "Поток воронки продаж"
+
+#: react-app/src/components/MarketingDashboard.js:444
+msgid "No funnel data for current period."
+msgstr "Нет данных воронки для текущего периода."
+
+#: react-app/src/components/MarketingDashboard.js:513
+msgid "Not enough data to display funnel flow."
+msgstr "Недостаточно данных для отображения потока воронки."
+
+#: react-app/src/components/MarketingDashboard.js:524
+msgid "Sales by Location Help"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/MarketingDashboard.js:525
+msgid ""
+"<p>Top locations (City, Country) based on the total net sales amount from "
+"ordersshipped to that location within the selected date range.</p>"
+msgstr ""
+"<p>Топ локации (Город, Страна) на основе общей суммы чистых продаж от "
+"заказов, отправленных в эту локацию в пределах выбранного диапазона дат.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:527
+msgid "Sales by Location"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/MarketingDashboard.js:529
+#: react-app/src/components/MarketingDashboard.js:575
+#: react-app/src/components/MarketingDashboard.js:614
+#: react-app/src/components/MarketingDashboard.js:659
+msgid "Error loading chart: %s"
+msgstr "Ошибка загрузки графика: %s"
+
+#: react-app/src/components/MarketingDashboard.js:557
+#: react-app/src/components/SalesDashboard.js:512
+msgid "Current Sales"
+msgstr "Текущий период"
+
+#: react-app/src/components/MarketingDashboard.js:558
+#: react-app/src/components/SalesDashboard.js:513
+msgid "Previous Sales"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/MarketingDashboard.js:563
+#: react-app/src/components/MarketingDashboard.js:602
+#: react-app/src/components/MarketingDashboard.js:641
+msgid "Not enough data for chart."
+msgstr "Недостаточно данных для графика."
+
+#: react-app/src/components/MarketingDashboard.js:570
+msgid "Visits by Page Help"
+msgstr "Помощь по посещениям страниц"
+
+#: react-app/src/components/MarketingDashboard.js:571
+msgid ""
+"<p>Shows the most visited page paths on your site during the selected "
+"period.Useful for identifying popular content or potential navigation issues."
+"</p>"
+msgstr ""
+"<p>Показывает наиболее посещаемые пути страниц на вашем сайте в течение "
+"выбранного периода. Полезно для выявления популярного контента или "
+"потенциальных проблем навигации.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:573
+msgid "Visits by Page"
+msgstr "Посещения по страницам"
+
+#: react-app/src/components/MarketingDashboard.js:596
+#: react-app/src/components/MarketingDashboard.js:635
+msgid "Current Visits"
+msgstr "Текущий период"
+
+#: react-app/src/components/MarketingDashboard.js:597
+#: react-app/src/components/MarketingDashboard.js:636
+msgid "Previous Visits"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/MarketingDashboard.js:609
+msgid "Top Referring Channels (Volume) Help"
+msgstr "Помощь по топ референтным каналам (объем)"
+
+#: react-app/src/components/MarketingDashboard.js:610
+msgid ""
+"<p>Shows which external websites or sources (like Google, Facebook, etc.) "
+"sentthe most visitors to your site.</p>"
+msgstr ""
+"<p>Показывает, какие внешние веб-сайты или источники (например, Google, "
+"Facebook и т.д.) направили больше всего посетителей на ваш сайт.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:612
+msgid "Top Referring Channels (Volume)"
+msgstr "Топ референтные каналы (объем)"
+
+#: react-app/src/components/MarketingDashboard.js:648
+msgid "Top Referring Channels (Distribution) Help"
+msgstr "Помощь по топ референтным каналам (распределение)"
+
+#: react-app/src/components/MarketingDashboard.js:649
+msgid ""
+"<p>Shows the percentage share of visits coming from each top referring "
+"channel.Helps understand the relative importance of different traffic "
+"sources.</p>"
+msgstr ""
+"<p>Показывает процентную долю посещений, приходящих от каждого топ "
+"референтного канала. Помогает понять относительную важность различных "
+"источников трафика.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:651
+msgid "Top Referring Channels (Distribution)"
+msgstr "Топ референтные каналы (распределение)"
+
+#: react-app/src/components/MarketingDashboard.js:686
+msgid "No referring channel data for current period."
+msgstr "Нет данных о референтных каналах для текущего периода."
+
+#: react-app/src/components/MarketingDashboard.js:722
+msgid "No referring channel data for previous period."
+msgstr "Нет данных о референтных каналах для предыдущего периода."
+
+#: react-app/src/components/MarketingDashboard.js:734
+msgid "Net Sales by Channel Help"
+msgstr "Помощь по чистым продажам по каналам"
+
+#: react-app/src/components/MarketingDashboard.js:735
+msgid ""
+"<p>Shows the total net sales attributed to different marketing channels "
+"(e.g.,utm_source). Helps identify which channels are driving the most "
+"revenue.</p>"
+msgstr ""
+"<p>Показывает общие чистые продажи, приписанные различным маркетинговым "
+"каналам (например, utm_source). Помогает определить, какие каналы приносят "
+"наибольший доход.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:737
+msgid "Net Sales by Channel"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/MarketingDashboard.js:754
+msgid "No sales by channel data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/MarketingDashboard.js:761
+msgid "Orders by Channel Help"
+msgstr "Помощь по заказам по каналам"
+
+#: react-app/src/components/MarketingDashboard.js:762
+msgid ""
+"<p>Shows the total number of orders attributed to different marketing "
+"channels.Helps identify which channels are driving the most conversions.</p>"
+msgstr ""
+"<p>Показывает общее количество заказов, приписанных различным маркетинговым "
+"каналам. Помогает определить, какие каналы обеспечивают наибольшее "
+"количество конверсий.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:764
+msgid "Orders by Channel"
+msgstr "Заказы по статусу"
+
+#: react-app/src/components/MarketingDashboard.js:775
+#: react-app/src/components/MarketingDashboard.js:829
+msgid "Current Orders"
+msgstr "Текущий период"
+
+#: react-app/src/components/MarketingDashboard.js:781
+msgid "No orders by channel data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/MarketingDashboard.js:788
+msgid "Net Sales by Campaign Help"
+msgstr "Помощь по чистым продажам по кампаниям"
+
+#: react-app/src/components/MarketingDashboard.js:789
+msgid ""
+"<p>Shows the total net sales attributed to specific marketing campaigns "
+"(e.g.,utm_campaign). Helps evaluate the revenue performance of "
+"individualcampaigns.</p>"
+msgstr ""
+"<p>Показывает общее количество заказов, приписанных конкретным маркетинговым "
+"кампаниям. Помогает оценить эффективность конверсии отдельных кампаний.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:791
+msgid "Net Sales by Campaign"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/MarketingDashboard.js:808
+msgid "No sales by campaign data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/MarketingDashboard.js:815
+msgid "Orders by Campaign Help"
+msgstr "Помощь по заказам по кампаниям"
+
+#: react-app/src/components/MarketingDashboard.js:816
+msgid ""
+"<p>Shows the total number of orders attributed to specific marketing "
+"campaigns.Helps evaluate the conversion performance of individual campaigns."
+"</p>"
+msgstr ""
+"<p>Показывает общее количество заказов, приписанных конкретным маркетинговым "
+"кампаниям. Помогает оценить эффективность конверсии отдельных кампаний.</p>"
+
+#: react-app/src/components/MarketingDashboard.js:818
+msgid "Orders by Campaign"
+msgstr "Заказы по статусу"
+
+#: react-app/src/components/MarketingDashboard.js:835
+msgid "No orders by campaign data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/OnboardingWizard.js:115
+msgid ""
+"Are you sure you want to exit the setup wizard? You will be redirected to "
+"theWordPress plugins page."
+msgstr ""
+"Вы уверены, что хотите выйти из мастера настройки? Вы будете перенаправлены "
+"на страницу плагинов WordPress."
+
+#: react-app/src/components/OnboardingWizard.js:147
+msgid "Connection already established!"
+msgstr "Соединение уже установлено!"
+
+#: react-app/src/components/OnboardingWizard.js:156
+msgid "API URL not configured properly"
+msgstr "API URL не настроен должным образом"
+
+#: react-app/src/components/OnboardingWizard.js:178
+msgid "Connection established successfully!"
+msgstr "Соединение установлено успешно!"
+
+#: react-app/src/components/OnboardingWizard.js:188
+msgid ""
+"Connection established! Your site is now connected to ShopMetrics Analytics."
+msgstr "Подключите ваш сайт к ShopMetrics, чтобы увидеть аналитику здесь."
+
+#: react-app/src/components/OnboardingWizard.js:190
+msgid "Failed to save connection settings"
+msgstr "Не удалось получить статистику корзин."
+
+#: react-app/src/components/OnboardingWizard.js:193
+msgid "Failed to establish connection"
+msgstr "Не удалось установить соединение"
+
+#: react-app/src/components/OnboardingWizard.js:196
+msgid "Connection error: %s"
+msgstr "Ошибка подключения:"
+
+#: react-app/src/components/OnboardingWizard.js:214
+msgid "Detection timed out. Please try again."
+msgstr "Обнаружение превысило время ожидания. Попробуйте еще раз."
+
+#: react-app/src/components/OnboardingWizard.js:242
+msgid "Auto-detected COGS meta key: %s"
+msgstr "Автоматически обнаружен COGS мета-ключ: %s"
+
+#: react-app/src/components/OnboardingWizard.js:266
+msgid "Failed to retrieve meta keys"
+msgstr "Не удалось получить статистику корзин."
+
+#: react-app/src/components/OnboardingWizard.js:274
+msgid "Error detecting COGS keys: %s"
+msgstr "Ошибка обнаружения COGS ключей: %s"
+
+#: react-app/src/components/OnboardingWizard.js:291
+msgid "COGS settings saved successfully!"
+msgstr "Настройки COGS сохранены успешно!"
+
+#: react-app/src/components/OnboardingWizard.js:294
+msgid "Error saving COGS settings: %s"
+msgstr "Ошибка сохранения настроек COGS: %s"
+
+#: react-app/src/components/OnboardingWizard.js:497
+msgid "ShopMetrics Logo"
+msgstr "Логотип ShopMetrics"
+
+#: react-app/src/components/OnboardingWizard.js:501
+msgid "Welcome to ShopMetrics Analytics!"
+msgstr "Добро пожаловать в ShopMetrics Analytics!"
+
+#: react-app/src/components/OnboardingWizard.js:503
+msgid ""
+"Get ready to unlock powerful insights about your WooCommerce store. This "
+"wizardwill guide you through the initial setup process."
+msgstr ""
+"Приготовьтесь получить мощные аналитические данные о вашем магазине "
+"WooCommerce. Этот мастер проведет вас через процесс первоначальной настройки."
+
+#: react-app/src/components/OnboardingWizard.js:508
+msgid "Quick Setup"
+msgstr "Быстрая настройка"
+
+#: react-app/src/components/OnboardingWizard.js:509
+msgid "Connect to our analytics platform in minutes"
+msgstr "Подключитесь к нашей аналитической платформе за минуты"
+
+#: react-app/src/components/OnboardingWizard.js:513
+msgid "Financial Insights"
+msgstr "Финансовые аналитические данные"
+
+#: react-app/src/components/OnboardingWizard.js:514
+msgid "Understand your store\\"
+msgstr "Понимайте ваш магазин\""
+
+#: react-app/src/components/OnboardingWizard.js:518
+msgid "Sales Analytics"
+msgstr "Аналитика продаж"
+
+#: react-app/src/components/OnboardingWizard.js:519
+msgid "Track orders, revenue and growth trends"
+msgstr "Отслеживайте заказы, доходы и тенденции роста"
+
+#: react-app/src/components/OnboardingWizard.js:525
+msgid "Get Started"
+msgstr "Начать"
+
+#: react-app/src/components/OnboardingWizard.js:534
+msgid "Connect to ShopMetrics"
+msgstr "Подключиться к ShopMetrics"
+
+#: react-app/src/components/OnboardingWizard.js:535
+#: react-app/src/components/OnboardingWizard.js:708
+msgid "Let\\"
+msgstr "Позвольте\""
+
+#: react-app/src/components/OnboardingWizard.js:538
+msgid "Site Identifier"
+msgstr "Идентификатор сайта"
+
+#: react-app/src/components/OnboardingWizard.js:545
+msgid "e.g., mystore.com"
+msgstr "например, mystore.com"
+
+#: react-app/src/components/OnboardingWizard.js:548
+msgid "This identifies your store in our system. Usually your domain name."
+msgstr ""
+"Это идентифицирует ваш магазин в нашей системе. Обычно это ваше доменное имя."
+
+#: react-app/src/components/OnboardingWizard.js:472
+msgid "Your site domain automatically detected. This identifies your store in our system."
+msgstr "Домен вашего сайта автоматически определен. Это идентифицирует ваш магазин в нашей системе."
+
+#: react-app/src/components/OnboardingWizard.js:566
+#: react-app/src/components/OnboardingWizard.js:695
+#: react-app/src/components/OnboardingWizard.js:737
+#: react-app/src/components/OnboardingWizard.js:778
+msgid "Back"
+msgstr "Назад"
+
+#: react-app/src/components/OnboardingWizard.js:575
+msgid "Test Connection"
+msgstr "Не подключено"
+
+#: react-app/src/components/OnboardingWizard.js:579
+#: react-app/src/components/OnboardingWizard.js:746
+msgid "Continue"
+msgstr "Продолжить"
+
+#: react-app/src/components/OnboardingWizard.js:589
+msgid "Configure Cost of Goods Sold (COGS)"
+msgstr "Настроить себестоимость проданных товаров (COGS)"
+
+#: react-app/src/components/OnboardingWizard.js:599
+msgid ""
+"Setting up COGS tracking will enable accurate profitability analysis in "
+"yourdashboard."
+msgstr ""
+"Настройка отслеживания COGS обеспечит точный анализ прибыльности в вашей "
+"панели управления."
+
+#: react-app/src/components/OnboardingWizard.js:600
+msgid "Important:"
+msgstr "Важно:"
+
+#: react-app/src/components/OnboardingWizard.js:600
+msgid ""
+"The meta key is a field where product costs are stored by a COGS plugin "
+"inWooCommerce."
+msgstr ""
+"Мета-ключ - это поле, где стоимости продуктов хранятся плагином COGS в "
+"WooCommerce."
+
+#: react-app/src/components/OnboardingWizard.js:601
+msgid ""
+"This is usually an additional attribute of your products managed by a "
+"specificCost of Goods plugin like "
+msgstr ""
+"Это обычно дополнительный атрибут ваших продуктов, управляемый специальным "
+"плагином себестоимости товаров, таким как "
+
+#: react-app/src/components/OnboardingWizard.js:605
+msgid "COGS Meta Key"
+msgstr "COGS мета-ключ"
+
+#: react-app/src/components/OnboardingWizard.js:608
+msgid "Detecting meta keys..."
+msgstr "Обнаружение мета-ключей..."
+
+#: react-app/src/components/OnboardingWizard.js:616
+msgid "Cancel"
+msgstr "Отменить"
+
+#: react-app/src/components/OnboardingWizard.js:642
+msgid "e.g., _wc_cog_cost"
+msgstr "например, _wc_cog_cost"
+
+#: react-app/src/components/OnboardingWizard.js:651
+msgid "Detecting..."
+msgstr "Переподключение..."
+
+#: react-app/src/components/OnboardingWizard.js:651
+msgid "Auto-detect"
+msgstr "Автоопределение"
+
+#: react-app/src/components/OnboardingWizard.js:655
+msgid "The meta key where product costs are stored in your WooCommerce store."
+msgstr ""
+"Мета-ключ, где хранятся затраты на товары в вашем магазине WooCommerce."
+
+#: react-app/src/components/OnboardingWizard.js:674
+msgid "Applied when no COGS data is found. Use 0 to show N/A instead."
+msgstr ""
+"Применяется, когда данные COGS не найдены. Используйте 0, чтобы показать Н/Д "
+"вместо этого."
+
+#: react-app/src/components/OnboardingWizard.js:686
+msgid "Retry"
+msgstr "Повторить"
+
+#: react-app/src/components/OnboardingWizard.js:698
+msgid "Saving..."
+msgstr "Загрузка..."
+
+#: react-app/src/components/OnboardingWizard.js:698
+msgid "Save & Continue"
+msgstr "Сохранить и продолжить"
+
+#: react-app/src/components/OnboardingWizard.js:707
+msgid "Initial Data Sync"
+msgstr "Первоначальная синхронизация данных"
+
+#: react-app/src/components/OnboardingWizard.js:713
+msgid "What We\\"
+msgstr "Что мы\""
+
+#: react-app/src/components/OnboardingWizard.js:715
+msgid "Order history (dates, amounts, products)"
+msgstr "История заказов (даты, суммы, товары)"
+
+#: react-app/src/components/OnboardingWizard.js:716
+msgid "Product inventory data"
+msgstr "Данные о запасах товаров"
+
+#: react-app/src/components/OnboardingWizard.js:717
+msgid "Customer information (anonymous)"
+msgstr "Информация о клиентах (анонимная)"
+
+#: react-app/src/components/OnboardingWizard.js:720
+msgid "Estimated Time:"
+msgstr "Расчетное время:"
+
+#: react-app/src/components/OnboardingWizard.js:721
+msgid ""
+"This process runs in the background and may take a few minutes depending on "
+"yourstore size."
+msgstr ""
+"Этот процесс выполняется в фоновом режиме и может занять несколько минут в "
+"зависимости от размера вашего магазина."
+
+#: react-app/src/components/OnboardingWizard.js:728
+msgid "Sync started successfully! This will continue in the background."
+msgstr ""
+"Синхронизация началась успешно! Это будет продолжаться в фоновом режиме."
+
+#: react-app/src/components/OnboardingWizard.js:742
+msgid "Starting Sync..."
+msgstr "Запуск синхронизации..."
+
+#: react-app/src/components/OnboardingWizard.js:742
+msgid "Start Sync"
+msgstr "Дата начала"
+
+#: react-app/src/components/OnboardingWizard.js:757
+msgid "Setup Complete!"
+msgstr "Настройка завершена!"
+
+#: react-app/src/components/OnboardingWizard.js:760
+#: react-app/src/components/TrialExpiredAlert.js:83
+msgid "You\\"
+msgstr "Вы\""
+
+#: react-app/src/components/OnboardingWizard.js:765
+msgid "ShopMetrics Analytics Dashboard Preview"
+msgstr "Предварительный просмотр панели ShopMetrics Analytics"
+
+#: react-app/src/components/OnboardingWizard.js:781
+msgid "Go to Dashboard"
+msgstr "Панель управления"
+
+#: react-app/src/components/OnboardingWizard.js:788
+msgid "Unknown step"
+msgstr "Неизвестный шаг"
+
+#: react-app/src/components/OnboardingWizard.js:801
+msgid "Close wizard"
+msgstr "Закрыть мастер"
+
+#: react-app/src/components/SalesDashboard.js:150
+msgid "Failed to fetch sales stats."
+msgstr "Не удалось получить статистику продаж."
+
+#: react-app/src/components/SalesDashboard.js:316
+msgid "Total Items Sold"
+msgstr "Всего товаров продано"
+
+#: react-app/src/components/SalesDashboard.js:321
+msgid "Total number of individual items sold across all orders."
+msgstr "Общее количество отдельных товаров, проданных по всем заказам."
+
+#: react-app/src/components/SalesDashboard.js:330
+msgid "Total number of orders placed."
+msgstr "Общее количество размещенных заказов."
+
+#: react-app/src/components/SalesDashboard.js:335
+msgid "Avg Revenue / Customer"
+msgstr "Средний доход / клиент"
+
+#: react-app/src/components/SalesDashboard.js:342
+msgid ""
+"Average net revenue generated per unique logged-in customer during the "
+"period."
+msgstr ""
+"Средний чистый доход, полученный на одного уникального авторизованного "
+"клиента за период."
+
+#: react-app/src/components/SalesDashboard.js:345
+msgid "Customer Retention Rate"
+msgstr "Показатель удержания клиентов"
+
+#: react-app/src/components/SalesDashboard.js:352
+#, fuzzy
+msgid ""
+"Percentage of logged-in customers from the previous period who made a "
+"purchasein the current period."
+msgstr ""
+"Процент авторизованных клиентов из предыдущего периода, которые совершили "
+"покупку в текущем периоде."
+
+#: react-app/src/components/SalesDashboard.js:355
+msgid "Total Discounts"
+msgstr "Всего скидок"
+
+#: react-app/src/components/SalesDashboard.js:362
+msgid "Total amount of discounts applied to orders in the period."
+msgstr "Общая сумма скидок, примененных к заказам в периоде."
+
+#: react-app/src/components/SalesDashboard.js:365
+msgid "Refund Rate"
+msgstr "Коэффициент возвратов"
+
+#: react-app/src/components/SalesDashboard.js:372
+msgid "Percentage of orders that had at least one refund processed."
+msgstr "Процент заказов, по которым был обработан хотя бы один возврат."
+
+#: react-app/src/components/SalesDashboard.js:394
+msgid "Error loading chart data: %s"
+msgstr "Ошибка загрузки данных графика: %s"
+
+#: react-app/src/components/SalesDashboard.js:402
+msgid "Orders by Status Help"
+msgstr "Заказы по статусу"
+
+#: react-app/src/components/SalesDashboard.js:403
+msgid ""
+"<p>Distribution of orders based on their current status (e.g., "
+"Completed,Processing, Refunded) during the selected period.</p>"
+msgstr ""
+"<p>Распределение заказов по их текущему статусу (например, Завершен, "
+"Обрабатывается, Возвращен) в течение выбранного периода.</p>"
+
+#: react-app/src/components/SalesDashboard.js:405
+msgid "Orders by Status"
+msgstr "Заказы по статусу"
+
+#: react-app/src/components/SalesDashboard.js:438
+msgid "No order status data for current period."
+msgstr "Нет данных о статусе заказов для текущего периода."
+
+#: react-app/src/components/SalesDashboard.js:473
+msgid "No order status data for previous period."
+msgstr "Нет данных о статусе заказов для предыдущего периода."
+
+#: react-app/src/components/SalesDashboard.js:484
+msgid "Sales by Category Help"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/SalesDashboard.js:485
+msgid ""
+"<p>Shows the net sales amount generated by product category during the "
+"selectedperiod. Limited to the top 10 categories by current sales.</p>"
+msgstr ""
+"<p>Показывает сумму чистых продаж, полученную по категориям продуктов в "
+"течение выбранного периода. Ограничено топ-10 категориями по текущим "
+"продажам.</p>"
+
+#: react-app/src/components/SalesDashboard.js:487
+msgid "Sales by Category"
+msgstr "Продажи по категориям"
+
+#: react-app/src/components/SalesDashboard.js:518
+msgid "No category sales data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/SalesDashboard.js:526
+msgid "Top Products by Quantity Help"
+msgstr "Помощь по топ товарам по количеству"
+
+#: react-app/src/components/SalesDashboard.js:527
+#, fuzzy
+msgid ""
+"<p>Shows the products sold most frequently (highest quantity) during "
+"theselected period. Limited to the top 20 products.</p>"
+msgstr ""
+"<p>Показывает продукты, продаваемые наиболее часто (наибольшее количество) в "
+"течение выбранного периода. Ограничено топ-20 продуктами.</p>"
+
+#: react-app/src/components/SalesDashboard.js:529
+msgid "Top Products by Quantity"
+msgstr "Топ товары по количеству"
+
+#: react-app/src/components/SalesDashboard.js:553
+#: react-app/src/components/SalesDashboard.js:554
+#: react-app/src/components/SalesDashboard.js:563
+msgid "Current Quantity"
+msgstr "Текущий период"
+
+#: react-app/src/components/SalesDashboard.js:555
+#: react-app/src/components/SalesDashboard.js:556
+#: react-app/src/components/SalesDashboard.js:564
+msgid "Previous Quantity"
+msgstr "Предыдущий период"
+
+#: react-app/src/components/SalesDashboard.js:569
+msgid "No top products data for selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/SalesDashboard.js:578
+msgid "Top Products by Revenue Help"
+msgstr "Помощь по топ товарам по доходу"
+
+#: react-app/src/components/SalesDashboard.js:579
+#, fuzzy
+msgid ""
+"<p>Top products ranked by their total net revenue (sales minus "
+"refunds)generated during the selected period.</p>"
+msgstr ""
+"<p>Топ продуктов, ранжированных по их общему чистому доходу (продажи минус "
+"возвраты), полученному в течение выбранного периода.</p>"
+
+#: react-app/src/components/SalesDashboard.js:581
+msgid "Top Products by Net Revenue"
+msgstr "Топ товары по чистому доходу"
+
+#: react-app/src/components/SalesDashboard.js:595
+#: react-app/src/components/SalesDashboard.js:596
+#: react-app/src/components/SalesDashboard.js:605
+msgid "Current Net Revenue"
+msgstr "Чистый доход"
+
+#: react-app/src/components/SalesDashboard.js:597
+#: react-app/src/components/SalesDashboard.js:598
+#: react-app/src/components/SalesDashboard.js:606
+msgid "Previous Net Revenue"
+msgstr "Чистый доход"
+
+#: react-app/src/components/SalesDashboard.js:615
+msgid "Month-over-Month Revenue Change Help"
+msgstr "Помощь по изменению доходов месяц к месяцу"
+
+#: react-app/src/components/SalesDashboard.js:616
+#, fuzzy
+msgid ""
+"<p>Shows the percentage change in total sales revenue compared to the "
+"previousmonth. A positive percentage indicates growth while a negative "
+"percentageindicates decline.</p>"
+msgstr ""
+"<p>Показывает процентное изменение общего дохода от продаж по сравнению с "
+"предыдущим месяцем. Положительный процент указывает на рост, а отрицательный "
+"процент указывает на снижение.</p>"
+
+#: react-app/src/components/SalesDashboard.js:618
+msgid "Month-over-Month Revenue Change"
+msgstr "Изменение доходов месяц к месяцу"
+
+#: react-app/src/components/SalesDashboard.js:638
+#: react-app/src/components/SalesDashboard.js:700
+msgid "MoM Change"
+msgstr "Изменение MoM"
+
+#: react-app/src/components/SalesDashboard.js:639
+#: react-app/src/components/SalesDashboard.js:701
+msgid "Month: %s"
+msgstr "Месяц: %s"
+
+#: react-app/src/components/SalesDashboard.js:646
+msgid "Revenue Change %"
+msgstr "Изменение дохода %"
+
+#: react-app/src/components/SalesDashboard.js:666
+#: react-app/src/components/SalesDashboard.js:728
+msgid "No month-over-month data available."
+msgstr "Данные месяц к месяцу недоступны."
+
+#: react-app/src/components/SalesDashboard.js:667
+#: react-app/src/components/SalesDashboard.js:729
+msgid "At least two months of data required for MoM comparison."
+msgstr "Для сравнения MoM требуются данные как минимум за два месяца."
+
+#: react-app/src/components/SalesDashboard.js:677
+msgid "Month-over-Month Orders Change Help"
+msgstr "Помощь по изменению заказов месяц к месяцу"
+
+#: react-app/src/components/SalesDashboard.js:678
+#, fuzzy
+msgid ""
+"<p>Shows the percentage change in number of orders compared to the "
+"previousmonth. A positive percentage indicates growth while a negative "
+"percentageindicates decline.</p>"
+msgstr ""
+"<p>Показывает процентное изменение количества заказов по сравнению с "
+"предыдущим месяцем. Положительный процент указывает на рост, а отрицательный "
+"процент указывает на снижение.</p>"
+
+#: react-app/src/components/SalesDashboard.js:680
+msgid "Month-over-Month Orders Change"
+msgstr "Изменение заказов месяц к месяцу"
+
+#: react-app/src/components/SalesDashboard.js:708
+msgid "Orders Change %"
+msgstr "Изменение заказов %"
+
+#: react-app/src/components/SalesDashboard.js:742
+msgid "No sales data available for the selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/StatBox.js:70
+msgid "Error"
+msgstr "Ошибка"
+
+#: react-app/src/components/StatBox.js:106
+#: react-app/src/components/StatBox.js:118
+msgid "New"
+msgstr "Новый"
+
+#: react-app/src/components/StatBox.js:141
+msgid "Changed"
+msgstr "Изменено"
+
+#: react-app/src/components/StockDashboard.js:334
+msgid "Authentication details not provided."
+msgstr "Детали аутентификации не предоставлены."
+
+#: react-app/src/components/StockDashboard.js:340
+msgid "Date range not provided or invalid."
+msgstr "Диапазон дат не предоставлен или недействителен."
+
+#: react-app/src/components/StockDashboard.js:351
+msgid "Invalid date format in date range."
+msgstr "Недействительный формат даты в диапазоне дат."
+
+#: react-app/src/components/StockDashboard.js:377
+msgid "API URL not configured."
+msgstr "API URL не настроен."
+
+#: react-app/src/components/StockDashboard.js:469
+#: react-app/src/components/StockDashboard.js:473
+#: react-app/src/components/StockDashboard.js:489
+#: react-app/src/components/StockDashboard.js:493
+msgid "Timestamp not available"
+msgstr "Временная метка недоступна"
+
+#: react-app/src/components/StockDashboard.js:739
+msgid "Product"
+msgstr "Название товара"
+
+#: react-app/src/components/StockDashboard.js:743
+msgid "Alert"
+msgstr "Предупреждение"
+
+#: react-app/src/components/StockDashboard.js:762
+msgid "Stock Qty"
+msgstr "Количество запасов"
+
+#: react-app/src/components/StockDashboard.js:768
+msgid "Threshold"
+msgstr "Порог низких запасов"
+
+#: react-app/src/components/StockDashboard.js:783
+#: react-app/src/components/StockDashboard.js:911
+msgid "Out of Stock"
+msgstr "Нет в наличии"
+
+#: react-app/src/components/StockDashboard.js:787
+msgid "In Stock"
+msgstr "В наличии"
+
+#: react-app/src/components/StockDashboard.js:791
+#: react-app/src/components/StockDashboard.js:921
+msgid "On Backorder"
+msgstr "В отложенном заказе"
+
+#: react-app/src/components/StockDashboard.js:861
+msgid "No stock data available for the selected period."
+msgstr "Нет данных для выбранного периода."
+
+#: react-app/src/components/StockDashboard.js:871
+msgid "Last stock data snapshot:"
+msgstr "Последний снимок данных запасов:"
+
+#: react-app/src/components/StockDashboard.js:875
+msgid "Refresh stock data"
+msgstr "Обновить данные запасов"
+
+#: react-app/src/components/StockDashboard.js:881
+msgid "Previous period:"
+msgstr "Предыдущий период:"
+
+#: react-app/src/components/StockDashboard.js:891
+msgid "Total Products"
+msgstr "Общая прибыль"
+
+#: react-app/src/components/StockDashboard.js:897
+msgid ""
+"Total number of unique products (including distinct variable products) in "
+"thelatest inventory snapshot."
+msgstr ""
+"Общее количество уникальных продуктов (включая отдельные вариативные "
+"продукты) в последнем снимке запасов."
+
+#: react-app/src/components/StockDashboard.js:901
+msgid "Low Stock"
+msgstr "Порог низких запасов"
+
+#: react-app/src/components/StockDashboard.js:908
+msgid ""
+"Products at or below their low stock threshold (includes products with "
+"anyvariation at low stock)."
+msgstr ""
+"Продукты на уровне или ниже их порога низких запасов (включает продукты с "
+"любой вариацией с низкими запасами)."
+
+#: react-app/src/components/StockDashboard.js:918
+msgid ""
+"Products marked as out of stock (variable products if all variations are out "
+"ofstock)."
+msgstr ""
+"Продукты, помеченные как отсутствующие на складе (вариативные продукты, если "
+"все вариации отсутствуют на складе)."
+
+#: react-app/src/components/StockDashboard.js:928
+msgid ""
+"Products allowing backorders (includes products with any variation "
+"onbackorder)."
+msgstr ""
+"Продукты, разрешающие предзаказы (включает продукты с любой вариацией в "
+"предзаказе)."
+
+#: react-app/src/components/StockDashboard.js:931
+msgid "Total Stock Units"
+msgstr "Всего скидок"
+
+#: react-app/src/components/StockDashboard.js:937
+msgid ""
+"Total quantity of all SKUs with positive stock (simple products and "
+"individualvariations)."
+msgstr ""
+"Общее количество всех артикулов с положительными запасами (простые продукты "
+"и отдельные вариации)."
+
+#: react-app/src/components/StockDashboard.js:940
+msgid "Inventory Value (Retail)"
+msgstr "Стоимость запасов (розничная)"
+
+#: react-app/src/components/StockDashboard.js:947
+msgid ""
+"Total retail value of all SKUs with positive stock. Currency symbol depends "
+"onglobal settings."
+msgstr ""
+"Общая розничная стоимость всех артикулов с положительными запасами. Символ "
+"валюты зависит от глобальных настроек."
+
+#: react-app/src/components/StockDashboard.js:955
+#: react-app/src/components/StockDashboard.js:959
+msgid "Stock Status Distribution"
+msgstr "Распределение статуса запасов"
+
+#: react-app/src/components/StockDashboard.js:956
+msgid ""
+"<p>Product distribution by stock status.</p><p><strong>In Stock:</"
+"strong>Available, not low/backordered/OOS.</p><p><strong>Low Stock:</strong> "
+"At/belowthreshold, not backordered/OOS.</p><p><strong>On Backorder:</strong> "
+"Allowspurchases when OOS.</p><p><strong>Out of Stock:</strong> Unavailable.</"
+"p>"
+msgstr ""
+"<p>Распределение продуктов по статусу запасов.</p><p><strong>В наличии:</"
+"strong>Доступен, не низкий/предзаказ/отсутствует.</p><p><strong>Низкие "
+"запасы:</strong> На уровне/ниже порога, не предзаказ/отсутствует.</"
+"p><p><strong>В предзаказе:</strong> Разрешает покупки при отсутствии.</"
+"p><p><strong>Нет в наличии:</strong> Недоступен.</p>"
+
+#: react-app/src/components/StockDashboard.js:990
+msgid "No data for stock status."
+msgstr "Нет данных для статуса запасов."
+
+#: react-app/src/components/StockDashboard.js:1025
+msgid "No previous period data."
+msgstr "Предыдущий период"
+
+#: react-app/src/components/StockDashboard.js:1033
+#: react-app/src/components/StockDashboard.js:1037
+msgid "Top 10 Requiring Restock"
+msgstr "Топ 10 требующих пополнения запасов"
+
+#: react-app/src/components/StockDashboard.js:1034
+msgid ""
+"<p>Products/variations most urgently needing restock, ordered by units "
+"needed toreach low stock threshold.</p>"
+msgstr ""
+"<p>Продукты/вариации, наиболее срочно нуждающиеся в пополнении запасов, "
+"упорядоченные по единицам, необходимым для достижения порога низких запасов."
+"</p>"
+
+#: react-app/src/components/StockDashboard.js:1045
+#: react-app/src/components/StockDashboard.js:1050
+msgid "Units Needed (Current)"
+msgstr "Необходимые единицы (текущие)"
+
+#: react-app/src/components/StockDashboard.js:1046
+#: react-app/src/components/StockDashboard.js:1051
+msgid "Units Needed (Previous)"
+msgstr "Необходимые единицы (предыдущие)"
+
+#: react-app/src/components/StockDashboard.js:1054
+msgid "No products require restocking or below threshold."
+msgstr "Нет товаров, требующих пополнения запасов или ниже порога."
+
+#: react-app/src/components/StockDashboard.js:1059
+#: react-app/src/components/StockDashboard.js:1063
+msgid "Top 10 by Stock Quantity"
+msgstr "Топ 10 по количеству запасов"
+
+#: react-app/src/components/StockDashboard.js:1060
+msgid ""
+"<p>Products/variations with the highest number of units currently in stock.</"
+"p>"
+msgstr ""
+"<p>Продукты/вариации с наибольшим количеством единиц, находящихся в "
+"настоящее время на складе.</p>"
+
+#: react-app/src/components/StockDashboard.js:1071
+#: react-app/src/components/StockDashboard.js:1076
+msgid "Quantity (Current)"
+msgstr "Количество (текущее)"
+
+#: react-app/src/components/StockDashboard.js:1072
+#: react-app/src/components/StockDashboard.js:1077
+msgid "Quantity (Previous)"
+msgstr "Количество (предыдущее)"
+
+#: react-app/src/components/StockDashboard.js:1080
+msgid "No products with positive stock quantity."
+msgstr "Нет товаров с положительным количеством запасов."
+
+#: react-app/src/components/StockDashboard.js:1085
+#: react-app/src/components/StockDashboard.js:1089
+msgid "Top 10 by Inventory Value"
+msgstr "Топ 10 по стоимости запасов"
+
+#: react-app/src/components/StockDashboard.js:1086
+msgid ""
+"<p>Products/variations contributing most to the total retail value of on-"
+"handinventory.</p>"
+msgstr ""
+"<p>Продукты/вариации, вносящие наибольший вклад в общую розничную стоимость "
+"имеющихся запасов.</p>"
+
+#: react-app/src/components/StockDashboard.js:1098
+#: react-app/src/components/StockDashboard.js:1103
+msgid "Retail Value (Current)"
+msgstr "Розничная стоимость (текущая)"
+
+#: react-app/src/components/StockDashboard.js:1099
+#: react-app/src/components/StockDashboard.js:1104
+msgid "Retail Value (Previous)"
+msgstr "Розничная стоимость (предыдущая)"
+
+#: react-app/src/components/StockDashboard.js:1107
+msgid "No products with positive stock value."
+msgstr "Нет товаров с положительной стоимостью запасов."
+
+#: react-app/src/components/StockDashboard.js:1113
+msgid "Product Stock Alerts"
+msgstr "Предупреждения о запасах товаров"
+
+#: react-app/src/components/StockDashboard.js:1119
+msgid "Search alerts (e.g., product name, SKU)..."
+msgstr "Поиск предупреждений (например, название товара, SKU)..."
+
+#: react-app/src/components/StockDashboard.js:1174
+msgid "No stock alerts at the moment."
+msgstr "В данный момент нет предупреждений о запасах."
+
+#: react-app/src/components/SubscriptionMessage.js:23
+msgid "Subscription Required"
+msgstr "Подписка"
+
+#: react-app/src/components/SubscriptionMessage.js:26
+msgid "Your subscription or trial has ended. Please visit the"
+msgstr "Ваша подписка или пробный период закончился. Пожалуйста, посетите"
+
+#: react-app/src/components/SubscriptionMessage.js:29
+msgid "Settings page"
+msgstr "Настройки"
+
+#: react-app/src/components/SubscriptionMessage.js:32
+msgid "to activate or manage your subscription."
+msgstr "чтобы активировать или управлять вашей подпиской."
+
+#: react-app/src/components/Tabs.js:156
+msgid "No tabs provided."
+msgstr "Вкладки не предоставлены."
+
+#: react-app/src/components/TimeSeriesChart.js:142
+msgid "Not enough data available to display chart."
+msgstr "Недостаточно данных для отображения графика."
+
+#: react-app/src/components/TrialExpiredAlert.js:83
+msgid "Trial Expired:"
+msgstr "Пробный период истек:"
+
+#: react-app/src/components/TrialExpiredAlert.js:90
+msgid "for unlimited orders and advanced features."
+msgstr "для неограниченного количества заказов и расширенных функций."
+
+#: react-app/src/components/TrialExpiredAlert.js:103
+msgid "Dismiss for 24 hours"
+msgstr "Отклонить на 24 часа"
+
+#: react-app/src/components/TrialExpiredAlert.js:104
+msgid "Dismiss trial expired alert"
+msgstr "Отклонить предупреждение об истечении пробного периода"
+
+#~ msgid "https://financiarme.es/woocommerce"
+#~ msgstr "https://financiarme.es/woocommerce"
+
+#~ msgid ""
+#~ "<p>Compares total sales value (before refunds) and the number of orders "
+#~ "received each day.</p>"
+#~ msgstr ""
+#~ "<p>Сравнивает общую стоимость продаж (до возвратов) и количество заказов, "
+#~ "полученных каждый день.</p>"
+
+#~ msgid ""
+#~ "<p>Shows the average amount spent per order (Gross Sales / Total Orders) "
+#~ "calculated daily.</p>"
+#~ msgstr ""
+#~ "<p>Показывает среднюю сумму, потраченную на заказ (Валовые продажи / "
+#~ "Общее количество заказов), рассчитанную ежедневно.</p>"
+
+#~ msgid ""
+#~ "<p>This chart shows how visitors move through key stages:</"
+#~ "p><ul><li><strong>Visits:</strong> Total site visits.</"
+#~ "li><li><strong>Product Views:</strong> Visits where at least one product "
+#~ "page was seen.</li><li><strong>Checkout:</strong> Visits where the "
+#~ "checkout page was reached.</li><li><strong>Purchases:</strong> Visits "
+#~ "resulting in a completed order.</li><li><strong>Drop-off:</strong> "
+#~ "Visitors leaving at each stage.</li></ul>"
+#~ msgstr ""
+#~ "<p>Эта диаграмма показывает, как посетители проходят через ключевые этапы:"
+#~ "</p><ul><li><strong>Посещения:</strong> Общие посещения сайта.</"
+#~ "li><li><strong>Просмотры продуктов:</strong> Посещения, где была "
+#~ "просмотрена хотя бы одна страница продукта.</li><li><strong>Оформление "
+#~ "заказа:</strong> Посещения, где была достигнута страница оформления "
+#~ "заказа.</li><li><strong>Покупки:</strong> Посещения, приведшие к "
+#~ "завершенному заказу.</li><li><strong>Выход:</strong> Посетители, "
+#~ "покидающие на каждом этапе.</li></ul>"
+
+#~ msgid ""
+#~ "<p>Shows the total net sales generated by each payment method during the "
+#~ "selected period.</p>"
+#~ msgstr ""
+#~ "<p>Показывает общие чистые продажи, полученные каждым способом оплаты в "
+#~ "течение выбранного периода.</p>"
+
+#~ msgid ""
+#~ "<p>Shows the total number of orders processed by each payment method "
+#~ "during the selected period.</p>"
+#~ msgstr ""
+#~ "<p>Показывает общее количество заказов, обработанных каждым способом "
+#~ "оплаты в течение выбранного периода.</p>"
+
+#~ msgid ""
+#~ "<p>Displays the top products ranked by their total net sales amount "
+#~ "within the selected date range.</p>"
+#~ msgstr ""
+#~ "<p>Отображает топ продуктов, ранжированных по их общей сумме чистых "
+#~ "продаж в выбранном диапазоне дат.</p>"
+
+#~ msgid ""
+#~ "<p>Top locations (City, Country) based on the total net sales amount from "
+#~ "orders shipped to that location within the selected date range.</p>"
+#~ msgstr ""
+#~ "<p>Топ локации (Город, Страна) на основе общей суммы чистых продаж от "
+#~ "заказов, отправленных в эту локацию в пределах выбранного диапазона дат.</"
+#~ "p>"
+
+#~ msgid ""
+#~ "<p>Shows which external websites or sources (like Google, Facebook, etc.) "
+#~ "sent the most visitors to your site.</p>"
+#~ msgstr ""
+#~ "<p>Показывает, какие внешние веб-сайты или источники (например, Google, "
+#~ "Facebook и т.д.) направили больше всего посетителей на ваш сайт.</p>"
+
+#~ msgid ""
+#~ "<p>Shows the net sales amount generated by product category during the "
+#~ "selected period. Limited to the top 10 categories by current sales.</p>"
+#~ msgstr ""
+#~ "<p>Показывает сумму чистых продаж, полученную по категориям продуктов в "
+#~ "течение выбранного периода. Ограничено топ-10 категориями по текущим "
+#~ "продажам.</p>"
+
+#~ msgid ""
+#~ "<p>Distribution of orders based on their current status (e.g., Completed, "
+#~ "Processing, Refunded) during the selected period.</p>"
+#~ msgstr ""
+#~ "<p>Распределение заказов по их текущему статусу (например, Завершен, "
+#~ "Обрабатывается, Возвращен) в течение выбранного периода.</p>"

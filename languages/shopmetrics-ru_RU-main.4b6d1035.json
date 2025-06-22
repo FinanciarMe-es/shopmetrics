@@ -1,0 +1,2614 @@
+{
+  "domain": "shopmetrics",
+  "locale_data": {
+    "shopmetrics": {
+      "": {
+        "domain": "shopmetrics"
+      },
+      "ShopMetrics for WooCommerce": [
+        "ShopMetrics для WooCommerce"
+      ],
+      "Advanced analytics and business intelligence for WooCommerce stores. Get  real-time insights into your store's performance, track inventory levels,  and boost sales with abandoned cart recovery.": [
+        "уровни запасов и увеличивайте продажи с помощью восстановления заброшенных  корзин."
+      ],
+      "FinanciarMe": [
+        "Финансы"
+      ],
+      "Abandoned Cart Recovery": [
+        "Восстановление заброшенной корзины"
+      ],
+      "Configure settings for tracking and recovering abandoned carts.": [
+        "Настройте параметры отслеживания и восстановления заброшенных корзин."
+      ],
+      "Cart Abandonment Threshold (hours)": [
+        "Порог забрасывания корзины (часов)"
+      ],
+      "Number of hours of inactivity before a cart is considered abandoned.": [
+        "Количество часов бездействия, после которых корзина считается заброшенной."
+      ],
+      "Enable Recovery Emails": [
+        "Включить письма восстановления"
+      ],
+      "Send email notifications for abandoned carts": [
+        "Отправлять уведомления по электронной почте о заброшенных корзинах"
+      ],
+      "Email Delay (hours)": [
+        "Задержка электронной почты (часов)"
+      ],
+      "How many hours to wait after cart abandonment before sending the recovery  email.": [
+        "Сколько часов ждать после заброса корзины перед отправкой письма  восстановления.Сколько часов ждать после заброса корзины перед отправкой  письма восстановления."
+      ],
+      "Include Coupon": [
+        "Включить купон"
+      ],
+      "Include a coupon code in recovery emails": [
+        "Включить код купона в письма восстановления"
+      ],
+      "Coupon Code": [
+        "Код купона"
+      ],
+      "-- Select a coupon --": [
+        "-- Выберите купон --"
+      ],
+      "Select an existing WooCommerce coupon to include in recovery emails.": [
+        "Выберите существующий купон WooCommerce для включения в письма  восстановления."
+      ],
+      "Recovery Email Content": [
+        "Содержимое письма восстановления"
+      ],
+      "Customize the email message sent to customers with abandoned carts.": [
+        "Настройте текст письма, отправляемого клиентам с заброшенными корзинами."
+      ],
+      "From Name": [
+        "Имя отправителя"
+      ],
+      "The name that appears in the \\\"From\\\" field of recovery emails.": [
+        "Имя, которое отображается в поле \\\"От\\\" в письмах восстановления."
+      ],
+      "From Email": [
+        "Email отправителя"
+      ],
+      "The email address that appears in the \\\"From\\\" field of recovery emails.": [
+        "Email адрес, который отображается в поле \\\"От\\\" в письмах восстановления."
+      ],
+      "Email Subject": [
+        "Тема письма"
+      ],
+      "Did you forget something in your cart?": [
+        "Вы что-то забыли в корзине?"
+      ],
+      "Available variables: {site_name}": [
+        "Доступные переменные: {site_name}"
+      ],
+      "Recovery Button Text": [
+        "Текст кнопки восстановления"
+      ],
+      "Complete Your Purchase": [
+        "Завершить покупку"
+      ],
+      "Text displayed on the recovery button in the email.": [
+        "Текст, отображаемый на кнопке восстановления в письме."
+      ],
+      "Recovery Link Expiry (days)": [
+        "Срок действия ссылки восстановления (дней)"
+      ],
+      "Number of days before the recovery link expires.": [
+        "Количество дней до истечения срока действия ссылки восстановления."
+      ],
+      "Email Content": [
+        "Содержимое письма"
+      ],
+      "Available variables: {site_name}, {cart_items}, {cart_total},  {recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}": [
+        "Доступные переменные: {site_name}, {cart_items}, {cart_total},  {recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code} Доступные переменные: {site_name}, {cart_items}, {cart_total},  {recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}"
+      ],
+      "HTML Email Customization": [
+        "Настройка HTML писем"
+      ],
+      "You have full control over the HTML structure of your emails, including the  header and footer. The editor above allows you to customize the entire email  template.": [
+        "У вас есть полный контроль над HTML-структурой ваших писем, включая  заголовок и подвал. Редактор выше позволяет настроить весь шаблон письма.У  вас есть полный контроль над HTML-структурой ваших писем, включая заголовок  и подвал. Редактор выше позволяет настроить весь шаблон письма."
+      ],
+      "The template includes responsive styling suitable for most email clients. If  you make changes to the HTML structure, be sure to test your emails  thoroughly.": [
+        "Шаблон включает адаптивную стилизацию, подходящую для большинства почтовых  клиентов. Если вы вносите изменения в HTML-структуру, обязательно тщательно  тестируйте ваши письма.Шаблон включает адаптивную стилизацию, подходящую для  большинства почтовых клиентов. Если вы вносите изменения в HTML-структуру,  обязательно тщательно тестируйте ваши письма."
+      ],
+      "About {cart_items} Display": [
+        "О отображении {cart_items}"
+      ],
+      "Cart items are now displayed as attractive product cards with:": [
+        "Товары корзины теперь отображаются как привлекательные карточки товаров с:"
+      ],
+      "Product image (when available)": [
+        "Изображение товара (если доступно)"
+      ],
+      "Product title": [
+        "Название товара"
+      ],
+      "Price and quantity information": [
+        "Информация о цене и количестве"
+      ],
+      "Clickable links to product pages": [
+        "Кликабельные ссылки на страницы товаров"
+      ],
+      "This visual presentation helps customers recognize their items more easily  and increases the likelihood of cart recovery.": [
+        "Такое визуальное представление помогает клиентам легче узнавать свои товары  и увеличивает вероятность восстановления корзины.Такое визуальное  представление помогает клиентам легче узнавать свои товары и увеличивает  вероятность восстановления корзины."
+      ],
+      "Test Email": [
+        "Тестовое письмо"
+      ],
+      "Send a test recovery email to verify how notifications appear to your  customers. This helps ensure that your recovery emails look professional and  contain all necessary information.": [
+        "Отправьте тестовое письмо восстановления, чтобы проверить, как уведомления  выглядят для ваших клиентов. Это помогает убедиться, что ваши письма  восстановления выглядят профессионально и содержат всю необходимую  информацию.Отправьте тестовое письмо восстановления, чтобы проверить, как  уведомления выглядят для ваших клиентов. Это помогает убедиться, что ваши  письма восстановления выглядят профессионально и содержат всю необходимую  информацию."
+      ],
+      "Send Test Email": [
+        "Отправить тестовое письмо"
+      ],
+      "The test email will be sent to your WordPress admin email address with  sample cart data to preview the layout and formatting.": [
+        "Тестовое письмо будет отправлено на ваш admin email WordPress с образцами  данных корзины для предварительного просмотра макета и  форматирования.Тестовое письмо будет отправлено на ваш admin email WordPress  с образцами данных корзины для предварительного просмотра макета и  форматирования."
+      ],
+      "WooCommerce Integration": [
+        "Интеграция с WooCommerce"
+      ],
+      "Configure how your WooCommerce store integrates with FinanciarMe Analytics.": [
+        "Настройте интеграцию вашего магазина WooCommerce с ShopMetrics  Analytics.Настройте интеграцию вашего магазина WooCommerce с ShopMetrics  Analytics."
+      ],
+      "Inventory Synchronization": [
+        "Синхронизация запасов"
+      ],
+      "Configure how inventory data is synchronized with FinanciarMe Analytics.": [
+        "Настройте синхронизацию данных инвентаря с ShopMetrics Analytics.Настройте  синхронизацию данных склада с ShopMetrics Analytics."
+      ],
+      "Scheduled Snapshots": [
+        "Запланированные снимки"
+      ],
+      "Inventory snapshots are scheduled to run automatically once per day. This  keeps your stock data up to date in the dashboard.": [
+        "Снимки склада запланированы на автоматический запуск раз в день. Это  поддерживает актуальность данных о запасах на панели."
+      ],
+      "Next scheduled snapshot:": [
+        "Следующий запланированный снимок:"
+      ],
+      "No snapshot is currently scheduled. This may indicate an issue with your  WordPress scheduled tasks.": [
+        "В настоящее время снимок не запланирован. Это может указывать на проблему с  запланированными задачами WordPress."
+      ],
+      "Fix Schedule": [
+        "Исправить расписание"
+      ],
+      "Action Scheduler is not active. This plugin is required for WooCommerce and  should be active. Please check your WordPress installation.": [
+        "Action Scheduler не активен. Этот плагин необходим для WooCommerce и должен  быть активным. Проверьте вашу установку WordPress."
+      ],
+      "Manual Inventory Snapshot": [
+        "Ручной снимок запасов"
+      ],
+      "If your stock data is not updating automatically, you can trigger a manual  snapshot here. This will collect current inventory data from your store and  send it to FinanciarMe Analytics.": [
+        "Если данные о запасах не обновляются автоматически, вы можете запустить  ручной снимок здесь. Это соберет текущие данные о запасах из вашего магазина  и отправит их в ShopMetrics Analytics."
+      ],
+      "Take Inventory Snapshot Now": [
+        "Сделать снимок запасов сейчас"
+      ],
+      "Stock Monitoring": [
+        "Мониторинг запасов"
+      ],
+      "Configure settings related to stock monitoring and tracking.": [
+        "Настройте параметры мониторинга и отслеживания запасов."
+      ],
+      "WooCommerce Stock Settings": [
+        "Настройки запасов WooCommerce"
+      ],
+      "Your current WooCommerce stock settings are displayed below. These settings  affect how FinanciarMe Analytics identifies low stock items.": [
+        "Ваши текущие настройки запасов WooCommerce отображены ниже. Эти настройки  влияют на то, как ShopMetrics Analytics определяет товары с низкими запасами."
+      ],
+      "Stock Management": [
+        "Управление запасами"
+      ],
+      "Enabled": [
+        "Включено"
+      ],
+      "Disabled": [
+        "Отключено"
+      ],
+      "Manage in WooCommerce Settings →": [
+        "Управление в настройках WooCommerce →"
+      ],
+      "Low Stock Threshold": [
+        "Порог низких запасов"
+      ],
+      "When product stock reaches this amount, FinanciarMe Analytics will mark it  as Low Stock.": [
+        "Когда запас продукта достигает этого количества, ShopMetrics Analytics  помечает его как Низкий запас."
+      ],
+      "Out of Stock Threshold": [
+        "Порог отсутствия на складе"
+      ],
+      "When product stock reaches this amount, WooCommerce considers it out of  stock.": [
+        "Когда запас продукта достигает этого количества, WooCommerce считает его  отсутствующим на складе."
+      ],
+      "Low Stock Notifications": [
+        "Уведомления о низких запасах"
+      ],
+      "Configure email notifications for products that reach their low stock  threshold.": [
+        "Настройте уведомления по электронной почте для продуктов, которые достигли  порога низких запасов."
+      ],
+      "Enable Low Stock Notifications": [
+        "Включить уведомления о низких запасах"
+      ],
+      "Check this box to enable daily email notifications for products that have  reached their low stock threshold.": [
+        "Установите этот флажок, чтобы включить ежедневные уведомления по электронной  почте для продуктов, которые достигли порога низких запасов."
+      ],
+      "Notification Recipients": [
+        "Получатели уведомлений"
+      ],
+      "e.g., admin@example.com, manager@example.com": [
+        "например, admin@example.com, manager@example.com"
+      ],
+      "Enter one or more email addresses, separated by commas. If empty,  notifications will be sent to the site administrator's email.": [
+        "Введите один или несколько адресов электронной почты, разделенных запятыми.  Если пусто, уведомления будут отправлены на электронную почту администратора  сайта."
+      ],
+      "Cost of Goods Settings": [
+        "Настройки себестоимости товаров"
+      ],
+      "Configure Cost of Goods Sold (COGS) tracking to enable accurate profit  calculations for your products.": [
+        "Настройте отслеживание себестоимости проданных товаров (COGS), чтобы  включить точные расчеты прибыли для ваших продуктов."
+      ],
+      "COGS Meta Key Detection": [
+        "Обнаружение мета-ключа COGS"
+      ],
+      "The plugin needs to know which WooCommerce meta key stores your product cost  information.": [
+        "Плагину нужно знать, какой мета-ключ WooCommerce хранит информацию о  стоимости ваших продуктов."
+      ],
+      "Currently Saved Key:": [
+        "Текущий сохраненный ключ:"
+      ],
+      "Not set": [
+        "Не установлено"
+      ],
+      "Auto-detect COGS Meta Key": [
+        "Автоопределение мета-ключа COGS"
+      ],
+      "Select Key Manually": [
+        "Выбрать ключ вручную"
+      ],
+      "-- Select a Key --": [
+        "-- Выберите ключ --"
+      ],
+      "-- Do not use a meta key --": [
+        "-- Не использовать мета-ключ --"
+      ],
+      "Select the meta key for COGS. If your key is not listed, ensure orders with  that meta key exist.": [
+        "Выберите мета-ключ для COGS. Если ваш ключ не в списке, убедитесь, что  заказы с этим мета-ключом существуют."
+      ],
+      "The plugin will attempt to find the Cost of Goods Sold (COGS) for each order  item using this meta key.": [
+        "Плагин попытается найти себестоимость товаров (COGS) для каждого элемента  заказа, используя этот мета-ключ."
+      ],
+      "Common example: %s. This is used by plugins like WooCommerce Cost of Goods.": [
+        "Обычный пример: %s. Это используется плагинами типа WooCommerce Cost of  Goods."
+      ],
+      "Default COGS Percentage": [
+        "Процент COGS по умолчанию"
+      ],
+      "If per-item COGS is not found via the meta key, you can specify a default  percentage to estimate costs.": [
+        "Если COGS на единицу товара не найден через мета-ключ, вы можете указать  процент по умолчанию для оценки затрат."
+      ],
+      "Default Percentage": [
+        "Процент по умолчанию"
+      ],
+      "e.g., 60 for 60%": [
+        "например, 60 для 60%"
+      ],
+      "If per-item COGS is not found via the meta key, use this percentage of the  item's pre-discount subtotal to estimate COGS (0-100).": [
+        "Если COGS на единицу товара не найден через мета-ключ, используйте этот  процент от предварительной суммы товара до скидки для оценки COGS (0-100)."
+      ],
+      "Leave blank if you only use meta key COGS or do not want to estimate.": [
+        "Оставьте пустым, если используете только мета-ключ COGS или не хотите делать  оценку."
+      ],
+      "Visit Tracking": [
+        "Отслеживание посещений"
+      ],
+      "Configure how customer visits and website activity are tracked by  FinanciarMe Analytics.": [
+        "Настройте, как отслеживаются посещения клиентов и активность на сайте в  ShopMetrics Analytics."
+      ],
+      "Tracking Settings": [
+        "Настройки отслеживания"
+      ],
+      "Control how site visits are tracked and what data is collected.": [
+        "Контролируйте, как отслеживаются посещения сайта и какие данные собираются."
+      ],
+      "Enable Visit Tracking": [
+        "Включить отслеживание посещений"
+      ],
+      "When enabled, the plugin will track information about site visits, including  pages viewed, referrers, and UTM parameters. This data powers marketing  analytics in the dashboard.": [
+        "При включении плагин будет отслеживать информацию о посещениях сайта,  включая просмотренные страницы, источники переходов и UTM параметры. Эти  данные питают маркетинговую аналитику в дашборде."
+      ],
+      "Collected Data": [
+        "Собираемые данные"
+      ],
+      "The following information is collected when visit tracking is enabled:": [
+        "Следующая информация собирается при включенном отслеживании посещений:"
+      ],
+      "Page URLs:": [
+        "URL страниц:"
+      ],
+      "The addresses of pages that visitors view on your site": [
+        "Адреса страниц, которые посетители просматривают на вашем сайте"
+      ],
+      "Page Types:": [
+        "Типы страниц:"
+      ],
+      "Categories of pages (e.g., product, cart, checkout)": [
+        "Категории страниц (например, товар, корзина, оформление заказа)"
+      ],
+      "Referrers:": [
+        "Источники переходов:"
+      ],
+      "Where visitors came from before landing on your site": [
+        "Откуда пришли посетители перед попаданием на ваш сайт"
+      ],
+      "UTM Parameters:": [
+        "UTM параметры:"
+      ],
+      "Marketing campaign tags in URLs (source, medium, campaign, etc.)": [
+        "Теги маркетинговых кампаний в URL (источник, канал, кампания и т.д.)"
+      ],
+      "Session IDs:": [
+        "ID сессий:"
+      ],
+      "Anonymous identifiers to group a visitor's activity (stored in browser  session)": [
+        "Анонимные идентификаторы для группировки активности посетителя (хранятся в  сессии браузера)"
+      ],
+      "This data is used to generate marketing attribution reports, conversion  funnels, and customer journey insights. No personally identifiable  information is collected.": [
+        "Эти данные используются для создания отчетов об атрибуции маркетинга,  воронок конверсии и аналитики пути клиента. Никакая персональная информация  не собирается."
+      ],
+      "Save All Settings": [
+        "Сохранить все настройки"
+      ],
+      "Ads Platforms Integration": [
+        "Интеграция с рекламными платформами"
+      ],
+      "Connect your advertising platforms to display correlation between campaign  expenses and profit. This helps you understand which campaigns are most  profitable for your business.": [
+        "Подключите ваши рекламные платформы для отображения корреляции между  расходами на кампании и прибылью. Это поможет понять, какие кампании  наиболее прибыльны для вашего бизнеса."
+      ],
+      "Aggregate all advertising platform data in one place for comprehensive  analytics.": [
+        "Агрегируйте все данные рекламных платформ в одном месте для комплексной  аналитики."
+      ],
+      "Connect": [
+        "Подключить"
+      ],
+      "Track expenses and performance of your Google Ads campaigns.": [
+        "Отслеживайте расходы и эффективность ваших кампаний Google Ads."
+      ],
+      "Track expenses and performance of your Facebook and Instagram ad campaigns.": [
+        "Отслеживайте расходы и эффективность ваших рекламных кампаний Facebook и  Instagram."
+      ],
+      "Accounting Platforms Integration": [
+        "Интеграция с учетными платформами"
+      ],
+      "Connect your accounting software to calculate the overall profitability of  your business, including not only advertising expenses but also salaries,  operational expenses, and more.": [
+        "Подключите ваше учетное программное обеспечение для расчета общей  рентабельности вашего бизнеса, включая не только рекламные расходы, но и  зарплаты, операционные расходы и многое другое."
+      ],
+      "Integrate with QuickBooks to analyze financial data and calculate true  business profitability.": [
+        "Интегрируйтесь с QuickBooks для анализа финансовых данных и расчета истинной  прибыльности бизнеса."
+      ],
+      "Connect with Xero accounting software to analyze business expenses and  revenue.": [
+        "Подключитесь к программному обеспечению учета Xero для анализа деловых  расходов и доходов."
+      ],
+      "Integrate with Zoho Books to analyze expense patterns and overall business  profitability.": [
+        "Интегрируйтесь с Zoho Books для анализа шаблонов расходов и общей  рентабельности бизнеса."
+      ],
+      "Connect with Sage accounting software for comprehensive financial analysis.": [
+        "Подключитесь к программному обеспечению учета Sage для всестороннего  финансового анализа."
+      ],
+      "Taking snapshot...": [
+        "Создание снимка..."
+      ],
+      "An error occurred. Please try again.": [
+        "Произошла ошибка. Пожалуйста, попробуйте еще раз."
+      ],
+      "Fixing...": [
+        "Исправление..."
+      ],
+      "Integration coming soon! This feature is currently under development.": [
+        "Интеграция скоро! Эта функция находится в разработке."
+      ],
+      "Stock Synchronization": [
+        "Синхронизация запасов"
+      ],
+      "FinanciarMe Server connection": [
+        "Подключение к серверу ShopMetrics"
+      ],
+      "Status:": [
+        "Статус:"
+      ],
+      "Connected": [
+        "Подключено"
+      ],
+      "Connection Details": [
+        "Детали подключения"
+      ],
+      "Site Identifier:": [
+        "Идентификатор сайта:"
+      ],
+      "API Token:": [
+        "API токен:"
+      ],
+      "This information could be useful for the FinanciarMe support team.": [
+        "Эта информация может быть полезна команде поддержки ShopMetrics."
+      ],
+      "Close": [
+        "Закрыть"
+      ],
+      "Manually trigger a synchronization of all historical order data. This runs  in the background and may take time depending on the number of orders.": [
+        "Вручную запустите синхронизацию всех исторических данных заказов. Это  выполняется в фоновом режиме и может занять время в зависимости от  количества заказов."
+      ],
+      "Sync Historical Data": [
+        "Синхронизировать исторические данные"
+      ],
+      "Dangerous Zone!": [
+        "Опасная зона!"
+      ],
+      "Disconnecting your site will remove the local API token. Reconnecting may be  required to resume data synchronization. A future update will allow full  data deletion from FinanciarMe servers upon disconnect.": [
+        "Отключение вашего сайта удалит локальный API токен. Повторное подключение  может потребоваться для возобновления синхронизации данных. Будущее  обновление позволит полное удаление данных с серверов ShopMetrics при  отключении."
+      ],
+      "Disconnect Site": [
+        "Отключить сайт"
+      ],
+      "Not Connected": [
+        "Не подключено"
+      ],
+      "To start using FinanciarMe Analytics, connect your site. This will securely  register your site and begin an initial synchronization of your historical  order data.": [
+        "Чтобы начать использовать ShopMetrics Analytics, подключите ваш сайт. Это  безопасно зарегистрирует ваш сайт и начнет первоначальную синхронизацию  исторических данных заказов."
+      ],
+      "Connect & Synchronize": [
+        "Подключить и синхронизировать"
+      ],
+      "Features & Subscription setup": [
+        "Настройка функций и подписки"
+      ],
+      "Access more features and configuration options in the dedicated sections:": [
+        "Получите доступ к дополнительным функциям и параметрам конфигурации в  специальных разделах:"
+      ],
+      "Data Sources": [
+        "Источники данных"
+      ],
+      "Configure visit tracking, connect external data providers, and manage  inventory synchronization.": [
+        "Настройте отслеживание посещений, подключите внешних поставщиков данных и  управляйте синхронизацией запасов."
+      ],
+      "Manage Data Sources": [
+        "Управление источниками данных"
+      ],
+      "Cart Recovery": [
+        "Восстановление корзины"
+      ],
+      "Configure automatic cart recovery emails and reduce abandoned carts.": [
+        "Настройте автоматические письма восстановления корзины и сократите  количество заброшенных корзин."
+      ],
+      "Configure Cart Recovery": [
+        "Настроить восстановление корзины"
+      ],
+      "Subscription": [
+        "Подписка"
+      ],
+      "Manage your subscription plan and billing information.": [
+        "Управляйте планом подписки и платежной информацией."
+      ],
+      "Manage Subscription": [
+        "Управление подпиской"
+      ],
+      "Log Management": [
+        "Управление журналами"
+      ],
+      "Current Log Level:": [
+        "Текущий уровень журнала:"
+      ],
+      "(Change in main plugin file: SHOPMETRICS_LOG_LEVEL)": [
+        "(Изменить в основном файле плагина: FINANCIARME_LOG_LEVEL)"
+      ],
+      "Log File Size:": [
+        "Размер файла журнала:"
+      ],
+      "Log File Location:": [
+        "Расположение файла журнала:"
+      ],
+      "Clear Logs": [
+        "Очистить журналы"
+      ],
+      "Download Logs": [
+        "Скачать журналы"
+      ],
+      "Rotate Logs": [
+        "Ротация журналов"
+      ],
+      "Log Levels:": [
+        "Уровни журнала:"
+      ],
+      "Only critical errors": [
+        "Только критические ошибки"
+      ],
+      "Errors and warnings": [
+        "Ошибки и предупреждения"
+      ],
+      "Errors, warnings, and key events": [
+        "Ошибки, предупреждения и ключевые события"
+      ],
+      "All logging (verbose)": [
+        "Все журналы (подробно)"
+      ],
+      "To change the log level, edit SHOPMETRICS_LOG_LEVEL in the main plugin file.": [
+        "Чтобы изменить уровень журнала, отредактируйте FINANCIARME_LOG_LEVEL в  основном файле плагина."
+      ],
+      "Connecting to FinanciarMe...": [
+        "Подключение к ShopMetrics..."
+      ],
+      "Connecting...": [
+        "Подключение..."
+      ],
+      "Connection successful! Saving credentials...": [
+        "Подключение успешно! Сохранение учетных данных..."
+      ],
+      "Connection successful! Refreshing page...": [
+        "Подключение успешно! Обновление страницы..."
+      ],
+      "Failed to save connection details: ": [
+        "Не удалось сохранить данные подключения: "
+      ],
+      "Error saving connection details: ": [
+        "Ошибка сохранения данных подключения: "
+      ],
+      "Invalid response from the API server. Missing required data.": [
+        "Неверный ответ от API сервера. Отсутствуют необходимые данные."
+      ],
+      "Error connecting to FinanciarMe API: ": [
+        "Ошибка подключения к ShopMetrics API: "
+      ],
+      "Are you sure you want to clear all logs?": [
+        "Вы уверены, что хотите очистить все журналы?"
+      ],
+      "Clearing...": [
+        "Очистка..."
+      ],
+      "Clearing logs...": [
+        "Очистка журналов..."
+      ],
+      "Error:": [
+        "Ошибка:"
+      ],
+      "AJAX error occurred": [
+        "Произошла ошибка AJAX"
+      ],
+      "Rotating...": [
+        "Ротация..."
+      ],
+      "Rotating logs...": [
+        "Ротация журналов..."
+      ],
+      "Subscription Status": [
+        "Статус подписки"
+      ],
+      "Trial Period": [
+        "Пробный период"
+      ],
+      "Your trial ends in %d days.": [
+        "Ваш пробный период заканчивается через %d дней."
+      ],
+      "Your trial has expired.": [
+        "Ваш пробный период истек."
+      ],
+      "Upgrade to Premium": [
+        "Обновиться до Премиум"
+      ],
+      "Active Subscription": [
+        "Активная подписка"
+      ],
+      "Your subscription is scheduled to cancel on %s.": [
+        "Ваша подписка запланирована к отмене %s."
+      ],
+      "Cancel Subscription": [
+        "Отменить подписку"
+      ],
+      "Canceled Subscription": [
+        "Отмененная подписка"
+      ],
+      "Your subscription has been canceled.": [
+        "Ваша подписка была отменена."
+      ],
+      "Reactivate Subscription": [
+        "Возобновить подписку"
+      ],
+      "No Active Subscription": [
+        "Нет активной подписки"
+      ],
+      "You do not have an active subscription.": [
+        "У вас нет активной подписки."
+      ],
+      "Subscribe Now": [
+        "Подписаться сейчас"
+      ],
+      "Subscription Status Sync": [
+        "Синхронизация статуса подписки"
+      ],
+      "If your subscription status appears incorrect, you can manually sync it with  the FinanciarMe server.": [
+        "Если статус вашей подписки отображается неправильно, вы можете вручную  синхронизировать его с сервером ShopMetrics."
+      ],
+      "Refresh Subscription Status": [
+        "Обновить статус подписки"
+      ],
+      "Subscription Plans": [
+        "Планы подписки"
+      ],
+      "Free Plan": [
+        "Бесплатный план"
+      ],
+      "Forever": [
+        "Навсегда"
+      ],
+      "Up to 20 orders per month": [
+        "До 20 заказов в месяц"
+      ],
+      "Basic Sales Analytics": [
+        "Базовая аналитика продаж"
+      ],
+      "General Dashboard": [
+        "Общая панель управления"
+      ],
+      "Top Products Reports": [
+        "Отчеты по топ товарам"
+      ],
+      "Sales by Time Reports": [
+        "Отчеты продаж по времени"
+      ],
+      "Limited Data Retention (30 days)": [
+        "Ограниченное хранение данных (30 дней)"
+      ],
+      "Email Support": [
+        "Поддержка по email"
+      ],
+      "Current Plan": [
+        "Текущий план"
+      ],
+      "Default Plan": [
+        "План по умолчанию"
+      ],
+      "RECOMMENDED": [
+        "РЕКОМЕНДУЕТСЯ"
+      ],
+      "Premium Plan": [
+        "Премиум план"
+      ],
+      "per month": [
+        "в месяц"
+      ],
+      "Select your monthly orders average": [
+        "Выберите среднее количество заказов в месяц"
+      ],
+      "blocks": [
+        "блоки"
+      ],
+      "orders/month": [
+        "заказов/месяц"
+      ],
+      "Auto Detect Best Option": [
+        "Автоматически выбрать лучший вариант"
+      ],
+      "All Free Plan Features": [
+        "Все функции бесплатного плана"
+      ],
+      "Advanced Sales & Marketing Analytics": [
+        "Расширенная аналитика продаж и маркетинга"
+      ],
+      "Finance Dashboard with COGS Integration": [
+        "Финансовая панель с интеграцией COGS"
+      ],
+      "Stock Management Dashboard": [
+        "Панель управления запасами"
+      ],
+      "Cart Recovery System": [
+        "Система восстановления корзины"
+      ],
+      "Marketing Campaign Tracking": [
+        "Отслеживание маркетинговых кампаний"
+      ],
+      "UTM Parameter Analytics": [
+        "Аналитика UTM параметров"
+      ],
+      "Extended Data Retention (1 year)": [
+        "Расширенное хранение данных (1 год)"
+      ],
+      "Priority Email Support": [
+        "Приоритетная поддержка по email"
+      ],
+      "Reactivate": [
+        "Повторно активировать"
+      ],
+      "Upgrade Now": [
+        "Обновиться сейчас"
+      ],
+      "Enterprise Plan": [
+        "Корпоративный план"
+      ],
+      "Contact Sales": [
+        "Связаться с отделом продаж"
+      ],
+      "To Get Special Price": [
+        "Чтобы получить специальную цену"
+      ],
+      "For stores processing more than 1000 orders per month": [
+        "Для магазинов, обрабатывающих более 1000 заказов в месяц"
+      ],
+      "All Premium Features": [
+        "Все премиум функции"
+      ],
+      "Unlimited Orders Per Month": [
+        "Неограниченное количество заказов в месяц"
+      ],
+      "Multi-store Analytics": [
+        "Аналитика для нескольких магазинов"
+      ],
+      "Custom Reports": [
+        "Пользовательские отчеты"
+      ],
+      "API Access": [
+        "Доступ к API"
+      ],
+      "Unlimited Data Retention": [
+        "Неограниченное хранение данных"
+      ],
+      "Dedicated Account Manager": [
+        "Персональный менеджер аккаунта"
+      ],
+      "Phone & Email Support": [
+        "Поддержка по телефону и email"
+      ],
+      "Custom Onboarding": [
+        "Персональная настройка"
+      ],
+      "Billing History": [
+        "История платежей"
+      ],
+      "Loading billing history...": [
+        "Загрузка истории платежей..."
+      ],
+      "Analyzing order history...": [
+        "Анализ истории заказов..."
+      ],
+      "Could not analyze order history.": [
+        "Не удалось проанализировать историю заказов."
+      ],
+      "An error occurred during analysis.": [
+        "Произошла ошибка во время анализа."
+      ],
+      "Are you sure you want to cancel your subscription? You will lose access to  premium features at the end of your billing cycle.": [
+        "Вы уверены, что хотите отменить подписку? Вы потеряете доступ к премиум- функциям в конце расчетного периода."
+      ],
+      "Processing...": [
+        "Обработка..."
+      ],
+      "Are you sure you want to reactivate your subscription? You will be billed  according to your previous subscription terms.": [
+        "Вы уверены, что хотите повторно активировать подписку? С вас будет взиматься  плата согласно условиям предыдущей подписки."
+      ],
+      "Preparing checkout...": [
+        "Подготовка к оформлению заказа..."
+      ],
+      "Date": [
+        "Дата"
+      ],
+      "Description": [
+        "Описание"
+      ],
+      "Amount": [
+        "Сумма"
+      ],
+      "Status": [
+        "Статус"
+      ],
+      "Invoice": [
+        "Счет"
+      ],
+      "FinanciarMe Analytics Premium Plan": [
+        "ShopMetrics Analytics Премиум план"
+      ],
+      "Paid": [
+        "Оплачено"
+      ],
+      "View": [
+        "Просмотр"
+      ],
+      "No billing history available.": [
+        "История платежей недоступна."
+      ],
+      "Syncing subscription status...": [
+        "Синхронизация статуса подписки..."
+      ],
+      "An error occurred.": [
+        "Произошла ошибка."
+      ],
+      "Are you sure you want to take this action?": [
+        "Вы уверены, что хотите выполнить это действие?"
+      ],
+      "Sending...": [
+        "Отправка..."
+      ],
+      "Email sent successfully!": [
+        "Email отправлен успешно!"
+      ],
+      "Error sending email. Please check server logs.": [
+        "Ошибка отправки email. Пожалуйста, проверьте журналы сервера."
+      ],
+      "Snapshot schedule fixed!": [
+        "Расписание снимков исправлено!"
+      ],
+      "Error fixing schedule.": [
+        "Ошибка исправления расписания."
+      ],
+      "Snapshot initiated!": [
+        "Снимок инициирован!"
+      ],
+      "Error taking snapshot.": [
+        "Ошибка создания снимка."
+      ],
+      "Detecting COGS meta key...": [
+        "Обнаружение мета-ключа COGS..."
+      ],
+      "Use This Key": [
+        "Использовать этот ключ"
+      ],
+      "Selected key: %s": [
+        "Выбранный ключ: %s"
+      ],
+      "Loading meta keys...": [
+        "Загрузка мета-ключей..."
+      ],
+      "Error loading meta keys": [
+        "Ошибка загрузки мета-ключей"
+      ],
+      "An error occurred": [
+        "Произошла ошибка"
+      ],
+      "Server communication error": [
+        "Ошибка связи с сервером"
+      ],
+      "Last synchronization": [
+        "Последняя синхронизация"
+      ],
+      "Loading...": [
+        "Загрузка..."
+      ],
+      "Yes": [
+        "Да"
+      ],
+      "No": [
+        "Нет"
+      ],
+      "OK": [
+        "ОК"
+      ],
+      "AJAX Error": [
+        "Ошибка AJAX"
+      ],
+      "FinanciarMe Analytics Error: Required JavaScript file not found in": [
+        "Ошибка ShopMetrics Analytics: Требуемый JavaScript файл не найден в"
+      ],
+      "Please rebuild the React application": [
+        "Пожалуйста, пересоберите React приложение"
+      ],
+      "FinanciarMe Analytics Error: Could not find main JavaScript file for the  dashboard. Please try rebuilding the application.": [
+        "Ошибка ShopMetrics Analytics: Не удалось найти основной JavaScript файл для  панели управления. Попробуйте пересобрать приложение."
+      ],
+      "Dashboard": [
+        "Панель управления"
+      ],
+      "Settings": [
+        "Настройки"
+      ],
+      "Debug Information": [
+        "Отладочная информация"
+      ],
+      "Set": [
+        "Установить"
+      ],
+      "length:": [
+        "длина:"
+      ],
+      "isConnected:": [
+        "подключен:"
+      ],
+      "true": [
+        "истина"
+      ],
+      "false": [
+        "ложь"
+      ],
+      "needsOnboarding:": [
+        "требует настройки:"
+      ],
+      "FinanciarMe for WooCommerce - Setup required": [
+        "ShopMetrics для WooCommerce - Требуется настройка"
+      ],
+      "Your site is not connected to FinanciarMe for WooCommerce. The dashboard  requires a connection to display your data.": [
+        "Ваш сайт не подключен к ShopMetrics для WooCommerce. Панель управления  требует подключения для отображения ваших данных."
+      ],
+      "Go to the Settings page by clicking the button below": [
+        "Перейдите на страницу настроек, нажав кнопку ниже"
+      ],
+      "Click on the \\\"Connect & Synchronize\\\" button": [
+        "Нажмите на кнопку \\\"Подключить и синхронизировать\\\""
+      ],
+      "Wait for the connection process to complete": [
+        "Дождитесь завершения процесса подключения"
+      ],
+      "Once connected, return to this page to view your dashboard": [
+        "После подключения вернитесь на эту страницу, чтобы просмотреть панель  управления"
+      ],
+      "Go to Settings Page": [
+        "Перейти к странице настроек"
+      ],
+      "FinanciarMe Analytics Error: Could not find main JavaScript file for the  dashboard. Please rebuild the application.": [
+        "Ошибка ShopMetrics Analytics: Не удалось найти основной JavaScript файл для  панели управления. Пожалуйста, пересоберите приложение."
+      ],
+      "General Settings": [
+        "Общие настройки"
+      ],
+      "Order Item COGS Meta Key": [
+        "Мета-ключ COGS элемента заказа"
+      ],
+      "Enable Low Stock Email Notifications": [
+        "Включить email уведомления о низких запасах"
+      ],
+      "Low Stock Notification Recipient(s)": [
+        "Получатель(и) уведомлений о низких запасах"
+      ],
+      "Order blocks must be between 1 and 10.": [
+        "Блоки заказов должны быть от 1 до 10."
+      ],
+      "Select the meta key for COGS. If your key is not listed, ensure orders with  that meta key exist or check advanced options if available.": [
+        "Выберите мета-ключ для COGS. Если ваш ключ не в списке, убедитесь, что  заказы с этим мета-ключом существуют, или проверьте дополнительные опции,  если доступны."
+      ],
+      "Common example: %s. Leave blank or select \\\"-- Do not use a meta key --\\\" if  you only want to use the default percentage or not track COGS via item meta.": [
+        "Обычный пример: %s. Оставьте пустым или выберите \\\"-- Не использовать мета- ключ --\\\", если хотите использовать только процент по умолчанию или не  отслеживать COGS через мета товара."
+      ],
+      "If per-item COGS is not found via the meta key, use this percentage of the  item\\\\'s pre-discount subtotal to estimate COGS (0-100).": [
+        "Если COGS на единицу товара не найден через мета-ключ, используйте этот  процент от предварительной суммы товара до скидки для оценки COGS (0-100)."
+      ],
+      "Default COGS Percentage must be a number between 0 and 100, or blank.": [
+        "Процент COGS по умолчанию должен быть числом от 0 до 100 или пустым."
+      ],
+      "Enter one or more email addresses, separated by commas. These addresses will  receive the low stock notifications if enabled.": [
+        "Введите один или несколько адресов электронной почты, разделенных запятыми.  Эти адреса будут получать уведомления о низких запасах, если включены."
+      ],
+      "If this field is left empty, notifications will be sent to the site  administrator\\\\'s email by default if notifications are enabled.": [
+        "Если это поле остается пустым, уведомления будут отправляться на электронную  почту администратора сайта по умолчанию, если уведомления включены."
+      ],
+      "The email address \\\"%s\\\" is not valid and has been removed.": [
+        "Email адрес \\\"%s\\\" недействителен и был удален."
+      ],
+      "Check this box to enable the tracking of website visits.": [
+        "Установите этот флажок, чтобы включить отслеживание посещений веб-сайта."
+      ],
+      "Nonce verification failed!": [
+        "Проверка nonce не удалась!"
+      ],
+      "You do not have permission to perform this action.": [
+        "У вас нет разрешения для выполнения этого действия."
+      ],
+      "No API token provided.": [
+        "API токен не предоставлен."
+      ],
+      "API token processed successfully.": [
+        "API токен обработан успешно."
+      ],
+      "API token and Site Identifier processed successfully.": [
+        "API токен и идентификатор сайта обработаны успешно."
+      ],
+      "API token processed. Site Identifier failed to save.": [
+        "API токен обработан. Не удалось сохранить идентификатор сайта."
+      ],
+      "Failed to save API token.": [
+        "Не удалось сохранить API токен."
+      ],
+      "Action Scheduler is required but not active.": [
+        "Action Scheduler требуется, но не активен."
+      ],
+      "Historical synchronization is already in progress.": [
+        "Историческая синхронизация уже выполняется."
+      ],
+      "Failed to schedule sync action after clearing existing schedule.": [
+        "Не удалось запланировать действие синхронизации после очистки существующего  расписания."
+      ],
+      "Error scheduling synchronization after clearing existing schedule: ": [
+        "Ошибка планирования синхронизации после очистки существующего расписания: "
+      ],
+      "Historical synchronization rescheduled after clearing previous schedule.": [
+        "Историческая синхронизация перепланирована после очистки предыдущего  расписания."
+      ],
+      "Failed to schedule sync action.": [
+        "Не удалось запланировать действие синхронизации."
+      ],
+      "Error scheduling synchronization: ": [
+        "Ошибка планирования синхронизации: "
+      ],
+      "Historical data synchronization scheduled successfully.": [
+        "Синхронизация исторических данных запланирована успешно."
+      ],
+      "You do not have permission.": [
+        "У вас нет разрешения."
+      ],
+      "Site is not connected. Cannot manage subscription.": [
+        "Сайт не подключен. Невозможно управлять подпиской."
+      ],
+      "Error communicating with subscription service: %s": [
+        "Ошибка связи со службой подписки: %s"
+      ],
+      "Cancellation requested.": [
+        "Запрошена отмена."
+      ],
+      "Unknown error from subscription service.": [
+        "Неизвестная ошибка службы подписки."
+      ],
+      "Subscription service error (Code: %d): %s": [
+        "Ошибка службы подписки (Код: %d): %s"
+      ],
+      "Insufficient permissions.": [
+        "Недостаточно разрешений."
+      ],
+      "API token not found. Cannot reactivate subscription.": [
+        "API токен не найден. Невозможно возобновить подписку."
+      ],
+      "Error communicating with the backend API.": [
+        "Ошибка связи с backend API."
+      ],
+      "Subscription successfully reactivated.": [
+        "Подписка успешно возобновлена."
+      ],
+      "Unknown error from backend.": [
+        "Неизвестная ошибка от backend."
+      ],
+      "Failed to reactivate subscription. Backend response: %s": [
+        "Не удалось возобновить подписку. Ответ backend: %s"
+      ],
+      "No order item meta keys found in recent orders to scan.": [
+        "Не найдены мета-ключи элементов заказа в недавних заказах для сканирования."
+      ],
+      "Detected potential COGS key: %s": [
+        "Обнаружен потенциальный COGS ключ: %s"
+      ],
+      "No common COGS meta key found in recent orders. You can try selecting one  manually.": [
+        "Общий мета-ключ COGS не найден в недавних заказах. Вы можете попробовать  выбрать один вручную."
+      ],
+      "Error fetching meta keys.": [
+        "Ошибка получения мета-ключей."
+      ],
+      "Snapshotter component is missing. Cannot trigger snapshot.": [
+        "Компонент снимков отсутствует. Невозможно запустить снимок."
+      ],
+      "Snapshotter class or method not found. Cannot trigger snapshot.": [
+        "Класс или метод снимков не найден. Невозможно запустить снимок."
+      ],
+      "Inventory snapshot process has been triggered. Check server logs (PHP error  log, CloudWatch) for details and API send status.": [
+        "Процесс снимка запасов был запущен. Проверьте серверные журналы (журнал  ошибок PHP, CloudWatch) для деталей и статуса отправки API."
+      ],
+      "An error occurred while triggering the snapshot: ": [
+        "Произошла ошибка при запуске снимка: "
+      ],
+      "Cart Recovery is a premium feature. Please upgrade your plan to enable this  functionality.": [
+        "Восстановление корзины - это премиум-функция. Пожалуйста, обновите ваш план,  чтобы включить эту функциональность."
+      ],
+      "Could not identify current user.": [
+        "Не удалось идентифицировать текущего пользователя."
+      ],
+      "Could not initialize cart recovery module.": [
+        "Не удалось инициализировать модуль восстановления корзины."
+      ],
+      "Test email sent to %s successfully.": [
+        "Тестовый email отправлен %s успешно."
+      ],
+      "Failed to send test email. Please check server logs for more details.": [
+        "Не удалось отправить тестовый email. Пожалуйста, проверьте журналы сервера  для получения подробностей."
+      ],
+      "Sample Product 1": [
+        "Образец товара 1"
+      ],
+      "Sample Product 2": [
+        "Образец товара 2"
+      ],
+      "Snapshotter component is missing.": [
+        "Компонент снимков отсутствует."
+      ],
+      "Snapshotter class not found.": [
+        "Класс снимков не найден."
+      ],
+      "Snapshot schedule has been fixed.": [
+        "Расписание снимков исправлено."
+      ],
+      "Failed to reschedule the snapshot. Please check server logs.": [
+        "Не удалось перепланировать снимок. Пожалуйста, проверьте журналы сервера."
+      ],
+      "An error occurred: ": [
+        "Произошла ошибка: "
+      ],
+      "Please connect your site to FinanciarMe Analytics before configuring data  sources.": [
+        "Пожалуйста, подключите ваш сайт к ShopMetrics Analytics перед настройкой  источников данных."
+      ],
+      "Go to Settings": [
+        "Перейти к настройкам"
+      ],
+      "Please connect your site to FinanciarMe Analytics before managing your  subscription.": [
+        "Пожалуйста, подключите ваш сайт к ShopMetrics Analytics перед управлением  подпиской."
+      ],
+      "WooCommerce is not active. Cannot analyze order history.": [
+        "WooCommerce не активен. Невозможно проанализировать историю заказов."
+      ],
+      "Your store processes approximately %d orders per month (with 20%% buffer:  %d). This exceeds the Premium Plan limit. Consider contacting sales for an  Enterprise Plan.": [
+        "Ваш магазин обрабатывает приблизительно %d заказов в месяц (с 20%% буфером:  %d). Это превышает лимит Премиум плана. Рассмотрите возможность обращения к  отделу продаж для Корпоративного плана."
+      ],
+      "Based on your order history (average %d orders per month, with 20%% buffer:  %d), we recommend %d order blocks for your subscription.": [
+        "На основе истории ваших заказов (в среднем %d заказов в месяц, с 20%%  буфером: %d), мы рекомендуем %d блоков заказов для вашей подписки."
+      ],
+      "Security check failed.": [
+        "Проверка безопасности не удалась."
+      ],
+      "Missing API token or site identifier. Please reconnect your site.": [
+        "Отсутствует API токен или идентификатор сайта. Пожалуйста, переподключите  ваш сайт."
+      ],
+      "Subscription status synced successfully.": [
+        "Статус подписки синхронизирован успешно."
+      ],
+      "Failed to sync subscription status. Please try again or contact support.": [
+        "Не удалось синхронизировать статус подписки. Пожалуйста, попробуйте еще раз  или обратитесь в поддержку."
+      ],
+      "No synchronization has been initiated.": [
+        "Синхронизация не была инициирована."
+      ],
+      "Synchronization appears to have stalled.": [
+        "Синхронизация, по-видимому, зависла."
+      ],
+      "Security verification failed!": [
+        "Проверка безопасности не удалась!"
+      ],
+      "Sync is currently in progress. Use force reset if you want to override this.": [
+        "Синхронизация в настоящее время выполняется. Используйте принудительный  сброс, если хотите это переопределить."
+      ],
+      "Sync progress reset successfully.": [
+        "Прогресс синхронизации сброшен успешно."
+      ],
+      "Failed to reset sync progress.": [
+        "Не удалось сбросить прогресс синхронизации."
+      ],
+      "Connect your site to enable historical data synchronization.": [
+        "Подключите ваш сайт для включения синхронизации исторических данных."
+      ],
+      "This will synchronize orders from the past year with FinanciarMe Analytics.  The process will run in the background and may take some time depending on  the number of orders.": [
+        "Это синхронизирует заказы за прошлый год с ShopMetrics Analytics. Процесс  будет выполняться в фоновом режиме и может занять время в зависимости от  количества заказов."
+      ],
+      "Use this coupon code for a special discount:": [
+        "Используйте этот код купона для специальной скидки:"
+      ],
+      "Quantity: %s": [
+        "Количество: %s"
+      ],
+      "each": [
+        "каждый"
+      ],
+      "Total:": [
+        "Итого:"
+      ],
+      "The recovery link is invalid or has expired.": [
+        "Ссылка восстановления недействительна или истекла."
+      ],
+      "Your cart has been restored. You can now complete your purchase.": [
+        "Ваша корзина восстановлена. Теперь вы можете завершить покупку."
+      ],
+      "We couldn't restore your cart. It may have expired or been already processed.": [
+        "Мы не смогли восстановить вашу корзину. Возможно, она истекла или уже была  обработана."
+      ],
+      "Action Scheduler library is required but not found. Please ensure  WooCommerce is active.": [
+        "Библиотека Action Scheduler необходима, но не найдена. Пожалуйста,  убедитесь, что WooCommerce активен."
+      ],
+      "Synchronization is already in progress or scheduled.": [
+        "Синхронизация уже выполняется или запланирована."
+      ],
+      "Failed to schedule the synchronization task.": [
+        "Не удалось запланировать задачу синхронизации."
+      ],
+      "Historical data synchronization has been scheduled.": [
+        "Синхронизация исторических данных запланирована."
+      ],
+      "Could not reach your site for verification. Please ensure your site is  publicly accessible or check firewall settings.": [
+        "Не удалось достичь вашего сайта для проверки. Пожалуйста, убедитесь, что ваш  сайт общедоступен или проверьте настройки брандмауэра."
+      ],
+      "Site verification challenge failed. Unexpected response received.": [
+        "Проверка сайта не удалась. Получен неожиданный ответ."
+      ],
+      "Could not register site with the backend service. Please try again.": [
+        "Не удалось зарегистрировать сайт в backend службе. Попробуйте еще раз."
+      ],
+      "Unknown error from backend registration.": [
+        "Неизвестная ошибка регистрации backend."
+      ],
+      "Backend registration failed: %s": [
+        "Регистрация backend не удалась: %s"
+      ],
+      "Site connected successfully. Securely saving token...": [
+        "Сайт подключен успешно. Безопасное сохранение токена..."
+      ],
+      "API Token saved successfully.": [
+        "API токен сохранен успешно."
+      ],
+      "Could not save the API token to the database.": [
+        "Не удалось сохранить API токен в базу данных."
+      ],
+      "Low Stock Product Alert - %s": [
+        "Предупреждение о низких запасах товара - %s"
+      ],
+      "The following products/variations are currently at or below their low stock  threshold:": [
+        "Следующие продукты/вариации в настоящее время находятся на уровне или ниже  их порога низких запасов:"
+      ],
+      "Product Name": [
+        "Название товара"
+      ],
+      "SKU": [
+        "Артикул"
+      ],
+      "Current Stock": [
+        "Текущий запас"
+      ],
+      "N/A": [
+        "Н/Д"
+      ],
+      "This is an automated notification from the FinanciarMe Analytics plugin on  %s.": [
+        "Это автоматическое уведомление от плагина ShopMetrics Analytics на %s."
+      ],
+      "ShopMetrics for WooCommerce requires WooCommerce to be installed and  activated. Please install and activate WooCommerce first.": [
+        "ShopMetrics для WooCommerce требует установки и активации WooCommerce.  Пожалуйста, сначала установите и активируйте WooCommerce."
+      ],
+      "Subscribe": [
+        "Подписаться"
+      ],
+      "Every Five Minutes": [
+        "Каждые пять минут"
+      ],
+      "Every Fifteen Minutes": [
+        "Каждые пятнадцать минут"
+      ],
+      "ShopMetrics for WooCommerce provides advanced analytics, inventory  management, and abandoned cart recovery features to help you optimize your  WooCommerce store performance.": [
+        "ShopMetrics для WooCommerce предоставляет расширенную аналитику, управление  запасами и функции восстановления заброшенных корзин, чтобы помочь вам  оптимизировать производительность вашего магазина WooCommerce."
+      ],
+      "Key Features": [
+        "Ключевые функции"
+      ],
+      "Comprehensive Analytics Dashboard": [
+        "Комплексная панель аналитики"
+      ],
+      "Get real-time insights into your store's performance with detailed sales,  marketing, and inventory metrics.": [
+        "Получите данные о производительности вашего магазина в режиме реального  времени с подробными метриками продаж, маркетинга и запасов."
+      ],
+      "Inventory Management": [
+        "Управление запасами"
+      ],
+      "Track inventory levels, receive low stock alerts, and optimize restocking to  prevent stockouts.": [
+        "Отслеживайте уровни запасов, получайте уведомления о низких запасах и  оптимизируйте пополнение запасов для предотвращения дефицита."
+      ],
+      "Automatically identify and recover abandoned carts to boost sales and  conversion rates.": [
+        "Автоматически определяйте и восстанавливайте заброшенные корзины для  увеличения продаж и коэффициентов конверсии."
+      ],
+      "Financial Reports": [
+        "Финансовые отчеты"
+      ],
+      "Track COGS, profit margins, and other key financial metrics to optimize your  business performance.": [
+        "Отслеживайте COGS, прибыльность и другие ключевые финансовые метрики для  оптимизации производительности вашего бизнеса."
+      ],
+      "Our core platform is free, flexible, and amplified by a global community": [
+        "Наша основная платформа бесплатна, гибка и усилена глобальным сообществом"
+      ],
+      "The freedom of open-source means you retain full ownership of your store's  content and data forever.": [
+        "Свобода открытого исходного кода означает, что вы навсегда сохраняете полное  владение контентом и данными вашего магазина."
+      ],
+      "Installation": [
+        "Установка"
+      ],
+      "Upload the plugin files to the `/wp-content/plugins/shopmetrics` directory,  or install the plugin through the WordPress plugins screen directly.": [
+        "Загрузите файлы плагина в директорию `/wp-content/plugins/shopmetrics` или  установите плагин напрямую через экран плагинов WordPress."
+      ],
+      "Activate the plugin through the 'Plugins' screen in WordPress.": [
+        "Активируйте плагин через экран 'Плагины' в WordPress."
+      ],
+      "Use the ShopMetrics Dashboard menu to configure the plugin and start  tracking your analytics.": [
+        "Используйте меню Панели управления ShopMetrics для настройки плагина и  начала отслеживания вашей аналитики."
+      ],
+      "Frequently Asked Questions": [
+        "Часто задаваемые вопросы"
+      ],
+      "Is ShopMetrics compatible with my theme?": [
+        "Совместим ли ShopMetrics с моей темой?"
+      ],
+      "Yes! ShopMetrics works with any WordPress theme that supports WooCommerce.": [
+        "Да! ShopMetrics работает с любой темой WordPress, которая поддерживает  WooCommerce."
+      ],
+      "Do I need to write code to use ShopMetrics?": [
+        "Нужно ли мне писать код для использования ShopMetrics?"
+      ],
+      "Not at all. ShopMetrics is designed to be user-friendly and requires no  coding knowledge.": [
+        "Вовсе нет. ShopMetrics разработан для удобства пользователей и не требует  знаний программирования."
+      ],
+      "Does ShopMetrics slow down my website?": [
+        "Замедляет ли ShopMetrics мой веб-сайт?"
+      ],
+      "No, ShopMetrics is optimized for performance and has minimal impact on your  site speed.": [
+        "Нет, ShopMetrics оптимизирован для производительности и оказывает  минимальное влияние на скорость вашего сайта."
+      ],
+      "Changelog": [
+        "История изменений"
+      ],
+      "Added Dashboard link to plugin actions": [
+        "Добавлена ссылка на панель управления в действия плагина"
+      ],
+      "Added View details modal and Documentation link": [
+        "Добавлен модальный просмотр деталей и ссылка на документацию"
+      ],
+      "Fixed several minor bugs": [
+        "Исправлено несколько мелких ошибок"
+      ],
+      "Initial release": [
+        "Первоначальный выпуск"
+      ],
+      "Screenshots": [
+        "Скриншоты"
+      ],
+      "The main dashboard with analytics overview": [
+        "Главная панель с обзором аналитики"
+      ],
+      "Inventory management interface": [
+        "Интерфейс управления запасами"
+      ],
+      "Cart recovery settings": [
+        "Настройки восстановления корзины"
+      ],
+      "Financial reports panel": [
+        "Панель финансовых отчетов"
+      ],
+      "General": [
+        "Общее"
+      ],
+      "Sales": [
+        "Продажи"
+      ],
+      "Finance": [
+        "Финансы"
+      ],
+      "Marketing": [
+        "Маркетинг"
+      ],
+      "Cart & Checkout": [
+        "Корзина и оформление"
+      ],
+      "Stock": [
+        "Склад"
+      ],
+      "Connection Error:": [
+        "Ошибка подключения:"
+      ],
+      "Unable to communicate with ShopMetrics API. Your site may need to  bereconnected.": [
+        "Не удается связаться с API ShopMetrics. Возможно, ваш сайт нужно  переподключить."
+      ],
+      "Reconnecting...": [
+        "Переподключение..."
+      ],
+      "Reconnect Site": [
+        "Переподключить сайт"
+      ],
+      "Invalid date range provided.": [
+        "Предоставлен недействительный диапазон дат."
+      ],
+      "Site identifier or API token not provided.": [
+        "Идентификатор сайта или API токен не предоставлен."
+      ],
+      "API URL not configured in window.fmData.": [
+        "API URL не настроен в window.fmData."
+      ],
+      "Failed to parse cart data from API response (unexpected data structure).": [
+        "Не удалось разобрать данные корзины из ответа API (неожиданная структура  данных)."
+      ],
+      "Failed to fetch cart stats.": [
+        "Не удалось получить статистику корзин."
+      ],
+      "Error: %s": [
+        "Ошибка: %s"
+      ],
+      "Active Carts": [
+        "Активные корзины"
+      ],
+      "Number of carts currently active (not abandoned, not converted).": [
+        "Количество корзин, которые в настоящее время активны (не заброшены, не  конвертированы)."
+      ],
+      "Active Carts Value": [
+        "Активные корзины"
+      ],
+      "Total value of items in all active carts.": [
+        "Общая стоимость товаров во всех активных корзинах."
+      ],
+      "Average Cart Value": [
+        "Средняя стоимость корзины"
+      ],
+      "Average monetary value of carts (based on backend logic for what constitutes  a\\\\": [
+        "Не найдены мета-ключи элементов заказа в недавних заказах для сканирования."
+      ],
+      "Abandoned Carts": [
+        "Заброшенные корзины"
+      ],
+      "Number of carts that were initiated but not completed.": [
+        "Количество корзин, которые были начаты, но не завершены."
+      ],
+      "Abandoned Carts Value": [
+        "Стоимость заброшенных корзин"
+      ],
+      "Total value of items in all abandoned carts.": [
+        "Общая стоимость товаров во всех заброшенных корзинах."
+      ],
+      "Abandoned Cart Rate": [
+        "Коэффициент заброшенных корзин"
+      ],
+      "Percentage of initiated carts that were abandoned (Abandoned Carts /  (AbandonedCarts + Completed Orders)).": [
+        "Процент начатых корзин, которые были заброшены (Заброшенные корзины /  (Заброшенные корзины + Завершенные заказы))."
+      ],
+      "Checkouts Started": [
+        "Начатые оформления заказов"
+      ],
+      "Number of times users initiated the checkout process.": [
+        "Количество раз, когда пользователи инициировали процесс оформления заказа."
+      ],
+      "Checkout Conversion Rate": [
+        "Коэффициент конверсии оформления заказа"
+      ],
+      "Percentage of checkouts started that resulted in a completed order  (CompletedOrders / Checkouts Started).": [
+        "Процент начатых оформлений заказов, которые привели к завершенному заказу  (Завершенные заказы / Начатые оформления)."
+      ],
+      "Checkout Abandonment Rate": [
+        "Коэффициент отказа от оформления заказа"
+      ],
+      "Percentage of users who started checkout but did not complete the  order((Checkouts Started - Orders Completed) / Checkouts Started).": [
+        "Процент пользователей, которые начали оформление заказа, но не завершили его  ((Начатые оформления - Завершенные заказы) / Начатые оформления)."
+      ],
+      "Cart to Checkout Start Rate": [
+        "Коэффициент перехода от корзины к оформлению заказа"
+      ],
+      "Percentage of users who viewed their cart and then proceeded to start  thecheckout (Checkouts Started / Viewed Cart Page).": [
+        "Процент пользователей, которые просмотрели свою корзину, а затем перешли к  началу оформления заказа (Начатые оформления / Просмотры страницы корзины)."
+      ],
+      "Avg Items / Active Cart": [
+        "Активные корзины"
+      ],
+      "Average number of items in carts that are currently active.": [
+        "Среднее количество товаров в корзинах, которые в настоящее время активны."
+      ],
+      "Avg Items / Abandoned Cart": [
+        "Среднее количество товаров / Заброшенная корзина"
+      ],
+      "Average number of items in carts that were abandoned.": [
+        "Среднее количество товаров в корзинах, которые были заброшены."
+      ],
+      "Checkout Funnel Flow": [
+        "Поток воронки оформления заказа"
+      ],
+      "Checkout Funnel Flow Help": [
+        "Помощь по потоку воронки оформления заказа"
+      ],
+      "<p>A visual representation of how visitors move through your checkout  process.Shows drop-off points and conversion rates at each stage.</p>": [
+        "<p>Визуальное представление того, как посетители проходят через процесс  оформления заказа. Показывает точки выхода и коэффициенты конверсии на  каждом этапе.</p>"
+      ],
+      "No checkout funnel data available for the selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Cart and checkout events will be tracked once customers begin interacting  withyour store.": [
+        "События корзины и оформления заказа будут отслеживаться, как только клиенты  начнут взаимодействовать с вашим магазином."
+      ],
+      "Top Products in Abandoned Carts": [
+        "Топ товаров в заброшенных корзинах"
+      ],
+      "<p>A bar chart showing which products appear most frequently in  abandonedcarts.</p>": [
+        "<p>Столбчатая диаграмма, показывающая, какие продукты чаще всего появляются  в заброшенных корзинах.</p>"
+      ],
+      "Current Period": [
+        "Текущий период"
+      ],
+      "Previous Period": [
+        "Предыдущий период"
+      ],
+      "No abandoned products data available for the selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "This will populate when customers abandon products in their carts.": [
+        "Это заполнится, когда клиенты оставят товары в своих корзинах."
+      ],
+      "Abandoned Cart Value Distribution": [
+        "Распределение стоимости заброшенных корзин"
+      ],
+      "<p>Shows the distribution of abandoned carts by price range, helping  identifyprice thresholds where customers are more likely to abandon their  carts.</p>": [
+        "<p>Показывает распределение заброшенных корзин по ценовым диапазонам,  помогая определить ценовые пороги, при которых клиенты с большей  вероятностью бросают свои корзины.</p>"
+      ],
+      "Price Range": [
+        "Ценовой диапазон"
+      ],
+      "Number of Carts": [
+        "Количество корзин"
+      ],
+      "carts": [
+        "корзины"
+      ],
+      "Count": [
+        "Количество"
+      ],
+      "No abandoned cart value data available.": [
+        "Данные о стоимости заброшенных корзин недоступны."
+      ],
+      "This chart will populate as customers abandon carts at different price  points.": [
+        "Этот график заполнится по мере заброса корзин клиентами с различными  ценовыми точками."
+      ],
+      "Abandoned Cart Rate Trend": [
+        "Тенденция коэффициента заброшенных корзин"
+      ],
+      "Abandoned Cart Rate Trend Help": [
+        "Помощь по тенденции коэффициента заброшенных корзин"
+      ],
+      "<p>Shows how the abandoned cart rate has changed over the selected period.</ p>": [
+        "<p>Показывает, как изменился коэффициент заброшенных корзин за выбранный  период.</p>"
+      ],
+      "No abandoned cart rate trend data available.": [
+        "Данные тенденции коэффициента заброшенных корзин недоступны."
+      ],
+      "This chart will populate as customers use your cart over time.": [
+        "Этот график заполнится по мере использования корзины клиентами со временем."
+      ],
+      "Checkout Conversion Rate Trend": [
+        "Тенденция коэффициента конверсии оформления заказа"
+      ],
+      "Checkout Conversion Rate Trend Help": [
+        "Помощь по тенденции коэффициента конверсии оформления заказа"
+      ],
+      "<p>Shows how the checkout conversion rate has changed over the  selectedperiod.</p>": [
+        "<p>Показывает, как изменился коэффициент конверсии оформления заказа за  выбранный период.</p>"
+      ],
+      "No checkout conversion rate trend data available.": [
+        "Данные тенденции коэффициента конверсии оформления заказа недоступны."
+      ],
+      "This chart will populate as customers complete checkouts.": [
+        "Этот график заполнится по мере завершения оформления заказов клиентами."
+      ],
+      "Compare": [
+        "Сравнить"
+      ],
+      "Current Period:": [
+        "Текущий период:"
+      ],
+      "Previous Period:": [
+        "Предыдущий период:"
+      ],
+      "Reset Comparison": [
+        "Сбросить сравнение"
+      ],
+      "Compare Periods": [
+        "Сравнить периоды"
+      ],
+      "Connect to ShopMetrics Analytics": [
+        "Подключиться к ShopMetrics Analytics"
+      ],
+      "Your site is not connected to ShopMetrics Analytics. The dashboard requires  aconnection to display your data.": [
+        "Ваш сайт не подключен к ShopMetrics Analytics. Панель управления требует  подключения для отображения ваших данных."
+      ],
+      "Syncing...": [
+        "Переподключение..."
+      ],
+      "Last 7 days": [
+        "Последние 7 дней"
+      ],
+      "Last 30 days": [
+        "Последние 30 дней"
+      ],
+      "This month": [
+        "Последние 3 месяца"
+      ],
+      "Last month": [
+        "Последние 3 месяца"
+      ],
+      "Last 3 months": [
+        "Последние 3 месяца"
+      ],
+      "Last 6 months": [
+        "Последние 3 месяца"
+      ],
+      "This year": [
+        "Этот год"
+      ],
+      "Last year": [
+        "Последние 7 дней"
+      ],
+      "Select Date Range": [
+        "Выберите диапазон дат"
+      ],
+      "Connect to See Your Analytics": [
+        "Подключитесь, чтобы увидеть вашу аналитику"
+      ],
+      "Please connect your site to view your WooCommerce analytics dashboard.": [
+        "Подключите ваш сайт к ShopMetrics, чтобы увидеть аналитику здесь."
+      ],
+      "Dashboard Error": [
+        "Панель управления"
+      ],
+      "Something went wrong with the ShopMetrics Analytics dashboard.": [
+        "Что-то пошло не так с панелью ShopMetrics Analytics."
+      ],
+      "Error Details": [
+        "Детали ошибки"
+      ],
+      "Reload Dashboard": [
+        "Панель управления"
+      ],
+      "Product Revenue": [
+        "Общий доход"
+      ],
+      "Shipping Charged": [
+        "Стоимость доставки"
+      ],
+      "Tax Collected": [
+        "Подключено"
+      ],
+      "API configuration is missing.": [
+        "Конфигурация API отсутствует."
+      ],
+      "Failed to fetch data": [
+        "Не удалось получить статистику корзин."
+      ],
+      "Profitability insights (Gross Profit, Margin) may be incomplete. Please": [
+        "Показатели прибыльности (валовая прибыль, маржа) могут быть неполными.  Пожалуйста"
+      ],
+      "configure your Cost of Goods Sold (COGS) settings": [
+        "настройте ваши параметры себестоимости проданных товаров (COGS)"
+      ],
+      "for accurate calculations.": [
+        "для точных расчетов."
+      ],
+      "Dismiss COGS configuration alert": [
+        "Отклонить предупреждение о конфигурации COGS"
+      ],
+      "Gross Profit": [
+        "Общая прибыль"
+      ],
+      "Total Net Sales minus Total Cost of Goods Sold (COGS).": [
+        "Общие чистые продажи минус общая себестоимость проданных товаров (COGS)."
+      ],
+      "Gross Profit Margin": [
+        "Маржа валовой прибыли"
+      ],
+      "(Gross Profit / Total Net Sales) * 100.": [
+        "(Валовая прибыль / Общие чистые продажи) * 100."
+      ],
+      "Total COGS": [
+        "Всего заказов"
+      ],
+      "Total Cost of Goods Sold for the items sold in the period.": [
+        "Общая себестоимость проданных товаров за период."
+      ],
+      "Total Tax Collected": [
+        "Общий сбор налогов"
+      ],
+      "Total sales tax collected from orders in the period.": [
+        "Общий налог с продаж, собранный с заказов за период."
+      ],
+      "Total Shipping Charged": [
+        "Общая стоимость доставки"
+      ],
+      "Total shipping fees charged to customers in the period.": [
+        "Общие затраты на доставку, взимаемые с клиентов за период."
+      ],
+      "Total Discounts Given": [
+        "Всего скидок"
+      ],
+      "Total value of order-level discounts applied in the period.": [
+        "Общая стоимость скидок на уровне заказа, примененных за период."
+      ],
+      "Error loading finance data: %s": [
+        "Ошибка загрузки финансовых данных: %s"
+      ],
+      "Revenue Composition Help": [
+        "Помощь по составу доходов"
+      ],
+      "<p>Shows the breakdown of total invoiced value into product revenue (net  sales),shipping fees charged, and taxes collected during the period.</p>": [
+        "<p>Показывает разбивку общей стоимости счетов на доход от продуктов (чистые  продажи), взимаемые сборы за доставку и налоги, собранные в течение периода. </p>"
+      ],
+      "Revenue Composition": [
+        "Сбросить сравнение"
+      ],
+      "No revenue composition data available.": [
+        "Данные о составе доходов недоступны."
+      ],
+      "No revenue composition data for previous period.": [
+        "Данные о составе доходов за предыдущий период недоступны."
+      ],
+      "Top Products by Gross Profit Help": [
+        "Помощь по топ товарам по валовой прибыли"
+      ],
+      "<p>Displays the top 10 products ranked by their total gross profit  (ProductRevenue - COGS) during the selected period.</p>": [
+        "<p>Отображает топ-10 продуктов, ранжированных по их общей валовой прибыли  (Доход от продукта - COGS) в течение выбранного периода.</p>"
+      ],
+      "Top 10 Products by Gross Profit": [
+        "Топ 10 товаров по валовой прибыли"
+      ],
+      "Current Gross Profit": [
+        "Текущий период"
+      ],
+      "Previous Gross Profit": [
+        "Предыдущий период"
+      ],
+      "No product gross profit data available for this period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Sales by Payment Method Help": [
+        "Помощь по продажам по способу оплаты"
+      ],
+      "<p>Shows the total net sales generated by each payment method during  theselected period.</p>": [
+        "<p>Показывает общие чистые продажи, полученные каждым способом оплаты в  течение выбранного периода.</p>"
+      ],
+      "Sales by Payment Method": [
+        "Продажи по категориям"
+      ],
+      "Current Period Sales": [
+        "Текущий период"
+      ],
+      "Previous Period Sales": [
+        "Предыдущий период"
+      ],
+      "No sales data by payment method available.": [
+        "Данные о продажах по способу оплаты недоступны."
+      ],
+      "Orders by Payment Method Help": [
+        "Помощь по заказам по способу оплаты"
+      ],
+      "<p>Shows the total number of orders processed by each payment method during  theselected period.</p>": [
+        "<p>Показывает общее количество заказов, обработанных каждым способом оплаты  в течение выбранного периода.</p>"
+      ],
+      "Orders by Payment Method": [
+        "Заказы по статусу"
+      ],
+      "Current Period Orders": [
+        "Текущий период"
+      ],
+      "Previous Period Orders": [
+        "Предыдущий период"
+      ],
+      "No order count data by payment method available.": [
+        "Данные о количестве заказов по способу оплаты недоступны."
+      ],
+      "Tax Collected Over Time Help": [
+        "Помощь по налогам, собранным со временем"
+      ],
+      "<p>Shows the total sales tax collected daily over the selected period.</p>": [
+        "<p>Показывает общий налог с продаж, собранный ежедневно за выбранный период. </p>"
+      ],
+      "Tax Collected Over Time": [
+        "Налоги, собранные со временем"
+      ],
+      "Current Period Tax": [
+        "Текущий период"
+      ],
+      "Previous Period Tax": [
+        "Предыдущий период"
+      ],
+      "No tax data available for this period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Shipping Charged Over Time Help": [
+        "Помощь по стоимости доставки со временем"
+      ],
+      "<p>Shows the total shipping fees charged to customers daily over the  selectedperiod.</p>": [
+        "<p>Показывает общие сборы за доставку, взимаемые с клиентов ежедневно в  течение выбранного периода.</p>"
+      ],
+      "Shipping Charged Over Time": [
+        "Стоимость доставки со временем"
+      ],
+      "Current Period Shipping": [
+        "Текущий период"
+      ],
+      "Previous Period Shipping": [
+        "Предыдущий период"
+      ],
+      "No shipping data available for this period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Missing required configuration.": [
+        "Отсутствует необходимая конфигурация."
+      ],
+      "An unknown error occurred while fetching %s.": [
+        "Произошла неизвестная ошибка при получении %s."
+      ],
+      "Total Revenue": [
+        "Общая выручка"
+      ],
+      "Total revenue generated from all sales within the selected period.": [
+        "Общая выручка, полученная от всех продаж в выбранном периоде."
+      ],
+      "Total Orders": [
+        "Всего заказов"
+      ],
+      "Total number of completed orders placed within the selected period.": [
+        "Общее количество завершенных заказов, размещенных в выбранный период."
+      ],
+      "Average Order Value": [
+        "Средняя стоимость заказа"
+      ],
+      "Average monetary value of each order (Total Revenue / Total Orders).": [
+        "Средняя денежная стоимость каждого заказа (Общий доход / Общее количество  заказов)."
+      ],
+      "Gross Sales": [
+        "Продажи"
+      ],
+      "Total revenue from all sales before any deductions like refunds or discounts.": [
+        "Общий доход от всех продаж до любых вычетов, таких как возвраты или скидки."
+      ],
+      "Refunds Amount": [
+        "Коэффициент возвратов"
+      ],
+      "Total amount of money refunded to customers.": [
+        "Общая сумма денег, возвращенная клиентам."
+      ],
+      "Orders with Refunds": [
+        "Заказы с возвратами"
+      ],
+      "Number of orders that have at least one refund associated with them.": [
+        "Количество заказов, которые имеют по крайней мере один связанный с ними  возврат."
+      ],
+      "Error loading KPIs: %s": [
+        "Ошибка загрузки KPI: %s"
+      ],
+      "Error loading charts: %s": [
+        "Ошибка загрузки графиков: %s"
+      ],
+      "Could not load Net Sales data.": [
+        "Не удалось загрузить данные чистых продаж."
+      ],
+      "Net Sales Over Time": [
+        "Чистые продажи со временем"
+      ],
+      "Net Sales Over Time Help": [
+        "Помощь по чистым продажам со временем"
+      ],
+      "<p>Shows the total value of sales after refunds have been deducted,  aggregateddaily over the selected period.</p>": [
+        "<p>Показывает общую стоимость продаж после вычета возвратов, агрегированную  ежедневно за выбранный период.</p>"
+      ],
+      "Current Net Sales": [
+        "Текущие чистые продажи"
+      ],
+      "Previous Net Sales": [
+        "Предыдущий период"
+      ],
+      "Gross Sales & Orders Help": [
+        "Помощь по валовым продажам и заказам"
+      ],
+      "<p>Compares total sales value (before refunds) and the number of orders  receivedeach day.</p>": [
+        "<p>Сравнивает общую стоимость продаж (до возвратов) и количество заказов,  полученных каждый день.</p>"
+      ],
+      "Gross Sales & Orders Over Time": [
+        "Валовые продажи и заказы со временем"
+      ],
+      "Chart Error: %s": [
+        "Ошибка графика: %s"
+      ],
+      "Previous Gross Sales": [
+        "Предыдущий период"
+      ],
+      "Orders": [
+        "Всего заказов"
+      ],
+      "Previous Orders": [
+        "Предыдущий период"
+      ],
+      "No timeseries data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Average Order Value (AOV) Help": [
+        "Помощь по средней стоимости заказа (AOV)"
+      ],
+      "<p>Shows the average amount spent per order (Gross Sales / Total  Orders)calculated daily.</p>": [
+        "<p>Показывает среднюю сумму, потраченную на заказ (Валовые продажи / Общее  количество заказов), рассчитанную ежедневно.</p>"
+      ],
+      "Average Order Value Over Time": [
+        "Средняя стоимость заказа со временем"
+      ],
+      "AOV": [
+        "Средняя стоимость заказа"
+      ],
+      "Previous AOV": [
+        "Предыдущий период"
+      ],
+      "No AOV data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Top Products Help": [
+        "Название товара"
+      ],
+      "<p>Displays the top products ranked by their total net sales amount within  theselected date range.</p>": [
+        "<p>Отображает топ продуктов, ранжированных по их общей сумме чистых продаж в  выбранном диапазоне дат.</p>"
+      ],
+      "Top Products by Net Sales": [
+        "Топ товаров по чистым продажам"
+      ],
+      "Net Sales": [
+        "Продажи"
+      ],
+      "No product data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "More info": [
+        "Подробнее"
+      ],
+      "Customer Count": [
+        "Показатель удержания клиентов"
+      ],
+      "Total number of unique customers who made a purchase during the period.": [
+        "Общее количество уникальных клиентов, совершивших покупку в течение периода."
+      ],
+      "Repeat Customer Rate": [
+        "Пользовательский диапазон"
+      ],
+      "Percentage of customers who made more than one purchase during the period.": [
+        "Процент клиентов, которые совершили более одной покупки в течение периода."
+      ],
+      "Total Visits": [
+        "Всего скидок"
+      ],
+      "Total number of visits to your website during the period.": [
+        "Общее количество посещений вашего веб-сайта в течение периода."
+      ],
+      "Purchases": [
+        "Покупки"
+      ],
+      "Total number of completed purchases (orders) during the period.": [
+        "Общее количество завершенных покупок (заказов) в течение периода."
+      ],
+      "Conversion Rate": [
+        "Показатель удержания клиентов"
+      ],
+      "Percentage of visits that resulted in a purchase (Purchases / Total Visits).": [
+        "Процент посещений, которые привели к покупке (Покупки / Общее количество  посещений)."
+      ],
+      "Top Channel": [
+        "Топ канал"
+      ],
+      "The marketing channel that drove the most visits during the period  (e.g.,Google, Facebook, Direct).": [
+        "Маркетинговый канал, который привел наибольшее количество посещений в  течение периода (например, Google, Facebook, Прямой)."
+      ],
+      "Sales Funnel Flow Help": [
+        "Помощь по потоку воронки продаж"
+      ],
+      "<p>This chart shows how visitors move through keystages:</ p><ul><li><strong>Visits:</strong> Total sitevisits.</li><li><strong>Product  Views:</strong> Visits where at least oneproduct page was seen.</ li><li><strong>Checkout:</strong> Visits where thecheckout page was reached. </li><li><strong>Purchases:</strong> Visits resultingin a completed order.</ li><li><strong>Drop-off:</strong> Visitors leaving ateach stage.</li></ul>": [
+        "<p>Эта диаграмма показывает, как посетители проходят через ключевые этапы:</ p><ul><li><strong>Посещения:</strong> Общие посещения сайта.</ li><li><strong>Просмотры продуктов:</strong> Посещения, где была просмотрена  хотя бы одна страница продукта.</li><li><strong>Оформление заказа:</strong>  Посещения, где была достигнута страница оформления заказа.</ li><li><strong>Покупки:</strong> Посещения, приведшие к завершенному заказу. </li><li><strong>Выход:</strong> Посетители, покидающие на каждом этапе.</ li></ul>"
+      ],
+      "Sales Funnel Flow": [
+        "Поток воронки продаж"
+      ],
+      "No funnel data for current period.": [
+        "Нет данных воронки для текущего периода."
+      ],
+      "Not enough data to display funnel flow.": [
+        "Недостаточно данных для отображения потока воронки."
+      ],
+      "Sales by Location Help": [
+        "Продажи по категориям"
+      ],
+      "<p>Top locations (City, Country) based on the total net sales amount from  ordersshipped to that location within the selected date range.</p>": [
+        "<p>Топ локации (Город, Страна) на основе общей суммы чистых продаж от  заказов, отправленных в эту локацию в пределах выбранного диапазона дат.</p>"
+      ],
+      "Sales by Location": [
+        "Продажи по категориям"
+      ],
+      "Error loading chart: %s": [
+        "Ошибка загрузки графика: %s"
+      ],
+      "Current Sales": [
+        "Текущий период"
+      ],
+      "Previous Sales": [
+        "Предыдущий период"
+      ],
+      "Not enough data for chart.": [
+        "Недостаточно данных для графика."
+      ],
+      "Visits by Page Help": [
+        "Помощь по посещениям страниц"
+      ],
+      "<p>Shows the most visited page paths on your site during the selected  period.Useful for identifying popular content or potential navigation issues. </p>": [
+        "<p>Показывает наиболее посещаемые пути страниц на вашем сайте в течение  выбранного периода. Полезно для выявления популярного контента или  потенциальных проблем навигации.</p>"
+      ],
+      "Visits by Page": [
+        "Посещения по страницам"
+      ],
+      "Current Visits": [
+        "Текущий период"
+      ],
+      "Previous Visits": [
+        "Предыдущий период"
+      ],
+      "Top Referring Channels (Volume) Help": [
+        "Помощь по топ референтным каналам (объем)"
+      ],
+      "<p>Shows which external websites or sources (like Google, Facebook, etc.)  sentthe most visitors to your site.</p>": [
+        "<p>Показывает, какие внешние веб-сайты или источники (например, Google,  Facebook и т.д.) направили больше всего посетителей на ваш сайт.</p>"
+      ],
+      "Top Referring Channels (Volume)": [
+        "Топ референтные каналы (объем)"
+      ],
+      "Top Referring Channels (Distribution) Help": [
+        "Помощь по топ референтным каналам (распределение)"
+      ],
+      "<p>Shows the percentage share of visits coming from each top referring  channel.Helps understand the relative importance of different traffic  sources.</p>": [
+        "<p>Показывает процентную долю посещений, приходящих от каждого топ  референтного канала. Помогает понять относительную важность различных  источников трафика.</p>"
+      ],
+      "Top Referring Channels (Distribution)": [
+        "Топ референтные каналы (распределение)"
+      ],
+      "No referring channel data for current period.": [
+        "Нет данных о референтных каналах для текущего периода."
+      ],
+      "No referring channel data for previous period.": [
+        "Нет данных о референтных каналах для предыдущего периода."
+      ],
+      "Net Sales by Channel Help": [
+        "Помощь по чистым продажам по каналам"
+      ],
+      "<p>Shows the total net sales attributed to different marketing channels  (e.g.,utm_source). Helps identify which channels are driving the most  revenue.</p>": [
+        "<p>Показывает общие чистые продажи, приписанные различным маркетинговым  каналам (например, utm_source). Помогает определить, какие каналы приносят  наибольший доход.</p>"
+      ],
+      "Net Sales by Channel": [
+        "Продажи по категориям"
+      ],
+      "No sales by channel data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Orders by Channel Help": [
+        "Помощь по заказам по каналам"
+      ],
+      "<p>Shows the total number of orders attributed to different marketing  channels.Helps identify which channels are driving the most conversions.</p>": [
+        "<p>Показывает общее количество заказов, приписанных различным маркетинговым  каналам. Помогает определить, какие каналы обеспечивают наибольшее  количество конверсий.</p>"
+      ],
+      "Orders by Channel": [
+        "Заказы по статусу"
+      ],
+      "Current Orders": [
+        "Текущий период"
+      ],
+      "No orders by channel data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Net Sales by Campaign Help": [
+        "Помощь по чистым продажам по кампаниям"
+      ],
+      "<p>Shows the total net sales attributed to specific marketing campaigns  (e.g.,utm_campaign). Helps evaluate the revenue performance of  individualcampaigns.</p>": [
+        "<p>Показывает общее количество заказов, приписанных конкретным маркетинговым  кампаниям. Помогает оценить эффективность конверсии отдельных кампаний.</p>"
+      ],
+      "Net Sales by Campaign": [
+        "Продажи по категориям"
+      ],
+      "No sales by campaign data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Orders by Campaign Help": [
+        "Помощь по заказам по кампаниям"
+      ],
+      "<p>Shows the total number of orders attributed to specific marketing  campaigns.Helps evaluate the conversion performance of individual campaigns. </p>": [
+        "<p>Показывает общее количество заказов, приписанных конкретным маркетинговым  кампаниям. Помогает оценить эффективность конверсии отдельных кампаний.</p>"
+      ],
+      "Orders by Campaign": [
+        "Заказы по статусу"
+      ],
+      "No orders by campaign data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Are you sure you want to exit the setup wizard? You will be redirected to  theWordPress plugins page.": [
+        "Вы уверены, что хотите выйти из мастера настройки? Вы будете перенаправлены  на страницу плагинов WordPress."
+      ],
+      "Connection already established!": [
+        "Соединение уже установлено!"
+      ],
+      "API URL not configured properly": [
+        "API URL не настроен должным образом"
+      ],
+      "Connection established successfully!": [
+        "Соединение установлено успешно!"
+      ],
+      "Connection established! Your site is now connected to ShopMetrics Analytics.": [
+        "Подключите ваш сайт к ShopMetrics, чтобы увидеть аналитику здесь."
+      ],
+      "Failed to save connection settings": [
+        "Не удалось получить статистику корзин."
+      ],
+      "Failed to establish connection": [
+        "Не удалось установить соединение"
+      ],
+      "Connection error: %s": [
+        "Ошибка подключения:"
+      ],
+      "Detection timed out. Please try again.": [
+        "Обнаружение превысило время ожидания. Попробуйте еще раз."
+      ],
+      "Auto-detected COGS meta key: %s": [
+        "Автоматически обнаружен COGS мета-ключ: %s"
+      ],
+      "Failed to retrieve meta keys": [
+        "Не удалось получить статистику корзин."
+      ],
+      "Error detecting COGS keys: %s": [
+        "Ошибка обнаружения COGS ключей: %s"
+      ],
+      "COGS settings saved successfully!": [
+        "Настройки COGS сохранены успешно!"
+      ],
+      "Error saving COGS settings: %s": [
+        "Ошибка сохранения настроек COGS: %s"
+      ],
+      "ShopMetrics Logo": [
+        "Логотип ShopMetrics"
+      ],
+      "Welcome to ShopMetrics Analytics!": [
+        "Добро пожаловать в ShopMetrics Analytics!"
+      ],
+      "Get ready to unlock powerful insights about your WooCommerce store. This  wizardwill guide you through the initial setup process.": [
+        "Приготовьтесь получить мощные аналитические данные о вашем магазине  WooCommerce. Этот мастер проведет вас через процесс первоначальной настройки."
+      ],
+      "Quick Setup": [
+        "Быстрая настройка"
+      ],
+      "Connect to our analytics platform in minutes": [
+        "Подключитесь к нашей аналитической платформе за минуты"
+      ],
+      "Financial Insights": [
+        "Финансовые аналитические данные"
+      ],
+      "Understand your store\\\\": [
+        "Понимайте ваш магазин\\\""
+      ],
+      "Sales Analytics": [
+        "Аналитика продаж"
+      ],
+      "Track orders, revenue and growth trends": [
+        "Отслеживайте заказы, доходы и тенденции роста"
+      ],
+      "Get Started": [
+        "Начать"
+      ],
+      "Connect to ShopMetrics": [
+        "Подключиться к ShopMetrics"
+      ],
+      "Let\\\\": [
+        "Позвольте\\\""
+      ],
+      "Site Identifier": [
+        "Идентификатор сайта"
+      ],
+      "e.g., mystore.com": [
+        "например, mystore.com"
+      ],
+      "This identifies your store in our system. Usually your domain name.": [
+        "Это идентифицирует ваш магазин в нашей системе. Обычно это ваше доменное имя."
+      ],
+      "Your site domain automatically detected. This identifies your store in our system.": [
+        "Домен вашего сайта автоматически определен. Это идентифицирует ваш магазин в нашей системе."
+      ],
+      "Back": [
+        "Назад"
+      ],
+      "Test Connection": [
+        "Не подключено"
+      ],
+      "Continue": [
+        "Продолжить"
+      ],
+      "Configure Cost of Goods Sold (COGS)": [
+        "Настроить себестоимость проданных товаров (COGS)"
+      ],
+      "Setting up COGS tracking will enable accurate profitability analysis in  yourdashboard.": [
+        "Настройка отслеживания COGS обеспечит точный анализ прибыльности в вашей  панели управления."
+      ],
+      "Important:": [
+        "Важно:"
+      ],
+      "The meta key is a field where product costs are stored by a COGS plugin  inWooCommerce.": [
+        "Мета-ключ - это поле, где стоимости продуктов хранятся плагином COGS в  WooCommerce."
+      ],
+      "This is usually an additional attribute of your products managed by a  specificCost of Goods plugin like ": [
+        "Это обычно дополнительный атрибут ваших продуктов, управляемый специальным  плагином себестоимости товаров, таким как "
+      ],
+      "COGS Meta Key": [
+        "COGS мета-ключ"
+      ],
+      "Detecting meta keys...": [
+        "Обнаружение мета-ключей..."
+      ],
+      "Cancel": [
+        "Отменить"
+      ],
+      "e.g., _wc_cog_cost": [
+        "например, _wc_cog_cost"
+      ],
+      "Detecting...": [
+        "Переподключение..."
+      ],
+      "Auto-detect": [
+        "Автоопределение"
+      ],
+      "The meta key where product costs are stored in your WooCommerce store.": [
+        "Мета-ключ, где хранятся затраты на товары в вашем магазине WooCommerce."
+      ],
+      "Applied when no COGS data is found. Use 0 to show N/A instead.": [
+        "Применяется, когда данные COGS не найдены. Используйте 0, чтобы показать Н/Д  вместо этого."
+      ],
+      "Retry": [
+        "Повторить"
+      ],
+      "Saving...": [
+        "Загрузка..."
+      ],
+      "Save & Continue": [
+        "Сохранить и продолжить"
+      ],
+      "Initial Data Sync": [
+        "Первоначальная синхронизация данных"
+      ],
+      "What We\\\\": [
+        "Что мы\\\""
+      ],
+      "Order history (dates, amounts, products)": [
+        "История заказов (даты, суммы, товары)"
+      ],
+      "Product inventory data": [
+        "Данные о запасах товаров"
+      ],
+      "Customer information (anonymous)": [
+        "Информация о клиентах (анонимная)"
+      ],
+      "Estimated Time:": [
+        "Расчетное время:"
+      ],
+      "This process runs in the background and may take a few minutes depending on  yourstore size.": [
+        "Этот процесс выполняется в фоновом режиме и может занять несколько минут в  зависимости от размера вашего магазина."
+      ],
+      "Sync started successfully! This will continue in the background.": [
+        "Синхронизация началась успешно! Это будет продолжаться в фоновом режиме."
+      ],
+      "Starting Sync...": [
+        "Запуск синхронизации..."
+      ],
+      "Start Sync": [
+        "Дата начала"
+      ],
+      "Setup Complete!": [
+        "Настройка завершена!"
+      ],
+      "You\\\\": [
+        "Вы\\\""
+      ],
+      "ShopMetrics Analytics Dashboard Preview": [
+        "Предварительный просмотр панели ShopMetrics Analytics"
+      ],
+      "Go to Dashboard": [
+        "Панель управления"
+      ],
+      "Unknown step": [
+        "Неизвестный шаг"
+      ],
+      "Close wizard": [
+        "Закрыть мастер"
+      ],
+      "Failed to fetch sales stats.": [
+        "Не удалось получить статистику продаж."
+      ],
+      "Total Items Sold": [
+        "Всего товаров продано"
+      ],
+      "Total number of individual items sold across all orders.": [
+        "Общее количество отдельных товаров, проданных по всем заказам."
+      ],
+      "Total number of orders placed.": [
+        "Общее количество размещенных заказов."
+      ],
+      "Avg Revenue / Customer": [
+        "Средний доход / клиент"
+      ],
+      "Average net revenue generated per unique logged-in customer during the  period.": [
+        "Средний чистый доход, полученный на одного уникального авторизованного  клиента за период."
+      ],
+      "Customer Retention Rate": [
+        "Показатель удержания клиентов"
+      ],
+      "Percentage of logged-in customers from the previous period who made a  purchasein the current period.": [
+        "Процент авторизованных клиентов из предыдущего периода, которые совершили  покупку в текущем периоде."
+      ],
+      "Total Discounts": [
+        "Всего скидок"
+      ],
+      "Total amount of discounts applied to orders in the period.": [
+        "Общая сумма скидок, примененных к заказам в периоде."
+      ],
+      "Refund Rate": [
+        "Коэффициент возвратов"
+      ],
+      "Percentage of orders that had at least one refund processed.": [
+        "Процент заказов, по которым был обработан хотя бы один возврат."
+      ],
+      "Error loading chart data: %s": [
+        "Ошибка загрузки данных графика: %s"
+      ],
+      "Orders by Status Help": [
+        "Заказы по статусу"
+      ],
+      "<p>Distribution of orders based on their current status (e.g.,  Completed,Processing, Refunded) during the selected period.</p>": [
+        "<p>Распределение заказов по их текущему статусу (например, Завершен,  Обрабатывается, Возвращен) в течение выбранного периода.</p>"
+      ],
+      "Orders by Status": [
+        "Заказы по статусу"
+      ],
+      "No order status data for current period.": [
+        "Нет данных о статусе заказов для текущего периода."
+      ],
+      "No order status data for previous period.": [
+        "Нет данных о статусе заказов для предыдущего периода."
+      ],
+      "Sales by Category Help": [
+        "Продажи по категориям"
+      ],
+      "<p>Shows the net sales amount generated by product category during the  selectedperiod. Limited to the top 10 categories by current sales.</p>": [
+        "<p>Показывает сумму чистых продаж, полученную по категориям продуктов в  течение выбранного периода. Ограничено топ-10 категориями по текущим  продажам.</p>"
+      ],
+      "Sales by Category": [
+        "Продажи по категориям"
+      ],
+      "No category sales data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Top Products by Quantity Help": [
+        "Помощь по топ товарам по количеству"
+      ],
+      "<p>Shows the products sold most frequently (highest quantity) during  theselected period. Limited to the top 20 products.</p>": [
+        "<p>Показывает продукты, продаваемые наиболее часто (наибольшее количество) в  течение выбранного периода. Ограничено топ-20 продуктами.</p>"
+      ],
+      "Top Products by Quantity": [
+        "Топ товары по количеству"
+      ],
+      "Current Quantity": [
+        "Текущий период"
+      ],
+      "Previous Quantity": [
+        "Предыдущий период"
+      ],
+      "No top products data for selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Top Products by Revenue Help": [
+        "Помощь по топ товарам по доходу"
+      ],
+      "<p>Top products ranked by their total net revenue (sales minus  refunds)generated during the selected period.</p>": [
+        "<p>Топ продуктов, ранжированных по их общему чистому доходу (продажи минус  возвраты), полученному в течение выбранного периода.</p>"
+      ],
+      "Top Products by Net Revenue": [
+        "Топ товары по чистому доходу"
+      ],
+      "Current Net Revenue": [
+        "Чистый доход"
+      ],
+      "Previous Net Revenue": [
+        "Чистый доход"
+      ],
+      "Month-over-Month Revenue Change Help": [
+        "Помощь по изменению доходов месяц к месяцу"
+      ],
+      "<p>Shows the percentage change in total sales revenue compared to the  previousmonth. A positive percentage indicates growth while a negative  percentageindicates decline.</p>": [
+        "<p>Показывает процентное изменение общего дохода от продаж по сравнению с  предыдущим месяцем. Положительный процент указывает на рост, а отрицательный  процент указывает на снижение.</p>"
+      ],
+      "Month-over-Month Revenue Change": [
+        "Изменение доходов месяц к месяцу"
+      ],
+      "MoM Change": [
+        "Изменение MoM"
+      ],
+      "Month: %s": [
+        "Месяц: %s"
+      ],
+      "Revenue Change %": [
+        "Изменение дохода %"
+      ],
+      "No month-over-month data available.": [
+        "Данные месяц к месяцу недоступны."
+      ],
+      "At least two months of data required for MoM comparison.": [
+        "Для сравнения MoM требуются данные как минимум за два месяца."
+      ],
+      "Month-over-Month Orders Change Help": [
+        "Помощь по изменению заказов месяц к месяцу"
+      ],
+      "<p>Shows the percentage change in number of orders compared to the  previousmonth. A positive percentage indicates growth while a negative  percentageindicates decline.</p>": [
+        "<p>Показывает процентное изменение количества заказов по сравнению с  предыдущим месяцем. Положительный процент указывает на рост, а отрицательный  процент указывает на снижение.</p>"
+      ],
+      "Month-over-Month Orders Change": [
+        "Изменение заказов месяц к месяцу"
+      ],
+      "Orders Change %": [
+        "Изменение заказов %"
+      ],
+      "No sales data available for the selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Error": [
+        "Ошибка"
+      ],
+      "New": [
+        "Новый"
+      ],
+      "Changed": [
+        "Изменено"
+      ],
+      "Authentication details not provided.": [
+        "Детали аутентификации не предоставлены."
+      ],
+      "Date range not provided or invalid.": [
+        "Диапазон дат не предоставлен или недействителен."
+      ],
+      "Invalid date format in date range.": [
+        "Недействительный формат даты в диапазоне дат."
+      ],
+      "API URL not configured.": [
+        "API URL не настроен."
+      ],
+      "Timestamp not available": [
+        "Временная метка недоступна"
+      ],
+      "Product": [
+        "Название товара"
+      ],
+      "Alert": [
+        "Предупреждение"
+      ],
+      "Stock Qty": [
+        "Количество запасов"
+      ],
+      "Threshold": [
+        "Порог низких запасов"
+      ],
+      "Out of Stock": [
+        "Нет в наличии"
+      ],
+      "In Stock": [
+        "В наличии"
+      ],
+      "On Backorder": [
+        "В отложенном заказе"
+      ],
+      "No stock data available for the selected period.": [
+        "Нет данных для выбранного периода."
+      ],
+      "Last stock data snapshot:": [
+        "Последний снимок данных запасов:"
+      ],
+      "Refresh stock data": [
+        "Обновить данные запасов"
+      ],
+      "Previous period:": [
+        "Предыдущий период:"
+      ],
+      "Total Products": [
+        "Общая прибыль"
+      ],
+      "Total number of unique products (including distinct variable products) in  thelatest inventory snapshot.": [
+        "Общее количество уникальных продуктов (включая отдельные вариативные  продукты) в последнем снимке запасов."
+      ],
+      "Low Stock": [
+        "Порог низких запасов"
+      ],
+      "Products at or below their low stock threshold (includes products with  anyvariation at low stock).": [
+        "Продукты на уровне или ниже их порога низких запасов (включает продукты с  любой вариацией с низкими запасами)."
+      ],
+      "Products marked as out of stock (variable products if all variations are out  ofstock).": [
+        "Продукты, помеченные как отсутствующие на складе (вариативные продукты, если  все вариации отсутствуют на складе)."
+      ],
+      "Products allowing backorders (includes products with any variation  onbackorder).": [
+        "Продукты, разрешающие предзаказы (включает продукты с любой вариацией в  предзаказе)."
+      ],
+      "Total Stock Units": [
+        "Всего скидок"
+      ],
+      "Total quantity of all SKUs with positive stock (simple products and  individualvariations).": [
+        "Общее количество всех артикулов с положительными запасами (простые продукты  и отдельные вариации)."
+      ],
+      "Inventory Value (Retail)": [
+        "Стоимость запасов (розничная)"
+      ],
+      "Total retail value of all SKUs with positive stock. Currency symbol depends  onglobal settings.": [
+        "Общая розничная стоимость всех артикулов с положительными запасами. Символ  валюты зависит от глобальных настроек."
+      ],
+      "Stock Status Distribution": [
+        "Распределение статуса запасов"
+      ],
+      "<p>Product distribution by stock status.</p><p><strong>In Stock:</ strong>Available, not low/backordered/OOS.</p><p><strong>Low Stock:</strong>  At/belowthreshold, not backordered/OOS.</p><p><strong>On Backorder:</strong>  Allowspurchases when OOS.</p><p><strong>Out of Stock:</strong> Unavailable.</ p>": [
+        "<p>Распределение продуктов по статусу запасов.</p><p><strong>В наличии:</ strong>Доступен, не низкий/предзаказ/отсутствует.</p><p><strong>Низкие  запасы:</strong> На уровне/ниже порога, не предзаказ/отсутствует.</ p><p><strong>В предзаказе:</strong> Разрешает покупки при отсутствии.</ p><p><strong>Нет в наличии:</strong> Недоступен.</p>"
+      ],
+      "No data for stock status.": [
+        "Нет данных для статуса запасов."
+      ],
+      "No previous period data.": [
+        "Предыдущий период"
+      ],
+      "Top 10 Requiring Restock": [
+        "Топ 10 требующих пополнения запасов"
+      ],
+      "<p>Products/variations most urgently needing restock, ordered by units  needed toreach low stock threshold.</p>": [
+        "<p>Продукты/вариации, наиболее срочно нуждающиеся в пополнении запасов,  упорядоченные по единицам, необходимым для достижения порога низких запасов. </p>"
+      ],
+      "Units Needed (Current)": [
+        "Необходимые единицы (текущие)"
+      ],
+      "Units Needed (Previous)": [
+        "Необходимые единицы (предыдущие)"
+      ],
+      "No products require restocking or below threshold.": [
+        "Нет товаров, требующих пополнения запасов или ниже порога."
+      ],
+      "Top 10 by Stock Quantity": [
+        "Топ 10 по количеству запасов"
+      ],
+      "<p>Products/variations with the highest number of units currently in stock.</ p>": [
+        "<p>Продукты/вариации с наибольшим количеством единиц, находящихся в  настоящее время на складе.</p>"
+      ],
+      "Quantity (Current)": [
+        "Количество (текущее)"
+      ],
+      "Quantity (Previous)": [
+        "Количество (предыдущее)"
+      ],
+      "No products with positive stock quantity.": [
+        "Нет товаров с положительным количеством запасов."
+      ],
+      "Top 10 by Inventory Value": [
+        "Топ 10 по стоимости запасов"
+      ],
+      "<p>Products/variations contributing most to the total retail value of on- handinventory.</p>": [
+        "<p>Продукты/вариации, вносящие наибольший вклад в общую розничную стоимость  имеющихся запасов.</p>"
+      ],
+      "Retail Value (Current)": [
+        "Розничная стоимость (текущая)"
+      ],
+      "Retail Value (Previous)": [
+        "Розничная стоимость (предыдущая)"
+      ],
+      "No products with positive stock value.": [
+        "Нет товаров с положительной стоимостью запасов."
+      ],
+      "Product Stock Alerts": [
+        "Предупреждения о запасах товаров"
+      ],
+      "Search alerts (e.g., product name, SKU)...": [
+        "Поиск предупреждений (например, название товара, SKU)..."
+      ],
+      "No stock alerts at the moment.": [
+        "В данный момент нет предупреждений о запасах."
+      ],
+      "Subscription Required": [
+        "Подписка"
+      ],
+      "Your subscription or trial has ended. Please visit the": [
+        "Ваша подписка или пробный период закончился. Пожалуйста, посетите"
+      ],
+      "Settings page": [
+        "Настройки"
+      ],
+      "to activate or manage your subscription.": [
+        "чтобы активировать или управлять вашей подпиской."
+      ],
+      "No tabs provided.": [
+        "Вкладки не предоставлены."
+      ],
+      "Not enough data available to display chart.": [
+        "Недостаточно данных для отображения графика."
+      ],
+      "Trial Expired:": [
+        "Пробный период истек:"
+      ],
+      "for unlimited orders and advanced features.": [
+        "для неограниченного количества заказов и расширенных функций."
+      ],
+      "Dismiss for 24 hours": [
+        "Отклонить на 24 часа"
+      ],
+      "Dismiss trial expired alert": [
+        "Отклонить предупреждение об истечении пробного периода"
+      ]
+    }
+  }
+}
