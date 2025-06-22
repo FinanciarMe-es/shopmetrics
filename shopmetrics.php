@@ -143,19 +143,8 @@ add_filter( 'plugin_row_meta', 'shopmetrics_plugin_row_meta', 10, 4 );
 // function shopmetrics_custom_plugin_information() { ... }
 // This has been replaced by the plugins_api filter integration above
 
-// Include the Composer autoloader
-if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
-    require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
-    // \ShopMetrics_Logger::get_instance()->debug("FinanciarMe DEBUG: Composer autoloader included successfully.");
-} else {
-    // Optional: Add an admin notice or log an error if the vendor directory is missing
-    // This helps diagnose if 'composer install' was skipped.
-    add_action( 'admin_notices', function() {
-        echo '<div class="notice notice-error"><p><strong>ShopMetrics for WooCommerce Error:</strong> Composer dependencies are missing. Please run <code>composer install</code> in the plugin directory.</p></div>';
-    });
-    // Prevent further execution if dependencies are missing
-    return; 
-}
+// Composer dependencies removed for WordPress.org compatibility
+// Plugin now uses only built-in WordPress functions
 
 /**
  * Define constants for plugin version and API URL.
