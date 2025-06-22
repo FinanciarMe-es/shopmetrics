@@ -265,25 +265,25 @@ class ShopMetrics_Analytics {
     public static function render_test_page() {
         ?>
         <div class="wrap">
-            <h1><?php _e('Analytics Test (Frontend Mode)', 'shopmetrics'); ?></h1>
+            <h1><?php esc_html_e('Analytics Test (Frontend Mode)', 'shopmetrics'); ?></h1>
             <div class="notice notice-info">
-                <p><?php _e('Analytics testing is now handled in the frontend React application. Use the browser console to see analytics events.', 'shopmetrics'); ?></p>
+                <p><?php esc_html_e('Analytics testing is now handled in the frontend React application. Use the browser console to see analytics events.', 'shopmetrics'); ?></p>
             </div>
             
             <div class="card">
-                <h2><?php _e('Frontend Analytics Status', 'shopmetrics'); ?></h2>
-                <p><strong><?php _e('Enabled:', 'shopmetrics'); ?></strong> <?php echo self::is_enabled() ? __('Yes', 'shopmetrics') : __('No', 'shopmetrics'); ?></p>
-                <p><strong><?php _e('Mode:', 'shopmetrics'); ?></strong> <?php _e('Frontend-only (PostHog JS SDK)', 'shopmetrics'); ?></p>
-                <p><strong><?php _e('Site Hash:', 'shopmetrics'); ?></strong> <?php echo esc_html(self::get_site_hash()); ?></p>
+                <h2><?php esc_html_e('Frontend Analytics Status', 'shopmetrics'); ?></h2>
+                <p><strong><?php esc_html_e('Enabled:', 'shopmetrics'); ?></strong> <?php echo self::is_enabled() ? esc_html__('Yes', 'shopmetrics') : esc_html__('No', 'shopmetrics'); ?></p>
+                <p><strong><?php esc_html_e('Mode:', 'shopmetrics'); ?></strong> <?php esc_html_e('Frontend-only (PostHog JS SDK)', 'shopmetrics'); ?></p>
+                <p><strong><?php esc_html_e('Site Hash:', 'shopmetrics'); ?></strong> <?php echo esc_html(self::get_site_hash()); ?></p>
             </div>
             
             <div class="card">
-                <h2><?php _e('Testing Instructions', 'shopmetrics'); ?></h2>
+                <h2><?php esc_html_e('Testing Instructions', 'shopmetrics'); ?></h2>
                 <ol>
-                    <li><?php _e('Open browser developer tools (F12)', 'shopmetrics'); ?></li>
-                    <li><?php _e('Go to Console tab', 'shopmetrics'); ?></li>
-                    <li><?php _e('Navigate through the ShopMetrics interface', 'shopmetrics'); ?></li>
-                    <li><?php _e('Look for "[ShopMetrics Analytics]" log messages', 'shopmetrics'); ?></li>
+                    <li><?php esc_html_e('Open browser developer tools (F12)', 'shopmetrics'); ?></li>
+                    <li><?php esc_html_e('Go to Console tab', 'shopmetrics'); ?></li>
+                    <li><?php esc_html_e('Navigate through the ShopMetrics interface', 'shopmetrics'); ?></li>
+                    <li><?php esc_html_e('Look for "[ShopMetrics Analytics]" log messages', 'shopmetrics'); ?></li>
                 </ol>
             </div>
         </div>
@@ -361,13 +361,13 @@ class ShopMetrics_Analytics {
      */
     public static function ajax_save_analytics_consent() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'shopmetrics_admin_nonce')) {
-            wp_die(__('Security check failed', 'shopmetrics'));
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_admin_nonce')) {
+            wp_die(esc_html__('Security check failed', 'shopmetrics'));
         }
         
         // Check user permissions
         if (!current_user_can('manage_options')) {
-            wp_die(__('Insufficient permissions', 'shopmetrics'));
+            wp_die(esc_html__('Insufficient permissions', 'shopmetrics'));
         }
         
         $consent = isset($_POST['consent']) && $_POST['consent'] === 'true';
@@ -382,8 +382,8 @@ class ShopMetrics_Analytics {
         wp_send_json_success([
             'consent' => $consent,
             'message' => $consent ? 
-                __('Analytics consent granted', 'shopmetrics') : 
-                __('Analytics consent withdrawn', 'shopmetrics')
+                esc_html__('Analytics consent granted', 'shopmetrics') : 
+                esc_html__('Analytics consent withdrawn', 'shopmetrics')
         ]);
     }
 } 

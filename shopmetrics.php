@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       ShopMetrics for WooCommerce
- * Plugin URI:        https://financiarme.es/
+ * Plugin URI:        https://financiarme.es/shopmetrics-woocommerce/
  * Description:       Advanced analytics and business intelligence for WooCommerce stores. Get real-time insights into your store's performance, track inventory levels, and boost sales with abandoned cart recovery.
  * Version:           1.0.2
  * Requires at least: 5.2
