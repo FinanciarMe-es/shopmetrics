@@ -516,7 +516,9 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: {
                 action: 'shopmetrics_reactivate_subscription',
-                nonce: '<?php echo esc_js(esc_attr(wp_create_nonce('sm_settings_ajax_nonce'))); ?>'
+                nonce: (typeof fmSettings !== 'undefined' && fmSettings.nonce) ? 
+                    fmSettings.nonce : 
+                    '<?php echo esc_js(esc_attr(wp_create_nonce('sm_settings_ajax_nonce'))); ?>'
             },
             success: function(response) {
                 if (response.success) {
@@ -603,8 +605,11 @@ jQuery(document).ready(function($) {
         statusSpan.text('<?php echo esc_js(__('Preparing checkout...', 'shopmetrics')); ?>');
         
         // Debug: log the nonce being sent
-        var nonceValue = '<?php echo esc_js(esc_attr(wp_create_nonce('sm_settings_ajax_nonce'))); ?>';
+        var nonceValue = (typeof fmSettings !== 'undefined' && fmSettings.nonce) ? 
+            fmSettings.nonce : 
+            '<?php echo esc_js(esc_attr(wp_create_nonce('sm_settings_ajax_nonce'))); ?>';
         console.log('ShopMetrics: Sending nonce:', nonceValue);
+        console.log('ShopMetrics: fmSettings available:', typeof fmSettings !== 'undefined');
         
         $.ajax({
             url: ajaxurl,
@@ -663,7 +668,9 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: {
                 action: 'shopmetrics_get_billing_history',
-                nonce: '<?php echo esc_js(wp_create_nonce('sm_settings_ajax_nonce')); ?>'
+                nonce: (typeof fmSettings !== 'undefined' && fmSettings.nonce) ? 
+                    fmSettings.nonce : 
+                    '<?php echo esc_js(wp_create_nonce('sm_settings_ajax_nonce')); ?>'
             },
             success: function(response) {
                 if (response.success && response.data.history) {

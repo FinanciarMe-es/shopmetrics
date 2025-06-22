@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PostHog Test</title>
+</head>
+<body>
+    <h1>PostHog Analytics Test</h1>
+    <button id="testButton">Test Event</button>
+    <div id="output"></div>
+
+    <script>
+        // Simulate fmData structure
+        window.fmData = {
+            settings: {
+                analytics_consent: true
+            },
+            debug: true,
+            siteInfo: {
+                site_url: 'http://financiarme-dev.local',
+                wp_version: '6.0',
+                wc_version: '8.0',
+                plugin_version: '1.0.0'
+            }
+        };
+
+        // PostHog configuration
+        const POSTHOG_KEY = 'phc_AWlR9ugS9UZQAN2VehoFv5oRWpOICmYcHkTnuBmGGdI';
+        const POSTHOG_HOST = 'https://eu.i.posthog.com';
+
+        // Load PostHog (updated snippet)
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+
+        // Initialize PostHog
+        posthog.init(POSTHOG_KEY, {
+            api_host: POSTHOG_HOST,
+            defaults: '2025-05-24',
+            person_profiles: 'identified_only',
+            autocapture: false,
+            capture_pageview: false,
+            disable_session_recording: true,
+            opt_out_capturing_by_default: false,
+            respect_dnt: true,
+            loaded: function(posthog) {
+                console.log('PostHog loaded successfully!');
+                document.getElementById('output').innerHTML += '<p>PostHog loaded successfully!</p>';
+                
+                // Test page view
+                posthog.capture('page_viewed', {
+                    page: 'test_page',
+                    site_url: window.fmData.siteInfo.site_url,
+                    wp_version: window.fmData.siteInfo.wp_version
+                });
+                
+                document.getElementById('output').innerHTML += '<p>Test page view sent!</p>';
+            }
+        });
+
+        // Test button click
+        document.getElementById('testButton').addEventListener('click', function() {
+            console.log('Sending test event...');
+            
+            posthog.capture('button_clicked', {
+                button: 'test_button',
+                location: 'test_page',
+                timestamp: new Date().toISOString()
+            });
+            
+            document.getElementById('output').innerHTML += '<p>Test button click event sent!</p>';
+        });
+
+        // Log network requests to see if PostHog is working
+        console.log('PostHog test page loaded');
+        console.log('fmData:', window.fmData);
+    </script>
+</body>
+</html> 

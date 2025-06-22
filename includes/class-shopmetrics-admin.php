@@ -63,15 +63,15 @@ class ShopMetrics_Admin {
 		$this->plugin_name = $plugin->get_plugin_name();
 	}
 
-	/**
-	 * Initialize hooks
+    /**
+     * Initialize hooks
 	 *
 	 * @since 1.2.0
-	 */
-	public function init_hooks() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+     */
+    public function init_hooks() {
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+        add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_plugin_settings' ) );
 		
 		// AJAX handlers
@@ -82,12 +82,12 @@ class ShopMetrics_Admin {
 		add_action( 'wp_ajax_shopmetrics_sync_data', array( $this, 'ajax_start_sync' ) );
 		add_action( 'wp_ajax_shopmetrics_clear_cache', array( $this, 'ajax_clear_logs' ) );
 		add_action( 'wp_ajax_shopmetrics_test_recovery_email', array( $this, 'ajax_test_recovery_email' ) );
-		add_action( 'wp_ajax_shopmetrics_manual_snapshot', array( $this, 'ajax_manual_snapshot' ) );
-		add_action( 'wp_ajax_shopmetrics_fix_snapshot_schedule', array( $this, 'ajax_fix_snapshot_schedule' ) );
-		add_action( 'wp_ajax_shopmetrics_clear_logs', array( $this, 'ajax_clear_logs' ) );
-		add_action( 'wp_ajax_shopmetrics_download_logs', array( $this, 'ajax_download_logs' ) );
-		add_action( 'wp_ajax_shopmetrics_test_order_sync', array( $this, 'ajax_test_order_sync' ) );
-		add_action( 'wp_ajax_shopmetrics_check_order_sync', array( $this, 'ajax_check_order_sync' ) );
+        add_action( 'wp_ajax_shopmetrics_manual_snapshot', array( $this, 'ajax_manual_snapshot' ) );
+        add_action( 'wp_ajax_shopmetrics_fix_snapshot_schedule', array( $this, 'ajax_fix_snapshot_schedule' ) );
+        add_action( 'wp_ajax_shopmetrics_clear_logs', array( $this, 'ajax_clear_logs' ) );
+        add_action( 'wp_ajax_shopmetrics_download_logs', array( $this, 'ajax_download_logs' ) );
+        add_action( 'wp_ajax_shopmetrics_test_order_sync', array( $this, 'ajax_test_order_sync' ) );
+        add_action( 'wp_ajax_shopmetrics_check_order_sync', array( $this, 'ajax_check_order_sync' ) );
 		add_action( 'wp_ajax_sm_get_all_meta_keys', array( $this, 'ajax_sm_get_all_meta_keys' ) );
 		add_action( 'wp_ajax_sm_auto_detect_cogs_key', array( $this, 'ajax_sm_auto_detect_cogs_key' ) );
 		add_action( 'wp_ajax_shopmetrics_save_setting', array( $this, 'ajax_save_setting' ) );
@@ -100,9 +100,11 @@ class ShopMetrics_Admin {
 		add_action( 'wp_ajax_shopmetrics_reactivate_subscription', array( $this, 'ajax_reactivate_subscription' ) );
 		add_action( 'wp_ajax_shopmetrics_auto_detect_order_blocks', array( $this, 'ajax_auto_detect_order_blocks' ) );
 		add_action( 'wp_ajax_shopmetrics_rotate_logs', array( $this, 'ajax_rotate_logs' ) );
+		add_action( 'wp_ajax_shopmetrics_save_analytics_consent', array( $this, 'ajax_save_analytics_consent' ) );
+		add_action( 'wp_ajax_shopmetrics_reset_onboarding', array( $this, 'ajax_reset_onboarding' ) );
 		add_action( 'wp_ajax_sm_track_visit', array( $this, 'ajax_sm_track_visit' ) );
 		add_action( 'wp_ajax_nopriv_sm_track_visit', array( $this, 'ajax_sm_track_visit' ) );
-	}
+    }
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -110,31 +112,31 @@ class ShopMetrics_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles($hook_suffix) {
-		// Define the dashboard page hook
-		$dashboard_page_hook = 'toplevel_page_' . $this->plugin_name;
-		$settings_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-settings'; // Hook for submenu page
-		$cart_recovery_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-cart-recovery'; // Hook for cart recovery page
-		$data_sources_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-data-sources'; // Hook for data sources page
-		$subscription_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-subscription'; // Hook for subscription page
+        // Define the dashboard page hook
+        $dashboard_page_hook = 'toplevel_page_' . $this->plugin_name;
+        $settings_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-settings'; // Hook for submenu page
+        $cart_recovery_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-cart-recovery'; // Hook for cart recovery page
+        $data_sources_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-data-sources'; // Hook for data sources page
+        $subscription_page_hook = 'shopmetrics_page_' . $this->plugin_name . '-subscription'; // Hook for subscription page
 
-		// Debug hook_suffix to console
-		if (defined('WP_DEBUG') && WP_DEBUG) {
+        // Debug hook_suffix to console
+        if (defined('WP_DEBUG') && WP_DEBUG) {
 			\ShopMetrics_Logger::get_instance()->debug("ShopMetrics CSS Hook: " . $hook_suffix . " | Expected: " . $dashboard_page_hook . ", " . $settings_page_hook);
-		}
+        }
 
-		// Load CSS on all ShopMetrics pages (simplified logic)
+        // Load CSS on all ShopMetrics pages (simplified logic)
 		if (empty($this->plugin_name) || strpos($hook_suffix, $this->plugin_name) === false) {
-			return;
-		}
-		
-		// Enqueue the admin-specific CSS
-		wp_enqueue_style( 
-			$this->plugin_name . '-admin',
-			plugin_dir_url( dirname( __FILE__ ) ) . 'admin/css/shopmetrics-admin.css', // Correct path
-			array(), 
-			$this->version . '2.2', // Force cache refresh after fixing green border
-			'all' 
-		);
+            return;
+        }
+        
+        // Enqueue the admin-specific CSS
+        wp_enqueue_style( 
+            $this->plugin_name . '-admin',
+            plugin_dir_url( dirname( __FILE__ ) ) . 'admin/css/shopmetrics-admin.css', // Correct path
+            array(), 
+            $this->version . '2.2', // Force cache refresh after fixing green border
+            'all' 
+        );
 	}
 
 	/**
@@ -196,36 +198,36 @@ class ShopMetrics_Admin {
 		    strpos($hook_suffix, '-cart-recovery') !== false ||
 		    strpos($hook_suffix, '-subscription') !== false) {
 		    
-			wp_enqueue_script(
-				$this->plugin_name . '-settings',
-				plugin_dir_url(dirname(__FILE__)) . 'admin/js/shopmetrics-settings.js',
-				array('jquery'),
+             wp_enqueue_script(
+		        $this->plugin_name . '-settings',
+		        plugin_dir_url(dirname(__FILE__)) . 'admin/js/shopmetrics-settings.js',
+		        array('jquery'),
 				$this->version . '.2', // Force cache refresh
-				true // Load in footer
-			);
-			
-			// Localize with settings-specific data
-			$settings = get_option('shopmetrics_settings', []);
-			wp_localize_script($this->plugin_name . '-settings', 'fmSettings', array(
-				'ajax_url' => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('sm_settings_ajax_nonce'),
+                true // Load in footer
+             );
+             
+		    // Localize with settings-specific data
+		    $settings = get_option('shopmetrics_settings', []);
+		    wp_localize_script($this->plugin_name . '-settings', 'fmSettings', array(
+		        'ajax_url' => admin_url('admin-ajax.php'),
+		        'nonce' => wp_create_nonce('sm_settings_ajax_nonce'),
 				'cart_recovery_nonce' => wp_create_nonce('sm_cart_recovery_ajax_nonce'),
-				'disconnect_nonce' => wp_create_nonce('shopmetrics_disconnect_action'),
-				'plugin_page' => $hook_suffix,
-				'debug_timestamp' => time(),
-				'text_not_set' => __('Not set', 'shopmetrics'),
-				'text_loading' => __('Loading...', 'shopmetrics'),
-				'text_yes' => __('Yes', 'shopmetrics'),
-				'text_no' => __('No', 'shopmetrics'),
-				'text_ok' => __('OK', 'shopmetrics'),
-				'error_generic' => __('An error occurred', 'shopmetrics'),
-				'error_loading_keys' => __('Error loading meta keys', 'shopmetrics'),
-				'error_ajax' => __('AJAX Error', 'shopmetrics'),
-				// debugLogging теперь из массива
-				'debugLogging' => (bool)($settings['enable_debug_logging'] ?? false),
-				'enableDebugLogs' => (bool)($settings['enable_debug_logging'] ?? false),
-				'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
-			));
+		        'disconnect_nonce' => wp_create_nonce('shopmetrics_disconnect_action'),
+		        'plugin_page' => $hook_suffix,
+		        'debug_timestamp' => time(),
+		        'text_not_set' => __('Not set', 'shopmetrics'),
+		        'text_loading' => __('Loading...', 'shopmetrics'),
+		        'text_yes' => __('Yes', 'shopmetrics'),
+		        'text_no' => __('No', 'shopmetrics'),
+		        'text_ok' => __('OK', 'shopmetrics'),
+		        'error_generic' => __('An error occurred', 'shopmetrics'),
+		        'error_loading_keys' => __('Error loading meta keys', 'shopmetrics'),
+		        'error_ajax' => __('AJAX Error', 'shopmetrics'),
+		        // debugLogging теперь из массива
+		        'debugLogging' => (bool)($settings['enable_debug_logging'] ?? false),
+		        'enableDebugLogs' => (bool)($settings['enable_debug_logging'] ?? false),
+		        'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
+		    ));
 		}
 
 		// For the dashboard page, also load the React app scripts 
@@ -233,349 +235,249 @@ class ShopMetrics_Admin {
 			$this->enqueue_react_app_scripts();
 		}
 
-		// Load analytics on all ShopMetrics pages
-		$this->enqueue_analytics_scripts();
+		// Analytics now handled entirely in React frontend
 	}
 
-	/**
-	 * Enqueue analytics scripts on all ShopMetrics admin pages
-	 * This loads PostHog for session recording and analytics tracking
-	 *
-	 * @since 1.0.0
-	 */
-	private function enqueue_analytics_scripts() {
-		// Check if analytics is enabled
-		if (!\ShopMetrics\Analytics\ShopMetrics_Analytics::is_enabled()) {
-			return;
-		}
+    /**
+	 * Analytics now handled entirely in React frontend
+	 * This method kept for compatibility but does nothing
+     *
+     * @since 1.0.0
+     */
+    private function enqueue_analytics_scripts() {
+		// Analytics moved to React frontend - no PHP integration needed
+            return;
+        }
 
-		// Load the PHP analytics wrapper
-		wp_enqueue_script( 
-			$this->plugin_name . '-analytics-php',
-			plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/shopmetrics-analytics-php.js', 
-			array( 'jquery' ), 
-			$this->version . '.2', 
-			true 
-		);
 
-		// Get analytics configuration
-		$config = \ShopMetrics\Analytics\ShopMetrics_Analytics::get_config();
-		
-		// Localize script with analytics configuration
-		wp_localize_script( $this->plugin_name . '-analytics-php', 'shopmetricsAnalytics', array(
-			'enabled' => true,
-			'ajaxUrl' => admin_url('admin-ajax.php'),
-			'nonce' => wp_create_nonce('shopmetrics_analytics_nonce'),
-			'posthogKey' => $config['posthog_key'],
-			'posthogHost' => $config['posthog_host'],
-			'siteHash' => $config['site_hash'],
-			'pluginVersion' => $this->version,
-			'sessionRecording' => array(
-				'enabled' => true,
-				'maskAllInputs' => true,
-				'maskAllText' => false,
-				'recordCanvas' => false,
-				'recordCrossOriginIframes' => false
-			)
-		));
 
-		// Add PostHog initialization script directly to the page
-		add_action('admin_footer', array($this, 'add_posthog_init_script'), 5);
-	}
+    /**
+     * Setup React translations with our new JSON file naming convention
+     */
+    private function setup_react_translations( $handle, $js_file_url ) {
+        $languages_dir = plugin_dir_path( dirname( __FILE__ ) ) . 'languages';
+        
+        // Extract main filename from full URL and remove .js extension
+        $filename = basename( $js_file_url );
+        $filename = preg_replace('/\.js$/', '', $filename); // Remove .js extension
+        
+        // Use only our custom translation loading (WordPress default conflicts with our naming)
+        
+        // Add our custom JSON file loader as backup
+        add_action('admin_footer', function() use ($handle, $filename, $languages_dir) {
+            $locale = get_user_locale();
+            $json_file = $languages_dir . "/shopmetrics-{$locale}-{$filename}.json";
+            $json_url = plugin_dir_url( dirname( __FILE__ ) ) . "languages/shopmetrics-{$locale}-{$filename}.json";
+            
+            ?>
+            <script type="text/javascript">
+            // Load our specific JSON translation file
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof wp !== 'undefined' && wp.i18n) {
 
-	/**
-	 * Add PostHog initialization script to admin footer
-	 * This enables session recording on all PHP admin pages
-	 */
-	public function add_posthog_init_script() {
-		if (!\ShopMetrics\Analytics\ShopMetrics_Analytics::is_enabled()) {
-			return;
-		}
+                    // Check if our specific JSON file exists
+                    fetch('<?php echo esc_js($json_url); ?>')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('JSON file not found: ' + response.status);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {                            
+                            // Apply translations to wp.i18n
+                            if (data.locale_data && data.locale_data['shopmetrics']) {
+                                wp.i18n.setLocaleData(data.locale_data['shopmetrics'], 'shopmetrics');                                
+                            }
+                        })
+                        .catch(error => {
+                            // console.log('[ShopMetrics] Custom translation file not found, using WordPress defaults:', error.message);
+                            // console.log('[ShopMetrics] Attempted URL:', '<?php echo esc_js($json_url); ?>');
+                        });
+                }
+            });
+            </script>
+            <?php
+        }, 1); // High priority to load early
+    }
+    
+    /**
+     * Registers the options related to API connection.
+     *
+     * @since 1.2.1 // Or your current plugin version
+     * @access private
+     */
+    private function _register_connection_options() {
+        register_setting(
+            'shopmetrics_settings_group', 
+            'shopmetrics_analytics_api_token',      
+            array(
+                'type' => 'string',
+                'sanitize_callback' => 'sanitize_text_field',
+                'default' => ''
+            )
+        );
 
-		$config = \ShopMetrics\Analytics\ShopMetrics_Analytics::get_config();
-		?>
-		<script type="text/javascript">
-		// Initialize PostHog on PHP admin pages for session recording
-		(function() {
-			// Load PostHog script
-			!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-			
-			// Initialize with our configuration
-			posthog.init('<?php echo esc_js($config['posthog_key']); ?>', {
-				api_host: '<?php echo esc_js($config['posthog_host']); ?>',
-				person_profiles: 'never', // Privacy-first: no person profiles
-				capture_pageview: false, // We'll handle pageviews manually via PHP
-				capture_pageleave: true,
-				session_recording: {
-					enabled: true,
-					maskAllInputs: true,
-					maskAllText: false,
-					recordCanvas: false,
-					recordCrossOriginIframes: false
-				},
-				autocapture: {
-					css_selector_allowlist: [
-						'.button',
-						'.button-primary', 
-						'.button-secondary',
-						'.nav-tab',
-						'[data-analytics-track]'
-					]
-				},
-				// Enable error tracking
-				capture_heatmaps: false, // Disable for performance
-				disable_external_dependency_loading: false, // Allow error tracking dependencies
-				loaded: function(posthog) {
-					// Set user properties for session context
-					posthog.identify('<?php echo esc_js($config['site_hash']); ?>', {
-						plugin_version: '<?php echo esc_js($this->version); ?>',
-						user_type: 'admin',
-						page_type: 'php_admin',
-						current_page: '<?php echo esc_js(isset($_GET['page']) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'unknown'); ?>'
-					});
-					
-					// Track page view via PHP backend
-					if (window.ShopMetricsAnalytics && window.ShopMetricsAnalytics.track) {
-						window.ShopMetricsAnalytics.track('admin_page_viewed', {
-							page: '<?php echo esc_js(isset($_GET['page']) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'unknown'); ?>',
-							page_type: 'php_admin',
-							source: 'php'
-						});
-					}
-				}
-			});
-		})();
-		</script>
-		<?php
-	}
+        register_setting(
+            'shopmetrics_settings_group', 
+            'shopmetrics_analytics_site_identifier', 
+            array(
+                'type' => 'string',
+                'sanitize_callback' => 'sanitize_text_field', // Or 'esc_url_raw' if it's strictly a URL
+                'default' => ''
+            )
+        );
+    }
 
-	/**
-	 * Setup React translations with our new JSON file naming convention
-	 */
-	private function setup_react_translations( $handle, $js_file_url ) {
-		$languages_dir = plugin_dir_path( dirname( __FILE__ ) ) . 'languages';
-		
-		// Extract main filename from full URL and remove .js extension
-		$filename = basename( $js_file_url );
-		$filename = preg_replace('/\.js$/', '', $filename); // Remove .js extension
-		
-		// Use only our custom translation loading (WordPress default conflicts with our naming)
-		
-		// Add our custom JSON file loader as backup
-		add_action('admin_footer', function() use ($handle, $filename, $languages_dir) {
-			$locale = get_user_locale();
-			$json_file = $languages_dir . "/shopmetrics-{$locale}-{$filename}.json";
-			$json_url = plugin_dir_url( dirname( __FILE__ ) ) . "languages/shopmetrics-{$locale}-{$filename}.json";
-			
-			?>
-			<script type="text/javascript">
-			// Load our specific JSON translation file
-			document.addEventListener('DOMContentLoaded', function() {
-				if (typeof wp !== 'undefined' && wp.i18n) {
+    /**
+     * Renders hidden input fields for connection options.
+     *
+     * Ensures that API token and site identifier are included in the settings form
+     * submission to prevent them from being cleared.
+     *
+     * @since 1.2.1 // Or your current plugin version
+     * @access private
+     */
+    private function _render_hidden_connection_fields() {
+        $api_token_value = get_option( 'shopmetrics_analytics_api_token', '' );
+        $site_identifier_value = get_option( 'shopmetrics_analytics_site_identifier', '' );
+        
+        echo '<input type="hidden" name="shopmetrics_analytics_api_token" value="' . esc_attr( $api_token_value ) . '" />';
+        echo '<input type="hidden" name="shopmetrics_analytics_site_identifier" value="' . esc_attr( $site_identifier_value ) . '" />';
+    }
 
-					// Check if our specific JSON file exists
-					fetch('<?php echo esc_js($json_url); ?>')
-						.then(response => {
-							if (!response.ok) {
-								throw new Error('JSON file not found: ' + response.status);
-							}
-							return response.json();
-						})
-						.then(data => {							
-							// Apply translations to wp.i18n
-							if (data.locale_data && data.locale_data['shopmetrics']) {
-								wp.i18n.setLocaleData(data.locale_data['shopmetrics'], 'shopmetrics');								
-							}
-						})
-						.catch(error => {
-							// console.log('[ShopMetrics] Custom translation file not found, using WordPress defaults:', error.message);
-							// console.log('[ShopMetrics] Attempted URL:', '<?php echo esc_js($json_url); ?>');
-						});
-				}
-			});
-			</script>
-			<?php
-		}, 1); // High priority to load early
-	}
-	
-	/**
-	 * Registers the options related to API connection.
-	 *
-	 * @since 1.2.1 // Or your current plugin version
-	 * @access private
-	 */
-	private function _register_connection_options() {
-		register_setting(
-			'shopmetrics_settings_group', 
-			'shopmetrics_analytics_api_token',      
-			array(
-				'type' => 'string',
-				'sanitize_callback' => 'sanitize_text_field',
-				'default' => ''
-			)
-		);
+    /**
+     * Helper function to enqueue React app scripts.
+     *
+     * @since 1.0.0
+     */
+    private function enqueue_react_app_scripts() {
+        // Define path to the NEW React build output directory
+        $react_app_dist_path = plugin_dir_path( dirname( __FILE__ ) ) . 'admin/js/dist/';
+        $react_app_dist_url = plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/dist/';
+        
+        // Check if the build files exist by looking for *.js files
+        $js_files = glob($react_app_dist_path . '*.js');
+        if (empty($js_files)) {
+             \ShopMetrics_Logger::get_instance()->error('Compiled admin script not found in ' . $react_app_dist_path);
+            add_action( 'admin_notices', function() use ($react_app_dist_path) {
+                echo '<div class="notice notice-error"><p>' . esc_html__('ShopMetrics Error: Required JavaScript file not found in', 'shopmetrics') . ' ' . esc_html($react_app_dist_path) . '. ' . esc_html__('Please rebuild the React application', 'shopmetrics') . ' (<code>cd react-app && npm run build</code>).</p></div>';
+            });
+            return;
+        }
 
-		register_setting(
-			'shopmetrics_settings_group', 
-			'shopmetrics_analytics_site_identifier', 
-			array(
-				'type' => 'string',
-				'sanitize_callback' => 'sanitize_text_field', // Or 'esc_url_raw' if it's strictly a URL
-				'default' => ''
-			)
-		);
-	}
+        $main_js_file_url = '';
+        $main_css_file_url = '';
+        $script_version = '1.0.0';
+        $style_version = '1.0.0';
+        $main_js_handle = $this->plugin_name . '-admin-script'; // Simplified handle
 
-	/**
-	 * Renders hidden input fields for connection options.
-	 *
-	 * Ensures that API token and site identifier are included in the settings form
-	 * submission to prevent them from being cleared.
-	 *
-	 * @since 1.2.1 // Or your current plugin version
-	 * @access private
-	 */
-	private function _render_hidden_connection_fields() {
-		$api_token_value = get_option( 'shopmetrics_analytics_api_token', '' );
-		$site_identifier_value = get_option( 'shopmetrics_analytics_site_identifier', '' );
-		
-		echo '<input type="hidden" name="shopmetrics_analytics_api_token" value="' . esc_attr( $api_token_value ) . '" />';
-		echo '<input type="hidden" name="shopmetrics_analytics_site_identifier" value="' . esc_attr( $site_identifier_value ) . '" />';
-	}
+        // Scan the dist directory to find the hashed files
+        $files = scandir( $react_app_dist_path );
+        if ( $files ) {
+            foreach ( $files as $file ) {
+                // Find the main JS file (e.g., main.hash.js or similar)
+                if ( preg_match( '/(main|bundle|index)\..*\.js$/', $file ) ) { // More flexible regex
+                    $main_js_file_url = $react_app_dist_url . $file;
+                    $script_version = filemtime( $react_app_dist_path . $file );
+                }
+                // Find the main CSS file (e.g., main.hash.css or similar)
+                 if ( preg_match( '/(main|bundle|index)\..*\.css$/', $file ) ) {
+                    $main_css_file_url = $react_app_dist_url . $file;
+                    $style_version = filemtime( $react_app_dist_path . $file );
+                 }
+            }
+        }
+        
+        // Enqueue CSS if found
+         if( ! empty( $main_css_file_url ) ) {
+             wp_enqueue_style(
+                 $this->plugin_name . '-admin-style',
+                 $main_css_file_url,
+                 array(),
+                 $style_version
+             );
+         }
+        
+        // Only proceed if we found the main JS file
+        if ( ! empty( $main_js_file_url ) ) {
+             wp_register_script(
+                $main_js_handle,
+                 $main_js_file_url,
+                 array( 'wp-element', 'wp-i18n' ), // wp-element includes react & react-dom, wp-i18n for translations
+                 $script_version,
+                 true // Load in footer
+             );
+             
+             // Force enqueue wp-i18n specifically to ensure it loads
+             wp_enqueue_script('wp-i18n');
 
-	/**
-	 * Helper function to enqueue React app scripts.
-	 *
-	 * @since 1.0.0
-	 */
-	private function enqueue_react_app_scripts() {
-		// Define path to the NEW React build output directory
-		$react_app_dist_path = plugin_dir_path( dirname( __FILE__ ) ) . 'admin/js/dist/';
-		$react_app_dist_url = plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/dist/';
-		
-		// Check if the build files exist by looking for *.js files
-		$js_files = glob($react_app_dist_path . '*.js');
-		if (empty($js_files)) {
-			 \ShopMetrics_Logger::get_instance()->error('Compiled admin script not found in ' . $react_app_dist_path);
-			add_action( 'admin_notices', function() use ($react_app_dist_path) {
-				echo '<div class="notice notice-error"><p>' . esc_html__('ShopMetrics Error: Required JavaScript file not found in', 'shopmetrics') . ' ' . esc_html($react_app_dist_path) . '. ' . esc_html__('Please rebuild the React application', 'shopmetrics') . ' (<code>cd react-app && npm run build</code>).</p></div>';
-			});
-			return;
-		}
+            // Prepare data to pass
+            $api_token = get_option( 'shopmetrics_analytics_api_token', '' );
+            $site_identifier_option = get_option( 'shopmetrics_analytics_site_identifier', '' );
 
-		$main_js_file_url = '';
-		$main_css_file_url = '';
-		$script_version = '1.0.0';
-		$style_version = '1.0.0';
-		$main_js_handle = $this->plugin_name . '-admin-script'; // Simplified handle
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - site_identifier_option: ' . $site_identifier_option);
 
-		// Scan the dist directory to find the hashed files
-		$files = scandir( $react_app_dist_path );
-		if ( $files ) {
-			foreach ( $files as $file ) {
-				// Find the main JS file (e.g., main.hash.js or similar)
-				if ( preg_match( '/(main|bundle|index)\..*\.js$/', $file ) ) { // More flexible regex
-					$main_js_file_url = $react_app_dist_url . $file;
-					$script_version = filemtime( $react_app_dist_path . $file );
-				}
-				// Find the main CSS file (e.g., main.hash.css or similar)
-				 if ( preg_match( '/(main|bundle|index)\..*\.css$/', $file ) ) {
-					$main_css_file_url = $react_app_dist_url . $file;
-					$style_version = filemtime( $react_app_dist_path . $file );
-				 }
-			}
-		}
-		
-		// Enqueue CSS if found
-		 if( ! empty( $main_css_file_url ) ) {
-			 wp_enqueue_style(
-				 $this->plugin_name . '-admin-style',
-				 $main_css_file_url,
-				 array(),
-				 $style_version
-			 );
-		 }
-		
-		// Only proceed if we found the main JS file
-		if ( ! empty( $main_js_file_url ) ) {
-			 wp_register_script(
-				$main_js_handle,
-				 $main_js_file_url,
-				 array( 'wp-element', 'wp-i18n' ), // wp-element includes react & react-dom, wp-i18n for translations
-				 $script_version,
-				 true // Load in footer
-			 );
-			 
-			 // Force enqueue wp-i18n specifically to ensure it loads
-			 wp_enqueue_script('wp-i18n');
+            // Default site identifier to site_url if not set by registration
+            $site_identifier = !empty($site_identifier_option) ? $site_identifier_option : esc_url_raw(site_url());
+            $is_connected = !empty($api_token) && !empty($site_identifier_option); // Connected only if token AND specific ID exist
+            
+            // Load translations directly for React - determine filename dynamically
+            $locale = get_user_locale();
+            $translations = array();
+            
+            // Find the actual React JS file to match translation filename
+            $react_js_files = glob(plugin_dir_path( dirname( __FILE__ ) ) . 'admin/js/dist/main.*.js');
+            if (!empty($react_js_files)) {
+                $main_js_file = basename($react_js_files[0]);
+                $filename = preg_replace('/\.js$/', '', $main_js_file); // Remove .js extension
+                
+                $json_file = plugin_dir_path( dirname( __FILE__ ) ) . "languages/shopmetrics-{$locale}-{$filename}.json";
+                \ShopMetrics_Logger::get_instance()->debug("[Translations] Looking for file: {$json_file}");
+                if (file_exists($json_file)) {
+                    $json_content = file_get_contents($json_file);
+                    $translation_data = json_decode($json_content, true);
+                    if ($translation_data && isset($translation_data['locale_data']['shopmetrics'])) {
+                        $translations = $translation_data['locale_data']['shopmetrics'];
+                        \ShopMetrics_Logger::get_instance()->debug("[Translations] Loaded " . count($translations) . " translation entries");
+                    } else {
+                        \ShopMetrics_Logger::get_instance()->debug("[Translations] No shopmetrics locale data found in JSON");
+                    }
+                } else {
+                    \ShopMetrics_Logger::get_instance()->debug("[Translations] JSON file not found");
+                }
+            }
+            
+            // Determine current page type (basic example)
+            $page_type = 'unknown';
+            if (is_front_page() || is_home()) {
+                $page_type = 'homepage';
+            } elseif (is_shop()) {
+                $page_type = 'shop_archive';
+            } elseif (is_product()) {
+                $page_type = 'product';
+            } elseif (is_cart()) {
+                $page_type = 'cart';
+            } elseif (is_checkout()) {
+                $page_type = 'checkout';
+            } elseif (is_order_received_page()) {
+                $page_type = 'purchase_complete';
+            }
 
-			// Prepare data to pass
-			$api_token = get_option( 'shopmetrics_analytics_api_token', '' );
-			$site_identifier_option = get_option( 'shopmetrics_analytics_site_identifier', '' );
-
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - site_identifier_option: ' . $site_identifier_option);
-
-			// Default site identifier to site_url if not set by registration
-			$site_identifier = !empty($site_identifier_option) ? $site_identifier_option : esc_url_raw(site_url());
-			$is_connected = !empty($api_token) && !empty($site_identifier_option); // Connected only if token AND specific ID exist
-			
-			// Load translations directly for React - determine filename dynamically
-			$locale = get_user_locale();
-			$translations = array();
-			
-			// Find the actual React JS file to match translation filename
-			$react_js_files = glob(plugin_dir_path( dirname( __FILE__ ) ) . 'admin/js/dist/main.*.js');
-			if (!empty($react_js_files)) {
-				$main_js_file = basename($react_js_files[0]);
-				$filename = preg_replace('/\.js$/', '', $main_js_file); // Remove .js extension
-				
-				$json_file = plugin_dir_path( dirname( __FILE__ ) ) . "languages/shopmetrics-{$locale}-{$filename}.json";
-				\ShopMetrics_Logger::get_instance()->debug("[Translations] Looking for file: {$json_file}");
-				if (file_exists($json_file)) {
-					$json_content = file_get_contents($json_file);
-					$translation_data = json_decode($json_content, true);
-					if ($translation_data && isset($translation_data['locale_data']['shopmetrics'])) {
-						$translations = $translation_data['locale_data']['shopmetrics'];
-						\ShopMetrics_Logger::get_instance()->debug("[Translations] Loaded " . count($translations) . " translation entries");
-					} else {
-						\ShopMetrics_Logger::get_instance()->debug("[Translations] No shopmetrics locale data found in JSON");
-					}
-				} else {
-					\ShopMetrics_Logger::get_instance()->debug("[Translations] JSON file not found");
-				}
-			}
-			
-			// Determine current page type (basic example)
-			$page_type = 'unknown';
-			if (is_front_page() || is_home()) {
-				$page_type = 'homepage';
-			} elseif (is_shop()) {
-				$page_type = 'shop_archive';
-			} elseif (is_product()) {
-				$page_type = 'product';
-			} elseif (is_cart()) {
-				$page_type = 'cart';
-			} elseif (is_checkout()) {
-				$page_type = 'checkout';
-			} elseif (is_order_received_page()) {
-				$page_type = 'purchase_complete';
-			}
-
-			// Get subscription status details (example - requires implementation)
-			// $subscription_status = $this->get_site_subscription_status($site_identifier); 
-			// $cancel_at_timestamp = $this->get_site_cancel_timestamp($site_identifier);
-			
-			// --- Auto-sync subscription data if stale ---
-			if ($is_connected) {
-				$this->maybe_sync_subscription_data($site_identifier, $api_token);
-			}
-			
-			$subscription_status = get_option('shopmetrics_subscription_status', 'unknown'); // Placeholder
-			$cancel_at_timestamp = get_option('shopmetrics_cancel_at', null); // Placeholder
-			$trial_ends_at = get_option('shopmetrics_trial_ends_at', null); // Added trial_ends_at from option
+            // Get subscription status details (example - requires implementation)
+            // $subscription_status = $this->get_site_subscription_status($site_identifier); 
+            // $cancel_at_timestamp = $this->get_site_cancel_timestamp($site_identifier);
+            
+            // --- Auto-sync subscription data if stale ---
+            if ($is_connected) {
+                $this->maybe_sync_subscription_data($site_identifier, $api_token);
+            }
+            
+            $subscription_status = get_option('shopmetrics_subscription_status', 'unknown'); // Placeholder
+            $cancel_at_timestamp = get_option('shopmetrics_cancel_at', null); // Placeholder
+            $trial_ends_at = get_option('shopmetrics_trial_ends_at', null); // Added trial_ends_at from option
 			\ShopMetrics_Logger::get_instance()->info("ShopMetrics PHP [Dashboard Load] - trial_ends_at: " . ($trial_ends_at ? $trial_ends_at . " (" . gmdate("Y-m-d H:i:s", $trial_ends_at) . ")" : "null") . ", subscription_status: " . $subscription_status . ", current_time: " . time());
 
-			// --- Get COGS Meta Key setting ---
+            // --- Get COGS Meta Key setting ---
 			// Get COGS settings from the unified settings array
 			$settings = get_option('shopmetrics_settings', []);
 			$cogs_meta_key = $settings['cogs_meta_key'] ?? '';
@@ -587,65 +489,73 @@ class ShopMetrics_Admin {
 			} else if ($cogsDefaultPercentage !== null) {
 				$cogsDefaultPercentage = intval($cogsDefaultPercentage);
 			}		
-			
-			// Get onboarding flag
-			$needs_onboarding = get_option('shopmetrics_needs_onboarding', 'false');
-			\ShopMetrics_Logger::get_instance()->info("ShopMetrics [enqueue_react_app_scripts]: needsOnboarding value from DB: " . $needs_onboarding);
-			
-			// Get logger instance for admin data
-			$logger = \ShopMetrics_Logger::get_instance();
-			
-			// Get analytics configuration for React
-			$analytics_config = \ShopMetrics\Analytics\ShopMetrics_Analytics::get_config();
-			
-			// Prepare data to pass to the React app
-			$settings = get_option('shopmetrics_settings', []);
-			$data_to_pass = array(
-				'apiUrl' => SHOPMETRICS_API_URL, // Use constant defined in main plugin file
-				'nonce' => wp_create_nonce( 'shopmetrics_api_actions' ), // Or a specific nonce if needed
-				'settingsNonce' => wp_create_nonce( 'sm_settings_ajax_nonce' ), // Add settings nonce
-				'errorTestNonce' => wp_create_nonce( 'shopmetrics_nonce' ), // Add error testing nonce
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ), // Pass ajaxurl
-				'apiToken' => $api_token,
-				'siteIdentifier' => $site_identifier,
-				'isConnected' => $is_connected,
-				'subscriptionStatus' => $subscription_status, // Pass status
-				'cancelAt' => $cancel_at_timestamp,     // Pass cancellation time
-				'trialEndsAt' => $trial_ends_at,     // Pass trial end time
+            
+            // Get onboarding flag
+			$needs_onboarding = get_option('shopmetrics_needs_onboarding', 'true') === 'true';
+			\ShopMetrics_Logger::get_instance()->info("ShopMetrics [enqueue_react_app_scripts]: needsOnboarding value from DB: " . ($needs_onboarding ? 'true' : 'false'));
+            
+            // Get logger instance for admin data
+            $logger = \ShopMetrics_Logger::get_instance();
+            
+            // Get analytics configuration for React
+            $analytics_config = \ShopMetrics\Analytics\ShopMetrics_Analytics::get_config();
+            
+            // Prepare data to pass to the React app
+            $settings = get_option('shopmetrics_settings', []);
+            $data_to_pass = array(
+                'apiUrl' => SHOPMETRICS_API_URL, // Use constant defined in main plugin file
+                'nonce' => wp_create_nonce( 'shopmetrics_api_actions' ), // Or a specific nonce if needed
+                'settingsNonce' => wp_create_nonce( 'sm_settings_ajax_nonce' ), // Add settings nonce
+                'errorTestNonce' => wp_create_nonce( 'shopmetrics_nonce' ), // Add error testing nonce
+                'ajaxUrl' => admin_url( 'admin-ajax.php' ), // Pass ajaxurl
+                'apiToken' => $api_token,
+                'siteIdentifier' => $site_identifier,
+                'isConnected' => $is_connected,
+                'subscriptionStatus' => $subscription_status, // Pass status
+                'cancelAt' => $cancel_at_timestamp,     // Pass cancellation time
+                'trialEndsAt' => $trial_ends_at,     // Pass trial end time
 				'cogsMetaKey' => $cogs_meta_key,
 				'cogsDefaultPercentage' => $cogsDefaultPercentage,
-				'pageType' => $page_type, // Pass page type
-				'currency' => get_woocommerce_currency(),
-				'needsOnboarding' => $needs_onboarding, // Add onboarding flag
-				'pluginUrl' => plugin_dir_url( dirname( __FILE__ ) ), // Add plugin URL for assets
+                'pageType' => $page_type, // Pass page type
+                'currency' => get_woocommerce_currency(),
+				'needsOnboarding' => $needs_onboarding ? 'true' : 'false', // Add onboarding flag
+                'pluginUrl' => plugin_dir_url( dirname( __FILE__ ) ), // Add plugin URL for assets
 				'siteDomain' => wp_parse_url( home_url(), PHP_URL_HOST ), // Add site domain for auto-detection
-				'logging' => array(
-					'enabled' => $logger->is_enabled(),
-					'level' => $logger->get_current_log_level(),
-					'fileSize' => $logger->get_log_file_size(),
-					'filePath' => $logger->get_log_file()
-				),
-				'translations' => $translations, // Add translations for React
-				'locale' => $locale, // Add locale info
-				'shopmetricsAnalytics' => $analytics_config, // Add analytics configuration
-				// 'orderId' => null // Pass order ID IF on order received page - see visit tracker enqueue
-				// Добавлено: debugLogging
-				'enableDebugLogs' => !empty($settings['enable_debug_logging']),
-				'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
-			);
+                'logging' => array(
+                    'enabled' => $logger->is_enabled(),
+                    'level' => $logger->get_current_log_level(),
+                    'fileSize' => $logger->get_log_file_size(),
+                    'filePath' => $logger->get_log_file()
+                ),
+                'translations' => $translations, // Add translations for React
+                'locale' => $locale, // Add locale info
+                'shopmetricsAnalytics' => $analytics_config, // Add analytics configuration
+                // 'orderId' => null // Pass order ID IF on order received page - see visit tracker enqueue
+                // Добавлено: debugLogging
+                'enableDebugLogs' => !empty($settings['enable_debug_logging']),
+                'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
+                'settings' => $settings, // Add settings array for PostHog analytics
+                'debug' => !empty($settings['enable_debug_logging']), // Add debug flag for PostHog logging
+                'siteInfo' => array( // Add site info for PostHog analytics
+                    'site_url' => home_url(),
+                    'wp_version' => get_bloginfo('version'),
+                    'wc_version' => defined('WC_VERSION') ? WC_VERSION : 'unknown',
+                    'plugin_version' => SHOPMETRICS_VERSION,
+                ),
+            );
 
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - API Token: ' . ($api_token ? 'Present (length: ' . strlen($api_token) . ')' : 'Not set'));
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Site Identifier Option: ' . $site_identifier_option);
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Calculated isConnected: ' . ($is_connected ? 'true' : 'false'));
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
-			\ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
-		
-			// Debug translations before passing to React
-			\ShopMetrics_Logger::get_instance()->debug('[Translations] Count: ' . count($translations) . ', Locale: ' . $locale);
-			if (!empty($translations)) {
-				\ShopMetrics_Logger::get_instance()->debug('[Translations] First few keys: ' . implode(', ', array_slice(array_keys($translations), 0, 5)));
-			}
-			
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - API Token: ' . ($api_token ? 'Present (length: ' . strlen($api_token) . ')' : 'Not set'));
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Site Identifier Option: ' . $site_identifier_option);
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Calculated isConnected: ' . ($is_connected ? 'true' : 'false'));
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
+            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
+        
+            // Debug translations before passing to React
+            \ShopMetrics_Logger::get_instance()->debug('[Translations] Count: ' . count($translations) . ', Locale: ' . $locale);
+            if (!empty($translations)) {
+                \ShopMetrics_Logger::get_instance()->debug('[Translations] First few keys: ' . implode(', ', array_slice(array_keys($translations), 0, 5)));
+            }
+            
 			$localize_result = wp_localize_script( $main_js_handle, 'fmData', $data_to_pass );
 			
 			// Log if localization failed
@@ -653,174 +563,174 @@ class ShopMetrics_Admin {
 				\ShopMetrics_Logger::get_instance()->error('wp_localize_script failed for handle: ' . $main_js_handle);
 			}
 
-			wp_enqueue_script( $main_js_handle );
-			
-			// Set up JavaScript translations for the React app with our new naming convention
-			$this->setup_react_translations( $main_js_handle, $main_js_file_url );
-			
-			// Translations are handled by setup_react_translations() above
-			
-			// Add debugging for translations - with proper wp.i18n waiting
-			add_action('admin_footer', function() use ($main_js_file_url, $main_js_handle) {
-				?>
-				<script type="text/javascript">
-				// Wait for wp.i18n to be available and test translations
-				function testTranslations() {
-					if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {						
-						// Check locale data
-						if (window.wp.i18n.getLocaleData) {
-							const localeData = window.wp.i18n.getLocaleData('shopmetrics');
-						}
-						return true;
-					} else {
-						return false;
-					}
-				}
-				
-				// Try immediately
-				if (!testTranslations()) {
-					// If not available, try after 1 second
-					setTimeout(function() {
-						if (!testTranslations()) {
-							// Try after 3 seconds
-							setTimeout(function() {
-								testTranslations();
-							}, 2000);
-						}
-					}, 1000);
-				}
-				</script>
-				<?php
-			}, 100);
-			
-			// For extra safety, explicitly add an inline script to verify window.fmData exists
-			add_action('admin_footer', function() use ($data_to_pass) {
-				?>
-				<script type="text/javascript">
-				// Backup in case wp_localize_script fails
-				if (typeof window.fmData === 'undefined') {
+            wp_enqueue_script( $main_js_handle );
+            
+            // Set up JavaScript translations for the React app with our new naming convention
+            $this->setup_react_translations( $main_js_handle, $main_js_file_url );
+            
+            // Translations are handled by setup_react_translations() above
+            
+            // Add debugging for translations - with proper wp.i18n waiting
+            add_action('admin_footer', function() use ($main_js_file_url, $main_js_handle) {
+                ?>
+                <script type="text/javascript">
+                // Wait for wp.i18n to be available and test translations
+                function testTranslations() {
+                    if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {                        
+                        // Check locale data
+                        if (window.wp.i18n.getLocaleData) {
+                            const localeData = window.wp.i18n.getLocaleData('shopmetrics');
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                
+                // Try immediately
+                if (!testTranslations()) {
+                    // If not available, try after 1 second
+                    setTimeout(function() {
+                        if (!testTranslations()) {
+                            // Try after 3 seconds
+                            setTimeout(function() {
+                                testTranslations();
+                            }, 2000);
+                        }
+                    }, 1000);
+                }
+                </script>
+                <?php
+            }, 100);
+            
+            // For extra safety, explicitly add an inline script to verify window.fmData exists
+            add_action('admin_footer', function() use ($data_to_pass) {
+                ?>
+                <script type="text/javascript">
+                // Backup in case wp_localize_script fails
+                if (typeof window.fmData === 'undefined') {
 					console.warn('[ShopMetrics] fmData is undefined - wp_localize_script may have failed. Creating backup data object.');
-					window.fmData = <?php echo wp_json_encode($data_to_pass); ?>;
+                    window.fmData = <?php echo wp_json_encode($data_to_pass); ?>;
 					console.log('[ShopMetrics] Backup fmData created:', window.fmData);
 				} else {
 					console.log('[ShopMetrics] fmData is properly loaded:', window.fmData);
-				}
-				
-				// Create analytics configuration for React hook
-				if (window.fmData && window.fmData.shopmetricsAnalytics) {
-					// Merge with WordPress localized script data if available
-					if (typeof shopmetricsAnalytics !== "undefined") {
-						window.shopmetricsAnalytics = {
-							...window.fmData.shopmetricsAnalytics,
-							...shopmetricsAnalytics // WordPress localized data has nonce and ajaxUrl
-						};
-					} else {
-						window.shopmetricsAnalytics = window.fmData.shopmetricsAnalytics;
-					}
-				}
-				
-				// Create global translation function for React
-				window.__ = function(text, domain) {
-					if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {
-						return wp.i18n.__(text, domain || 'shopmetrics');
-					}
-					return text; // Fallback to original text
-				};
-				
-				</script>
-				<?php
-			}, 99); // High priority to run late
-		} else {
-			\ShopMetrics_Logger::get_instance()->error('Main JS file for React app not found after scanning.');
-			 add_action( 'admin_notices', function() {
-				echo '<div class="notice notice-error"><p>' . esc_html__('ShopMetrics Error: Could not find main JavaScript file for the dashboard. Please try rebuilding the application.', 'shopmetrics') . '</p></div>';
-			});
-		}
+                }
+                
+                // Create analytics configuration for React hook
+                if (window.fmData && window.fmData.shopmetricsAnalytics) {
+                    // Merge with WordPress localized script data if available
+                    if (typeof shopmetricsAnalytics !== "undefined") {
+                        window.shopmetricsAnalytics = {
+                            ...window.fmData.shopmetricsAnalytics,
+                            ...shopmetricsAnalytics // WordPress localized data has nonce and ajaxUrl
+                        };
+                    } else {
+                        window.shopmetricsAnalytics = window.fmData.shopmetricsAnalytics;
+                    }
+                }
+                
+                // Create global translation function for React
+                window.__ = function(text, domain) {
+                    if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {
+                        return wp.i18n.__(text, domain || 'shopmetrics');
+                    }
+                    return text; // Fallback to original text
+                };
+                
+                </script>
+                <?php
+            }, 99); // High priority to run late
+        } else {
+            \ShopMetrics_Logger::get_instance()->error('Main JS file for React app not found after scanning.');
+             add_action( 'admin_notices', function() {
+                echo '<div class="notice notice-error"><p>' . esc_html__('ShopMetrics Error: Could not find main JavaScript file for the dashboard. Please try rebuilding the application.', 'shopmetrics') . '</p></div>';
+            });
+        }
 	}
-	
-	/**
+    
+    /**
 	 * Add the administration menu for this plugin into the WordPress Dashboard menu.
 	 *
 	 * @since    1.0.0
 	 */
 	public function add_plugin_admin_menu() {
 
-		// Add Top-Level Menu Page (will likely show the first submenu by default)
-		add_menu_page(
-			__( 'ShopMetrics for WooCommerce', 'shopmetrics' ), // Page title
-			__( 'ShopMetrics', 'shopmetrics' ),           // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name,                                    // Menu slug
-			array( $this, 'display_dashboard_page' ),             // Point default to dashboard
-			'dashicons-chart-area',                                // Icon URL
-			6                                                      // Position
-		);
-		
-		// Add Dashboard Submenu Page
-		$dashboard_hook = add_submenu_page(
-			$this->plugin_name,                                    // Parent slug
-			__( 'Dashboard', 'shopmetrics' ),           // Page title
-			__( 'Dashboard', 'shopmetrics' ),           // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name,                                    // Menu slug (same as parent for default)
-			array( $this, 'display_dashboard_page' )              // Callback function
-		);
+        // Add Top-Level Menu Page (will likely show the first submenu by default)
+        add_menu_page(
+            __( 'ShopMetrics for WooCommerce', 'shopmetrics' ), // Page title
+            __( 'ShopMetrics', 'shopmetrics' ),           // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name,                                    // Menu slug
+            array( $this, 'display_dashboard_page' ),             // Point default to dashboard
+            'dashicons-chart-area',                                // Icon URL
+            6                                                      // Position
+        );
+        
+        // Add Dashboard Submenu Page
+        $dashboard_hook = add_submenu_page(
+            $this->plugin_name,                                    // Parent slug
+            __( 'Dashboard', 'shopmetrics' ),           // Page title
+            __( 'Dashboard', 'shopmetrics' ),           // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name,                                    // Menu slug (same as parent for default)
+            array( $this, 'display_dashboard_page' )              // Callback function
+        );
 
-		// Add Settings Submenu Page
-		$settings_hook = add_submenu_page(
-			$this->plugin_name,                                    // Parent slug
-			__( 'Settings', 'shopmetrics' ),            // Page title
-			__( 'Settings', 'shopmetrics' ),            // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name . '-settings',                     // Menu slug (unique)
-			array( $this, 'display_settings_page' )               // Callback function
-		);
-		
-		// Add Data Sources Submenu Page
-		$data_sources_hook = add_submenu_page(
-			$this->plugin_name,                                    // Parent slug
-			__( 'Data Sources', 'shopmetrics' ),        // Page title
-			__( 'Data Sources', 'shopmetrics' ),        // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name . '-data-sources',                 // Menu slug (unique)
-			array( $this, 'display_data_sources_page' )           // Callback function
-		);
-		
-		// Add Cart Recovery Submenu Page
-		$cart_recovery_hook = add_submenu_page(
-			$this->plugin_name,                                    // Parent slug
-			__( 'Cart Recovery', 'shopmetrics' ),       // Page title
-			__( 'Cart Recovery', 'shopmetrics' ),       // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name . '-cart-recovery',                // Menu slug (unique)
-			array( $this, 'display_cart_recovery_page' )          // Callback function
-		);
-		
-		// Add Subscription Submenu Page
-		$subscription_hook = add_submenu_page(
-			$this->plugin_name,                                    // Parent slug
-			__( 'Subscription', 'shopmetrics' ),        // Page title
-			__( 'Subscription', 'shopmetrics' ),        // Menu title
-			'manage_options',                                      // Capability
-			$this->plugin_name . '-subscription',                 // Menu slug (unique)
-			array( $this, 'display_subscription_page' )           // Callback function
-		);
-		
-		// Add Test Analytics Submenu Page (for debugging)
-		// if (defined('WP_DEBUG') && WP_DEBUG) {
-		//     $test_analytics_hook = add_submenu_page(
-		//         $this->plugin_name,                                    // Parent slug
-		//         __( 'Test Analytics', 'shopmetrics' ),      // Page title
-		//         __( 'Test Analytics', 'shopmetrics' ),      // Menu title
-		//         'manage_options',                                      // Capability
-		//         $this->plugin_name . '-test-analytics',               // Menu slug (unique)
-		//         array( $this, 'display_test_analytics_page' )         // Callback function
-		//     );
-		// }
-		
-		// Store hooks if needed for enqueue logic
-		// add_action( "load-{$dashboard_hook}", array( $this, 'load_dashboard_assets' ) );
-		// add_action( "load-{$settings_hook}", array( $this, 'load_settings_assets' ) );
+        // Add Settings Submenu Page
+        $settings_hook = add_submenu_page(
+            $this->plugin_name,                                    // Parent slug
+            __( 'Settings', 'shopmetrics' ),            // Page title
+            __( 'Settings', 'shopmetrics' ),            // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name . '-settings',                     // Menu slug (unique)
+            array( $this, 'display_settings_page' )               // Callback function
+        );
+        
+        // Add Data Sources Submenu Page
+        $data_sources_hook = add_submenu_page(
+            $this->plugin_name,                                    // Parent slug
+            __( 'Data Sources', 'shopmetrics' ),        // Page title
+            __( 'Data Sources', 'shopmetrics' ),        // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name . '-data-sources',                 // Menu slug (unique)
+            array( $this, 'display_data_sources_page' )           // Callback function
+        );
+        
+        // Add Cart Recovery Submenu Page
+        $cart_recovery_hook = add_submenu_page(
+            $this->plugin_name,                                    // Parent slug
+            __( 'Cart Recovery', 'shopmetrics' ),       // Page title
+            __( 'Cart Recovery', 'shopmetrics' ),       // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name . '-cart-recovery',                // Menu slug (unique)
+            array( $this, 'display_cart_recovery_page' )          // Callback function
+        );
+        
+        // Add Subscription Submenu Page
+        $subscription_hook = add_submenu_page(
+            $this->plugin_name,                                    // Parent slug
+            __( 'Subscription', 'shopmetrics' ),        // Page title
+            __( 'Subscription', 'shopmetrics' ),        // Menu title
+            'manage_options',                                      // Capability
+            $this->plugin_name . '-subscription',                 // Menu slug (unique)
+            array( $this, 'display_subscription_page' )           // Callback function
+        );
+        
+        // Add Test Analytics Submenu Page (for debugging)
+        // if (defined('WP_DEBUG') && WP_DEBUG) {
+        //     $test_analytics_hook = add_submenu_page(
+        //         $this->plugin_name,                                    // Parent slug
+        //         __( 'Test Analytics', 'shopmetrics' ),      // Page title
+        //         __( 'Test Analytics', 'shopmetrics' ),      // Menu title
+        //         'manage_options',                                      // Capability
+        //         $this->plugin_name . '-test-analytics',               // Menu slug (unique)
+        //         array( $this, 'display_test_analytics_page' )         // Callback function
+        //     );
+        // }
+        
+        // Store hooks if needed for enqueue logic
+        // add_action( "load-{$dashboard_hook}", array( $this, 'load_dashboard_assets' ) );
+        // add_action( "load-{$settings_hook}", array( $this, 'load_settings_assets' ) );
 	}
 
 	/**
@@ -828,46 +738,59 @@ class ShopMetrics_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function display_dashboard_page() {
-		// Check if the site is connected
-		$api_token = get_option('shopmetrics_analytics_api_token', '');
-		$site_identifier = get_option('shopmetrics_analytics_site_identifier', '');
-		$is_connected = !empty($api_token) && !empty($site_identifier);
+    public function display_dashboard_page() {
+		// Handle reset onboarding URL parameter
+		if (isset($_GET['reset_onboarding']) && sanitize_text_field(wp_unslash($_GET['reset_onboarding'])) === '1') {
+			if (current_user_can('manage_options')) {
+				        update_option('shopmetrics_needs_onboarding', 'true');
+				delete_transient('shopmetrics_onboarding_progress');
+				\ShopMetrics_Logger::get_instance()->info("Onboarding reset via URL parameter");
+				
+				// Redirect to clean URL to avoid repeated resets
+				wp_redirect(admin_url('admin.php?page=shopmetrics'));
+				exit;
+			}
+		}
 		
-		// Check if onboarding is needed - explicitly set a flag in PHP to use directly in the HTML
-		$needs_onboarding = get_option('shopmetrics_needs_onboarding', 'false') === 'true';
-		
-		echo '<div class="wrap">';
+        // Check if the site is connected
+        $api_token = get_option('shopmetrics_analytics_api_token', '');
+        $site_identifier = get_option('shopmetrics_analytics_site_identifier', '');
+        $is_connected = !empty($api_token) && !empty($site_identifier);
+        
+		// Check if onboarding is needed - check if onboarding was completed
+		$needs_onboarding = get_option('shopmetrics_needs_onboarding', 'true') === 'true';
+        
+        echo '<div class="wrap">';
 
-		// Always create the root mounting div for React
-		echo '<div id="shopmetrics-dashboard-root">';
-		
-		// If not connected, show a notice instead of loading the dashboard
-		if (!$is_connected && !$needs_onboarding) {
-			// Single styled panel with all information
-			echo '<div style="background-color: #fde9ef; padding: 20px; margin-top: 20px; border: 1px solid #d63638; border-radius: 8px;">';
-			// Logo and heading inside the panel
-			echo '<div style="margin-bottom: 15px; display: flex; align-items: center;">';
-			echo '<img src="' . esc_url(plugin_dir_url(dirname(__FILE__)) . 'admin/images/financiarme-logo.svg') . '" alt="ShopMetrics" style="height: 35px; margin-right: 10px;">';
-			echo '<h3 style="margin: 0; color: #d63638; font-size: 24px;">' . esc_html__('ShopMetrics for WooCommerce - Setup required', 'shopmetrics') . '</h3>';
-			echo '</div>';
-			echo '<p style="font-size: 15px;">' . esc_html__('Your site is not connected to ShopMetrics for WooCommerce. The dashboard requires a connection to display your data.', 'shopmetrics') . '</p>';
-			echo '<ol style="font-size: 15px; line-height: 1.5;">';
-			echo '<li>' . esc_html__('Go to the Settings page by clicking the button below', 'shopmetrics') . '</li>';
-			echo '<li>' . esc_html__('Click on the "Connect & Synchronize" button', 'shopmetrics') . '</li>';
-			echo '<li>' . esc_html__('Wait for the connection process to complete', 'shopmetrics') . '</li>';
-			echo '<li>' . esc_html__('Once connected, return to this page to view your dashboard', 'shopmetrics') . '</li>';
-			echo '</ol>';
-			echo '<p style="margin-top: 15px; text-align: center;">';
-			echo '<a href="' . esc_url(admin_url('admin.php?page=' . $this->plugin_name . '-settings')) . '" class="button button-primary button-large">' . 
-				esc_html__('Go to Settings Page', 'shopmetrics') . '</a>';
-			echo '</p>';
-			echo '</div>';
-		} else {
-			// Site is connected, show loading spinner inside the root element
-			echo '<div style="display: flex; justify-content: center; align-items: center; height: 150px;">
-				<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="20" cy="20" r="18" fill="none" stroke="#dddddd" stroke-width="4"></circle>
+        // Always create the root mounting div for React
+        echo '<div id="shopmetrics-dashboard-root">';
+        
+        // If not connected, show a notice instead of loading the dashboard
+        if (!$is_connected && !$needs_onboarding) {
+            // Single styled panel with all information
+            echo '<div style="background-color: #fde9ef; padding: 20px; margin-top: 20px; border: 1px solid #d63638; border-radius: 8px;">';
+            // Logo and heading inside the panel
+            echo '<div style="margin-bottom: 15px; display: flex; align-items: center;">';
+            echo '<img src="' . esc_url(plugin_dir_url(dirname(__FILE__)) . 'admin/images/financiarme-logo.svg') . '" alt="ShopMetrics" style="height: 35px; margin-right: 10px;">';
+            echo '<h3 style="margin: 0; color: #d63638; font-size: 24px;">' . esc_html__('ShopMetrics for WooCommerce - Setup required', 'shopmetrics') . '</h3>';
+            echo '</div>';
+            echo '<p style="font-size: 15px;">' . esc_html__('Your site is not connected to ShopMetrics for WooCommerce. The dashboard requires a connection to display your data.', 'shopmetrics') . '</p>';
+            echo '<ol style="font-size: 15px; line-height: 1.5;">';
+            echo '<li>' . esc_html__('Go to the Settings page by clicking the button below', 'shopmetrics') . '</li>';
+            echo '<li>' . esc_html__('Click on the "Connect & Synchronize" button', 'shopmetrics') . '</li>';
+            echo '<li>' . esc_html__('Wait for the connection process to complete', 'shopmetrics') . '</li>';
+            echo '<li>' . esc_html__('Once connected, return to this page to view your dashboard', 'shopmetrics') . '</li>';
+            echo '</ol>';
+            echo '<p style="margin-top: 15px; text-align: center;">';
+            echo '<a href="' . esc_url(admin_url('admin.php?page=' . $this->plugin_name . '-settings')) . '" class="button button-primary button-large">' . 
+                esc_html__('Go to Settings Page', 'shopmetrics') . '</a>';
+            echo '</p>';
+            echo '</div>';
+        } else {
+            // Site is connected, show loading spinner inside the root element
+            echo '<div style="display: flex; justify-content: center; align-items: center; height: 150px;">
+                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="#dddddd" stroke-width="4"></circle>
                     <circle cx="20" cy="20" r="18" fill="none" stroke="#2271b1" stroke-width="4" stroke-dasharray="113" stroke-dashoffset="0" style="animation: sm-analytics-dash 1.5s ease-in-out infinite">
                         <animate attributeName="stroke-dashoffset" values="113;0" dur="1.5s" repeatCount="indefinite" />
                     </circle>
@@ -915,6 +838,14 @@ class ShopMetrics_Admin {
                 // Добавлено: debugLogging
                 'enableDebugLogs' => !empty($settings['enable_debug_logging']),
                 'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
+                'settings' => $settings, // Add settings array for PostHog analytics
+                'debug' => !empty($settings['enable_debug_logging']), // Add debug flag for PostHog logging
+                'siteInfo' => array( // Add site info for PostHog analytics
+                    'site_url' => home_url(),
+                    'wp_version' => get_bloginfo('version'),
+                    'wc_version' => defined('WC_VERSION') ? WC_VERSION : 'unknown',
+                    'plugin_version' => SHOPMETRICS_VERSION,
+                ),
             );
             
             // Check if we have built React files
@@ -997,7 +928,7 @@ class ShopMetrics_Admin {
                     window.checkAndFixFmData();
                     setTimeout(window.checkAndFixFmData, 100);
                     setTimeout(window.checkAndFixFmData, 500);
-                    
+                
                     // Check if React mounted correctly, if not, ensure mounting point exists
                     setTimeout(function() {
                         var mountPoint = document.getElementById("shopmetrics-dashboard-root");
@@ -1670,7 +1601,7 @@ class ShopMetrics_Admin {
         // Check user capability
         if ( ! current_user_can( 'manage_options' ) ) {
             \ShopMetrics_Logger::get_instance()->error("ajax_save_token: User lacks manage_options capability");
-            wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'shopmetrics' ) ), 403 );
+             wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'shopmetrics' ) ), 403 );
         }
         
         // Get the token from the POST data
@@ -1682,7 +1613,7 @@ class ShopMetrics_Admin {
 
         if ( empty( $api_token ) ) {
             \ShopMetrics_Logger::get_instance()->error("ajax_save_token: No API token provided");
-            wp_send_json_error( array( 'message' => __( 'No API token provided.', 'shopmetrics' ) ), 400 );
+             wp_send_json_error( array( 'message' => __( 'No API token provided.', 'shopmetrics' ) ), 400 );
         }
 
         // Save the API token option
@@ -1716,19 +1647,19 @@ class ShopMetrics_Admin {
              // Sync subscription info from API after successful token save
              if ($identifier_save_considered_successful) {
                 try {
-                    // Attempt to sync subscription info
-                    $sync_result = $this->sync_subscription_info($site_identifier_from_ajax, $api_token);
-                    
-                    // Update last sync timestamp if successful
-                    if ($sync_result) {
-                        update_option('shopmetrics_subscription_last_sync', time());
+                // Attempt to sync subscription info
+                $sync_result = $this->sync_subscription_info($site_identifier_from_ajax, $api_token);
+                
+                // Update last sync timestamp if successful
+                if ($sync_result) {
+                    update_option('shopmetrics_subscription_last_sync', time());
                         \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Subscription sync completed successfully");
-                    } else {
+                } else {
                         \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Failed to sync subscription info from API, but continuing with connection.");
-                    }
-                    
-                    // Trigger site connected action for webhook creation
-                    do_action('shopmetrics_analytics_site_connected');
+                }
+                
+                // Trigger site connected action for webhook creation
+                do_action('shopmetrics_analytics_site_connected');
                     \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Triggered site connected action for webhook creation");
                 } catch (Exception $e) {
                     \ShopMetrics_Logger::get_instance()->error("ajax_save_token: Exception during sync: " . $e->getMessage());
@@ -1904,11 +1835,14 @@ class ShopMetrics_Admin {
     public function ajax_create_checkout() {
         // Debug logging for nonce verification
         $received_nonce = isset( $_POST['_ajax_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ) : 'NOT_SET';
+        $expected_nonce = wp_create_nonce('sm_settings_ajax_nonce');
         \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Received nonce: ' . $received_nonce);
+        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Expected nonce: ' . $expected_nonce);
         \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Expected nonce action: sm_settings_ajax_nonce');
+        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Nonce verification result: ' . (wp_verify_nonce($received_nonce, 'sm_settings_ajax_nonce') ? 'VALID' : 'INVALID'));
         
-        // Verify nonce
-        if ( ! isset( $_POST['_ajax_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ), 'sm_settings_ajax_nonce' ) ) {
+        // Verify nonce 
+         if ( ! isset( $_POST['_ajax_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ), 'sm_settings_ajax_nonce' ) ) {
             \ShopMetrics_Logger::get_instance()->error('AJAX create_checkout - Nonce verification failed. Received: ' . $received_nonce);
             wp_send_json_error( array( 'message' => __( 'Nonce verification failed!', 'shopmetrics' ) ), 403 );
         }
@@ -1926,9 +1860,18 @@ class ShopMetrics_Admin {
         // The backend Lambda handles Stripe initialization and secret key.
 
         try {
-            // --- Get necessary data ---
-             $site_identifier = esc_url_raw( site_url() );
-             $api_token = get_option( 'shopmetrics_analytics_api_token', '' );
+                     // --- Get necessary data ---
+         $site_identifier_from_url = esc_url_raw( site_url() );
+         $site_identifier_option = get_option( 'shopmetrics_analytics_site_identifier', '' );
+         $api_token = get_option( 'shopmetrics_analytics_api_token', '' );
+
+         // Use the site identifier from option if available, otherwise fallback to site_url()
+         $site_identifier = !empty($site_identifier_option) ? $site_identifier_option : $site_identifier_from_url;
+
+         \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - Site identifier from site_url(): {$site_identifier_from_url}");
+         \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - Site identifier from option: {$site_identifier_option}");
+         \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - Using site identifier: {$site_identifier}");
+         \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - API token (first 10 chars): " . substr($api_token, 0, 10) . "...");
 
              if ( empty( $api_token ) ) {
                  wp_send_json_error([ 'message' => 'Site is not connected to FinanciarMe.' ], 403); // Forbidden if not connected
@@ -1936,6 +1879,8 @@ class ShopMetrics_Admin {
 
             // --- Call the backend to create the session ---
             $backend_url = SHOPMETRICS_API_URL . '/v1/create-checkout-session'; // Adjust endpoint
+            
+            \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - Backend URL: {$backend_url}");
             
             // --- Generate Success/Cancel URLs ---
             $success_url = add_query_arg( 'stripe_checkout', 'success', admin_url( 'admin.php?page=' . $this->plugin_name . '-subscription' ) );
@@ -1965,6 +1910,8 @@ class ShopMetrics_Admin {
                 'X-FinanciarMe-Site-Identifier' => $site_identifier,
                 'X-FinanciarMe-Token'           => $api_token,
             );
+            
+            \ShopMetrics_Logger::get_instance()->debug("AJAX create_checkout - Headers: " . json_encode($headers));
             $body_data = array(
                 'success_url' => $success_url,
                 'cancel_url'  => $cancel_url,
@@ -2467,7 +2414,7 @@ class ShopMetrics_Admin {
             wp_send_json_error( 'You do not have permission to perform this action.', 403 );
             return;
         }
-
+        
         // Get the test email from the POST data, fallback to admin email
         $test_email = isset($_POST['email']) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : get_option('admin_email');
         
@@ -3400,11 +3347,11 @@ class ShopMetrics_Admin {
             
             $file_contents = $wp_filesystem->get_contents($log_file);
             if ($file_contents !== false) {
-                header('Content-Type: text/plain');
+            header('Content-Type: text/plain');
                 header('Content-Disposition: attachment; filename="shopmetrics-' . gmdate('Y-m-d-H-i-s') . '.log"');
                 header('Content-Length: ' . strlen($file_contents));
                 echo $file_contents; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                exit;
+            exit;
             } else {
                 wp_die('Unable to read log file');
             }
@@ -3518,6 +3465,89 @@ class ShopMetrics_Admin {
             ));
         } else {
             wp_send_json_error('Failed to rotate logs');
+        }
+    }
+
+    /**
+     * AJAX handler for saving analytics consent
+     */
+    public function ajax_save_analytics_consent() {
+        // Verify nonce
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_save_analytics_consent')) {
+            wp_send_json_error('Security check failed', 403);
+            return;
+        }
+        
+        // Check permissions
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Insufficient permissions', 403);
+            return;
+        }
+        
+        // Get consent value
+        $consent = isset($_POST['consent']) ? (int) sanitize_text_field(wp_unslash($_POST['consent'])) : 0;
+        $consent = $consent ? 1 : 0; // Ensure it's 0 or 1
+        
+        // Get current settings
+        $settings = get_option('shopmetrics_settings', []);
+        
+        // Update analytics consent
+        $settings['analytics_consent'] = $consent;
+        
+        // Save settings
+        $updated = update_option('shopmetrics_settings', $settings);
+        
+        if ($updated || get_option('shopmetrics_settings')['analytics_consent'] == $consent) {
+            \ShopMetrics_Logger::get_instance()->info("Analytics consent updated to: " . ($consent ? 'enabled' : 'disabled'));
+            wp_send_json_success([
+                'message' => $consent ? 
+                    __('Analytics consent enabled successfully', 'shopmetrics') : 
+                    __('Analytics consent disabled successfully', 'shopmetrics'),
+                'consent' => $consent
+            ]);
+        } else {
+            \ShopMetrics_Logger::get_instance()->error("Failed to update analytics consent");
+            wp_send_json_error(__('Failed to save analytics consent', 'shopmetrics'), 500);
+        }
+    }
+
+    /**
+     * AJAX handler for resetting onboarding wizard
+     */
+    public function ajax_reset_onboarding() {
+        // Verify nonce
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_reset_onboarding')) {
+            wp_send_json_error('Security check failed', 403);
+            return;
+        }
+        
+        // Check permissions
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Insufficient permissions', 403);
+            return;
+        }
+        
+        try {
+            // Reset onboarding flag to require onboarding
+            $updated = update_option('shopmetrics_needs_onboarding', 'true');
+            
+            // Also clear any saved onboarding progress from localStorage (will be handled by frontend)
+            // and reset any onboarding-related transients
+            delete_transient('shopmetrics_onboarding_progress');
+            
+            if ($updated || get_option('shopmetrics_needs_onboarding') === 'true') {
+                \ShopMetrics_Logger::get_instance()->info("Onboarding wizard reset successfully");
+                wp_send_json_success([
+                    'message' => __('Onboarding wizard reset successfully', 'shopmetrics'),
+                    'redirect_url' => admin_url('admin.php?page=shopmetrics')
+                ]);
+            } else {
+                \ShopMetrics_Logger::get_instance()->error("Failed to reset onboarding wizard");
+                wp_send_json_error(__('Failed to reset onboarding wizard', 'shopmetrics'), 500);
+            }
+        } catch (Exception $e) {
+            \ShopMetrics_Logger::get_instance()->error("Exception resetting onboarding: " . $e->getMessage());
+            wp_send_json_error(__('Error resetting onboarding: ', 'shopmetrics') . $e->getMessage(), 500);
         }
     }
     
@@ -3694,7 +3724,7 @@ class ShopMetrics_Admin {
             <h1><?php esc_html_e('Error Tracking Test', 'shopmetrics'); ?></h1>
             <div class="card" style="max-width: 800px;">
                 <h2>PHP Error Testing</h2>
-                <p>Test PHP error tracking functionality. Errors will be sent to PostHog.</p>
+                <p>Test PHP error tracking functionality. Errors will be logged for debugging.</p>
                 
                 <div style="margin: 20px 0;">
                     <button type="button" id="test-single-error" class="button button-primary">

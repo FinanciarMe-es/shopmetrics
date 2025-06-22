@@ -967,3 +967,165 @@ div.sm-settings-section[data-integration="ads-platforms"] * {
 .rs-picker-popup {
     z-index: 10 !important;
 }
+
+/* --- Onboarding Wizard Analytics Step Styles --- */
+.analytics-info {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.analytics-icon {
+    color: #2271b1;
+    font-size: 24px;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.analytics-details {
+    flex: 1;
+}
+
+.analytics-details h4 {
+    margin: 0 0 10px 0;
+    color: #1e293b;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.analytics-details ul {
+    margin: 0 0 15px 0;
+    padding-left: 20px;
+}
+
+.analytics-details li {
+    margin-bottom: 5px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.analytics-consent {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin: 0;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    line-height: 1.4;
+}
+
+.analytics-consent small {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-left: 24px;
+}
+
+/* Inline analytics consent within the info block */
+.analytics-consent-inline {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.analytics-consent-inline .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.analytics-consent-inline .checkbox-label input[type="checkbox"] {
+    margin: 0;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+}
+
+.analytics-consent-inline .checkbox-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0c4a6e;
+    line-height: 1.4;
+}
+
+.analytics-consent-inline small {
+    display: block;
+    color: #0369a1;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-left: 26px;
+    margin-top: 5px;
+}
+
+/* Separate analytics consent block after Privacy Promise */
+.analytics-consent-separate {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.analytics-consent-separate .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.analytics-consent-separate .checkbox-label input[type="checkbox"] {
+    margin: 0;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+.analytics-consent-separate .checkbox-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1e293b;
+    line-height: 1.4;
+}
+
+.analytics-consent-separate small {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-left: 30px;
+}

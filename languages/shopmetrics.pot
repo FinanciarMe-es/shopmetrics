@@ -2088,6 +2088,30 @@ msgstr ""
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React Components Translations
 
 #: react-app/src/App.js:72
@@ -3168,268 +3192,268 @@ msgstr ""
 msgid "No orders by campaign data for selected period."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:155
+#: react-app/src/components/OnboardingWizard.js:159
 msgid ""
 "Are you sure you want to exit the setup wizard? You will be redirected to the"
 "WordPress plugins page."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:187
+#: react-app/src/components/OnboardingWizard.js:191
 msgid "Connection already established!"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:196
+#: react-app/src/components/OnboardingWizard.js:200
 msgid "API URL not configured properly"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:218
+#: react-app/src/components/OnboardingWizard.js:222
 msgid "Connection established successfully!"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:228
+#: react-app/src/components/OnboardingWizard.js:232
 msgid "Connection established! Your site is now connected to ShopMetrics Analytics."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:230
+#: react-app/src/components/OnboardingWizard.js:234
 msgid "Failed to save connection settings"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:233
+#: react-app/src/components/OnboardingWizard.js:237
 msgid "Failed to establish connection"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:236
+#: react-app/src/components/OnboardingWizard.js:240
 msgid "Connection error: %s"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:254
+#: react-app/src/components/OnboardingWizard.js:258
 msgid "Detection timed out. Please try again."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:282
+#: react-app/src/components/OnboardingWizard.js:286
 msgid "Auto-detected COGS meta key:"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:306
+#: react-app/src/components/OnboardingWizard.js:310
 msgid "Failed to retrieve meta keys"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:314
+#: react-app/src/components/OnboardingWizard.js:318
 msgid "Error detecting COGS keys: %s"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:331
+#: react-app/src/components/OnboardingWizard.js:335
 msgid "COGS settings saved successfully!"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:334
+#: react-app/src/components/OnboardingWizard.js:338
 msgid "Error saving COGS settings: %s"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:427
+#: react-app/src/components/OnboardingWizard.js:510
 msgid "ShopMetrics Logo"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:431
+#: react-app/src/components/OnboardingWizard.js:514
 msgid "Welcome to ShopMetrics Analytics!"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:433
+#: react-app/src/components/OnboardingWizard.js:516
 msgid ""
 "Get ready to unlock powerful insights about your WooCommerce store. This wizard"
 "will guide you through the initial setup process."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:438
+#: react-app/src/components/OnboardingWizard.js:521
 msgid "Quick Setup"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:439
+#: react-app/src/components/OnboardingWizard.js:522
 msgid "Connect to our analytics platform in minutes"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:443
+#: react-app/src/components/OnboardingWizard.js:526
 msgid "Financial Insights"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:444
+#: react-app/src/components/OnboardingWizard.js:527
 msgid "Understand your store\\"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:448
+#: react-app/src/components/OnboardingWizard.js:531
 msgid "Sales Analytics"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:449
+#: react-app/src/components/OnboardingWizard.js:532
 msgid "Track orders, revenue and growth trends"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:455
+#: react-app/src/components/OnboardingWizard.js:538
 msgid "Get Started"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:464
+#: react-app/src/components/OnboardingWizard.js:547
 msgid "Connect to ShopMetrics"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:465
-#: react-app/src/components/OnboardingWizard.js:646
+#: react-app/src/components/OnboardingWizard.js:548
+#: react-app/src/components/OnboardingWizard.js:729
 msgid "Let\\"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:468
+#: react-app/src/components/OnboardingWizard.js:551
 msgid "Site Identifier"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:476
+#: react-app/src/components/OnboardingWizard.js:559
 msgid "e.g., mystore.com"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:478
+#: react-app/src/components/OnboardingWizard.js:561
 msgid ""
 "Your site domain automatically detected. This identifies your store in our"
 "system."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:496
-#: react-app/src/components/OnboardingWizard.js:633
-#: react-app/src/components/OnboardingWizard.js:675
-#: react-app/src/components/OnboardingWizard.js:741
+#: react-app/src/components/OnboardingWizard.js:579
+#: react-app/src/components/OnboardingWizard.js:716
+#: react-app/src/components/OnboardingWizard.js:750
+#: react-app/src/components/OnboardingWizard.js:829
 msgid "Back"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:509
-#: react-app/src/components/OnboardingWizard.js:684
+#: react-app/src/components/OnboardingWizard.js:592
+#: react-app/src/components/OnboardingWizard.js:772
 msgid "Continue"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:519
+#: react-app/src/components/OnboardingWizard.js:602
 msgid "Configure Cost of Goods Sold (COGS)"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:529
+#: react-app/src/components/OnboardingWizard.js:612
 msgid ""
 "Setting up COGS tracking will enable accurate profitability analysis in your"
 "dashboard."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:530
+#: react-app/src/components/OnboardingWizard.js:613
 msgid "Important:"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:530
+#: react-app/src/components/OnboardingWizard.js:613
 msgid ""
 "The meta key is a field where product costs are stored by a COGS plugin in"
 "WooCommerce."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:531
+#: react-app/src/components/OnboardingWizard.js:614
 msgid ""
 "This is usually an additional attribute of your products managed by a specific"
 "Cost of Goods plugin like "
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:535
+#: react-app/src/components/OnboardingWizard.js:618
 msgid "COGS Meta Key"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:538
+#: react-app/src/components/OnboardingWizard.js:621
 msgid "Detecting meta keys..."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:546
+#: react-app/src/components/OnboardingWizard.js:629
 msgid "Cancel"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:572
+#: react-app/src/components/OnboardingWizard.js:655
 msgid "e.g., _wc_cog_cost"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:581
+#: react-app/src/components/OnboardingWizard.js:664
 msgid "Detecting..."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:581
+#: react-app/src/components/OnboardingWizard.js:664
 msgid "Auto-detect"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:585
+#: react-app/src/components/OnboardingWizard.js:668
 msgid "The meta key where product costs are stored in your WooCommerce store."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:612
+#: react-app/src/components/OnboardingWizard.js:695
 msgid "Applied when no COGS data is found. Use 0 to show N/A instead."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:624
+#: react-app/src/components/OnboardingWizard.js:707
 msgid "Retry"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:636
+#: react-app/src/components/OnboardingWizard.js:719
 msgid "Saving..."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:636
+#: react-app/src/components/OnboardingWizard.js:719
 msgid "Save & Continue"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:645
+#: react-app/src/components/OnboardingWizard.js:728
 msgid "Initial Data Sync"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:651
+#: react-app/src/components/OnboardingWizard.js:734
 msgid "What We\\"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:653
+#: react-app/src/components/OnboardingWizard.js:736
 msgid "Order history (dates, amounts, products)"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:654
+#: react-app/src/components/OnboardingWizard.js:737
 msgid "Product inventory data"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:655
+#: react-app/src/components/OnboardingWizard.js:738
 msgid "Customer information (anonymous)"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:658
+#: react-app/src/components/OnboardingWizard.js:741
 msgid "Estimated Time:"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:659
+#: react-app/src/components/OnboardingWizard.js:742
 msgid ""
 "This process runs in the background and may take a few minutes depending on your"
 "store size."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:666
-msgid "Sync started successfully! This will continue in the background."
+#: react-app/src/components/OnboardingWizard.js:760
+msgid "Skip for Now"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:680
+#: react-app/src/components/OnboardingWizard.js:767
 msgid "Starting Sync..."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:680
+#: react-app/src/components/OnboardingWizard.js:767
 msgid "Start Sync"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:733
+#: react-app/src/components/OnboardingWizard.js:821
 msgid ""
 "This helps us understand how features are used and identify areas for"
 "improvement."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:744
+#: react-app/src/components/OnboardingWizard.js:832
 msgid "Complete Setup"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:751
+#: react-app/src/components/OnboardingWizard.js:839
 msgid "Unknown step"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:764
+#: react-app/src/components/OnboardingWizard.js:852
 msgid "Close wizard"
 msgstr ""
 

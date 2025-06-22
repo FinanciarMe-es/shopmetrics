@@ -247,6 +247,39 @@ $log_nonce = wp_create_nonce('sm_settings_ajax_nonce');
         </div>
     </div>
 
+    <!-- Onboarding Section -->
+    <div class="sm-settings-section">
+        <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+            <span class="dashicons dashicons-admin-generic" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
+            <?php esc_html_e('Onboarding', 'shopmetrics'); ?>
+        </h2>
+        
+        <p><?php esc_html_e('Reset the setup wizard to reconfigure your ShopMetrics settings.', 'shopmetrics'); ?></p>
+        
+        <?php 
+        		$needs_onboarding = get_option('shopmetrics_needs_onboarding', 'true') === 'true';
+		if (!$needs_onboarding): 
+        ?>
+            <div style="margin-top: 15px;">
+                <button id="sm-reset-onboarding" class="button button-secondary" style="display: flex; align-items: center;">
+                    <span class="dashicons dashicons-update" style="margin-right: 5px; line-height: 1;"></span>
+                    <?php esc_html_e('Reset Onboarding Wizard', 'shopmetrics'); ?>
+                </button>
+                <p style="margin-top: 10px; color: #666; font-style: italic;">
+                    <?php esc_html_e('This will restart the setup wizard on your next visit to the dashboard.', 'shopmetrics'); ?>
+                </p>
+                <div id="reset-onboarding-status" style="margin-top: 10px;"></div>
+            </div>
+        <?php else: ?>
+            <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px;">
+                <p style="margin: 0; color: #856404;">
+                    <span class="dashicons dashicons-info" style="margin-right: 5px;"></span>
+                    <?php esc_html_e('Onboarding wizard has not been completed yet. Visit the dashboard to start setup.', 'shopmetrics'); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </div>
+
     <!-- Log Management Section (Hidden) -->
     <div class="sm-settings-section" style="display: none;">
         <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
@@ -355,6 +388,44 @@ jQuery(document).ready(function($) {
         const mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(subject);
         
         window.location.href = mailtoLink;
+    });
+
+    // Reset onboarding functionality
+    $('#sm-reset-onboarding').on('click', function(e) {
+        e.preventDefault();
+        
+        const button = $(this);
+        const statusDiv = $('#reset-onboarding-status');
+        
+        // Show loading state
+        button.prop('disabled', true).text('<?php echo esc_js(__('Resetting...', 'shopmetrics')); ?>');
+        statusDiv.html('<span style="color: #666;">⏳ Resetting onboarding...</span>');
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'shopmetrics_reset_onboarding',
+                _ajax_nonce: '<?php echo esc_js(wp_create_nonce('shopmetrics_reset_onboarding')); ?>'
+            },
+            success: function(response) {
+                if (response.success) {
+                    statusDiv.html('<span style="color: #46b450;">✅ Onboarding reset successfully! Redirecting to Dashboard...</span>');
+                    
+                    // Redirect to Dashboard after 1 second
+                    setTimeout(function() {
+                        window.location.href = '<?php echo esc_js(admin_url('admin.php?page=shopmetrics')); ?>';
+                    }, 1000);
+                } else {
+                    statusDiv.html('<span style="color: #dc3232;">❌ Error resetting onboarding: ' + (response.data || 'Unknown error') + '</span>');
+                    button.prop('disabled', false).html('<span class="dashicons dashicons-update" style="margin-right: 5px; line-height: 1;"></span><?php echo esc_js(__('Reset Onboarding Wizard', 'shopmetrics')); ?>');
+                }
+            },
+            error: function(xhr, status, error) {
+                statusDiv.html('<span style="color: #dc3232;">❌ AJAX error: ' + error + '</span>');
+                button.prop('disabled', false).html('<span class="dashicons dashicons-update" style="margin-right: 5px; line-height: 1;"></span><?php echo esc_js(__('Reset Onboarding Wizard', 'shopmetrics')); ?>');
+            }
+        });
     });
 
 <?php if (empty($api_token)): ?>
