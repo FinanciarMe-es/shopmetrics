@@ -32,7 +32,7 @@ try {
     \ShopMetrics_Logger::get_instance()->error('ShopMetrics Analytics Debug: Fatal error loading vendor autoload: ' . $e->getMessage());
 }
 
-use PostHog\PostHog;
+use WP_Error;
 
 \ShopMetrics_Logger::get_instance()->debug('ShopMetrics Analytics Debug: About to define class ShopMetrics_Analytics');
 
@@ -44,15 +44,7 @@ use PostHog\PostHog;
  */
 class ShopMetrics_Analytics {
     
-    /**
-     * PostHog project API key
-     */
-    const POSTHOG_API_KEY = 'phc_AWlR9ugS9UZQAN2VehoFv5oRWpOICmYcHkTnuBmGGdI';
-    
-    /**
-     * PostHog API host (EU for GDPR compliance)
-     */
-    const POSTHOG_HOST = 'https://eu.i.posthog.com';
+    private static $instance = null;
     
     /**
      * Debug log file path
@@ -65,9 +57,8 @@ class ShopMetrics_Analytics {
     private static $initialized = false;
     
     /**
-     * Track if PostHog has been initialized
+     * Analytics disabled for WordPress.org version
      */
-    private static $posthog_initialized = false;
     
     /**
      * Get log file path
@@ -145,6 +136,14 @@ class ShopMetrics_Analytics {
     }
     
     /**
+     * Check if tracking is enabled (WordPress.org version always returns false)
+     */
+    public static function is_tracking_enabled() {
+        // Always disabled for WordPress.org version
+        return false;
+    }
+    
+    /**
      * Initialize analytics
      */
     public static function init() {
@@ -205,46 +204,17 @@ class ShopMetrics_Analytics {
      * Initialize PostHog PHP client
      */
     public static function init_posthog() {
-        // Use transient for PostHog initialization tracking
-        $posthog_key = 'shopmetrics_posthog_init_' . get_current_blog_id();
-        $last_posthog_init = get_transient($posthog_key);
-        
-        self::log("init_posthog() called - transient: {$last_posthog_init}, initialized: " . (self::$posthog_initialized ? 'true' : 'false'));
-        
-        // Only check transient if we think we're already initialized
-        if (self::$posthog_initialized && $last_posthog_init && (time() - $last_posthog_init) < 300) {
-            self::log("Skipping PostHog init - initialized " . (time() - $last_posthog_init) . " seconds ago");
-            return;
-        }
-        
-        self::log("Initializing PostHog with API key: " . substr(self::POSTHOG_API_KEY, 0, 10) . "... and host: " . self::POSTHOG_HOST);
-        
-        try {
-            // Initialize PostHog first
-            PostHog::init(self::POSTHOG_API_KEY, [
-                'host' => self::POSTHOG_HOST,
-                'debug' => false, // Disable debug to reduce noise
-                'timeout' => 30,
-                'ssl_verify' => true
-            ]);
-            
-            // Mark as initialized immediately after PostHog::init()
-            self::$posthog_initialized = true;
-            set_transient($posthog_key, time(), 300);
-            self::log("PostHog initialized successfully");
-            
-        } catch (Exception $e) {
-            self::log("PostHog init error: " . $e->getMessage(), 'ERROR');
-            self::log("PostHog init stack trace: " . $e->getTraceAsString(), 'ERROR');
-            self::$posthog_initialized = false;
-        }
+        // PostHog removed for WordPress.org compliance
+        // Internal analytics disabled
+        self::log("Internal analytics disabled for WordPress.org version");
+        return true;
     }
     
     /**
-     * Handle PostHog errors
+     * Handle analytics errors (PostHog removed)
      */
     public static function handle_posthog_error($error) {
-        self::log("PostHog error callback: " . $error, 'ERROR');
+        self::log("Analytics error (WordPress.org version): " . $error, 'ERROR');
     }
     
     /**
@@ -274,13 +244,11 @@ class ShopMetrics_Analytics {
             true
         );
         
-        // Simplified analytics configuration - only PostHog direct connection
+        // Analytics configuration (PostHog removed for WordPress.org)
         wp_localize_script('shopmetrics-analytics', 'shopmetricsAnalytics', [
-            'enabled' => self::is_enabled(),
+            'enabled' => false, // Disabled for WordPress.org version
             'siteHash' => self::get_site_hash(),
             'pluginVersion' => SHOPMETRICS_VERSION,
-            'posthogKey' => self::POSTHOG_API_KEY,
-            'posthogHost' => self::POSTHOG_HOST,
             'nonce' => wp_create_nonce('shopmetrics_analytics_nonce'),
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'sessionRecording' => [
@@ -312,11 +280,9 @@ class ShopMetrics_Analytics {
      */
     public static function get_config() {
         $config = [
-            'posthog_key' => self::POSTHOG_API_KEY,
-            'posthog_host' => self::POSTHOG_HOST,
             'site_hash' => self::get_site_hash(),
             'plugin_version' => SHOPMETRICS_VERSION,
-            'enabled' => self::is_enabled(),
+            'enabled' => false, // Disabled for WordPress.org version
             'nonce' => wp_create_nonce('shopmetrics_analytics_nonce'),
             'ajaxUrl' => admin_url('admin-ajax.php')
         ];
@@ -353,51 +319,22 @@ class ShopMetrics_Analytics {
     /**
      * Track event using PostHog PHP SDK
      */
-    public static function track_event($event_name, $properties = []) {
-        self::log("track_event called: event='{$event_name}', properties=" . json_encode($properties));
-        
-        if (!self::is_enabled()) {
-            self::log("Analytics disabled, not tracking event: {$event_name}");
-            return false;
-        }
-        
+    public static function track_event($event_name, $properties = array()) {
         try {
-            // Initialize PostHog if not already done
-            self::init_posthog();
-            
-            // Check if PostHog client is properly initialized
-            if (!class_exists('PostHog\\PostHog')) {
-                self::log("PostHog class not available", 'ERROR');
+            // Skip if user opted out
+            if (!self::is_tracking_enabled()) {
                 return false;
             }
             
-            // Final safety check before calling PostHog::capture
-            if (!self::$posthog_initialized) {
-                self::log("PostHog not marked as initialized, aborting capture", 'ERROR');
-                return false;
+            // PostHog removed - just log for debugging if needed
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                self::log("Event tracked (WordPress.org version): $event_name with properties: " . wp_json_encode($properties));
             }
-            
-            $final_properties = array_merge(self::get_user_properties(), $properties);
-            
-            $event_data = [
-                'distinctId' => self::get_site_hash(),
-                'event' => $event_name,
-                'properties' => $final_properties,
-                '$process_person_profile' => false // Disable person profile processing for privacy
-            ];
-            
-            self::log("Sending event to PostHog: " . json_encode($event_data));
-            
-            // Use site hash as distinct ID for privacy
-            $result = PostHog::capture($event_data);
-            
-            self::log("PostHog::capture result: " . (is_bool($result) ? ($result ? 'true' : 'false') : json_encode($result)));
             
             return true;
             
         } catch (Exception $e) {
-            self::log("track_event error: " . $e->getMessage(), 'ERROR');
-            self::log("track_event stack trace: " . $e->getTraceAsString(), 'ERROR');
+            self::log("Error in track_event: " . $e->getMessage());
             return false;
         }
     }
@@ -533,9 +470,7 @@ class ShopMetrics_Analytics {
                 <h2>📊 Analytics Status</h2>
                 <p><strong>Analytics Enabled:</strong> <?php echo self::is_enabled() ? '✅ Yes' : '❌ No'; ?></p>
                 <p><strong>Analytics Initialized:</strong> <?php echo self::$initialized ? '✅ Yes' : '❌ No'; ?></p>
-                <p><strong>PostHog Initialized:</strong> <?php echo self::$posthog_initialized ? '✅ Yes' : '❌ No'; ?></p>
-                <p><strong>PostHog API Key:</strong> <?php echo self::POSTHOG_API_KEY ? 'Set (' . esc_html(substr(self::POSTHOG_API_KEY, 0, 20)) . '...)' : 'NOT SET'; ?></p>
-                <p><strong>PostHog Host:</strong> <?php echo esc_html(self::POSTHOG_HOST); ?></p>
+                <p><strong>Internal Analytics:</strong> ❌ Disabled for WordPress.org version</p>
                 <p><strong>User Consent:</strong> <?php echo self::is_enabled() ? '✅ Given' : '❌ Not Given'; ?></p>
             </div>
             
@@ -661,10 +596,9 @@ class ShopMetrics_Analytics {
         self::log("Sending test error event");
         
         // Clear PostHog transient for test to ensure fresh initialization
-        $posthog_key = 'shopmetrics_posthog_init_' . get_current_blog_id();
-        delete_transient($posthog_key);
-        self::$posthog_initialized = false;
-        self::log("Cleared transient for test: {$posthog_key}");
+        $analytics_key = 'shopmetrics_analytics_init_' . get_current_blog_id();
+        delete_transient($analytics_key);
+        self::log("Cleared transient for test: {$analytics_key}");
         
         // Send test error
         $result = self::track_error(
@@ -787,13 +721,10 @@ class ShopMetrics_Analytics {
      */
     public static function reset_initialization() {
         $init_key = 'shopmetrics_analytics_init_' . get_current_blog_id();
-        $posthog_key = 'shopmetrics_posthog_init_' . get_current_blog_id();
         
         delete_transient($init_key);
-        delete_transient($posthog_key);
         
         self::$initialized = false;
-        self::$posthog_initialized = false;
         
         self::log("Analytics initialization state reset");
         
