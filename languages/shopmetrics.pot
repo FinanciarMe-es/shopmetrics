@@ -2112,93 +2112,33 @@ msgstr ""
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React Components Translations
-
-#: react-app/src/App.js:72
-msgid "General"
-msgstr ""
-
-#: react-app/src/App.js:79
-msgid "Sales"
-msgstr ""
-
-#: react-app/src/App.js:86
-msgid "Finance"
-msgstr ""
-
-#: react-app/src/App.js:93
-msgid "Marketing"
-msgstr ""
-
-#: react-app/src/App.js:100
-msgid "Cart"
-msgstr ""
-
-#: react-app/src/App.js:107
-msgid "Stock"
-msgstr ""
-
-#: react-app/src/components/AuthErrorBanner.js:30
-msgid "Connection Error:"
-msgstr ""
 
 #: react-app/src/components/AuthErrorBanner.js:30
 msgid ""
 "Unable to communicate with ShopMetrics API. Your site may need to be"
 "reconnected."
-msgstr ""
-
-#: react-app/src/components/AuthErrorBanner.js:44
-msgid "Reconnecting..."
-msgstr ""
-
-#: react-app/src/components/AuthErrorBanner.js:44
-msgid "Reconnect Site"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:201
-#: react-app/src/components/FinanceDashboard.js:72
-#: react-app/src/components/MarketingDashboard.js:86
-#: react-app/src/components/SalesDashboard.js:74
-msgid "Invalid date range provided."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:207
-#: react-app/src/components/SalesDashboard.js:81
-msgid "Site identifier or API token not provided."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:246
-msgid "Failed to parse cart data from API response (unexpected data structure)."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:252
-msgid "Failed to fetch cart stats."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:381
-#: react-app/src/components/StockDashboard.js:862
-msgid "Error: %s"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:413
-msgid "Active Carts"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:418
-msgid "Number of carts currently active (not abandoned, not converted)."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:423
-msgid "Active Carts Value"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:428
-msgid "Total value of items in all active carts."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:434
-msgid "Average Cart Value"
 msgstr ""
 
 #: react-app/src/components/CartDashboard.js:439
@@ -2207,43 +2147,10 @@ msgid ""
 "\\"
 msgstr ""
 
-#: react-app/src/components/CartDashboard.js:445
-#: react-app/src/components/CartDashboard.js:645
-msgid "Abandoned Carts"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:450
-msgid "Number of carts that were initiated but not completed."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:455
-msgid "Abandoned Carts Value"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:460
-msgid "Total value of items in all abandoned carts."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:466
-msgid "Abandoned Cart Rate"
-msgstr ""
-
 #: react-app/src/components/CartDashboard.js:471
 msgid ""
 "Percentage of initiated carts that were abandoned (Abandoned Carts / (Abandoned"
 "Carts + Completed Orders))."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:476
-msgid "Checkouts Started"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:481
-msgid "Number of times users initiated the checkout process."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:486
-msgid "Checkout Conversion Rate"
 msgstr ""
 
 #: react-app/src/components/CartDashboard.js:491
@@ -2252,18 +2159,10 @@ msgid ""
 "Orders / Checkouts Started)."
 msgstr ""
 
-#: react-app/src/components/CartDashboard.js:496
-msgid "Checkout Abandonment Rate"
-msgstr ""
-
 #: react-app/src/components/CartDashboard.js:501
 msgid ""
 "Percentage of users who started checkout but did not complete the order"
 "((Checkouts Started - Orders Completed) / Checkouts Started)."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:506
-msgid "Cart to Checkout Start Rate"
 msgstr ""
 
 #: react-app/src/components/CartDashboard.js:511
@@ -2272,38 +2171,10 @@ msgid ""
 "checkout (Checkouts Started / Viewed Cart Page)."
 msgstr ""
 
-#: react-app/src/components/CartDashboard.js:516
-msgid "Avg Items / Active Cart"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:521
-msgid "Average number of items in carts that are currently active."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:526
-msgid "Avg Items / Abandoned Cart"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:531
-msgid "Average number of items in carts that were abandoned."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:543
-msgid "Checkout Funnel Flow"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:545
-msgid "Checkout Funnel Flow Help"
-msgstr ""
-
 #: react-app/src/components/CartDashboard.js:546
 msgid ""
 "<p>A visual representation of how visitors move through your checkout process."
 "Shows drop-off points and conversion rates at each stage.</p>"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:578
-msgid "No checkout funnel data available for the selected period."
 msgstr ""
 
 #: react-app/src/components/CartDashboard.js:579
@@ -2312,50 +2183,10 @@ msgid ""
 "your store."
 msgstr ""
 
-#: react-app/src/components/CartDashboard.js:587
-#: react-app/src/components/CartDashboard.js:589
-msgid "Top Products in Abandoned Carts"
-msgstr ""
-
 #: react-app/src/components/CartDashboard.js:590
 msgid ""
 "<p>A bar chart showing which products appear most frequently in abandoned"
 "carts.</p>"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:613
-#: react-app/src/components/CartDashboard.js:686
-#: react-app/src/components/CartDashboard.js:741
-#: react-app/src/components/FinanceDashboard.js:389
-#: react-app/src/components/MarketingDashboard.js:416
-#: react-app/src/components/MarketingDashboard.js:658
-#: react-app/src/components/SalesDashboard.js:410
-#: react-app/src/components/StockDashboard.js:995
-msgid "Current Period"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:614
-#: react-app/src/components/CartDashboard.js:695
-#: react-app/src/components/CartDashboard.js:750
-#: react-app/src/components/FinanceDashboard.js:453
-#: react-app/src/components/MarketingDashboard.js:450
-#: react-app/src/components/MarketingDashboard.js:694
-#: react-app/src/components/SalesDashboard.js:446
-#: react-app/src/components/StockDashboard.js:1028
-msgid "Previous Period"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:619
-msgid "No abandoned products data available for the selected period."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:620
-msgid "This will populate when customers abandon products in their carts."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:627
-#: react-app/src/components/CartDashboard.js:629
-msgid "Abandoned Cart Value Distribution"
 msgstr ""
 
 #: react-app/src/components/CartDashboard.js:630
@@ -2364,94 +2195,10 @@ msgid ""
 "price thresholds where customers are more likely to abandon their carts.</p>"
 msgstr ""
 
-#: react-app/src/components/CartDashboard.js:642
-msgid "Price Range"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:643
-msgid "Number of Carts"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:644
-msgid "carts"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:644
-msgid "Count"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:650
-msgid "No abandoned cart value data available."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:651
-msgid "This chart will populate as customers abandon carts at different price points."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:658
-msgid "Abandoned Cart Rate Trend"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:660
-msgid "Abandoned Cart Rate Trend Help"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:661
-msgid "<p>Shows how the abandoned cart rate has changed over the selected period.</p>"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:705
-msgid "No abandoned cart rate trend data available."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:706
-msgid "This chart will populate as customers use your cart over time."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:713
-msgid "Checkout Conversion Rate Trend"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:715
-msgid "Checkout Conversion Rate Trend Help"
-msgstr ""
-
 #: react-app/src/components/CartDashboard.js:716
 msgid ""
 "<p>Shows how the checkout conversion rate has changed over the selected"
 "period.</p>"
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:760
-msgid "No checkout conversion rate trend data available."
-msgstr ""
-
-#: react-app/src/components/CartDashboard.js:761
-msgid "This chart will populate as customers complete checkouts."
-msgstr ""
-
-#: react-app/src/components/CompareDatesButton.js:158
-msgid "Compare"
-msgstr ""
-
-#: react-app/src/components/CompareDatesButton.js:169
-msgid "Current Period:"
-msgstr ""
-
-#: react-app/src/components/CompareDatesButton.js:172
-msgid "Previous Period:"
-msgstr ""
-
-#: react-app/src/components/CompareDatesButton.js:189
-msgid "Reset Comparison"
-msgstr ""
-
-#: react-app/src/components/CompareDatesButton.js:203
-msgid "Compare Periods"
-msgstr ""
-
-#: react-app/src/components/ConnectionAlert.js:27
-msgid "Connect to ShopMetrics Analytics"
 msgstr ""
 
 #: react-app/src/components/ConnectionAlert.js:28
@@ -2460,168 +2207,10 @@ msgid ""
 "connection to display your data."
 msgstr ""
 
-#: react-app/src/components/DashboardHeader.js:211
-msgid "Clear cache and reload"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:26
-msgid "Last 7 days"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:30
-msgid "Last 30 days"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:34
-msgid "This month"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:38
-msgid "Last month"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:42
-msgid "Last 3 months"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:46
-msgid "Last 6 months"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:50
-msgid "This year"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:54
-msgid "Last year"
-msgstr ""
-
-#: react-app/src/components/DateRangeSelector.js:93
-msgid "Select Date Range"
-msgstr ""
-
-#: react-app/src/components/EmptyState.js:21
-msgid "Connect to See Your Analytics"
-msgstr ""
-
-#: react-app/src/components/EmptyState.js:22
-msgid "Please connect your site to view your WooCommerce analytics dashboard."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:20
-msgid "Product Revenue"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:23
-msgid "Shipping Charged"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:26
-msgid "Tax Collected"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:82
-#: react-app/src/components/MarketingDashboard.js:97
-msgid "API configuration is missing."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:126
-#: react-app/src/components/MarketingDashboard.js:142
-msgid "Failed to fetch data"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:262
-msgid "Profitability insights (Gross Profit, Margin) may be incomplete. Please"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:273
-msgid "configure your Cost of Goods Sold (COGS) settings"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:275
-msgid "for accurate calculations."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:287
-msgid "Dismiss COGS configuration alert"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:297
-msgid "Gross Profit"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:306
-msgid "Total Net Sales minus Total Cost of Goods Sold (COGS)."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:310
-msgid "Gross Profit Margin"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:319
-msgid "(Gross Profit / Total Net Sales) * 100."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:323
-msgid "Total COGS"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:332
-msgid "Total Cost of Goods Sold for the items sold in the period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:336
-msgid "Total Tax Collected"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:344
-msgid "Total sales tax collected from orders in the period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:348
-msgid "Total Shipping Charged"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:356
-msgid "Total shipping fees charged to customers in the period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:360
-msgid "Total Discounts Given"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:369
-msgid "Total value of order-level discounts applied in the period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:374
-msgid "Error loading finance data: %s"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:381
-msgid "Revenue Composition Help"
-msgstr ""
-
 #: react-app/src/components/FinanceDashboard.js:382
 msgid ""
 "<p>Shows the breakdown of total invoiced value into product revenue (net sales),"
 "shipping fees charged, and taxes collected during the period.</p>"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:384
-msgid "Revenue Composition"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:446
-msgid "No revenue composition data available."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:510
-msgid "No revenue composition data for previous period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:520
-msgid "Top Products by Gross Profit Help"
 msgstr ""
 
 #: react-app/src/components/FinanceDashboard.js:521
@@ -2630,50 +2219,10 @@ msgid ""
 "Revenue - COGS) during the selected period.</p>"
 msgstr ""
 
-#: react-app/src/components/FinanceDashboard.js:523
-msgid "Top 10 Products by Gross Profit"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:544
-msgid "Current Gross Profit"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:545
-msgid "Previous Gross Profit"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:551
-msgid "No product gross profit data available for this period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:558
-msgid "Sales by Payment Method Help"
-msgstr ""
-
 #: react-app/src/components/FinanceDashboard.js:559
 msgid ""
 "<p>Shows the total net sales generated by each payment method during the"
 "selected period.</p>"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:561
-msgid "Sales by Payment Method"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:571
-msgid "Current Period Sales"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:572
-msgid "Previous Period Sales"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:577
-msgid "No sales data by payment method available."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:584
-msgid "Orders by Payment Method Help"
 msgstr ""
 
 #: react-app/src/components/FinanceDashboard.js:585
@@ -2682,316 +2231,40 @@ msgid ""
 "selected period.</p>"
 msgstr ""
 
-#: react-app/src/components/FinanceDashboard.js:587
-msgid "Orders by Payment Method"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:597
-msgid "Current Period Orders"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:598
-msgid "Previous Period Orders"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:603
-msgid "No order count data by payment method available."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:610
-msgid "Tax Collected Over Time Help"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:611
-msgid "<p>Shows the total sales tax collected daily over the selected period.</p>"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:613
-msgid "Tax Collected Over Time"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:623
-msgid "Current Period Tax"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:624
-msgid "Previous Period Tax"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:629
-msgid "No tax data available for this period."
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:636
-msgid "Shipping Charged Over Time Help"
-msgstr ""
-
 #: react-app/src/components/FinanceDashboard.js:637
 msgid ""
 "<p>Shows the total shipping fees charged to customers daily over the selected"
 "period.</p>"
 msgstr ""
 
-#: react-app/src/components/FinanceDashboard.js:639
-msgid "Shipping Charged Over Time"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:649
-msgid "Current Period Shipping"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:650
-msgid "Previous Period Shipping"
-msgstr ""
-
-#: react-app/src/components/FinanceDashboard.js:655
-msgid "No shipping data available for this period."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:94
-msgid "Missing required configuration."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:144
-msgid "An unknown error occurred while fetching %s."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:438
-msgid "Total Revenue"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:444
-msgid "Total revenue generated from all sales within the selected period."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:448
-#: react-app/src/components/SalesDashboard.js:326
-msgid "Total Orders"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:453
-msgid "Total number of completed orders placed within the selected period."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:457
-msgid "Average Order Value"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:463
-msgid "Average monetary value of each order (Total Revenue / Total Orders)."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:467
-#: react-app/src/components/GeneralDashboard.js:565
-#: react-app/src/components/GeneralDashboard.js:570
-msgid "Gross Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:472
-msgid "Total revenue from all sales before any deductions like refunds or discounts."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:479
-msgid "Refunds Amount"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:484
-msgid "Total amount of money refunded to customers."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:490
-msgid "Orders with Refunds"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:495
-msgid "Number of orders that have at least one refund associated with them."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:506
-msgid "Error loading KPIs: %s"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:507
-#: react-app/src/components/GeneralDashboard.js:508
-msgid "Error loading charts: %s"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:516
-msgid "Could not load Net Sales data."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:518
-msgid "Net Sales Over Time"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:520
-msgid "Net Sales Over Time Help"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:521
+#: react-app/src/components/GeneralDashboard.js:528
 msgid ""
 "<p>Shows the total value of sales after refunds have been deducted, aggregated"
 "daily over the selected period.</p>"
 msgstr ""
 
-#: react-app/src/components/GeneralDashboard.js:531
-#: react-app/src/components/MarketingDashboard.js:749
-#: react-app/src/components/MarketingDashboard.js:803
-msgid "Current Net Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:536
-#: react-app/src/components/GeneralDashboard.js:629
-#: react-app/src/components/GeneralDashboard.js:635
-#: react-app/src/components/MarketingDashboard.js:750
-#: react-app/src/components/MarketingDashboard.js:804
-msgid "Previous Net Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:547
-msgid "Gross Sales & Orders Help"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:548
+#: react-app/src/components/GeneralDashboard.js:555
 msgid ""
 "<p>Compares total sales value (before refunds) and the number of orders received"
 "each day.</p>"
 msgstr ""
 
-#: react-app/src/components/GeneralDashboard.js:551
-msgid "Gross Sales & Orders Over Time"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:553
-#: react-app/src/components/GeneralDashboard.js:589
-#: react-app/src/components/GeneralDashboard.js:615
-msgid "Chart Error: %s"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:566
-#: react-app/src/components/GeneralDashboard.js:571
-msgid "Previous Gross Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:572
-msgid "Orders"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:573
-#: react-app/src/components/MarketingDashboard.js:777
-#: react-app/src/components/MarketingDashboard.js:831
-msgid "Previous Orders"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:577
-msgid "No timeseries data for selected period."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:583
-msgid "Average Order Value (AOV) Help"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:584
+#: react-app/src/components/GeneralDashboard.js:591
 msgid ""
 "<p>Shows the average amount spent per order (Gross Sales / Total Orders)"
 "calculated daily.</p>"
 msgstr ""
 
-#: react-app/src/components/GeneralDashboard.js:587
-msgid "Average Order Value Over Time"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:598
-msgid "AOV"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:599
-msgid "Previous AOV"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:603
-msgid "No AOV data for selected period."
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:609
-msgid "Top Products Help"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:610
+#: react-app/src/components/GeneralDashboard.js:617
 msgid ""
 "<p>Displays the top products ranked by their total net sales amount within the"
 "selected date range.</p>"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:613
-msgid "Top Products by Net Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:629
-#: react-app/src/components/GeneralDashboard.js:634
-msgid "Net Sales"
-msgstr ""
-
-#: react-app/src/components/GeneralDashboard.js:639
-msgid "No product data for selected period."
-msgstr ""
-
-#: react-app/src/components/HelpTooltip.js:64
-msgid "More info"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:336
-msgid "Customer Count"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:342
-msgid "Total number of unique customers who made a purchase during the period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:346
-msgid "Repeat Customer Rate"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:354
-msgid "Percentage of customers who made more than one purchase during the period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:358
-msgid "Total Visits"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:364
-msgid "Total number of visits to your website during the period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:368
-msgid "Purchases"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:374
-msgid "Total number of completed purchases (orders) during the period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:378
-msgid "Conversion Rate"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:386
-msgid "Percentage of visits that resulted in a purchase (Purchases / Total Visits)."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:390
-msgid "Top Channel"
 msgstr ""
 
 #: react-app/src/components/MarketingDashboard.js:396
 msgid ""
 "The marketing channel that drove the most visits during the period (e.g.,"
 "Google, Facebook, Direct)."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:405
-msgid "Sales Funnel Flow Help"
 msgstr ""
 
 #: react-app/src/components/MarketingDashboard.js:406
@@ -3005,57 +2278,10 @@ msgid ""
 "each stage.</li></ul>"
 msgstr ""
 
-#: react-app/src/components/MarketingDashboard.js:409
-msgid "Sales Funnel Flow"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:445
-msgid "No funnel data for current period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:514
-msgid "Not enough data to display funnel flow."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:525
-msgid "Sales by Location Help"
-msgstr ""
-
 #: react-app/src/components/MarketingDashboard.js:526
 msgid ""
 "<p>Top locations (City, Country) based on the total net sales amount from orders"
 "shipped to that location within the selected date range.</p>"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:528
-msgid "Sales by Location"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:530
-#: react-app/src/components/MarketingDashboard.js:576
-#: react-app/src/components/MarketingDashboard.js:615
-#: react-app/src/components/MarketingDashboard.js:660
-msgid "Error loading chart: %s"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:558
-#: react-app/src/components/SalesDashboard.js:513
-msgid "Current Sales"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:559
-#: react-app/src/components/SalesDashboard.js:514
-msgid "Previous Sales"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:564
-#: react-app/src/components/MarketingDashboard.js:603
-#: react-app/src/components/MarketingDashboard.js:642
-msgid "Not enough data for chart."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:571
-msgid "Visits by Page Help"
 msgstr ""
 
 #: react-app/src/components/MarketingDashboard.js:572
@@ -3064,36 +2290,10 @@ msgid ""
 "Useful for identifying popular content or potential navigation issues.</p>"
 msgstr ""
 
-#: react-app/src/components/MarketingDashboard.js:574
-msgid "Visits by Page"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:597
-#: react-app/src/components/MarketingDashboard.js:636
-msgid "Current Visits"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:598
-#: react-app/src/components/MarketingDashboard.js:637
-msgid "Previous Visits"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:610
-msgid "Top Referring Channels (Volume) Help"
-msgstr ""
-
 #: react-app/src/components/MarketingDashboard.js:611
 msgid ""
 "<p>Shows which external websites or sources (like Google, Facebook, etc.) sent"
 "the most visitors to your site.</p>"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:613
-msgid "Top Referring Channels (Volume)"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:649
-msgid "Top Referring Channels (Distribution) Help"
 msgstr ""
 
 #: react-app/src/components/MarketingDashboard.js:650
@@ -3102,61 +2302,16 @@ msgid ""
 "Helps understand the relative importance of different traffic sources.</p>"
 msgstr ""
 
-#: react-app/src/components/MarketingDashboard.js:652
-msgid "Top Referring Channels (Distribution)"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:687
-msgid "No referring channel data for current period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:723
-msgid "No referring channel data for previous period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:735
-msgid "Net Sales by Channel Help"
-msgstr ""
-
 #: react-app/src/components/MarketingDashboard.js:736
 msgid ""
 "<p>Shows the total net sales attributed to different marketing channels (e.g.,"
 "utm_source). Helps identify which channels are driving the most revenue.</p>"
 msgstr ""
 
-#: react-app/src/components/MarketingDashboard.js:738
-msgid "Net Sales by Channel"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:755
-msgid "No sales by channel data for selected period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:762
-msgid "Orders by Channel Help"
-msgstr ""
-
 #: react-app/src/components/MarketingDashboard.js:763
 msgid ""
 "<p>Shows the total number of orders attributed to different marketing channels."
 "Helps identify which channels are driving the most conversions.</p>"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:765
-msgid "Orders by Channel"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:776
-#: react-app/src/components/MarketingDashboard.js:830
-msgid "Current Orders"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:782
-msgid "No orders by channel data for selected period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:789
-msgid "Net Sales by Campaign Help"
 msgstr ""
 
 #: react-app/src/components/MarketingDashboard.js:790
@@ -3166,30 +2321,10 @@ msgid ""
 "campaigns.</p>"
 msgstr ""
 
-#: react-app/src/components/MarketingDashboard.js:792
-msgid "Net Sales by Campaign"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:809
-msgid "No sales by campaign data for selected period."
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:816
-msgid "Orders by Campaign Help"
-msgstr ""
-
 #: react-app/src/components/MarketingDashboard.js:817
 msgid ""
 "<p>Shows the total number of orders attributed to specific marketing campaigns."
 "Helps evaluate the conversion performance of individual campaigns.</p>"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:819
-msgid "Orders by Campaign"
-msgstr ""
-
-#: react-app/src/components/MarketingDashboard.js:836
-msgid "No orders by campaign data for selected period."
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:159
@@ -3198,64 +2333,20 @@ msgid ""
 "WordPress plugins page."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:191
-msgid "Connection already established!"
+#: react-app/src/components/OnboardingWizard.js:364
+msgid "Data synchronization is already running in the background."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:200
-msgid "API URL not configured properly"
+#: react-app/src/components/OnboardingWizard.js:435
+msgid "Sync error: %s"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:222
-msgid "Connection established successfully!"
+#: react-app/src/components/OnboardingWizard.js:483
+msgid "Setup completed successfully!"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:232
-msgid "Connection established! Your site is now connected to ShopMetrics Analytics."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:234
-msgid "Failed to save connection settings"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:237
-msgid "Failed to establish connection"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:240
-msgid "Connection error: %s"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:258
-msgid "Detection timed out. Please try again."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:286
-msgid "Auto-detected COGS meta key:"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:310
-msgid "Failed to retrieve meta keys"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:318
-msgid "Error detecting COGS keys: %s"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:335
-msgid "COGS settings saved successfully!"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:338
-msgid "Error saving COGS settings: %s"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:510
-msgid "ShopMetrics Logo"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:514
-msgid "Welcome to ShopMetrics Analytics!"
+#: react-app/src/components/OnboardingWizard.js:492
+msgid "Error completing setup: %s"
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:516
@@ -3264,49 +2355,13 @@ msgid ""
 "will guide you through the initial setup process."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:521
-msgid "Quick Setup"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:522
-msgid "Connect to our analytics platform in minutes"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:526
-msgid "Financial Insights"
-msgstr ""
-
 #: react-app/src/components/OnboardingWizard.js:527
 msgid "Understand your store\\"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:531
-msgid "Sales Analytics"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:532
-msgid "Track orders, revenue and growth trends"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:538
-msgid "Get Started"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:547
-msgid "Connect to ShopMetrics"
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:548
 #: react-app/src/components/OnboardingWizard.js:729
 msgid "Let\\"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:551
-msgid "Site Identifier"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:559
-msgid "e.g., mystore.com"
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:561
@@ -3315,30 +2370,10 @@ msgid ""
 "system."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:579
-#: react-app/src/components/OnboardingWizard.js:716
-#: react-app/src/components/OnboardingWizard.js:750
-#: react-app/src/components/OnboardingWizard.js:829
-msgid "Back"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:592
-#: react-app/src/components/OnboardingWizard.js:772
-msgid "Continue"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:602
-msgid "Configure Cost of Goods Sold (COGS)"
-msgstr ""
-
 #: react-app/src/components/OnboardingWizard.js:612
 msgid ""
 "Setting up COGS tracking will enable accurate profitability analysis in your"
 "dashboard."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:613
-msgid "Important:"
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:613
@@ -3353,140 +2388,110 @@ msgid ""
 "Cost of Goods plugin like "
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:618
-msgid "COGS Meta Key"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:621
-msgid "Detecting meta keys..."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:629
-msgid "Cancel"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:655
-msgid "e.g., _wc_cog_cost"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:664
-msgid "Detecting..."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:664
-msgid "Auto-detect"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:668
-msgid "The meta key where product costs are stored in your WooCommerce store."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:695
-msgid "Applied when no COGS data is found. Use 0 to show N/A instead."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:707
-msgid "Retry"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:719
-msgid "Saving..."
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:719
-msgid "Save & Continue"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:728
-msgid "Initial Data Sync"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:734
+#: react-app/src/components/OnboardingWizard.js:743
 msgid "What We\\"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:736
-msgid "Order history (dates, amounts, products)"
+#: react-app/src/components/OnboardingWizard.js:748
+msgid "Aggregated store metrics only"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:737
-msgid "Product inventory data"
+#: react-app/src/components/OnboardingWizard.js:751
+msgid "GDPR Compliant."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:738
-msgid "Customer information (anonymous)"
+#: react-app/src/components/OnboardingWizard.js:751
+msgid ""
+"We only collect data necessary for analytics and never store personal customer"
+"data (no names, emails, or PII)."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:741
-msgid "Estimated Time:"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:742
+#: react-app/src/components/OnboardingWizard.js:754
 msgid ""
 "This process runs in the background and may take a few minutes depending on your"
 "store size."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:760
-msgid "Skip for Now"
+#: react-app/src/components/OnboardingWizard.js:757
+msgid "Read our Privacy Notice"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:767
-msgid "Starting Sync..."
+#: react-app/src/components/OnboardingWizard.js:798
+msgid "Analytics & Privacy"
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:767
-msgid "Start Sync"
+#: react-app/src/components/OnboardingWizard.js:799
+msgid "Help us improve ShopMetrics by sharing anonymous usage data."
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:815
+msgid "What data is collected?"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:817
+msgid "Anonymous feature usage and plugin settings"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:818
+msgid "Error and performance reports"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:819
+msgid "WordPress and plugin version info"
 msgstr ""
 
 #: react-app/src/components/OnboardingWizard.js:821
+msgid "How is it collected?"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:823
+msgid "We use PostHog (https://posthog.com) for analytics"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:824
+msgid ""
+"Only if you opt in, ShopMetrics will send this data to PostHog. No personal or"
+"customer data is ever sent."
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:825
+msgid "View PostHog Privacy Policy"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:829
+msgid "No personal or customer data"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:830
+msgid "No sensitive business info"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:831
+msgid "Opt-out anytime in settings"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:832
+msgid "GDPR compliant"
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:849
+msgid ""
+"I agree to share anonymous usage data with ShopMetrics via PostHog (see PostHog"
+"privacy policy)."
+msgstr ""
+
+#: react-app/src/components/OnboardingWizard.js:852
 msgid ""
 "This helps us understand how features are used and identify areas for"
 "improvement."
 msgstr ""
 
-#: react-app/src/components/OnboardingWizard.js:832
-msgid "Complete Setup"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:839
-msgid "Unknown step"
-msgstr ""
-
-#: react-app/src/components/OnboardingWizard.js:852
-msgid "Close wizard"
+#: react-app/src/components/OnboardingWizard.js:863
+msgid "Completing Setup..."
 msgstr ""
 
 #: react-app/src/components/SalesDashboard.js:92
-msgid "API URL not configured in window.fmData."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:151
-msgid "Failed to fetch sales stats."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:317
-msgid "Total Items Sold"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:322
-msgid "Total number of individual items sold across all orders."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:331
-msgid "Total number of orders placed."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:336
-msgid "Avg Revenue / Customer"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:343
-msgid "Average net revenue generated per unique logged-in customer during the period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:346
-msgid "Customer Retention Rate"
+msgid "API URL not configured in window.shopmetricsData."
 msgstr ""
 
 #: react-app/src/components/SalesDashboard.js:353
@@ -3495,50 +2500,10 @@ msgid ""
 "in the current period."
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:356
-msgid "Total Discounts"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:363
-msgid "Total amount of discounts applied to orders in the period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:366
-msgid "Refund Rate"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:373
-msgid "Percentage of orders that had at least one refund processed."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:395
-msgid "Error loading chart data: %s"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:403
-msgid "Orders by Status Help"
-msgstr ""
-
 #: react-app/src/components/SalesDashboard.js:404
 msgid ""
 "<p>Distribution of orders based on their current status (e.g., Completed,"
 "Processing, Refunded) during the selected period.</p>"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:406
-msgid "Orders by Status"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:439
-msgid "No order status data for current period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:474
-msgid "No order status data for previous period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:485
-msgid "Sales by Category Help"
 msgstr ""
 
 #: react-app/src/components/SalesDashboard.js:486
@@ -3547,72 +2512,16 @@ msgid ""
 "period. Limited to the top 10 categories by current sales.</p>"
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:488
-msgid "Sales by Category"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:519
-msgid "No category sales data for selected period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:527
-msgid "Top Products by Quantity Help"
-msgstr ""
-
 #: react-app/src/components/SalesDashboard.js:528
 msgid ""
 "<p>Shows the products sold most frequently (highest quantity) during the"
 "selected period. Limited to the top 20 products.</p>"
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:530
-msgid "Top Products by Quantity"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:554
-#: react-app/src/components/SalesDashboard.js:555
-#: react-app/src/components/SalesDashboard.js:564
-msgid "Current Quantity"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:556
-#: react-app/src/components/SalesDashboard.js:557
-#: react-app/src/components/SalesDashboard.js:565
-msgid "Previous Quantity"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:570
-msgid "No top products data for selected period."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:579
-msgid "Top Products by Revenue Help"
-msgstr ""
-
 #: react-app/src/components/SalesDashboard.js:580
 msgid ""
 "<p>Top products ranked by their total net revenue (sales minus refunds)"
 "generated during the selected period.</p>"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:582
-msgid "Top Products by Net Revenue"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:596
-#: react-app/src/components/SalesDashboard.js:597
-#: react-app/src/components/SalesDashboard.js:606
-msgid "Current Net Revenue"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:598
-#: react-app/src/components/SalesDashboard.js:599
-#: react-app/src/components/SalesDashboard.js:607
-msgid "Previous Net Revenue"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:616
-msgid "Month-over-Month Revenue Change Help"
 msgstr ""
 
 #: react-app/src/components/SalesDashboard.js:617
@@ -3622,38 +2531,6 @@ msgid ""
 "indicates decline.</p>"
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:619
-msgid "Month-over-Month Revenue Change"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:639
-#: react-app/src/components/SalesDashboard.js:701
-msgid "MoM Change"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:640
-#: react-app/src/components/SalesDashboard.js:702
-msgid "Month: %s"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:647
-msgid "Revenue Change %"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:667
-#: react-app/src/components/SalesDashboard.js:729
-msgid "No month-over-month data available."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:668
-#: react-app/src/components/SalesDashboard.js:730
-msgid "At least two months of data required for MoM comparison."
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:678
-msgid "Month-over-Month Orders Change Help"
-msgstr ""
-
 #: react-app/src/components/SalesDashboard.js:679
 msgid ""
 "<p>Shows the percentage change in number of orders compared to the previous"
@@ -3661,112 +2538,18 @@ msgid ""
 "indicates decline.</p>"
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:681
-msgid "Month-over-Month Orders Change"
+#: react-app/src/components/StockDashboard.js:875
+msgid "You can go to the Data Source page and manually create a new snapshot."
 msgstr ""
 
-#: react-app/src/components/SalesDashboard.js:709
-msgid "Orders Change %"
-msgstr ""
-
-#: react-app/src/components/SalesDashboard.js:743
-msgid "No sales data available for the selected period."
-msgstr ""
-
-#: react-app/src/components/StatBox.js:71
-msgid "Error"
-msgstr ""
-
-#: react-app/src/components/StatBox.js:107
-#: react-app/src/components/StatBox.js:119
-msgid "New"
-msgstr ""
-
-#: react-app/src/components/StatBox.js:142
-msgid "Changed"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:335
-msgid "Authentication details not provided."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:341
-msgid "Date range not provided or invalid."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:352
-msgid "Invalid date format in date range."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:379
-msgid "API URL not configured."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:479
-#: react-app/src/components/StockDashboard.js:483
-#: react-app/src/components/StockDashboard.js:499
-#: react-app/src/components/StockDashboard.js:503
-msgid "Timestamp not available"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:749
-msgid "Product"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:753
-msgid "Alert"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:772
-msgid "Stock Qty"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:778
-msgid "Threshold"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:793
-#: react-app/src/components/StockDashboard.js:943
-msgid "Out of Stock"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:797
-msgid "In Stock"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:801
-#: react-app/src/components/StockDashboard.js:953
-msgid "On Backorder"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:873
-msgid "No stock snapshots found for the selected period."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:903
-msgid "Last stock data snapshot:"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:907
-msgid "Refresh stock data"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:913
-msgid "Previous period:"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:923
-msgid "Total Products"
+#: react-app/src/components/StockDashboard.js:891
+msgid "Go to Data Source"
 msgstr ""
 
 #: react-app/src/components/StockDashboard.js:929
 msgid ""
 "Total number of unique products (including distinct variable products) in the"
 "latest inventory snapshot."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:933
-msgid "Low Stock"
 msgstr ""
 
 #: react-app/src/components/StockDashboard.js:940
@@ -3787,29 +2570,16 @@ msgid ""
 "backorder)."
 msgstr ""
 
-#: react-app/src/components/StockDashboard.js:963
-msgid "Total Stock Units"
-msgstr ""
-
 #: react-app/src/components/StockDashboard.js:969
 msgid ""
 "Total quantity of all SKUs with positive stock (simple products and individual"
 "variations)."
 msgstr ""
 
-#: react-app/src/components/StockDashboard.js:972
-msgid "Inventory Value (Retail)"
-msgstr ""
-
 #: react-app/src/components/StockDashboard.js:979
 msgid ""
 "Total retail value of all SKUs with positive stock. Currency symbol depends on"
 "global settings."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:987
-#: react-app/src/components/StockDashboard.js:991
-msgid "Stock Status Distribution"
 msgstr ""
 
 #: react-app/src/components/StockDashboard.js:988
@@ -3820,65 +2590,10 @@ msgid ""
 "purchases when OOS.</p><p><strong>Out of Stock:</strong> Unavailable.</p>"
 msgstr ""
 
-#: react-app/src/components/StockDashboard.js:1022
-msgid "No data for stock status."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1057
-msgid "No previous period data."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1065
-#: react-app/src/components/StockDashboard.js:1069
-msgid "Top 10 Requiring Restock"
-msgstr ""
-
 #: react-app/src/components/StockDashboard.js:1066
 msgid ""
 "<p>Products/variations most urgently needing restock, ordered by units needed to"
 "reach low stock threshold.</p>"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1077
-#: react-app/src/components/StockDashboard.js:1082
-msgid "Units Needed (Current)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1078
-#: react-app/src/components/StockDashboard.js:1083
-msgid "Units Needed (Previous)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1086
-msgid "No products require restocking or below threshold."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1091
-#: react-app/src/components/StockDashboard.js:1095
-msgid "Top 10 by Stock Quantity"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1092
-msgid "<p>Products/variations with the highest number of units currently in stock.</p>"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1103
-#: react-app/src/components/StockDashboard.js:1108
-msgid "Quantity (Current)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1104
-#: react-app/src/components/StockDashboard.js:1109
-msgid "Quantity (Previous)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1112
-msgid "No products with positive stock quantity."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1117
-#: react-app/src/components/StockDashboard.js:1121
-msgid "Top 10 by Inventory Value"
 msgstr ""
 
 #: react-app/src/components/StockDashboard.js:1118
@@ -3887,53 +2602,7 @@ msgid ""
 "inventory.</p>"
 msgstr ""
 
-#: react-app/src/components/StockDashboard.js:1130
-#: react-app/src/components/StockDashboard.js:1135
-msgid "Retail Value (Current)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1131
-#: react-app/src/components/StockDashboard.js:1136
-msgid "Retail Value (Previous)"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1139
-msgid "No products with positive stock value."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1145
-msgid "Product Stock Alerts"
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1151
-msgid "Search alerts (e.g., product name, SKU)..."
-msgstr ""
-
-#: react-app/src/components/StockDashboard.js:1206
-msgid "No stock alerts at the moment."
-msgstr ""
-
-#: react-app/src/components/SubscriptionMessage.js:23
-msgid "Subscription Required"
-msgstr ""
-
-#: react-app/src/components/SubscriptionMessage.js:26
-msgid "Your subscription or trial has ended. Please visit the"
-msgstr ""
-
-#: react-app/src/components/SubscriptionMessage.js:29
-msgid "Settings page"
-msgstr ""
-
-#: react-app/src/components/SubscriptionMessage.js:32
-msgid "to activate or manage your subscription."
-msgstr ""
-
-#: react-app/src/components/Tabs.js:186
-msgid "No tabs provided."
-msgstr ""
-
-#: react-app/src/components/TimeSeriesChart.js:142
-msgid "Not enough data available to display chart."
+#: react-app/src/components/SyncProgressBanner.js:32
+msgid "Synchronizing historical data..."
 msgstr ""
 

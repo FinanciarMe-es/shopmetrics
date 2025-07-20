@@ -13,29 +13,32 @@
 if (!defined('WPINC')) {
     die;
 }
+
+// Load settings at the top so they're available throughout the template
+$settings = get_option('shopmetrics_settings', []);
 ?>
 
 <div class="wrap">
-    <div class="sm-settings-section">
+    <div class="shopmetrics-settings-section">
         <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
             <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/woo-logo.svg'); ?>" 
                  alt="WooCommerce" style="height: 24px; width: auto; margin-right: 10px;">
             <?php esc_html_e('WooCommerce Integration', 'shopmetrics'); ?>
         </h2>
         
-        <p class="sm-settings-description">
+        <p class="shopmetrics-settings-description">
             <?php esc_html_e('Configure how your WooCommerce store integrates with ShopMetrics.', 'shopmetrics'); ?>
         </p>
         
         <!-- Inventory Synchronization Section -->
-        <div class="sm-integration-block">
-            <div class="sm-integration-block-header">
+        <div class="shopmetrics-integration-block">
+            <div class="shopmetrics-integration-block-header">
                 <span class="dashicons dashicons-database"></span>
                 <h3><?php esc_html_e('Inventory Synchronization', 'shopmetrics'); ?></h3>
             </div>
             <p><?php esc_html_e('Configure how inventory data is synchronized with ShopMetrics.', 'shopmetrics'); ?></p>
             
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('Scheduled Snapshots', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('Inventory snapshots are scheduled to run automatically once per day. This keeps your stock data up to date in the dashboard.', 'shopmetrics'); ?></p>
                 <?php 
@@ -46,20 +49,20 @@ if (!defined('WPINC')) {
                         echo '<p><strong>' . esc_html__('Next scheduled snapshot:', 'shopmetrics') . '</strong> ' . 
                              esc_html(date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $next_snapshot)) . '</p>';
                     } else {
-                        echo '<p class="sm-error-text">' . esc_html__('No snapshot is currently scheduled. This may indicate an issue with your WordPress scheduled tasks.', 'shopmetrics') . '</p>';
-                        echo '<p><a href="#" id="fix-snapshot-schedule" class="button" data-nonce="' . esc_attr(wp_create_nonce('sm_settings_ajax_nonce')) . '">' . esc_html__('Fix Schedule', 'shopmetrics') . '</a></p>';
+                        echo '<p class="shopmetrics-error-text">' . esc_html__('No snapshot is currently scheduled. This may indicate an issue with your WordPress scheduled tasks.', 'shopmetrics') . '</p>';
+                        echo '<p><a href="#" id="fix-snapshot-schedule" class="button" data-nonce="' . esc_attr(wp_create_nonce('shopmetrics_settings_ajax_nonce')) . '">' . esc_html__('Fix Schedule', 'shopmetrics') . '</a></p>';
                     }
                 } else {
-                    echo '<p class="sm-error-text">' . esc_html__('Action Scheduler is not active. This plugin is required for WooCommerce and should be active. Please check your WordPress installation.', 'shopmetrics') . '</p>';
+                    echo '<p class="shopmetrics-error-text">' . esc_html__('Action Scheduler is not active. This plugin is required for WooCommerce and should be active. Please check your WordPress installation.', 'shopmetrics') . '</p>';
                 }
                 ?>
             </div>
             
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('Manual Inventory Snapshot', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('If your stock data is not updating automatically, you can trigger a manual snapshot here. This will collect current inventory data from your store and send it to ShopMetrics.', 'shopmetrics'); ?></p>
                 
-                <button id="manual-snapshot-trigger" class="button button-primary" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_settings_ajax_nonce')); ?>">
+                <button id="manual-snapshot-trigger" class="button button-primary" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_settings_ajax_nonce')); ?>">
                     <?php esc_html_e('Take Inventory Snapshot Now', 'shopmetrics'); ?>
                 </button>
                 <span id="manual-snapshot-status" style="display:none; margin-left: 10px;"></span>
@@ -67,14 +70,14 @@ if (!defined('WPINC')) {
         </div>
         
         <!-- Stock Synchronization Section -->
-        <div class="sm-integration-block">
-            <div class="sm-integration-block-header">
+        <div class="shopmetrics-integration-block">
+            <div class="shopmetrics-integration-block-header">
                 <span class="dashicons dashicons-chart-line"></span>
                 <h3><?php esc_html_e('Stock Monitoring', 'shopmetrics'); ?></h3>
             </div>
             <p><?php esc_html_e('Configure settings related to stock monitoring and tracking.', 'shopmetrics'); ?></p>
             
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('WooCommerce Stock Settings', 'shopmetrics'); ?></h4>
                 <?php
                 // Get WooCommerce stock settings
@@ -123,12 +126,20 @@ if (!defined('WPINC')) {
                 </table>
             </div>
             
-            <form method="post" action="options.php" id="sm-data-sources-unified-form">
-            <div class="sm-subsection">
+                <form method="post" id="shopmetrics-data-sources-unified-form">
+        <?php wp_nonce_field('shopmetrics_save_settings', 'shopmetrics_settings_nonce'); ?>
+        
+        <!-- Preserve analytics consent setting -->
+        <?php 
+        $analytics_consent = !empty($settings['analytics_consent']) ? '1' : '0';
+        ?>
+        <input type="hidden" name="shopmetrics_settings[analytics_consent]" value="<?php echo esc_attr($analytics_consent); ?>" />
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('Low Stock Notifications', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('Configure email notifications for products that reach their low stock threshold.', 'shopmetrics'); ?></p>
                 
                 <?php settings_fields('shopmetrics_settings_group'); ?>
+                <?php do_settings_sections('shopmetrics-data-sources'); ?>
                 <?php 
                 // Multiple fallback approaches to get the admin instance
                 if (isset($GLOBALS['shopmetricsanalytics_admin']) && is_object($GLOBALS['shopmetricsanalytics_admin'])) {
@@ -151,45 +162,19 @@ if (!defined('WPINC')) {
                     echo '<input type="hidden" name="shopmetrics_settings[site_identifier]" value="' . esc_attr($site_identifier) . '" />';
                 }
                 ?>
-                <table class="form-table">
-                    <tr>
-                        <th scope="row"><?php esc_html_e('Enable Low Stock Notifications', 'shopmetrics'); ?></th>
-                        <td>
-                            <?php 
-                            $settings = get_option('shopmetrics_settings', []);
-                            ?>
-                            <input type="hidden" name="shopmetrics_settings[enable_low_stock_notifications]" value="0" />
-                            <input type="checkbox" name="shopmetrics_settings[enable_low_stock_notifications]" value="1" <?php checked(!empty($settings['enable_low_stock_notifications'])); ?> />
-                            <p class="description">
-                                <?php esc_html_e('Check this box to enable daily email notifications for products that have reached their low stock threshold.', 'shopmetrics'); ?>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><?php esc_html_e('Notification Recipients', 'shopmetrics'); ?></th>
-                        <td>
-                            <?php
-                            $recipients = get_option('shopmetrics_analytics_low_stock_notification_recipients', '');
-                            ?>
-                            <input type="text" class="regular-text" name="shopmetrics_settings[low_stock_notification_recipients]" value="<?php echo esc_attr($settings['low_stock_notification_recipients'] ?? ''); ?>" placeholder="<?php esc_attr_e('e.g., admin@example.com, manager@example.com', 'shopmetrics'); ?>" />
-                            <p class="description">
-                                <?php esc_html_e('Enter one or more email addresses, separated by commas. If empty, notifications will be sent to the site administrator\'s email.', 'shopmetrics'); ?>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+                <!-- Low stock notifications fields are rendered above via do_settings_sections -->
             </div>
         </div>
         
         <!-- Visit Tracking Settings -->
-        <div class="sm-integration-block">
-            <div class="sm-integration-block-header">
+        <div class="shopmetrics-integration-block">
+            <div class="shopmetrics-integration-block-header">
                 <span class="dashicons dashicons-chart-bar"></span>
                 <h3><?php esc_html_e('Visit Tracking', 'shopmetrics'); ?></h3>
             </div>
             <p><?php esc_html_e('Configure how customer visits and website activity are tracked by FinanciarMe Analytics.', 'shopmetrics'); ?></p>
 
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('Tracking Settings', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('Control how site visits are tracked and what data is collected.', 'shopmetrics'); ?></p>
 
@@ -208,7 +193,7 @@ if (!defined('WPINC')) {
 
                 <h4><?php esc_html_e('Collected Data', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('The following information is collected when visit tracking is enabled:', 'shopmetrics'); ?></p>
-                <ul class="sm-list">
+                <ul class="shopmetrics-list">
                     <li><strong><?php esc_html_e('Page URLs:', 'shopmetrics'); ?></strong> <?php esc_html_e('The addresses of pages that visitors view on your site', 'shopmetrics'); ?></li>
                     <li><strong><?php esc_html_e('Page Types:', 'shopmetrics'); ?></strong> <?php esc_html_e('Categories of pages (e.g., product, cart, checkout)', 'shopmetrics'); ?></li>
                     <li><strong><?php esc_html_e('Referrers:', 'shopmetrics'); ?></strong> <?php esc_html_e('Where visitors came from before landing on your site', 'shopmetrics'); ?></li>
@@ -218,39 +203,39 @@ if (!defined('WPINC')) {
         </div>
         
         <!-- Cost of Goods Settings section -->
-        <div class="sm-integration-block">
-            <div class="sm-integration-block-header">
+        <div class="shopmetrics-integration-block">
+            <div class="shopmetrics-integration-block-header">
                 <span class="dashicons dashicons-money-alt"></span>
                 <h3><?php esc_html_e('Cost of Goods Settings', 'shopmetrics'); ?></h3>
             </div>
             <p><?php esc_html_e('Configure Cost of Goods Sold (COGS) tracking to enable accurate profit calculations for your products.', 'shopmetrics'); ?></p>
             
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('COGS Meta Key Detection', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('The plugin needs to know which WooCommerce meta key stores your product cost information.', 'shopmetrics'); ?></p>
                 
-                <div id="sm_cogs_meta_key_setting_area">
+                <div id="shopmetrics_cogs_meta_key_setting_area">
                     <p>
                         <strong><?php esc_html_e('Currently Saved Key:', 'shopmetrics'); ?></strong>
                         <?php 
                         $settings = get_option('shopmetrics_settings', []);
                         ?>
-                        <code id="sm_current_cogs_key_display"><?php echo esc_html($settings['cogs_meta_key'] ?? __('Not set', 'shopmetrics')); ?></code>
+                        <code id="shopmetrics_current_cogs_key_display"><?php echo esc_html($settings['cogs_meta_key'] ?? __('Not set', 'shopmetrics')); ?></code>
                     </p>
 
-                    <button type="button" id="sm_auto_detect_cogs_key_button" class="button">
+                    <button type="button" id="shopmetrics_auto_detect_cogs_key_button" class="button">
                         <?php esc_html_e('Auto-detect COGS Meta Key', 'shopmetrics'); ?>
                     </button>
-                    <button type="button" id="sm_manual_select_cogs_key_button" class="button">
+                    <button type="button" id="shopmetrics_manual_select_cogs_key_button" class="button">
                         <?php esc_html_e('Select Key Manually', 'shopmetrics'); ?>
                     </button>
                     
-                    <div id="sm_cogs_detection_result_area" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; display: none;">
+                    <div id="shopmetrics_cogs_detection_result_area" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; display: none;">
                         <!-- JS will populate this -->
                     </div>
 
-                    <div id="sm_cogs_manual_select_area" style="margin-top: 10px; display: none;">
-                        <select id="sm_cogs_meta_key_dropdown" name="shopmetrics_settings[cogs_meta_key_dropdown_select]" style="min-width: 200px;">
+                    <div id="shopmetrics_cogs_manual_select_area" style="margin-top: 10px; display: none;">
+                        <select id="shopmetrics_cogs_meta_key_dropdown" name="shopmetrics_settings[cogs_meta_key_dropdown_select]" style="min-width: 200px;">
                             <option value=""><?php esc_html_e('-- Select a Key --', 'shopmetrics'); ?></option>
                             <option value=""><?php esc_html_e('-- Do not use a meta key --', 'shopmetrics'); ?></option> 
                             <!-- JS will populate this -->
@@ -278,7 +263,7 @@ if (!defined('WPINC')) {
                 </div>
             </div>
             
-            <div class="sm-subsection">
+            <div class="shopmetrics-subsection">
                 <h4><?php esc_html_e('Default COGS Percentage', 'shopmetrics'); ?></h4>
                 <p><?php esc_html_e('If per-item COGS is not found via the meta key, you can specify a default percentage to estimate costs.', 'shopmetrics'); ?></p>
                 
@@ -311,66 +296,66 @@ if (!defined('WPINC')) {
             </div>
         </div>
         
-        <?php submit_button(__('Save All Settings', 'shopmetrics')); ?>
+        <p class="submit">
+            <button type="submit" class="button button-primary" id="shopmetrics-save-data-sources-settings">
+                <?php esc_html_e('Save All Settings', 'shopmetrics'); ?>
+            </button>
+            <span id="shopmetrics-data-sources-save-status" style="margin-left: 10px;"></span>
+        </p>
     </div>
     </form>
 
-    <div class="sm-settings-section sm-future-integration" data-integration="ads-platforms" style="display: none !important;">
+    <div class="shopmetrics-settings-section shopmetrics-future-integration" data-integration="ads-platforms" style="display: none !important;">
         <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;" data-integration="ads-platforms">
             <span class="dashicons dashicons-megaphone" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
             <?php esc_html_e('Ads Platforms Integration', 'shopmetrics'); ?>
         </h2>
         
-        <p class="sm-settings-description">
+        <p class="shopmetrics-settings-description">
             <?php esc_html_e('Connect your advertising platforms to display correlation between campaign expenses and profit. This helps you understand which campaigns are most profitable for your business.', 'shopmetrics'); ?>
         </p>
         
-        <div class="sm-integration-grid">
+        <div class="shopmetrics-integration-grid">
             <!-- Google Analytics -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/google-analytics-logo.svg'); ?>" 
-                         onerror="this.src='<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/google-analytics-logo.png'); ?>'; 
-                                     if (this.naturalWidth === 0) this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';" 
-                         alt="Google Analytics">
+                         alt="Google Analytics" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Google Analytics', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Aggregate all advertising platform data in one place for comprehensive analytics.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="google-analytics" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                                            <button class="button shopmetrics-connect-button" data-service="google-analytics" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
             </div>
             
             <!-- Google Ads -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/google-ads-logo.png'); ?>" 
-                         onerror="this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';" 
-                         alt="Google Ads">
+                         alt="Google Ads" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Google Ads', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Track expenses and performance of your Google Ads campaigns.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="google-ads" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="google-ads" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
             </div>
             
             <!-- Meta Ads -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/meta-ads-logo.svg'); ?>"
-                         onerror="this.src='<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/meta-ads-logo.png'); ?>';
-                                     if (this.naturalWidth === 0) this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';"
-                         alt="Meta Ads">
+                         alt="Meta Ads" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Meta Ads', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Track expenses and performance of your Facebook and Instagram ad campaigns.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="meta-ads" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="meta-ads" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
@@ -378,78 +363,72 @@ if (!defined('WPINC')) {
         </div>
     </div>
 
-    <div class="sm-settings-section sm-future-integration" data-integration="accounting-platforms">
+    <div class="shopmetrics-settings-section shopmetrics-future-integration" data-integration="accounting-platforms">
         <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;" data-integration="accounting-platforms">
             <span class="dashicons dashicons-chart-area" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
             <?php esc_html_e('Accounting Platforms Integration', 'shopmetrics'); ?>
         </h2>
         
-        <p class="sm-settings-description">
+        <p class="shopmetrics-settings-description">
             <?php esc_html_e('Connect your accounting software to calculate the overall profitability of your business, including not only advertising expenses but also salaries, operational expenses, and more.', 'shopmetrics'); ?>
         </p>
         
-        <div class="sm-integration-grid">
+        <div class="shopmetrics-integration-grid">
             <!-- QuickBooks Online -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/quickbooks-logo.svg'); ?>"
-                         onerror="this.src='<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/quickbooks-logo.png'); ?>';
-                                     if (this.naturalWidth === 0) this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';"
-                         alt="QuickBooks Online">
+                         alt="QuickBooks Online" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('QuickBooks Online', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Integrate with QuickBooks to analyze financial data and calculate true business profitability.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="quickbooks" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="quickbooks" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
             </div>
             
             <!-- Xero -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/xero-logo.png'); ?>"
-                         onerror="this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';"
-                         alt="Xero">
+                         alt="Xero" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Xero', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Connect with Xero accounting software to analyze business expenses and revenue.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="xero" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="xero" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
             </div>
             
             <!-- Zoho Books -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/zoho-books-logo.svg'); ?>"
-                         onerror="this.src='<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/zoho-books-logo.png'); ?>';
-                                     if (this.naturalWidth === 0) this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';"
-                         alt="Zoho Books">
+                         alt="Zoho Books" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Zoho Books', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Integrate with Zoho Books to analyze expense patterns and overall business profitability.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="zoho-books" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="zoho-books" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
             </div>
             
             <!-- Sage -->
-            <div class="sm-integration-card">
-                <div class="sm-integration-logo">
+            <div class="shopmetrics-integration-card">
+                <div class="shopmetrics-integration-logo">
                     <img src="<?php echo esc_url(plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/sage-logo.png'); ?>"
-                         onerror="this.src='<?php echo esc_url(admin_url('images/wordpress-logo.svg')); ?>';"
-                         alt="Sage">
+                         alt="Sage" style="height: 24px; width: auto; margin-right: 10px;">
                 </div>
-                <div class="sm-integration-content">
+                <div class="shopmetrics-integration-content">
                     <h4><?php esc_html_e('Sage', 'shopmetrics'); ?></h4>
                     <p><?php esc_html_e('Connect with Sage accounting software for comprehensive financial analysis.', 'shopmetrics'); ?></p>
-                    <button class="button sm-connect-button" data-service="sage" data-nonce="<?php echo esc_attr(wp_create_nonce('sm_connect_service_nonce')); ?>">
+                    <button class="button shopmetrics-connect-button" data-service="sage" data-nonce="<?php echo esc_attr(wp_create_nonce('shopmetrics_connect_service_nonce')); ?>">
                         <?php esc_html_e('Connect', 'shopmetrics'); ?>
                     </button>
                 </div>
@@ -458,86 +437,4 @@ if (!defined('WPINC')) {
     </div>
 </div>
 
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-    // Hide future integration sections for initial release
-    $('.sm-settings-section[data-integration="ads-platforms"], .sm-settings-section[data-integration="accounting-platforms"]').hide();
-    
-    // Manual snapshot trigger
-    $('#manual-snapshot-trigger').on('click', function(e) {
-        e.preventDefault();
-        
-        var button = $(this);
-        var statusSpan = $('#manual-snapshot-status');
-        
-        button.prop('disabled', true);
-        statusSpan.text('<?php echo esc_js(__('Taking snapshot...', 'shopmetrics')); ?>').show();
-        
-        $.ajax({
-            url: ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'shopmetrics_manual_snapshot',
-                nonce: button.data('nonce')
-            },
-            success: function(response) {
-                if (response.success) {
-                    statusSpan.text(response.data.message).css('color', 'green');
-                } else {
-                    statusSpan.text(response.data.message).css('color', 'red');
-                }
-            },
-            error: function() {
-                statusSpan.text('<?php echo esc_js(__('An error occurred. Please try again.', 'shopmetrics')); ?>').css('color', 'red');
-            },
-            complete: function() {
-                button.prop('disabled', false);
-                setTimeout(function() {
-                    statusSpan.fadeOut();
-                }, 5000);
-            }
-        });
-    });
-    
-    // Fix snapshot schedule
-    $('#fix-snapshot-schedule').on('click', function(e) {
-        e.preventDefault();
-        
-        var button = $(this);
-        button.text('<?php echo esc_js(__('Fixing...', 'shopmetrics')); ?>').prop('disabled', true);
-        
-        $.ajax({
-            url: ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'shopmetrics_fix_snapshot_schedule',
-                nonce: button.data('nonce')
-            },
-            success: function(response) {
-                if (response.success) {
-                    location.reload(); // Reload to show updated schedule
-                } else {
-                    alert(response.data.message);
-                    button.text('<?php echo esc_js(__('Fix Schedule', 'shopmetrics')); ?>').prop('disabled', false);
-                }
-            },
-            error: function() {
-                alert('<?php echo esc_js(__('An error occurred. Please try again.', 'shopmetrics')); ?>');
-                button.text('<?php echo esc_js(__('Fix Schedule', 'shopmetrics')); ?>').prop('disabled', false);
-            }
-        });
-    });
-    
-    // Connect buttons for integrations
-    $('.sm-connect-button').on('click', function(e) {
-        e.preventDefault();
-        var button = $(this);
-        var service = button.data('service');
-        
-        // For now, just show a coming soon message
-        alert('<?php echo esc_js(__('Integration coming soon! This feature is currently under development.', 'shopmetrics')); ?>');
-    });
-    
-
-});
-</script> 
+<!-- All JS for this page is now enqueued via wp_add_inline_script in the admin class. --> 

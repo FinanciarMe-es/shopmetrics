@@ -558,7 +558,7 @@ class ShopMetrics_Orders_Tracker {
         // Check if Action Scheduler is available
         if (!class_exists('ActionScheduler_Store')) {
             \ShopMetrics_Logger::get_instance()->error("ActionScheduler_Store class not found - cannot continue with sync");
-            update_option('sm_historical_sync_progress', json_encode([
+            update_option('shopmetrics_historical_sync_progress', json_encode([
                 'status' => 'error',
                 'message' => 'Action Scheduler not available',
                 'progress' => 0,
@@ -571,7 +571,7 @@ class ShopMetrics_Orders_Tracker {
         $api_token = get_option( 'shopmetrics_analytics_api_token', '' );
         if ( empty( $api_token ) ) {
             \ShopMetrics_Logger::get_instance()->error("Cannot sync historical orders - site not connected");
-            update_option( 'sm_historical_sync_progress', json_encode([
+            update_option( 'shopmetrics_historical_sync_progress', json_encode([
                 'status' => 'error',
                 'message' => 'Site not connected',
                 'progress' => 0,
@@ -587,7 +587,7 @@ class ShopMetrics_Orders_Tracker {
         \ShopMetrics_Logger::get_instance()->info("Syncing orders from $one_year_ago onwards");
         
         // Get the current progress data
-        $progress_data_raw = get_option('sm_historical_sync_progress', '');
+        $progress_data_raw = get_option('shopmetrics_historical_sync_progress', '');
         \ShopMetrics_Logger::get_instance()->debug("Current progress data (raw): " . wp_json_encode($progress_data_raw));
         
         // If the progress data is stored as JSON, decode it
@@ -626,7 +626,7 @@ class ShopMetrics_Orders_Tracker {
             $this->clear_all_sync_meta($one_year_ago);
             
             // Use WooCommerce API instead of direct database query for counting orders
-            $cache_key = 'sm_unsynced_orders_count_' . md5($one_year_ago);
+            $cache_key = 'shopmetrics_unsynced_orders_count_' . md5($one_year_ago);
             $total_orders = wp_cache_get($cache_key);
             
             if (false === $total_orders) {
@@ -660,7 +660,7 @@ class ShopMetrics_Orders_Tracker {
             $progress_data['status'] = 'in_progress';
             \ShopMetrics_Logger::get_instance()->info("Found $total_orders unsynced orders to process");
             // Save initial progress data
-            $saved = update_option('sm_historical_sync_progress', json_encode($progress_data));
+            $saved = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
             \ShopMetrics_Logger::get_instance()->debug("Updated initial progress data, result: " . ($saved ? 'true' : 'false'));
         }
         
@@ -670,7 +670,7 @@ class ShopMetrics_Orders_Tracker {
             $progress_data['status'] = 'completed';
             $progress_data['progress'] = 100;
             $progress_data['processed_orders'] = $progress_data['total_orders'];
-            $update_result = update_option('sm_historical_sync_progress', json_encode($progress_data));
+            $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
             \ShopMetrics_Logger::get_instance()->debug("Marked sync as complete (no orders), update result: " . ($update_result ? 'true' : 'false'));
             return;
         }
@@ -715,7 +715,7 @@ class ShopMetrics_Orders_Tracker {
             $progress_data['progress'] = 100;
             $progress_data['processed_orders'] = $progress_data['total_orders'];
             $progress_data['timestamp'] = time();
-            $update_result = update_option('sm_historical_sync_progress', json_encode($progress_data));
+            $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
             \ShopMetrics_Logger::get_instance()->info("Historical sync completed - processed " . $progress_data['processed_orders'] . " orders, update result: " . ($update_result ? 'true' : 'false'));
             return;
         }
@@ -805,7 +805,7 @@ class ShopMetrics_Orders_Tracker {
             }
             
             // Save progress
-            $update_result = update_option('sm_historical_sync_progress', json_encode($progress_data));
+            $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
             \ShopMetrics_Logger::get_instance()->info("Updated progress data, result: " . ($update_result ? 'true' : 'false'));
             
             // Check if there are more orders to process
@@ -827,7 +827,7 @@ class ShopMetrics_Orders_Tracker {
                 $progress_data['status'] = 'completed';
                 $progress_data['progress'] = 100;
                 $progress_data['processed_orders'] = $progress_data['total_orders'];
-                $update_result = update_option('sm_historical_sync_progress', json_encode($progress_data));
+                $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
                 \ShopMetrics_Logger::get_instance()->info("Historical sync completed - processed " . $progress_data['processed_orders'] . " orders, update result: " . ($update_result ? 'true' : 'false'));
             }
         } else {
@@ -853,7 +853,7 @@ class ShopMetrics_Orders_Tracker {
             // Save progress to prevent infinite loops
             $json_data = json_encode($progress_data);
             \ShopMetrics_Logger::get_instance()->debug("Saving progress JSON: " . $json_data);
-            $update_result = update_option('sm_historical_sync_progress', $json_data);
+            $update_result = update_option('shopmetrics_historical_sync_progress', $json_data);
             \ShopMetrics_Logger::get_instance()->debug("Updated progress data after skipping refunds, result: " . ($update_result ? 'true' : 'false'));
             
             // Continue processing immediately to move past the refunds
@@ -900,7 +900,7 @@ class ShopMetrics_Orders_Tracker {
                     $progress_data['progress'] = 100;
                     $progress_data['processed_orders'] = $progress_data['total_orders'];
                     $progress_data['timestamp'] = time();
-                    update_option('sm_historical_sync_progress', json_encode($progress_data));
+                    update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
                     \ShopMetrics_Logger::get_instance()->info("Historical sync completed - all real orders processed.");
                     return;
                 }
@@ -933,7 +933,7 @@ class ShopMetrics_Orders_Tracker {
                     if ($progress_data['last_update_count'] <= 2) {
                         \ShopMetrics_Logger::get_instance()->info("Attempting continuation with modified query. Attempt #{$progress_data['last_update_count']}");
                         // Save progress first
-                        update_option('sm_historical_sync_progress', json_encode($progress_data));
+                        update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
                         
                         // Schedule immediate retry instead of calling recursively
                         if (!as_next_scheduled_action('shopmetrics_analytics_sync_historical_orders')) {
@@ -945,7 +945,7 @@ class ShopMetrics_Orders_Tracker {
                     }
                 }
                 
-                $update_result = update_option('sm_historical_sync_progress', json_encode($progress_data));
+                $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($progress_data));
                 \ShopMetrics_Logger::get_instance()->info("Updated final progress after double-check, result: " . ($update_result ? 'true' : 'false'));
                 return;
             }
@@ -1139,7 +1139,7 @@ class ShopMetrics_Orders_Tracker {
 
     private function clear_all_sync_meta($one_year_ago) {
         // Use WooCommerce API instead of direct database query for clearing meta
-        $cache_key = 'sm_orders_to_clear_' . md5($one_year_ago);
+        $cache_key = 'shopmetrics_orders_to_clear_' . md5($one_year_ago);
         $orders_to_clear = wp_cache_get($cache_key);
         
         if (false === $orders_to_clear) {
@@ -1193,7 +1193,7 @@ add_action('init', function() {
     }
 
     // Проверяем прогресс sync
-    $progress_data = get_option('sm_historical_sync_progress', '');
+    $progress_data = get_option('shopmetrics_historical_sync_progress', '');
     $progress = !empty($progress_data) ? json_decode($progress_data, true) : null;
 
     // Если sync не идет — ничего не делаем

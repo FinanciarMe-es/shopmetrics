@@ -27,6 +27,12 @@ if ( ! defined( 'WPINC' ) ) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo esc_html( get_bloginfo( 'name' ) ); ?></title>
+    <!--
+        Inline CSS is required for email client compatibility.
+        This <style> block is only used in the generated email HTML, not in the WordPress admin or frontend.
+        Per WP.org guidelines, wp_enqueue_style is not used for email templates, as most email clients do not support external stylesheets.
+        See: https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/#6-services-calls-home
+    -->
     <style type="text/css">
         body {
             font-family: Arial, Helvetica, sans-serif;

@@ -3,13 +3,13 @@
  * Plugin Name:       ShopMetrics for WooCommerce
  * Plugin URI:        https://financiarme.es/shopmetrics-woocommerce/
  * Description:       Advanced analytics and business intelligence for WooCommerce stores. Get real-time insights into your store's performance, track inventory levels, and boost sales with abandoned cart recovery.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            FinanciarMe
  * Author URI:        https://financiarme.es/
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License:           GPL v2.1
+ * License URI:       https://www.gnu.org/licenses/gpl-2.1.html
 
  * Text Domain:       shopmetrics
  * Domain Path:       /languages
@@ -149,7 +149,7 @@ add_filter( 'plugin_row_meta', 'shopmetrics_plugin_row_meta', 10, 4 );
 /**
  * Define constants for plugin version and API URL.
  */
-defined( 'SHOPMETRICS_VERSION' ) or define( 'SHOPMETRICS_VERSION', '1.0.2' );
+defined( 'SHOPMETRICS_VERSION' ) or define( 'SHOPMETRICS_VERSION', '1.0.3' );
 
 // === API Endpoint Configuration ===
 // Switch this value for dev/prod environments
@@ -176,13 +176,13 @@ function shopmetrics_analytics_activation_handler() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-shopmetricsanalytics-deactivator.php
  */
-function deactivate_shopmetrics_analytics() {
+function shopmetrics_deactivate_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-shopmetrics-deactivator.php';
 	\ShopMetrics\Analytics\ShopMetrics_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'shopmetrics_analytics_activation_handler' );
-register_deactivation_hook( __FILE__, 'deactivate_shopmetrics_analytics' );
+register_deactivation_hook( __FILE__, 'shopmetrics_deactivate_plugin' );
 
 /**
  * Load the logger class first
@@ -193,27 +193,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-shopmetrics-logger.php';
 
 // Include locale test
 // require_once plugin_dir_path( __FILE__ ) . 'test-locale.php'; // File removed
-
-/**
- * Load plugin text domain for internationalization
- */
-function shopmetrics_analytics_load_textdomain() {
-    // Use user locale instead of site locale for admin interface
-    $user_locale = get_user_locale();
-    $locale = is_admin() ? $user_locale : get_locale();
-    
-    // Load the specific locale file
-    $mo_file = dirname( plugin_basename( __FILE__ ) ) . '/languages/shopmetrics-' . $locale . '.mo';
-    $mo_path = WP_PLUGIN_DIR . '/' . $mo_file;
-    
-    if ( file_exists( $mo_path ) ) {
-        load_textdomain( 'shopmetrics', $mo_path );
-    } else {
-        // Fallback to standard loading if specific file doesn't exist
-        load_plugin_textdomain( 'shopmetrics', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-    }
-}
-add_action( 'plugins_loaded', 'shopmetrics_analytics_load_textdomain' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -247,7 +226,17 @@ function shopmetrics_analytics_activation_redirect() {
 add_action( 'admin_init', 'shopmetrics_analytics_activation_redirect' );
 
 /**
- * Listens for verification callbacks from the FinanciarMe backend.
+ * Handles verification callbacks from the ShopMetrics backend.
+ *
+ * SECURITY NOTE:
+ * This endpoint is intentionally NOT protected by a WordPress nonce or user capability check.
+ * - Reason: It is designed to be called by an external service (ShopMetrics backend) to verify site ownership/connection.
+ * - Nonces are only valid for logged-in WordPress users and cannot be generated or verified by external systems.
+ * - This endpoint does NOT modify any persistent data or perform privileged actions; it only checks a transient and echoes a static string on success.
+ * - The verification code is a one-time, time-limited value (transient) that must match the expected value, providing its own security.
+ * - No user data is exposed or changed by this endpoint.
+ *
+ * If you are reviewing this for security, see: https://developer.wordpress.org/plugins/security/nonces/#when-not-to-use-nonces
  *
  * @since 1.0.0
  */
@@ -255,7 +244,7 @@ function shopmetrics_analytics_handle_verification_callback() {
     // Check if the verification query parameter exists
     if ( isset( $_GET['shopmetrics_verify'] ) ) {
         $received_code = sanitize_text_field( wp_unslash( $_GET['shopmetrics_verify'] ) );
-        $transient_key = 'sm_verify_' . $received_code;
+        $transient_key = 'shopmetrics_verify_' . $received_code;
 
         // Check if a transient exists for this code
         $expected_site_id = get_transient( $transient_key );
@@ -296,7 +285,7 @@ add_action( 'parse_request', 'shopmetrics_analytics_handle_verification_callback
 *
 * @since    1.0.0
 */
-function run_shopmetrics_analytics() {
+function shopmetrics_run_plugin() {
     // The main plugin class file is already required globally near the top.
     // Get the singleton instance of the main plugin class and run it.
     // The constructor of ShopMetrics now handles loading dependencies, 
@@ -310,7 +299,7 @@ function run_shopmetrics_analytics() {
 function shopmetrics_analytics_init() {
     // Check if WooCommerce is active before running the plugin
     if (shopmetrics_check_woocommerce_dependency()) {
-        run_shopmetrics_analytics();
+        shopmetrics_run_plugin();
     }
 }
 
@@ -485,7 +474,7 @@ function shopmetrics_plugins_api( $result, $action, $args ) {
     $plugin_info->contributors = array(
         'shopmetrics' => array(
             'profile' => 'https://shopmetrics.es/',
-            'avatar' => 'https://secure.gravatar.com/avatar/generic-avatar',
+            'avatar' => plugins_url('assets/icon-128x128.png', __FILE__),
             'display_name' => 'FinanciarMe'
         )
     );

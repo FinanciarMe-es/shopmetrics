@@ -6,13 +6,13 @@
     // --- Logger Setup ---
     const logger = {
         log: function(...args) {
-            const config = window.fmVisitTrackerData || {};
+            const config = window.shopmetricsVisitTrackerData || {};
             if (config.debugLogging) {
                 console.log('[ShopMetrics]', ...args);
             }
         },
         error: function(...args) {
-            const config = window.fmVisitTrackerData || {};
+            const config = window.shopmetricsVisitTrackerData || {};
             if (config.debugLogging) {
                 console.error('[ShopMetrics]', ...args);
             }
@@ -22,8 +22,8 @@
     logger.log('ShopMetrics Visit Tracker script loaded', new Date().toISOString());
 
     // --- Configuration (Passed from wp_localize_script) ---
-    // Expects a global object like fmVisitTrackerData with ajaxUrl and nonce
-    const config = window.fmVisitTrackerData || {};
+    // Expects a global object like shopmetricsVisitTrackerData with ajaxUrl and nonce
+    const config = window.shopmetricsVisitTrackerData || {};
     const ajaxUrl = config.ajaxUrl; // e.g., http://my-site.com/wp-admin/admin-ajax.php
     const nonce = config.nonce;   // Security nonce
     const pageType = config.pageType || 'unknown'; // <-- Get pageType from localized data
@@ -74,7 +74,7 @@
 
     // Function to get or generate a session ID (simple example using sessionStorage)
     function getSessionId() {
-        const storageKey = 'sm_session_id';
+        const storageKey = 'shopmetrics_session_id';
         let sessionId = sessionStorage.getItem(storageKey);
         if (!sessionId) {
             // Generate a simple random ID (consider a more robust UUID library if needed)
@@ -94,7 +94,7 @@
             ajaxUrl,
             nonce,
             pageType,
-            config: window.fmVisitTrackerData
+            config: window.shopmetricsVisitTrackerData
         });
             
         if (!ajaxUrl || !nonce) {
@@ -104,7 +104,7 @@
 
         // Prepare data for WP AJAX
         const data = new URLSearchParams();
-        data.append('action', 'sm_track_visit'); // Updated to match PHP handler
+        data.append('action', 'shopmetrics_track_visit'); // Updated to match PHP handler
         data.append('nonce', nonce);            // Security nonce
         data.append('pageUrl', document.location.href); // Use camelCase
         data.append('referrer', document.referrer || ''); // Send empty string if null
@@ -117,12 +117,30 @@
             logger.log('ShopMetrics Analytics: Tracking orderId:', config.orderId);
         }
         // --- End Add ---
+        
+        // --- Add conversion tracking for order received page ---
+        if (pageType === 'order_received' && config.orderId) {
+            data.append('conversion', '1');
+            data.append('conversionType', 'purchase');
+            logger.log('ShopMetrics Analytics: Tracking conversion for order:', config.orderId);
+        }
+        // --- End conversion tracking ---
+        
+        // --- Add cart event tracking ---
+        if (pageType === 'cart') {
+            data.append('cart_event', '1');
+            data.append('cart_event_type', 'view_cart');
+        } else if (pageType === 'checkout') {
+            data.append('cart_event', '1');
+            data.append('cart_event_type', 'start_checkout');
+        }
+        // --- End cart event tracking ---
 
         // --- Read UTMs from Cookies and append to payload ---
         const utmKeys = ['source', 'medium', 'campaign', 'term', 'content'];
         const utmsFromCookies = {};
         utmKeys.forEach(key => {
-            const cookieValue = getCookie('sm_utm_' + key);
+            const cookieValue = getCookie('shopmetrics_utm_' + key);
             if (cookieValue) {
                 utmsFromCookies[key] = cookieValue;
                 // Append to AJAX data with the correct case for PHP $_POST keys
@@ -153,7 +171,7 @@
                 // Check response from WP AJAX handler (optional)
                 // const result = await response.json(); 
                 // console.log('ShopMetrics Analytics: WP AJAX response:', result);
-                 logger.log('ShopMetrics Analytics: Visit tracking request sent via WP AJAX.');
+                logger.log('ShopMetrics Analytics: Visit tracking request sent via WP AJAX.');
             }
         } catch (error) {
             logger.log('ShopMetrics Analytics: Failed to send WP AJAX request.', error);
@@ -168,7 +186,7 @@
 
         utmKeys.forEach(key => {
             if (utms[key]) {
-                setCookie('sm_utm_' + key, utms[key], 365); // Store for 1 year
+                setCookie('shopmetrics_utm_' + key, utms[key], 365); // Store for 1 year
                 utmsFound = true;
                 logger.log('ShopMetrics Analytics: Storing UTM '+ key + '=' + utms[key]);
             }
@@ -184,19 +202,15 @@
     // Store UTMs on page load if present in URL
     storeUtmsFromUrl();
     
-    // Simple check to avoid tracking the same page view multiple times on SPA navigations without full reload
-    // More robust SPA tracking might require listening to history changes
-    let trackedPath = sessionStorage.getItem('sm_last_tracked_path');
-    if (trackedPath !== document.location.pathname + document.location.search) {
-        sessionStorage.setItem('sm_last_tracked_path', document.location.pathname + document.location.search);
-         // Wait for the DOM to be ready, though generally not strictly necessary for this data
-        if (document.readyState === 'loading') { 
-             document.addEventListener('DOMContentLoaded', trackPageView);
-        } else { 
-             trackPageView(); // DOM already ready
-        }
-    } else {
-         logger.log('ShopMetrics Analytics: Path already tracked in this session.');
+    // Track every page view to capture the full user journey
+    // This is important for marketing analytics and conversion tracking
+    let currentPath = document.location.pathname + document.location.search;
+    
+    // Wait for the DOM to be ready, though generally not strictly necessary for this data
+    if (document.readyState === 'loading') { 
+        document.addEventListener('DOMContentLoaded', trackPageView);
+    } else { 
+        trackPageView(); // DOM already ready
     }
 
 })(); 

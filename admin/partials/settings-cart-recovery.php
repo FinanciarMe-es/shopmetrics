@@ -13,11 +13,17 @@
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
+
+// Load settings at the top so they're available throughout the template
+$settings = get_option('shopmetrics_settings', []);
 ?>
 
 <div class="wrap">    
-    <form method="post" action="options.php" id="sm-cart-recovery-unified-form">
-        <?php settings_fields('shopmetrics_settings_group'); ?>
+    <form method="post" id="shopmetrics-cart-recovery-unified-form">
+        <?php wp_nonce_field('shopmetrics_save_settings', 'shopmetrics_settings_nonce'); ?>
+
+        <!-- Preserve analytics consent setting -->
+        <input type="hidden" name="shopmetrics_settings[analytics_consent]" value="<?php echo !empty($settings['analytics_consent']) ? '1' : '0'; ?>" />
 
         <!-- Hidden fields to ensure checkboxes are properly handled -->
         <input type="hidden" name="shopmetrics_settings[enable_cart_recovery_emails]" value="0" />
@@ -27,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
         <input type="hidden" name="shopmetrics_analytics_api_token" value="<?php echo esc_attr(get_option('shopmetrics_analytics_api_token', '')); ?>" />
         <input type="hidden" name="shopmetrics_analytics_site_identifier" value="<?php echo esc_attr(get_option('shopmetrics_analytics_site_identifier', '')); ?>" />
 
-        <div class="sm-settings-section">
+        <div class="shopmetrics-settings-section">
             <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                 <span class="dashicons dashicons-cart" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
                 <?php echo esc_html__( 'Abandoned Cart Recovery', 'shopmetrics' ); ?>
@@ -148,7 +154,7 @@ if ( ! defined( 'WPINC' ) ) {
             </table>
         </div>
         
-        <div class="sm-settings-section">
+        <div class="shopmetrics-settings-section">
             <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                 <span class="dashicons dashicons-email" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
                 <?php echo esc_html__( 'Recovery Email Content', 'shopmetrics' ); ?>
@@ -262,12 +268,12 @@ if ( ! defined( 'WPINC' ) ) {
                         $default_content = "Hello,\n\nWe noticed that you left some items in your shopping cart at {site_name}.\n\nYour cart is still saved, and you can complete your purchase by clicking the link below:\n\n{cart_items}\n\n{recovery_link}\n\nThank you for shopping with us!\n\n{site_name}";
                         wp_editor(
                             !empty($settings['cart_recovery_email_content']) ? $settings['cart_recovery_email_content'] : $default_content,
-                            'shopmetrics_settings[cart_recovery_email_content]',
+                            'shopmetrics_cart_recovery_email_content', // Valid editor ID (no brackets)
                             array(
                                 'textarea_name' => 'shopmetrics_settings[cart_recovery_email_content]',
                                 'textarea_rows' => 10,
                                 'media_buttons' => false,
-                                'editor_class'  => 'sm-html-editor',
+                                'editor_class'  => 'shopmetrics-html-editor',
                             )
                         );
                         ?>
@@ -275,7 +281,7 @@ if ( ! defined( 'WPINC' ) ) {
                             <?php echo esc_html__( 'Available variables: {site_name}, {cart_items}, {cart_total}, {recovery_link}, {customer_name}, {first_name}, {last_name}, {coupon_code}', 'shopmetrics' ); ?>
                         </p>
                         
-                        <div class="sm-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #0073aa; padding: 12px;">
+                        <div class="shopmetrics-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #0073aa; padding: 12px;">
                             <h4 style="margin-top: 0;"><?php echo esc_html__( 'HTML Email Customization', 'shopmetrics' ); ?></h4>
                             <p>
                                 <?php echo esc_html__( 'You have full control over the HTML structure of your emails, including the header and footer. The editor above allows you to customize the entire email template.', 'shopmetrics' ); ?>
@@ -285,7 +291,7 @@ if ( ! defined( 'WPINC' ) ) {
                             </p>
                         </div>
                         
-                        <div class="sm-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #2271b1; padding: 12px;">
+                        <div class="shopmetrics-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #2271b1; padding: 12px;">
                             <h4 style="margin-top: 0;"><?php echo esc_html__( 'About {cart_items} Display', 'shopmetrics' ); ?></h4>
                             <p>
                                 <?php echo esc_html__( 'Cart items are now displayed as attractive product cards with:', 'shopmetrics' ); ?>
@@ -305,7 +311,7 @@ if ( ! defined( 'WPINC' ) ) {
             </table>
         </div>
         
-        <div class="sm-settings-section">
+        <div class="shopmetrics-settings-section">
             <h2 style="display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                 <span class="dashicons dashicons-admin-tools" style="font-size: 24px; width: 24px; height: 24px; margin-right: 10px; color: #2271b1;"></span>
                 <?php echo esc_html__( 'Test Email', 'shopmetrics' ); ?>
@@ -316,36 +322,27 @@ if ( ! defined( 'WPINC' ) ) {
             </p>
             
             <div style="margin-top: 15px;">
-                <?php wp_nonce_field('sm_settings_ajax_nonce', 'sm_settings_nonce'); // Add nonce field for AJAX requests ?>
+                <?php wp_nonce_field('shopmetrics_settings_ajax_nonce', 'shopmetrics_settings_nonce'); // Add nonce field for AJAX requests ?>
                 <button type="button" id="shopmetrics_test_recovery_email" class="button button-secondary">
                     <?php echo esc_html__( 'Send Test Email', 'shopmetrics' ); ?>
                 </button>
                 <span id="shopmetrics_test_email_result" style="margin-left: 10px; display: none;"></span>
             </div>
             
-            <div class="sm-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #ffc107; padding: 12px;">
+            <div class="shopmetrics-info-box" style="margin-top: 15px; background-color: #f8f9fa; border-left: 4px solid #ffc107; padding: 12px;">
                 <p>
                     <?php echo esc_html__( 'The test email will be sent to your WordPress admin email address with sample cart data to preview the layout and formatting.', 'shopmetrics' ); ?>
                 </p>
             </div>
         </div>
 
-        <?php submit_button(); ?>
+        <p class="submit">
+            <button type="submit" class="button button-primary" id="shopmetrics-save-cart-recovery-settings">
+                <?php esc_html_e('Save Changes', 'shopmetrics'); ?>
+            </button>
+            <span id="shopmetrics-cart-recovery-save-status" style="margin-left: 10px;"></span>
+        </p>
     </form>
 </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        // Toggle coupon fields based on checkbox
-        $('#shopmetrics_settings[cart_recovery_include_coupon]').change(function() {
-            if ($(this).is(':checked')) {
-                $('.shopmetrics-coupon-field').show();
-            } else {
-                $('.shopmetrics-coupon-field').hide();
-            }
-        });
-        
-                        // Test email AJAX is handled in admin/js/shopmetrics-settings.js
-        // to avoid duplicate email sends
-    });
-</script> 
+<!-- All JS for this page is now enqueued via wp_add_inline_script in the admin class. --> 

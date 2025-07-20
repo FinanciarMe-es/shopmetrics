@@ -63,8 +63,9 @@ class ShopMetrics_Logger {
         $settings = get_option('shopmetrics_settings', []);
         $this->enabled = !empty($settings['enable_debug_logging']);
         
-        // Log file settings - use WP_CONTENT_DIR for security (not web-accessible)
-        $log_dir = WP_CONTENT_DIR . '/shopmetrics-logs';
+        // Log file settings - use uploads directory for security and compatibility
+        $upload_dir = wp_upload_dir();
+        $log_dir = trailingslashit($upload_dir['basedir']) . 'shopmetrics';
         
         // Create log directory if it doesn't exist
         if (!file_exists($log_dir)) {

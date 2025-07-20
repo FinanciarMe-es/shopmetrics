@@ -121,7 +121,7 @@ class ShopMetrics_Cart_Recovery {
         }
         
         // Use WordPress Options API instead of direct database query
-        $cache_key = 'sm_active_cart_options';
+        $cache_key = 'shopmetrics_active_cart_options';
         $active_cart_options = wp_cache_get($cache_key);
         
         if (false === $active_cart_options) {
@@ -314,8 +314,8 @@ class ShopMetrics_Cart_Recovery {
         // Generate recovery link
         $recovery_token = $this->generate_recovery_token($user_id, $session_id);
         $recovery_link = add_query_arg(array(
-            'sm_cart_recovery' => $recovery_token,
-            'sm_recovery_source' => 'email'
+            'shopmetrics_cart_recovery' => $recovery_token,
+            'shopmetrics_recovery_source' => 'email'
         ), wc_get_cart_url());
         
         // Format email subject with variables
@@ -537,6 +537,7 @@ class ShopMetrics_Cart_Recovery {
             $items_html .= '<div style="flex: 0 0 80px; margin-right: 15px;">';
             if ($image_url) {
                 $items_html .= '<a href="' . esc_url($product_url) . '" style="display: block; width: 80px; height: 80px; overflow: hidden; border: 1px solid #f5f5f5; border-radius: 4px;">';
+                // Plugin asset image: not in Media Library, so <img> is used instead of wp_get_attachment_image()
                 $items_html .= '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($product_name) . '" style="width: 100%; height: auto; display: block;">';
                 $items_html .= '</a>';
             }
@@ -650,14 +651,21 @@ class ShopMetrics_Cart_Recovery {
     
     /**
      * Handle recovery link clicks
+     *
+     * SECURITY NOTE:
+     * Nonce verification is NOT used here because this is a public, signed, time-limited recovery link sent via email.
+     * - The link contains a cryptographically signed token (HMAC with wp_salt) that is validated for integrity and expiry.
+     * - This is not a form or AJAX action, and is not subject to CSRF (user is not logged in, and the link is single-use).
+     * - Adding a nonce would break the flow and not improve security.
+     * - The token validation provides equivalent or better security than a WordPress nonce for this use case.
      */
     public function handle_recovery_link() {
-        if (!isset($_GET['sm_cart_recovery']) || empty($_GET['sm_cart_recovery'])) {
+        if (!isset($_GET['shopmetrics_cart_recovery']) || empty($_GET['shopmetrics_cart_recovery'])) {
             return;
         }
         
-        $token = sanitize_text_field( wp_unslash( $_GET['sm_cart_recovery'] ) );
-        $recovery_source = isset($_GET['sm_recovery_source']) ? sanitize_text_field( wp_unslash( $_GET['sm_recovery_source'] ) ) : 'email';
+        $token = sanitize_text_field( wp_unslash( $_GET['shopmetrics_cart_recovery'] ) );
+        $recovery_source = isset($_GET['shopmetrics_recovery_source']) ? sanitize_text_field( wp_unslash( $_GET['shopmetrics_recovery_source'] ) ) : 'email';
         
         $data = $this->validate_recovery_token($token);
         if (!$data) {
@@ -673,7 +681,7 @@ class ShopMetrics_Cart_Recovery {
         
         if ($cart_restored) {
             // Set recovery source cookie for tracking
-            setcookie('sm_cart_recovery_source', $recovery_source, time() + DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN);
+            setcookie('shopmetrics_cart_recovery_source', $recovery_source, time() + DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN);
             
             // Send event to track the recovery attempt
             $event_data = array(
@@ -899,9 +907,9 @@ class ShopMetrics_Cart_Recovery {
         // Generate a dummy recovery token for the test
         $recovery_token = 'test_token_' . wp_generate_password(16, false);
         $recovery_link = add_query_arg(array(
-            'sm_cart_recovery' => $recovery_token,
-            'sm_recovery_source' => 'email_test',
-            'sm_test' => '1'
+            'shopmetrics_cart_recovery' => $recovery_token,
+            'shopmetrics_recovery_source' => 'email_test',
+            'shopmetrics_test' => '1'
         ), wc_get_cart_url());
         
         // Format the cart items HTML

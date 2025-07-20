@@ -4,9 +4,9 @@ Tags: woocommerce, analytics, ecommerce, cart recovery, abandoned cart
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.0.2
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 1.0.3
+License: GPL v2.1 or later
+License URI: https://www.gnu.org/licenses/gpl-2.1.html
 
 Easy and Smart Analytics Dashboard with Automatic Cart Recovery for WooCommerce stores.
 
@@ -181,16 +181,23 @@ Adds powerful Cart & Checkout analytics. Upgrade to get insights into cart aband
 
 == Third Party Services ==
 
-This plugin connects to ShopMetrics's analytics cloud service to provide real-time insights and data processing:
+This plugin connects to external services to provide analytics, product improvement, and cloud-powered features:
 
 * **Service**: ShopMetrics Analytics Cloud (api.financiarme.es)
-* **Purpose**: Data processing, analytics computation, and secure data storage
-* **Data Sent**: Order data, cart events, and anonymized customer behavior
-* **Privacy**: All data is encrypted and handled according to our privacy policy
-* **Terms**: https://financiarme.es/terms
-* **Privacy Policy**: https://financiarme.es/privacy
+  * **Purpose**: Data processing, analytics computation, and secure data storage
+  * **Data Sent**: Order data (when an order is placed or updated), cart events (when a cart is abandoned or recovered), and anonymized customer behavior (when users interact with the analytics dashboard)
+  * **When**: Data is sent during order placement/updates, cart events, and when using the analytics dashboard
+  * **Terms**: https://financiarme.es/terms
+  * **Privacy Policy**: https://financiarme.es/privacy
 
-The connection to our service is essential for the plugin's functionality and provides the cloud-powered analytics features.
+* **Service**: PostHog (https://posthog.com)
+  * **Purpose**: Product analytics to help us improve the plugin and user experience
+  * **Data Sent**: Anonymized usage data, plugin events, and error reports (never customer or order data)
+  * **When**: Only when you use the plugin admin dashboard or onboarding wizard
+  * **Terms**: https://posthog.com/terms
+  * **Privacy Policy**: https://posthog.com/privacy
+
+The connection to these services is essential for the plugin's functionality and to help us improve the product. All data is encrypted and handled according to our privacy policy.
 
 == Support ==
 

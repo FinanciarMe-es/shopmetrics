@@ -22,8 +22,8 @@ class ShopMetrics_Cart_Tracker {
      */
     protected $plugin;
 
-    const ACTIVE_CART_OPTION_PREFIX = 'sm_active_cart_';
-    const EMAIL_SENT_OPTION_PREFIX = 'sm_cart_recovery_email_sent_';
+    const ACTIVE_CART_OPTION_PREFIX = 'shopmetrics_active_cart_';
+    const EMAIL_SENT_OPTION_PREFIX = 'shopmetrics_cart_recovery_email_sent_';
     const ABANDONMENT_CRON_HOOK = 'shopmetrics_check_abandoned_carts_hook';
     const DEBOUNCED_CART_UPDATE_HOOK = 'shopmetrics_process_debounced_cart_update_hook';
     const ABANDONMENT_THRESHOLD_HOURS = 4;
@@ -205,11 +205,11 @@ class ShopMetrics_Cart_Tracker {
         }
         
         // Access our global flag
-        global $sm_cart_update_in_progress;
+        global $shopmetrics_cart_update_in_progress;
         
         // Check if this is a checkout_started event during a cart operation
         if ($event_type === 'checkout_started' && 
-            ($sm_cart_update_in_progress === true || get_transient('sm_cart_update_in_progress'))) {
+            ($shopmetrics_cart_update_in_progress === true || get_transient('shopmetrics_cart_update_in_progress'))) {
             \ShopMetrics_Logger::get_instance()->info("Overriding checkout_started event to cart_updated during cart operation");
             $event_type = 'cart_updated';
         }
@@ -312,7 +312,10 @@ class ShopMetrics_Cart_Tracker {
     /**
      * Handles general cart activity.
      *
-     * @since 1.1.0
+     * SECURITY NOTE:
+     * Nonce verification is NOT used here because this method only checks for WooCommerce action parameters
+     * (e.g., wc-ajax, add_to_cart) to control plugin logic and avoid duplicate event tracking.
+     * No user input is trusted or processed, and no privileged actions or data modifications are performed.
      */
     public function handle_cart_activity() {
         if ( ( defined('DOING_AJAX') && DOING_AJAX ) || is_admin() ) {
@@ -323,15 +326,15 @@ class ShopMetrics_Cart_Tracker {
             // Set a flag during AJAX cart operations to prevent implicit cart views
             if (wp_doing_ajax() && isset($_REQUEST['wc-ajax']) && 
                 in_array(sanitize_text_field(wp_unslash($_REQUEST['wc-ajax'])), ['add_to_cart', 'remove_from_cart', 'update_item_quantity'])) {
-                set_transient('sm_skip_implicit_cart_views', true, 10); // Valid for 10 seconds
+                set_transient('shopmetrics_skip_implicit_cart_views', true, 10); // Valid for 10 seconds
                 \ShopMetrics_Logger::get_instance()->info("Set flag to skip implicit cart views during AJAX operation");
             }
         }
 
         // Mark that we're performing a cart operation - set this as a global flag as well for immediate access
-        global $sm_cart_update_in_progress;
-        $sm_cart_update_in_progress = true;
-        set_transient('sm_cart_update_in_progress', true, 60); // Valid for 60 seconds
+        global $shopmetrics_cart_update_in_progress;
+        $shopmetrics_cart_update_in_progress = true;
+        set_transient('shopmetrics_cart_update_in_progress', true, 60); // Valid for 60 seconds
                     \ShopMetrics_Logger::get_instance()->debug("CartTracker (handle_cart_activity): Marked cart update in progress");
         
         // Ensure WooCommerce session is initialized
@@ -409,7 +412,9 @@ class ShopMetrics_Cart_Tracker {
      * Handles user viewing the cart page.
      * Only tracks explicit cart page views.
      *
-     * @since 1.1.0
+     * SECURITY NOTE:
+     * Nonce verification is NOT used here because this method only checks for WooCommerce action parameters
+     * to control plugin logic and avoid duplicate event tracking. No user input is trusted or processed.
      */
     public function handle_view_cart_page() {
         // Skip if in admin or during AJAX operations
@@ -423,7 +428,7 @@ class ShopMetrics_Cart_Tracker {
             $session_id = $cart_data['session_id'];
             
             // Use a flag to prevent duplicate view events for the same cart
-            $viewed_cart_flag_key = 'sm_viewed_cart_' . md5($user_id . $session_id . $cart_data['cart_hash']);
+            $viewed_cart_flag_key = 'shopmetrics_viewed_cart_' . md5($user_id . $session_id . $cart_data['cart_hash']);
             
             // Only send the event if we haven't already tracked this cart view
             if (!get_transient($viewed_cart_flag_key)) {
@@ -453,13 +458,15 @@ class ShopMetrics_Cart_Tracker {
      * Handles user starting the checkout process.
      * Now also tracks implicit cart view if user hasn't explicitly viewed the cart page.
      *
-     * @since 1.1.0
+     * SECURITY NOTE:
+     * Nonce verification is NOT used here because this method only checks for WooCommerce action parameters
+     * to control plugin logic and avoid duplicate event tracking. No user input is trusted or processed.
      */
     public function handle_checkout_start() {
         if ( is_admin() ) return;
         
         // Skip during AJAX cart operations
-        if (get_transient('sm_skip_implicit_cart_views')) {
+        if (get_transient('shopmetrics_skip_implicit_cart_views')) {
             \ShopMetrics_Logger::get_instance()->warn("Skipping checkout_started during AJAX cart operation");
             return;
         }
@@ -472,7 +479,7 @@ class ShopMetrics_Cart_Tracker {
             $session_id = $cart_data['session_id'];
             
             // Use unique key for this checkout session to prevent duplicate events
-            $checkout_flag_key = 'sm_checkout_started_' . md5($user_id . $session_id . $cart_data['cart_hash']);
+            $checkout_flag_key = 'shopmetrics_checkout_started_' . md5($user_id . $session_id . $cart_data['cart_hash']);
             
             // Check if we've already tracked this checkout event recently (within 30 seconds)
             if ( get_transient( $checkout_flag_key ) ) {
@@ -503,10 +510,14 @@ class ShopMetrics_Cart_Tracker {
 
     /**
      * Check if the current page is checkout and trigger the checkout start event
+     *
+     * SECURITY NOTE:
+     * Nonce verification is NOT used here because this method only checks for WooCommerce action parameters
+     * to control plugin logic and avoid duplicate event tracking. No user input is trusted or processed.
      */
     public function check_for_checkout_page() {
         // Access our global flag
-        global $sm_cart_update_in_progress;
+        global $shopmetrics_cart_update_in_progress;
         
         // Don't process during any AJAX requests
         if (wp_doing_ajax()) {
@@ -520,7 +531,7 @@ class ShopMetrics_Cart_Tracker {
         }
         
         // Skip if a cart update is in progress (check both global and transient)
-        if ($sm_cart_update_in_progress === true || get_transient('sm_cart_update_in_progress')) {
+        if ($shopmetrics_cart_update_in_progress === true || get_transient('shopmetrics_cart_update_in_progress')) {
             \ShopMetrics_Logger::get_instance()->warn("Skipping checkout detection as cart update is in progress");
             return;
         }
@@ -591,7 +602,7 @@ class ShopMetrics_Cart_Tracker {
         delete_option( $option_key );
         
         // Send order completion event with recovery source tracking info
-        $recovery_source = isset($_COOKIE['sm_cart_recovery_source']) ? sanitize_text_field( wp_unslash( $_COOKIE['sm_cart_recovery_source'] ) ) : 'organic';
+        $recovery_source = isset($_COOKIE['shopmetrics_cart_recovery_source']) ? sanitize_text_field( wp_unslash( $_COOKIE['shopmetrics_cart_recovery_source'] ) ) : 'organic';
         
         $event_data = array(
             'order_id'        => $order_id,
@@ -624,8 +635,8 @@ class ShopMetrics_Cart_Tracker {
         \ShopMetrics_Logger::get_instance()->info("order_completed event sent successfully");
         
         // Clear recovery source cookie if set
-        if (isset($_COOKIE['sm_cart_recovery_source'])) {
-            setcookie('sm_cart_recovery_source', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN);
+        if (isset($_COOKIE['shopmetrics_cart_recovery_source'])) {
+            setcookie('shopmetrics_cart_recovery_source', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN);
         }
     }
 
@@ -638,7 +649,7 @@ class ShopMetrics_Cart_Tracker {
         \ShopMetrics_Logger::get_instance()->info("Running check_abandoned_carts cron job.");
         
         // Use WordPress Options API instead of direct database query
-        $cache_key = 'sm_abandoned_cart_options';
+        $cache_key = 'shopmetrics_abandoned_cart_options';
         $active_cart_options = wp_cache_get($cache_key);
         
         if (false === $active_cart_options) {

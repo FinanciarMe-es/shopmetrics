@@ -207,7 +207,7 @@ class ShopMetrics {
      */
 	private function init_hooks() {
 		// I18N hooks
-		add_action( 'plugins_loaded', array( $this, 'set_locale' ) );
+		// Simplified locale loading - the main plugin file already handles this
 
 		// Admin hooks
 		if ( $this->admin ) {
@@ -242,16 +242,6 @@ class ShopMetrics {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
 	}
 
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * @since    1.0.0
-	 */
-	public function set_locale() {
-		// Simplified locale loading - the main plugin file already handles this
-		load_plugin_textdomain( 'shopmetrics', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
-	}
-	
 	/**
 	 * Declare HPOS compatibility.
 	 *
@@ -345,7 +335,7 @@ class ShopMetrics {
                 true 
             );
 
-			// Determine page type
+			// Determine page type with enhanced WooCommerce detection
 			$page_type = 'page';
 			if (function_exists('is_home') && (is_home() || is_front_page())) {
 				$page_type = 'home';
@@ -359,22 +349,49 @@ class ShopMetrics {
 				$page_type = 'checkout';
 			} elseif (function_exists('is_account_page') && is_account_page()) {
 				$page_type = 'account';
-			} elseif (function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('order-received')) {
-				$page_type = 'order_received';
+			} elseif (function_exists('is_wc_endpoint_url')) {
+				// Enhanced WooCommerce endpoint detection
+				if (is_wc_endpoint_url('order-received')) {
+					$page_type = 'order_received';
+				} elseif (is_wc_endpoint_url('order-pay')) {
+					$page_type = 'order_pay';
+				} elseif (is_wc_endpoint_url('view-order')) {
+					$page_type = 'order_view';
+				} elseif (is_wc_endpoint_url('orders')) {
+					$page_type = 'orders_list';
+				} elseif (is_wc_endpoint_url('downloads')) {
+					$page_type = 'downloads';
+				} elseif (is_wc_endpoint_url('edit-address')) {
+					$page_type = 'edit_address';
+				} elseif (is_wc_endpoint_url('payment-methods')) {
+					$page_type = 'payment_methods';
+				} elseif (is_wc_endpoint_url('add-payment-method')) {
+					$page_type = 'add_payment_method';
+				} elseif (is_wc_endpoint_url('edit-account')) {
+					$page_type = 'edit_account';
+				} elseif (is_wc_endpoint_url('lost-password')) {
+					$page_type = 'lost_password';
+				} elseif (is_wc_endpoint_url('customer-logout')) {
+					$page_type = 'logout';
+				} elseif (is_wc_endpoint_url('customer-login')) {
+					$page_type = 'login';
+				} elseif (is_wc_endpoint_url('customer-register')) {
+					$page_type = 'register';
+				}
 			}
 
 			
 			// Localize script with data
             $localize_data = array(
 				'ajaxUrl' => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('sm_visit_tracking_nonce'),
+				'nonce' => wp_create_nonce('shopmetrics_visit_tracking_nonce'),
                 'pageType' => $page_type,
 				'debugLogging' => !empty($settings['enable_debug_logging']),
 				'orderId' => (function_exists('is_wc_endpoint_url') && is_wc_endpoint_url('order-received')) ? get_query_var('order-received') : null,
 			);
 
 			
-			wp_localize_script('shopmetrics-visit-tracker', 'fmVisitTrackerData', $localize_data);
+			wp_localize_script('shopmetrics-visit-tracker', 'shopmetricsVisitTrackerData', $localize_data);
 		}
 	}
 } 

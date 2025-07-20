@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Class ShopMetrics_Snapshotter
  *
@@ -43,7 +44,7 @@ class ShopMetrics_Snapshotter {
      */
     public static function take_inventory_snapshot() {
         // Allow if called by Action Scheduler, WP Cron, or our defined manual trigger constant.
-        if ( ! did_action( 'action_scheduler_run_queue' ) && ! wp_doing_cron() && ( ! defined( 'SM_DOING_MANUAL_SNAPSHOT' ) || ! SM_DOING_MANUAL_SNAPSHOT ) ) {
+        if ( ! did_action( 'action_scheduler_run_queue' ) && ! wp_doing_cron() && ( ! defined( 'SHOPMETRICS_DOING_MANUAL_SNAPSHOT' ) || ! SHOPMETRICS_DOING_MANUAL_SNAPSHOT ) ) {
             \ShopMetrics_Logger::get_instance()->warn("take_inventory_snapshot called outside of an allowed context (AS, Cron, or Manual Trigger).");
             return;
         }
@@ -333,11 +334,11 @@ class ShopMetrics_Snapshotter {
                             \ShopMetrics_Logger::get_instance()->error("Failed to send low stock email to: " . implode(', ', $recipients));
                             // Additional logging for wp_mail failure if WP_DEBUG is on
                             if (defined('WP_DEBUG') && WP_DEBUG) {
-                                global $ts_mail_errors; // WordPress tracks mail errors in this global if a plugin (like WP Mail Logging) is used
+                                global $shopmetrics_mail_errors; // WordPress tracks mail errors in this global if a plugin (like WP Mail Logging) is used
                                 global $phpmailer;     // PHPMailer instance is often in this global
 
-                                if (!empty($ts_mail_errors) && is_array($ts_mail_errors)) { // Check if array and not empty
-                                    \ShopMetrics_Logger::get_instance()->debug("wp_mail sending errors: " . wp_json_encode($ts_mail_errors));
+                                        if (!empty($shopmetrics_mail_errors) && is_array($shopmetrics_mail_errors)) { // Check if array and not empty
+            \ShopMetrics_Logger::get_instance()->debug("wp_mail sending errors: " . wp_json_encode($shopmetrics_mail_errors));
                                 }
                                 if (isset($phpmailer) && is_object($phpmailer) && !empty($phpmailer->ErrorInfo)) {
                                      \ShopMetrics_Logger::get_instance()->debug("PHPMailer error info: " . $phpmailer->ErrorInfo);

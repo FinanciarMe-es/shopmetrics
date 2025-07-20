@@ -191,7 +191,7 @@ class ShopMetrics_Rest_Api {
     public function handle_initiate_connection( $request ) {
         $site_identifier = $request->get_param('site_identifier');
         $verification_code = wp_generate_password( 32, false ); // Generate a strong random code
-        $transient_key = 'sm_verify_' . $verification_code;
+        $transient_key = 'shopmetrics_verify_' . $verification_code;
         $success_string = 'FINANCIARME_VERIFIED_OK';
 
         // Store the code with the site URL for verification, short expiry
@@ -235,7 +235,7 @@ class ShopMetrics_Rest_Api {
         delete_transient( $transient_key ); // Clean up transient
         
         // --- Register Site with Backend --- 
-        $plaintext_token = 'sm_perm_' . wp_generate_password( 64, false );
+        $plaintext_token = 'shopmetrics_perm_' . wp_generate_password( 64, false );
         $hashed_token = hash( 'sha256', $plaintext_token );
         $registration_url = SHOPMETRICS_API_URL . '/v1/register_site'; // Use constant for API base URL
         $site_identifier_to_register = $request->get_param('site_identifier'); // Get it again for clarity

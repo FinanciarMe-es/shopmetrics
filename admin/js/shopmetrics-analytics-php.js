@@ -23,8 +23,8 @@
                 disable_session_recording: false,
                 session_recording: shopmetricsAnalytics.sessionRecording || {},
                 persistence: 'localStorage+cookie',
-                persistence_name: 'sm_ph',
-                cookie_name: 'sm_ph',
+                persistence_name: 'shopmetrics_ph',
+                cookie_name: 'shopmetrics_ph',
                 cross_subdomain_cookie: false,
                 secure_cookie: true,
                 debug: false

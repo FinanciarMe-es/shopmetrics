@@ -150,7 +150,7 @@ class ShopMetrics_Api_Client {
         );
         
         // Use a longer timeout for bulk operations
-        add_filter( 'shopmetrics_analytics_api_timeout', function() { return 60; }, 999 );
+        add_filter( 'shopmetrics_analytics_api_timeout', 'shopmetrics_api_timeout_60', 999 );
         
         // Log the bulk request
         \ShopMetrics_Logger::get_instance()->info( "Sending bulk orders request with " . count($orders_data) . " orders" );
@@ -167,6 +167,20 @@ class ShopMetrics_Api_Client {
             // Debug log the configuration values (redacting part of the token for security)
             $masked_token = !empty($api_token) ? substr($api_token, 0, 6) . '...' . substr($api_token, -4) : 'empty';
             \ShopMetrics_Logger::get_instance()->info("Bulk orders: Using Token: {$masked_token}, Site ID: {$site_identifier}");
+            
+            // Additional debugging to check if credentials are empty
+            if (empty($api_token)) {
+                \ShopMetrics_Logger::get_instance()->error("Bulk orders: API token is empty!");
+            }
+            if (empty($site_identifier)) {
+                \ShopMetrics_Logger::get_instance()->error("Bulk orders: Site identifier is empty!");
+            }
+            
+            // Validate that we have all required credentials
+            if (empty($api_token) || empty($site_identifier)) {
+                \ShopMetrics_Logger::get_instance()->error("Bulk orders: API settings (Token or Site ID) are incomplete. Cannot send request.");
+                return new \WP_Error('api_config_error', 'API configuration is incomplete. Please reconnect your site.', array('status' => 500));
+            }
             
             // Create request
             $request_args = array(
@@ -230,7 +244,12 @@ class ShopMetrics_Api_Client {
             return new \WP_Error('api_request_failed', $error_message, array('status' => $response_code, 'body' => $response_body));
         } finally {
             // Remove our custom timeout filter
-            remove_filter('shopmetrics_analytics_api_timeout', function() { return 60; }, 999);
+            remove_filter('shopmetrics_analytics_api_timeout', 'shopmetrics_api_timeout_60', 999);
         }
     }
+} 
+
+// Add this at the top level, outside the class:
+if (!function_exists('shopmetrics_api_timeout_60')) {
+    function shopmetrics_api_timeout_60() { return 60; }
 } 

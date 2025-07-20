@@ -1394,8 +1394,8 @@
       "Site identifier or API token not provided.": [
         "Идентификатор сайта или API токен не предоставлен."
       ],
-      "API URL not configured in window.fmData.": [
-        "API URL не настроен в window.fmData."
+      "API URL not configured in window.shopmetricsData.": [
+        "API URL не настроен в window.shopmetricsData."
       ],
       "Failed to parse cart data from API response (unexpected data structure).": [
         "Не удалось разобрать данные корзины из ответа API (неожиданная структура  данных)."

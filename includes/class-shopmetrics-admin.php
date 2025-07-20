@@ -2,6 +2,8 @@
 
 namespace ShopMetrics\Analytics;
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 // Import the Analytics class from the same namespace
 use ShopMetrics\Analytics\ShopMetrics_Analytics;
 
@@ -69,13 +71,20 @@ class ShopMetrics_Admin {
 	 * @since 1.2.0
      */
     public function init_hooks() {
+        // Register plugin settings - must be done before admin_menu
+        add_action( 'admin_init', array( $this, 'register_plugin_settings' ) );
+        
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_settings_inline_js' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_data_sources_inline_js' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_cart_recovery_inline_js' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_subscription_inline_js' ) );
+        // Register the admin menu
         add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'register_plugin_settings' ) );
-		
 		// AJAX handlers
-		add_action( 'wp_ajax_shopmetrics_save_token', array( $this, 'ajax_save_token' ) );
+		// Removed: ajax_save_token - now using ajax_save_credentials for consistency
+		add_action( 'wp_ajax_shopmetrics_save_credentials', array( $this, 'ajax_save_credentials' ) );
 		add_action( 'wp_ajax_shopmetrics_save_settings', array( $this, 'handle_ajax_save_settings' ) );
 		add_action( 'wp_ajax_shopmetrics_test_api_connection', array( $this, 'handle_ajax_test_connection' ) );
 		add_action( 'wp_ajax_shopmetrics_disconnect_site', array( $this, 'ajax_disconnect_site' ) );
@@ -88,12 +97,13 @@ class ShopMetrics_Admin {
         add_action( 'wp_ajax_shopmetrics_download_logs', array( $this, 'ajax_download_logs' ) );
         add_action( 'wp_ajax_shopmetrics_test_order_sync', array( $this, 'ajax_test_order_sync' ) );
         add_action( 'wp_ajax_shopmetrics_check_order_sync', array( $this, 'ajax_check_order_sync' ) );
-		add_action( 'wp_ajax_sm_get_all_meta_keys', array( $this, 'ajax_sm_get_all_meta_keys' ) );
-		add_action( 'wp_ajax_sm_auto_detect_cogs_key', array( $this, 'ajax_sm_auto_detect_cogs_key' ) );
+		add_action( 'wp_ajax_shopmetrics_get_all_meta_keys', array( $this, 'ajax_shopmetrics_get_all_meta_keys' ) );
+		add_action( 'wp_ajax_shopmetrics_auto_detect_cogs_key', array( $this, 'ajax_shopmetrics_auto_detect_cogs_key' ) );
 		add_action( 'wp_ajax_shopmetrics_save_setting', array( $this, 'ajax_save_setting' ) );
 		add_action( 'wp_ajax_shopmetrics_start_sync', array( $this, 'ajax_start_sync' ) );
 		add_action( 'wp_ajax_shopmetrics_get_billing_history', array( $this, 'ajax_get_billing_history' ) );
 		add_action( 'wp_ajax_shopmetrics_create_checkout', array( $this, 'ajax_create_checkout' ) );
+		add_action( 'wp_ajax_shopmetrics_debug_auth_status', array( $this, 'ajax_debug_auth_status' ) );
 		add_action( 'wp_ajax_shopmetrics_get_sync_progress', array( $this, 'ajax_get_sync_progress' ) );
 		add_action( 'wp_ajax_shopmetrics_reset_sync_progress', array( $this, 'ajax_reset_sync_progress' ) );
 		add_action( 'wp_ajax_shopmetrics_cancel_subscription', array( $this, 'ajax_cancel_subscription' ) );
@@ -101,9 +111,12 @@ class ShopMetrics_Admin {
 		add_action( 'wp_ajax_shopmetrics_auto_detect_order_blocks', array( $this, 'ajax_auto_detect_order_blocks' ) );
 		add_action( 'wp_ajax_shopmetrics_rotate_logs', array( $this, 'ajax_rotate_logs' ) );
 		add_action( 'wp_ajax_shopmetrics_save_analytics_consent', array( $this, 'ajax_save_analytics_consent' ) );
-		add_action( 'wp_ajax_shopmetrics_reset_onboarding', array( $this, 'ajax_reset_onboarding' ) );
-		add_action( 'wp_ajax_sm_track_visit', array( $this, 'ajax_sm_track_visit' ) );
-		add_action( 'wp_ajax_nopriv_sm_track_visit', array( $this, 'ajax_sm_track_visit' ) );
+        add_action( 'wp_ajax_shopmetrics_reset_onboarding', array( $this, 'ajax_reset_onboarding' ) );
+        add_action( 'wp_ajax_shopmetrics_get_settings', array( $this, 'ajax_get_settings' ) );
+        add_action( 'wp_ajax_shopmetrics_initiate_connection', array( $this, 'ajax_initiate_connection' ) );
+		add_action( 'wp_ajax_shopmetrics_track_visit', array( $this, 'ajax_shopmetrics_track_visit' ) );
+		add_action( 'wp_ajax_nopriv_shopmetrics_track_visit', array( $this, 'ajax_shopmetrics_track_visit' ) );
+        add_action( 'wp_ajax_shopmetrics_check_credentials', array( $this, 'ajax_check_credentials' ) );
     }
 
 	/**
@@ -155,8 +168,8 @@ class ShopMetrics_Admin {
 		// Localize the script with parameters
 		wp_localize_script( $this->plugin_name, 'shopmetricsanalytics_admin_params', array(
 			'ajax_url' => admin_url('admin-ajax.php'),
-			'settings_nonce' => wp_create_nonce('sm_settings_ajax_nonce'),
-			'server_base_url' => defined('SM_SERVER_BASE_URL') ? SM_SERVER_BASE_URL : '',
+			                'settings_nonce' => wp_create_nonce('shopmetrics_settings_ajax_nonce'),
+			            'server_base_url' => defined('SHOPMETRICS_SERVER_BASE_URL') ? SHOPMETRICS_SERVER_BASE_URL : '',
 			'is_connected' => (get_option('shopmetrics_analytics_api_token') ? 'yes' : 'no'),
 			'i18n' => array(
 				'confirmation' => __('Are you sure you want to take this action?', 'shopmetrics'),
@@ -208,10 +221,11 @@ class ShopMetrics_Admin {
              
 		    // Localize with settings-specific data
 		    $settings = get_option('shopmetrics_settings', []);
-		    wp_localize_script($this->plugin_name . '-settings', 'fmSettings', array(
+		    wp_localize_script($this->plugin_name . '-settings', 'shopmetricsSettings', array(
 		        'ajax_url' => admin_url('admin-ajax.php'),
-		        'nonce' => wp_create_nonce('sm_settings_ajax_nonce'),
-				'cart_recovery_nonce' => wp_create_nonce('sm_cart_recovery_ajax_nonce'),
+		        'nonce' => wp_create_nonce('shopmetrics_settings_ajax_nonce'),
+		        'api_actions_nonce' => wp_create_nonce('shopmetrics_api_actions'),
+		        'cart_recovery_nonce' => wp_create_nonce('shopmetrics_cart_recovery_ajax_nonce'),
 		        'disconnect_nonce' => wp_create_nonce('shopmetrics_disconnect_action'),
 		        'plugin_page' => $hook_suffix,
 		        'debug_timestamp' => time(),
@@ -223,10 +237,24 @@ class ShopMetrics_Admin {
 		        'error_generic' => __('An error occurred', 'shopmetrics'),
 		        'error_loading_keys' => __('Error loading meta keys', 'shopmetrics'),
 		        'error_ajax' => __('AJAX Error', 'shopmetrics'),
-		        // debugLogging теперь из массива
 		        'debugLogging' => (bool)($settings['enable_debug_logging'] ?? false),
 		        'enableDebugLogs' => (bool)($settings['enable_debug_logging'] ?? false),
-		        'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'), // Nonce for analytics consent
+		        'analyticsConsentNonce' => wp_create_nonce('shopmetrics_save_analytics_consent'),
+		        // Stripe-related properties
+		        'stripe_publishable_key' => defined('SHOPMETRICS_STRIPE_PUBLISHABLE_KEY') ? SHOPMETRICS_STRIPE_PUBLISHABLE_KEY : '',
+		        // Subscription-related text properties
+		        'text_processing' => __('Processing...', 'shopmetrics'),
+		        'text_pending_cancellation' => __('Your subscription is pending cancellation.', 'shopmetrics'),
+		        'status_pending_cancellation' => __('Pending Cancellation', 'shopmetrics'),
+		        'text_reactivate_subscription' => __('Reactivate Subscription', 'shopmetrics'),
+		        'text_confirm_reactivate' => __('Are you sure you want to reactivate your subscription?', 'shopmetrics'),
+		        'text_reactivating_subscription' => __('Reactivating...', 'shopmetrics'),
+		        'text_cancel_subscription' => __('Cancel Subscription', 'shopmetrics'),
+		        'error_prefix' => __('Error: ', 'shopmetrics'),
+		        'status_active' => __('Active', 'shopmetrics'),
+		        // Snapshot-related text properties
+		        'text_take_snapshot' => __('Take Inventory Snapshot Now', 'shopmetrics'),
+		        'text_next_snapshot' => __('Next scheduled snapshot:', 'shopmetrics'),
 		    ));
 		}
 
@@ -256,27 +284,15 @@ class ShopMetrics_Admin {
      */
     private function setup_react_translations( $handle, $js_file_url ) {
         $languages_dir = plugin_dir_path( dirname( __FILE__ ) ) . 'languages';
-        
-        // Extract main filename from full URL and remove .js extension
         $filename = basename( $js_file_url );
-        $filename = preg_replace('/\.js$/', '', $filename); // Remove .js extension
-        
-        // Use only our custom translation loading (WordPress default conflicts with our naming)
-        
-        // Add our custom JSON file loader as backup
-        add_action('admin_footer', function() use ($handle, $filename, $languages_dir) {
+        $filename = preg_replace('/\.js$/', '', $filename);
             $locale = get_user_locale();
             $json_file = $languages_dir . "/shopmetrics-{$locale}-{$filename}.json";
             $json_url = plugin_dir_url( dirname( __FILE__ ) ) . "languages/shopmetrics-{$locale}-{$filename}.json";
-            
-            ?>
-            <script type="text/javascript">
-            // Load our specific JSON translation file
+        $inline_js = "// Load our specific JSON translation file
             document.addEventListener('DOMContentLoaded', function() {
                 if (typeof wp !== 'undefined' && wp.i18n) {
-
-                    // Check if our specific JSON file exists
-                    fetch('<?php echo esc_js($json_url); ?>')
+        fetch('" . esc_js($json_url) . "')
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('JSON file not found: ' + response.status);
@@ -284,20 +300,18 @@ class ShopMetrics_Admin {
                             return response.json();
                         })
                         .then(data => {                            
-                            // Apply translations to wp.i18n
                             if (data.locale_data && data.locale_data['shopmetrics']) {
                                 wp.i18n.setLocaleData(data.locale_data['shopmetrics'], 'shopmetrics');                                
                             }
                         })
                         .catch(error => {
                             // console.log('[ShopMetrics] Custom translation file not found, using WordPress defaults:', error.message);
-                            // console.log('[ShopMetrics] Attempted URL:', '<?php echo esc_js($json_url); ?>');
                         });
                 }
-            });
-            </script>
-            <?php
-        }, 1); // High priority to load early
+            });";
+        add_action('admin_enqueue_scripts', function() use ($handle, $inline_js) {
+            wp_add_inline_script($handle, $inline_js, 'after');
+        }, 20);
     }
     
     /**
@@ -505,7 +519,8 @@ class ShopMetrics_Admin {
             $data_to_pass = array(
                 'apiUrl' => SHOPMETRICS_API_URL, // Use constant defined in main plugin file
                 'nonce' => wp_create_nonce( 'shopmetrics_api_actions' ), // Or a specific nonce if needed
-                'settingsNonce' => wp_create_nonce( 'sm_settings_ajax_nonce' ), // Add settings nonce
+                'api_actions_nonce' => wp_create_nonce( 'shopmetrics_api_actions' ), // Add api_actions_nonce for debug calls
+                'settingsNonce' => wp_create_nonce( 'shopmetrics_settings_ajax_nonce' ), // Add settings nonce
                 'errorTestNonce' => wp_create_nonce( 'shopmetrics_nonce' ), // Add error testing nonce
                 'ajaxUrl' => admin_url( 'admin-ajax.php' ), // Pass ajaxurl
                 'apiToken' => $api_token,
@@ -548,7 +563,6 @@ class ShopMetrics_Admin {
             \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Site Identifier Option: ' . $site_identifier_option);
             \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Calculated isConnected: ' . ($is_connected ? 'true' : 'false'));
             \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
-            \ShopMetrics_Logger::get_instance()->debug('[Dashboard Load] - Translations count: ' . count($translations) . ', Locale: ' . $locale);
         
             // Debug translations before passing to React
             \ShopMetrics_Logger::get_instance()->debug('[Translations] Count: ' . count($translations) . ', Locale: ' . $locale);
@@ -556,7 +570,7 @@ class ShopMetrics_Admin {
                 \ShopMetrics_Logger::get_instance()->debug('[Translations] First few keys: ' . implode(', ', array_slice(array_keys($translations), 0, 5)));
             }
             
-			$localize_result = wp_localize_script( $main_js_handle, 'fmData', $data_to_pass );
+			$localize_result = wp_localize_script( $main_js_handle, 'shopmetricsData', $data_to_pass );
 			
 			// Log if localization failed
 			if (!$localize_result) {
@@ -568,13 +582,8 @@ class ShopMetrics_Admin {
             // Set up JavaScript translations for the React app with our new naming convention
             $this->setup_react_translations( $main_js_handle, $main_js_file_url );
             
-            // Translations are handled by setup_react_translations() above
-            
             // Add debugging for translations - with proper wp.i18n waiting
-            add_action('admin_footer', function() use ($main_js_file_url, $main_js_handle) {
-                ?>
-                <script type="text/javascript">
-                // Wait for wp.i18n to be available and test translations
+            $test_translations_js = "// Wait for wp.i18n to be available and test translations
                 function testTranslations() {
                     if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {                        
                         // Check locale data
@@ -586,60 +595,40 @@ class ShopMetrics_Admin {
                         return false;
                     }
                 }
-                
-                // Try immediately
                 if (!testTranslations()) {
-                    // If not available, try after 1 second
                     setTimeout(function() {
                         if (!testTranslations()) {
-                            // Try after 3 seconds
                             setTimeout(function() {
                                 testTranslations();
                             }, 2000);
                         }
                     }, 1000);
-                }
-                </script>
-                <?php
-            }, 100);
-            
-            // For extra safety, explicitly add an inline script to verify window.fmData exists
-            add_action('admin_footer', function() use ($data_to_pass) {
-                ?>
-                <script type="text/javascript">
-                // Backup in case wp_localize_script fails
-                if (typeof window.fmData === 'undefined') {
-					console.warn('[ShopMetrics] fmData is undefined - wp_localize_script may have failed. Creating backup data object.');
-                    window.fmData = <?php echo wp_json_encode($data_to_pass); ?>;
-					console.log('[ShopMetrics] Backup fmData created:', window.fmData);
-				} else {
-					console.log('[ShopMetrics] fmData is properly loaded:', window.fmData);
-                }
-                
-                // Create analytics configuration for React hook
-                if (window.fmData && window.fmData.shopmetricsAnalytics) {
-                    // Merge with WordPress localized script data if available
-                    if (typeof shopmetricsAnalytics !== "undefined") {
-                        window.shopmetricsAnalytics = {
-                            ...window.fmData.shopmetricsAnalytics,
-                            ...shopmetricsAnalytics // WordPress localized data has nonce and ajaxUrl
-                        };
-                    } else {
-                        window.shopmetricsAnalytics = window.fmData.shopmetricsAnalytics;
-                    }
-                }
-                
-                // Create global translation function for React
-                window.__ = function(text, domain) {
-                    if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {
-                        return wp.i18n.__(text, domain || 'shopmetrics');
-                    }
-                    return text; // Fallback to original text
-                };
-                
-                </script>
-                <?php
-            }, 99); // High priority to run late
+                }";
+            wp_add_inline_script($main_js_handle, $test_translations_js, 'after');
+
+            // For extra safety, explicitly add an inline script to verify window.shopmetricsData exists
+            $shopmetricsdata_backup_js = "";
+            $shopmetricsdata_backup_js .= "if (typeof window.shopmetricsData === 'undefined') {\n";
+            $shopmetricsdata_backup_js .= "  console.warn('[ShopMetrics] shopmetricsData is undefined - wp_localize_script may have failed. Creating backup data object.');\n";
+            $shopmetricsdata_backup_js .= "  window.shopmetricsData = " . wp_json_encode($data_to_pass) . ";\n";
+            $shopmetricsdata_backup_js .= "  console.log('[ShopMetrics] Backup shopmetricsData created:', window.shopmetricsData);\n";
+            $shopmetricsdata_backup_js .= "} else {\n";
+            $shopmetricsdata_backup_js .= "  console.log('[ShopMetrics] shopmetricsData is properly loaded:', window.shopmetricsData);\n";
+            $shopmetricsdata_backup_js .= "}\n";
+        $shopmetricsdata_backup_js .= "if (window.shopmetricsData && window.shopmetricsData.shopmetricsAnalytics) {\n";
+        $shopmetricsdata_backup_js .= "  if (typeof shopmetricsAnalytics !== 'undefined') {\n";
+        $shopmetricsdata_backup_js .= "    window.shopmetricsAnalytics = { ...window.shopmetricsData.shopmetricsAnalytics, ...shopmetricsAnalytics };\n";
+        $shopmetricsdata_backup_js .= "  } else {\n";
+        $shopmetricsdata_backup_js .= "    window.shopmetricsAnalytics = window.shopmetricsData.shopmetricsAnalytics;\n";
+        $shopmetricsdata_backup_js .= "  }\n";
+        $shopmetricsdata_backup_js .= "}\n";
+        $shopmetricsdata_backup_js .= "window.__ = function(text, domain) {\n";
+        $shopmetricsdata_backup_js .= "  if (typeof wp !== 'undefined' && wp.i18n && wp.i18n.__) {\n";
+        $shopmetricsdata_backup_js .= "    return wp.i18n.__(text, domain || 'shopmetrics');\n";
+        $shopmetricsdata_backup_js .= "  }\n";
+        $shopmetricsdata_backup_js .= "  return text;\n";
+        $shopmetricsdata_backup_js .= "};\n";
+        wp_add_inline_script($main_js_handle, $shopmetricsdata_backup_js, 'after');
         } else {
             \ShopMetrics_Logger::get_instance()->error('Main JS file for React app not found after scanning.');
              add_action( 'admin_notices', function() {
@@ -741,13 +730,18 @@ class ShopMetrics_Admin {
     public function display_dashboard_page() {
 		// Handle reset onboarding URL parameter
 		if (isset($_GET['reset_onboarding']) && sanitize_text_field(wp_unslash($_GET['reset_onboarding'])) === '1') {
+			// Nonce check for security
+			        if (!isset($_GET['reset_onboarding_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['reset_onboarding_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
+				echo '<div class="notice notice-error"><p>' . esc_html__('Invalid or missing nonce for onboarding reset.', 'shopmetrics') . '</p></div>';
+				return;
+			}
 			if (current_user_can('manage_options')) {
 				        update_option('shopmetrics_needs_onboarding', 'true');
 				delete_transient('shopmetrics_onboarding_progress');
 				\ShopMetrics_Logger::get_instance()->info("Onboarding reset via URL parameter");
 				
 				// Redirect to clean URL to avoid repeated resets
-				wp_redirect(admin_url('admin.php?page=shopmetrics'));
+				wp_safe_redirect(admin_url('admin.php?page=shopmetrics'));
 				exit;
 			}
 		}
@@ -771,6 +765,7 @@ class ShopMetrics_Admin {
             echo '<div style="background-color: #fde9ef; padding: 20px; margin-top: 20px; border: 1px solid #d63638; border-radius: 8px;">';
             // Logo and heading inside the panel
             echo '<div style="margin-bottom: 15px; display: flex; align-items: center;">';
+            // Plugin asset image: not in Media Library, so <img> is used instead of wp_get_attachment_image()
             echo '<img src="' . esc_url(plugin_dir_url(dirname(__FILE__)) . 'admin/images/financiarme-logo.svg') . '" alt="ShopMetrics" style="height: 35px; margin-right: 10px;">';
             echo '<h3 style="margin: 0; color: #d63638; font-size: 24px;">' . esc_html__('ShopMetrics for WooCommerce - Setup required', 'shopmetrics') . '</h3>';
             echo '</div>';
@@ -791,23 +786,19 @@ class ShopMetrics_Admin {
             echo '<div style="display: flex; justify-content: center; align-items: center; height: 150px;">
                 <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="20" cy="20" r="18" fill="none" stroke="#dddddd" stroke-width="4"></circle>
-                    <circle cx="20" cy="20" r="18" fill="none" stroke="#2271b1" stroke-width="4" stroke-dasharray="113" stroke-dashoffset="0" style="animation: sm-analytics-dash 1.5s ease-in-out infinite">
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="#2271b1" stroke-width="4" stroke-dasharray="113" stroke-dashoffset="0" style="animation: shopmetrics-analytics-dash 1.5s ease-in-out infinite">
                         <animate attributeName="stroke-dashoffset" values="113;0" dur="1.5s" repeatCount="indefinite" />
                     </circle>
                 </svg>
-            </div>
-            <style>
-                @keyframes sm-analytics-dash {
-                    0% { stroke-dashoffset: 113; }
-                    50% { stroke-dashoffset: 30; }
-                    100% { stroke-dashoffset: 113; }
-                }
-            </style>';
+            </div>';
+            // Move spinner CSS to wp_add_inline_style
+            $spinner_css = '@keyframes shopmetrics-analytics-dash { 0% { stroke-dashoffset: 113; } 50% { stroke-dashoffset: 30; } 100% { stroke-dashoffset: 113; } }';
+            wp_add_inline_style('shopmetrics-dashboard-css', $spinner_css);
             
             // Enqueue analytics script for React pages
             \ShopMetrics\Analytics\ShopMetrics_Analytics::enqueue_analytics_script('shopmetrics_dashboard');
             
-            // React app scripts and fmData
+            // React app scripts and shopmetricsData
             $react_app_dist_url = plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/dist/';
             $react_app_dist_path = plugin_dir_path( dirname( __FILE__ ) ) . 'admin/js/dist/';
             
@@ -819,7 +810,7 @@ class ShopMetrics_Admin {
             $data_to_pass = array(
                 'apiUrl' => SHOPMETRICS_API_URL,
                 'nonce' => wp_create_nonce('shopmetrics_api_actions'),
-                'settingsNonce' => wp_create_nonce('sm_settings_ajax_nonce'),
+                'settingsNonce' => wp_create_nonce('shopmetrics_settings_ajax_nonce'),
                 'errorTestNonce' => wp_create_nonce('shopmetrics_nonce'),
                 'ajaxUrl' => admin_url('admin-ajax.php'),
                 'apiToken' => $api_token,
@@ -882,7 +873,7 @@ class ShopMetrics_Admin {
                 wp_enqueue_script($main_js_handle, $main_js_file, array(), SHOPMETRICS_VERSION, true);
                 
                 // Localize script data
-                $localize_result = wp_localize_script($main_js_handle, 'fmData', $data_to_pass);
+                $localize_result = wp_localize_script($main_js_handle, 'shopmetricsData', $data_to_pass);
                 
                 // Log if localization failed
                 if (!$localize_result) {
@@ -892,15 +883,15 @@ class ShopMetrics_Admin {
                 // Add inline script for initialization
                 $inline_script = '
                     // Create analytics configuration for React hook
-                    if (window.fmData && window.fmData.shopmetricsAnalytics) {
+                    if (window.shopmetricsData && window.shopmetricsData.shopmetricsAnalytics) {
                         // Merge with WordPress localized script data if available
                         if (typeof shopmetricsAnalytics !== "undefined") {
                             window.shopmetricsAnalytics = {
-                                ...window.fmData.shopmetricsAnalytics,
+                                ...window.shopmetricsData.shopmetricsAnalytics,
                                 ...shopmetricsAnalytics // WordPress localized data has nonce and ajaxUrl
                             };
                         } else {
-                            window.shopmetricsAnalytics = window.fmData.shopmetricsAnalytics;
+                            window.shopmetricsAnalytics = window.shopmetricsData.shopmetricsAnalytics;
                         }
                     }
                     
@@ -912,22 +903,22 @@ class ShopMetrics_Admin {
                         return text; // Fallback to original text
                     };
                     
-                    // Create backup function to ensure onboarding shows if fmData is missing
-                    window.checkAndFixFmData = function() {
-                        if (typeof window.fmData === "undefined") {
-                            console.warn("[ShopMetrics] fmData is undefined - wp_localize_script may have failed. Creating backup data object.");
-                            window.fmData = ' . wp_json_encode($data_to_pass) . ';
-                            window.fmData.needsOnboarding = "true"; // Force onboarding when data is missing
-                            console.log("[ShopMetrics] Backup fmData created:", window.fmData);
+                    // Create backup function to ensure onboarding shows if shopmetricsData is missing
+                    window.checkAndFixShopmetricsData = function() {
+                        if (typeof window.shopmetricsData === "undefined") {
+                            console.warn("[ShopMetrics] shopmetricsData is undefined - wp_localize_script may have failed. Creating backup data object.");
+                            window.shopmetricsData = ' . wp_json_encode($data_to_pass) . ';
+                            window.shopmetricsData.needsOnboarding = "true"; // Force onboarding when data is missing
+                            console.log("[ShopMetrics] Backup shopmetricsData created:", window.shopmetricsData);
                         } else {
-                            console.log("[ShopMetrics] fmData is properly loaded:", window.fmData);
+                            console.log("[ShopMetrics] shopmetricsData is properly loaded:", window.shopmetricsData);
                         }
                     };
                     
-                    // Check multiple times to ensure fmData is available
-                    window.checkAndFixFmData();
-                    setTimeout(window.checkAndFixFmData, 100);
-                    setTimeout(window.checkAndFixFmData, 500);
+                    // Check multiple times to ensure shopmetricsData is available
+                    window.checkAndFixShopmetricsData();
+                    setTimeout(window.checkAndFixShopmetricsData, 100);
+                    setTimeout(window.checkAndFixShopmetricsData, 500);
                 
                     // Check if React mounted correctly, if not, ensure mounting point exists
                     setTimeout(function() {
@@ -1014,7 +1005,7 @@ class ShopMetrics_Admin {
             )
         );
 
-        // Add settings section
+        // Add settings section for main settings page
         add_settings_section(
             'shopmetrics_analytics_general_section', // Section ID
             __( 'General Settings', 'shopmetrics' ), // Title
@@ -1031,55 +1022,45 @@ class ShopMetrics_Admin {
             'shopmetrics_analytics_general_section' // Section
         );
 
+        // Add settings section for data sources page
+        add_settings_section(
+            'shopmetrics_data_sources_section', // Section ID
+            __( 'Data Sources Settings', 'shopmetrics' ), // Title
+            null, // No specific callback needed for section description here
+            'shopmetrics-data-sources' // Page slug where this section appears
+        );
+
+        // Add low stock notifications fields to data sources page
+        add_settings_field(
+            'shopmetrics_analytics_enable_low_stock_notifications_id',
+            __( 'Enable Low Stock Notifications', 'shopmetrics' ),
+            array( $this, 'render_enable_low_stock_notifications_field' ),
+            'shopmetrics-data-sources',
+            'shopmetrics_data_sources_section'
+        );
+
+        add_settings_field(
+            'shopmetrics_analytics_low_stock_notification_recipients_id',
+            __( 'Notification Recipients', 'shopmetrics' ),
+            array( $this, 'render_low_stock_notification_recipients_field' ),
+            'shopmetrics-data-sources',
+            'shopmetrics_data_sources_section'
+        );
+
+        // Cart Recovery page uses manual form rendering, no settings sections needed
+
         // COGS settings are now part of the unified shopmetrics_settings array
         // No separate registration needed - they're handled in the sanitize_settings_array method
         
-        // --- Register Enable Low Stock Email Notifications Setting ---
-        register_setting(
-            'shopmetrics_settings_group',
-            'shopmetrics_analytics_enable_low_stock_notifications',
-            array(
-                'type' => 'boolean',
-                'sanitize_callback' => 'rest_sanitize_boolean',
-                'default' => false
-            )
-        );
-
-        // --- Add Enable Low Stock Email Notifications Field ---
-        add_settings_field(
-            'shopmetrics_analytics_enable_low_stock_notifications_id',
-            __( 'Enable Low Stock Email Notifications', 'shopmetrics' ),
-            array( $this, 'render_enable_low_stock_notifications_field' ), // Callback to be defined next
-            'shopmetrics-settings',
-            'shopmetrics_analytics_general_section'
-        );
-
-        // --- Register Low Stock Notification Recipients Setting ---
-        register_setting(
-            'shopmetrics_analytics_settings_group',
-            'shopmetrics_analytics_low_stock_notification_recipients',
-            array(
-                'type' => 'string',
-                'sanitize_callback' => array( $this, 'sanitize_low_stock_recipients' ), // Callback to be defined next
-                'default' => ''
-            )
-        );
-
-        // --- Add Low Stock Notification Recipients Field ---
-        add_settings_field(
-            'shopmetrics_analytics_low_stock_notification_recipients_id',
-            __( 'Low Stock Notification Recipient(s)', 'shopmetrics' ),
-            array( $this, 'render_low_stock_notification_recipients_field' ), // Callback to be defined next
-            'shopmetrics-settings',
-            'shopmetrics_analytics_general_section'
-        );
+        // Low stock notifications are now handled via the unified shopmetrics_settings array
+        // Fields are registered for both settings and data sources pages
         
         // Register Cart Recovery Settings
         // (Cart Recovery settings are registered in the Cart_Recovery class)
 
         // --- Debug Logging Setting ---
         register_setting(
-            'shopmetrics_analytics_settings_group',
+            'shopmetrics_settings_group',
             'shopmetrics_enable_debug_logging',
             array(
                 'type' => 'boolean',
@@ -1091,6 +1072,23 @@ class ShopMetrics_Admin {
             'shopmetrics_enable_debug_logging_id',
             __( 'Enable Debug Logging', 'shopmetrics' ),
             array( $this, 'render_enable_debug_logging_field' ),
+            'shopmetrics-settings',
+            'shopmetrics_analytics_general_section'
+        );
+
+        // Add low stock notifications fields to settings page
+        add_settings_field(
+            'shopmetrics_analytics_enable_low_stock_notifications_id',
+            __( 'Enable Low Stock Notifications', 'shopmetrics' ),
+            array( $this, 'render_enable_low_stock_notifications_field' ),
+            'shopmetrics-settings',
+            'shopmetrics_analytics_general_section'
+        );
+
+        add_settings_field(
+            'shopmetrics_analytics_low_stock_notification_recipients_id',
+            __( 'Notification Recipients', 'shopmetrics' ),
+            array( $this, 'render_low_stock_notification_recipients_field' ),
             'shopmetrics-settings',
             'shopmetrics_analytics_general_section'
         );
@@ -1129,25 +1127,25 @@ class ShopMetrics_Admin {
         $settings = get_option('shopmetrics_settings', []);
         $value = $settings['cogs_meta_key'] ?? '';
         ?>
-        <div id="sm_cogs_meta_key_setting_area">
+        <div id="shopmetrics_cogs_meta_key_setting_area">
             <p>
                 <strong><?php esc_html_e( 'Currently Saved Key:', 'shopmetrics' ); ?></strong>
-                <code id="sm_current_cogs_key_display"><?php echo esc_html( $value ? $value : __( 'Not set', 'shopmetrics' ) ); ?></code>
+                <code id="shopmetrics_current_cogs_key_display"><?php echo esc_html( $value ? $value : __( 'Not set', 'shopmetrics' ) ); ?></code>
             </p>
 
-            <button type="button" id="sm_auto_detect_cogs_key_button" class="button">
+            <button type="button" id="shopmetrics_auto_detect_cogs_key_button" class="button">
                 <?php esc_html_e( 'Auto-detect COGS Meta Key', 'shopmetrics' ); ?>
             </button>
-            <button type="button" id="sm_manual_select_cogs_key_button" class="button">
+            <button type="button" id="shopmetrics_manual_select_cogs_key_button" class="button">
                 <?php esc_html_e( 'Select Key Manually', 'shopmetrics' ); ?>
             </button>
             
-            <div id="sm_cogs_detection_result_area" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; display: none;">
+            <div id="shopmetrics_cogs_detection_result_area" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; display: none;">
                 <!-- JS will populate this -->
             </div>
 
-            <div id="sm_cogs_manual_select_area" style="margin-top: 10px; display: none;">
-                <select id="sm_cogs_meta_key_dropdown" name="shopmetrics_settings[cogs_meta_key]_dropdown_select" style="min-width: 200px;">
+            <div id="shopmetrics_cogs_manual_select_area" style="margin-top: 10px; display: none;">
+                <select id="shopmetrics_cogs_meta_key_dropdown" name="shopmetrics_settings[cogs_meta_key]_dropdown_select" style="min-width: 200px;">
                     <option value=""><?php esc_html_e( '-- Select a Key --', 'shopmetrics' ); ?></option>
                     <option value=""><?php esc_html_e( '-- Do not use a meta key --', 'shopmetrics' ); ?></option> 
                     <!-- JS will populate this -->
@@ -1253,13 +1251,13 @@ class ShopMetrics_Admin {
      * @since 1.0.0
      */
     public function render_low_stock_notification_recipients_field() {
-        $option_name = 'shopmetrics_analytics_low_stock_notification_recipients';
-        $value = get_option( $option_name, '' ); // Default to empty string
+        $settings = get_option('shopmetrics_settings', []);
+        $value = $settings['low_stock_notification_recipients'] ?? '';
         ?>
         <input
             type="text"
-            id="<?php echo esc_attr( $option_name ); ?>"
-            name="<?php echo esc_attr( $option_name ); ?>"
+            id="shopmetrics_low_stock_notification_recipients"
+            name="shopmetrics_settings[low_stock_notification_recipients]"
             value="<?php echo esc_attr( $value ); ?>"
             class="regular-text"
             placeholder="<?php esc_attr_e( 'e.g., admin@example.com, manager@example.com', 'shopmetrics' ); ?>"
@@ -1292,7 +1290,7 @@ class ShopMetrics_Admin {
                 $valid_emails[] = $email;
             } elseif ( ! empty( $email ) ) { // Only add error if it's not an empty string resulting from multiple commas
                 add_settings_error(
-                    'shopmetrics_analytics_low_stock_notification_recipients', // Setting slug
+                    'shopmetrics_settings', // Setting slug
                     'invalid_email_in_list',                                 // Error code
                     sprintf(                                                  // Message
                         // translators: %s is the invalid email address that was removed
@@ -1411,6 +1409,137 @@ class ShopMetrics_Admin {
             // No options were deleted (possibly they didn't exist)
             wp_send_json_success(['message' => 'Site disconnected (no data needed to be removed)']);
         }
+        
+        wp_die(); // Required for AJAX handlers
+    }
+
+    /**
+     * AJAX handler for initiating site connection (registration)
+     */
+    public function ajax_initiate_connection() {
+        // Verify nonce
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_api_actions')) {
+            wp_send_json_error('Security check failed', 403);
+            return;
+        }
+        
+        // Check permissions
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Insufficient permissions', 403);
+            return;
+        }
+        
+        // Get site identifier
+        $site_identifier = isset($_POST['site_identifier']) ? sanitize_text_field(wp_unslash($_POST['site_identifier'])) : '';
+        if (empty($site_identifier)) {
+            $site_identifier = site_url(); // Use current site URL as fallback
+        }
+        
+        \ShopMetrics_Logger::get_instance()->info("Initiating connection for site: " . $site_identifier);
+        
+        // Generate verification code
+        $verification_code = wp_generate_password(32, false);
+        $transient_key = 'shopmetrics_verify_' . $verification_code;
+        $success_string = 'FINANCIARME_VERIFIED_OK';
+        
+        // Store the code with the site URL for verification
+        set_transient($transient_key, $site_identifier, 5 * MINUTE_IN_SECONDS);
+        
+        // Construct the verification URL
+        $verification_url = add_query_arg('shopmetrics_verify', $verification_code, $site_identifier);
+        
+        // Make the callback request
+        $verify_response = wp_remote_get($verification_url, array(
+            'timeout' => 10,
+            'sslverify' => apply_filters('https_local_ssl_verify', false)
+        ));
+        
+        // Check the response
+        if (is_wp_error($verify_response)) {
+            delete_transient($transient_key);
+            \ShopMetrics_Logger::get_instance()->error("Verification callback failed for $site_identifier. Error: " . $verify_response->get_error_message());
+            wp_send_json_error('Could not reach your site for verification. Please ensure your site is publicly accessible or check firewall settings.', 400);
+            return;
+        }
+        
+        $verify_body = wp_remote_retrieve_body($verify_response);
+        $verify_code = wp_remote_retrieve_response_code($verify_response);
+        
+        // Verify the success string
+        if ($verify_code !== 200 || trim($verify_body) !== $success_string) {
+            delete_transient($transient_key);
+            \ShopMetrics_Logger::get_instance()->error("Verification challenge failed for $site_identifier. Response Code: $verify_code, Body: $verify_body");
+            wp_send_json_error('Site verification challenge failed. Unexpected response received.', 400);
+            return;
+        }
+        
+        // Verification successful! Clean up transient
+        delete_transient($transient_key);
+        
+        // Register site with backend
+        $plaintext_token = 'shopmetrics_perm_' . wp_generate_password(64, false);
+        $hashed_token = hash('sha256', $plaintext_token);
+        $registration_url = SHOPMETRICS_API_URL . '/v1/register_site';
+        
+        $registration_args = array(
+            'method' => 'POST',
+            'timeout' => 15,
+            'headers' => array(
+                'Content-Type' => 'application/json',
+            ),
+            'body' => json_encode(array(
+                'site_identifier' => $site_identifier,
+                'hashed_token' => $hashed_token,
+                'status' => 'active'
+            )),
+            'data_format' => 'body',
+            'sslverify' => !defined('WP_ENVIRONMENT_TYPE') || WP_ENVIRONMENT_TYPE === 'production',
+        );
+        
+        \ShopMetrics_Logger::get_instance()->info("Attempting to register site $site_identifier with backend.");
+        $registration_response = wp_remote_post($registration_url, $registration_args);
+        
+        if (is_wp_error($registration_response)) {
+            $error_message = $registration_response->get_error_message();
+            \ShopMetrics_Logger::get_instance()->error("Backend registration failed for $site_identifier. Error: $error_message");
+            wp_send_json_error('Could not register site with the backend service. Please try again.', 500);
+            return;
+        }
+        
+        $reg_response_code = wp_remote_retrieve_response_code($registration_response);
+        $reg_response_body = wp_remote_retrieve_body($registration_response);
+        
+        if ($reg_response_code >= 300) {
+            \ShopMetrics_Logger::get_instance()->error("Backend registration returned error for $site_identifier. Code: $reg_response_code, Body: $reg_response_body");
+            $error_data = json_decode($reg_response_body, true);
+            $backend_message = isset($error_data['message']) ? $error_data['message'] : 'Unknown error from backend registration.';
+            wp_send_json_error('Backend registration failed: ' . $backend_message, $reg_response_code);
+            return;
+        }
+        
+        // Parse the backend response to get the API token
+        $backend_data = json_decode($reg_response_body, true);
+        if (!$backend_data || !isset($backend_data['api_token'])) {
+            \ShopMetrics_Logger::get_instance()->error("Backend registration response missing api_token. Response: $reg_response_body");
+            wp_send_json_error('Backend registration response was invalid. Please try again.', 500);
+            return;
+        }
+        
+        // Use the API token returned by the backend instead of the locally generated one
+        $api_token = $backend_data['api_token'];
+        
+        // Registration successful, save the site identifier and return the API token from backend
+        \ShopMetrics_Logger::get_instance()->info("Site verification and backend registration successful for $site_identifier. Using backend token.");
+        
+        // Save the site identifier that was used for registration
+        update_option('shopmetrics_analytics_site_identifier', $site_identifier);
+        \ShopMetrics_Logger::get_instance()->info("Saved site identifier: $site_identifier");
+        
+        wp_send_json_success(array(
+            'api_token' => $api_token,
+            'site_identifier' => $site_identifier,
+            'message' => 'Site connected successfully. Securely saving token...'
+        ));
         
         wp_die(); // Required for AJAX handlers
     }
@@ -1584,105 +1713,93 @@ class ShopMetrics_Admin {
      *
      * @since 1.0.0
      */
-    public function ajax_save_token() {
-        \ShopMetrics_Logger::get_instance()->info("ajax_save_token called");
-        
-        // Verify nonce (use the action name from wp_create_nonce)
-        $nonce_received = isset( $_POST['_ajax_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ) : '';
-        $nonce_valid = wp_verify_nonce( $nonce_received, 'shopmetrics_api_actions' );
-        
-        \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Nonce received: " . $nonce_received . ", Valid: " . ($nonce_valid ? 'yes' : 'no'));
-        
-        if ( ! $nonce_received || ! $nonce_valid ) {
-            \ShopMetrics_Logger::get_instance()->error("ajax_save_token: Nonce verification failed - received: " . $nonce_received . ", valid: " . ($nonce_valid ? 'yes' : 'no'));
-            wp_send_json_error( array( 'message' => __( 'Nonce verification failed!', 'shopmetrics' ) ), 403 );
-        }
+    // Removed: ajax_save_token function - now using ajax_save_credentials for consistency
 
-        // Check user capability
-        if ( ! current_user_can( 'manage_options' ) ) {
-            \ShopMetrics_Logger::get_instance()->error("ajax_save_token: User lacks manage_options capability");
-             wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'shopmetrics' ) ), 403 );
-        }
-        
-        // Get the token from the POST data
-        $api_token = isset( $_POST['api_token'] ) ? sanitize_text_field( wp_unslash( $_POST['api_token'] ) ) : '';
-        // Get the site identifier from POST data
-        $site_identifier_from_ajax = isset( $_POST['site_identifier'] ) ? sanitize_text_field( wp_unslash( $_POST['site_identifier'] ) ) : '';
-
-        \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Processing token: " . substr($api_token, 0, 10) . "... and site_identifier: " . $site_identifier_from_ajax);
-
-        if ( empty( $api_token ) ) {
-            \ShopMetrics_Logger::get_instance()->error("ajax_save_token: No API token provided");
-             wp_send_json_error( array( 'message' => __( 'No API token provided.', 'shopmetrics' ) ), 400 );
-        }
-
-        // Save the API token option
-        // update_option returns false if value is unchanged or on failure. True if value changed.
-        $token_updated = update_option( 'shopmetrics_analytics_api_token', $api_token );
-        $current_token_in_db = get_option('shopmetrics_analytics_api_token');
-        $token_save_considered_successful = ($token_updated || ($api_token === $current_token_in_db));
-
-
-        // Save the site identifier option if provided
-        $identifier_updated = false; // Assume not updated initially
-        $identifier_save_considered_successful = false;
-
-        if ( ! empty( $site_identifier_from_ajax ) ) {
-            $identifier_updated = update_option( 'shopmetrics_analytics_site_identifier', $site_identifier_from_ajax );
-            $current_identifier_in_db = get_option('shopmetrics_analytics_site_identifier');
-            $identifier_save_considered_successful = ($identifier_updated || ($site_identifier_from_ajax === $current_identifier_in_db));
-            
-            if ($identifier_save_considered_successful) {
-                \ShopMetrics_Logger::get_instance()->info("Site identifier processed successfully: " . $site_identifier_from_ajax . ($identifier_updated ? " (Saved)" : " (Unchanged)"));
-            } else {
-                \ShopMetrics_Logger::get_instance()->info("Failed to save site identifier: " . $site_identifier_from_ajax);
+    /**
+     * AJAX handler for saving both API token and site identifier in a single call.
+     *
+     * @since 1.2.0
+     */
+    public function ajax_save_credentials() {
+        try {
+            // Verify nonce
+            if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
+                wp_send_json_error(['message' => 'Invalid security token. Please refresh the page and try again.'], 403);
+                exit;
             }
-        } else {
-            \ShopMetrics_Logger::get_instance()->info("No site_identifier provided in ajax_save_token call.");
+
+        // Check user capabilities
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'You do not have permission to change settings.'], 403);
+            exit;
         }
 
-        if ( $token_save_considered_successful ) {
-             \ShopMetrics_Logger::get_instance()->info("API token processed successfully." . ($token_updated ? " (Saved)" : " (Unchanged)"));
-             
-             // Sync subscription info from API after successful token save
-             if ($identifier_save_considered_successful) {
-                try {
-                // Attempt to sync subscription info
-                $sync_result = $this->sync_subscription_info($site_identifier_from_ajax, $api_token);
+        // Get the credentials from POST data
+        $api_token = isset($_POST['api_token']) ? sanitize_text_field(wp_unslash($_POST['api_token'])) : '';
+        $site_identifier = isset($_POST['site_identifier']) ? sanitize_text_field(wp_unslash($_POST['site_identifier'])) : '';
+
+        // Validate that we have both credentials
+        if (empty($api_token)) {
+            wp_send_json_error(['message' => 'API token is required.'], 400);
+            exit;
+        }
+
+        if (empty($site_identifier)) {
+            wp_send_json_error(['message' => 'Site identifier is required.'], 400);
+            exit;
+        }
+
+        // Save both credentials
+        $token_result = update_option('shopmetrics_analytics_api_token', $api_token);
+        $identifier_result = update_option('shopmetrics_analytics_site_identifier', $site_identifier);
+        
+        // Check values after save to handle unchanged values
+        $new_token = get_option('shopmetrics_analytics_api_token', '');
+        $new_identifier = get_option('shopmetrics_analytics_site_identifier', '');
+
+        // Verify the save worked by checking the values
+        \ShopMetrics_Logger::get_instance()->info("ajax_save_credentials: Verification - Expected token: " . substr($api_token, 0, 10) . "..., Saved token: " . substr($new_token, 0, 10) . "...");
+        \ShopMetrics_Logger::get_instance()->info("ajax_save_credentials: Verification - Expected identifier: {$site_identifier}, Saved identifier: {$new_identifier}");
+
+        // Check if both saves were successful OR if values are already correct
+        $token_success = $token_result || ($new_token === $api_token);
+        $identifier_success = $identifier_result || ($new_identifier === $site_identifier);
+        
+        if ($token_success && $identifier_success) {
+            // Trigger subscription sync
+            try {
+                $sync_result = $this->sync_subscription_info($site_identifier, $api_token);
                 
-                // Update last sync timestamp if successful
                 if ($sync_result) {
                     update_option('shopmetrics_subscription_last_sync', time());
-                        \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Subscription sync completed successfully");
+                    \ShopMetrics_Logger::get_instance()->info("ajax_save_credentials: Subscription sync completed successfully");
                 } else {
-                        \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Failed to sync subscription info from API, but continuing with connection.");
+                    \ShopMetrics_Logger::get_instance()->info("ajax_save_credentials: Failed to sync subscription info from API, but continuing with connection.");
                 }
                 
                 // Trigger site connected action for webhook creation
                 do_action('shopmetrics_analytics_site_connected');
-                    \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Triggered site connected action for webhook creation");
-                } catch (Exception $e) {
-                    \ShopMetrics_Logger::get_instance()->error("ajax_save_token: Exception during sync: " . $e->getMessage());
-                    // Continue anyway - sync failure shouldn't block connection
-                }
-             }
-             
-             $message = __( 'API token processed successfully.', 'shopmetrics' );
-             if (!empty($site_identifier_from_ajax)) {
-                 if ($identifier_save_considered_successful) {
-                     $message = __( 'API token and Site Identifier processed successfully.', 'shopmetrics' );
-                 } else {
-                     $message = __( 'API token processed. Site Identifier failed to save.', 'shopmetrics' );
-                 }
-             }
-             \ShopMetrics_Logger::get_instance()->info("ajax_save_token: Sending success response: " . $message);
-            wp_send_json_success( array( 'message' => $message ) );
+                \ShopMetrics_Logger::get_instance()->info("ajax_save_credentials: Triggered site connected action for webhook creation");
+            } catch (Exception $e) {
+                \ShopMetrics_Logger::get_instance()->error("ajax_save_credentials: Exception during sync: " . $e->getMessage());
+                // Continue anyway - sync failure shouldn't block connection
+            }
+            
+            wp_send_json_success(['message' => 'Credentials saved successfully.']);
         } else {
-             \ShopMetrics_Logger::get_instance()->info("Failed to save API token.");
-             wp_send_json_error( array( 'message' => __( 'Failed to save API token.', 'shopmetrics' ) ), 500 );
+            $error_msg = 'Failed to save credentials.';
+            if (!$token_success) {
+                $error_msg .= ' API token save failed.';
+            }
+            if (!$identifier_success) {
+                $error_msg .= ' Site identifier save failed.';
+            }
+            wp_send_json_error(['message' => $error_msg], 500);
         }
-
-        wp_die(); // Required for AJAX handlers
+    } catch (Exception $e) {
+        \ShopMetrics_Logger::get_instance()->error("ajax_save_credentials: Exception: " . $e->getMessage());
+        wp_send_json_error(['message' => 'Internal server error: ' . $e->getMessage()], 500);
+    }
     }
 
     /**
@@ -1724,7 +1841,7 @@ class ShopMetrics_Admin {
         ), 'ids' );
         
         // Check if historical sync is already in progress via the progress option
-        $progress_data = get_option( 'sm_historical_sync_progress', '' );
+        $progress_data = get_option( 'shopmetrics_historical_sync_progress', '' );
         $progress = !empty($progress_data) ? (is_string($progress_data) ? json_decode($progress_data, true) : $progress_data) : null;
         \ShopMetrics_Logger::get_instance()->debug('Current progress data: ' . wp_json_encode($progress));
         
@@ -1753,7 +1870,7 @@ class ShopMetrics_Admin {
             'timestamp' => time()
         ];
         
-        $update_result = update_option('sm_historical_sync_progress', json_encode($initial_progress));
+        $update_result = update_option('shopmetrics_historical_sync_progress', json_encode($initial_progress));
         \ShopMetrics_Logger::get_instance()->debug('Reset progress data, update result: ' . ($update_result ? 'true' : 'false'));
         
         if ( ! empty( $scheduled_actions ) ) {
@@ -1835,14 +1952,14 @@ class ShopMetrics_Admin {
     public function ajax_create_checkout() {
         // Debug logging for nonce verification
         $received_nonce = isset( $_POST['_ajax_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ) : 'NOT_SET';
-        $expected_nonce = wp_create_nonce('sm_settings_ajax_nonce');
+        $expected_nonce = wp_create_nonce('shopmetrics_settings_ajax_nonce');
         \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Received nonce: ' . $received_nonce);
         \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Expected nonce: ' . $expected_nonce);
-        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Expected nonce action: sm_settings_ajax_nonce');
-        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Nonce verification result: ' . (wp_verify_nonce($received_nonce, 'sm_settings_ajax_nonce') ? 'VALID' : 'INVALID'));
+        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Expected nonce action: shopmetrics_settings_ajax_nonce');
+        \ShopMetrics_Logger::get_instance()->debug('AJAX create_checkout - Nonce verification result: ' . (wp_verify_nonce($received_nonce, 'shopmetrics_settings_ajax_nonce') ? 'VALID' : 'INVALID'));
         
         // Verify nonce 
-         if ( ! isset( $_POST['_ajax_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ), 'sm_settings_ajax_nonce' ) ) {
+         if ( ! isset( $_POST['_ajax_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ), 'shopmetrics_settings_ajax_nonce' ) ) {
             \ShopMetrics_Logger::get_instance()->error('AJAX create_checkout - Nonce verification failed. Received: ' . $received_nonce);
             wp_send_json_error( array( 'message' => __( 'Nonce verification failed!', 'shopmetrics' ) ), 403 );
         }
@@ -1964,7 +2081,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_cancel_subscription() {
         // Verify nonce  
-        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'sm_settings_ajax_nonce' ) ) {
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'shopmetrics_settings_ajax_nonce' ) ) {
             wp_send_json_error( array( 'message' => __( 'Nonce verification failed!', 'shopmetrics' ) ), 403 );
         }
 
@@ -2045,7 +2162,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_reactivate_subscription() {
         // 1. Check Nonce
-        check_ajax_referer( 'sm_settings_ajax_nonce', 'nonce' );
+        check_ajax_referer( 'shopmetrics_settings_ajax_nonce', 'nonce' );
 
         // 2. Check Capabilities
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -2118,9 +2235,9 @@ class ShopMetrics_Admin {
      *
      * @since 1.0.0
      */
-    public function ajax_sm_track_visit() {
+    public function ajax_shopmetrics_track_visit() {
         // 1. Verify Nonce
-        check_ajax_referer('sm_visit_tracking_nonce', 'nonce');
+        		check_ajax_referer('shopmetrics_visit_tracking_nonce', 'nonce');
 
         // 2. Get Credentials and Settings
         $api_token = get_option('shopmetrics_analytics_api_token', '');
@@ -2146,6 +2263,12 @@ class ShopMetrics_Admin {
         $page_type = isset($_POST['pageType']) ? sanitize_key(wp_unslash($_POST['pageType'])) : 'unknown';
         // --- Retrieve and sanitize orderId --- 
         $order_id = isset($_POST['orderId']) ? absint($_POST['orderId']) : null;
+        // --- Retrieve conversion data ---
+        $conversion = isset($_POST['conversion']) ? (bool)$_POST['conversion'] : false;
+        $conversion_type = isset($_POST['conversionType']) ? sanitize_key(wp_unslash($_POST['conversionType'])) : null;
+        // --- Retrieve cart event data ---
+        $cart_event = isset($_POST['cart_event']) ? (bool)$_POST['cart_event'] : false;
+        $cart_event_type = isset($_POST['cart_event_type']) ? sanitize_key(wp_unslash($_POST['cart_event_type'])) : null;
 
         // Basic validation
         if ( empty( $page_url ) || empty( $session_id ) ) {
@@ -2166,7 +2289,11 @@ class ShopMetrics_Admin {
                 'content'  => $utm_content,
             )),
             'page_type' => $page_type,
-            'order_id'  => $order_id // Add order_id (will be null if not set/valid)
+            'order_id'  => $order_id, // Add order_id (will be null if not set/valid)
+            'conversion' => $conversion, // Add conversion flag
+            'conversion_type' => $conversion_type, // Add conversion type
+            'cart_event' => $cart_event, // Add cart event flag
+            'cart_event_type' => $cart_event_type // Add cart event type
         );
         
         // Filter out null values (including order_id if null)
@@ -2219,8 +2346,8 @@ class ShopMetrics_Admin {
      *
      * @since 1.2.0
      */
-    public function ajax_sm_auto_detect_cogs_key() {
-        check_ajax_referer( 'sm_settings_ajax_nonce', 'nonce' ); 
+    public function ajax_shopmetrics_auto_detect_cogs_key() {
+        check_ajax_referer( 'shopmetrics_settings_ajax_nonce', 'nonce' ); 
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'shopmetrics' ) ), 403 );
         }
@@ -2282,8 +2409,8 @@ class ShopMetrics_Admin {
      *
      * @since 1.2.0
      */
-    public function ajax_sm_get_all_meta_keys() {
-        check_ajax_referer( 'sm_settings_ajax_nonce', 'nonce' );
+    public function ajax_shopmetrics_get_all_meta_keys() {
+        check_ajax_referer( 'shopmetrics_settings_ajax_nonce', 'nonce' );
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'shopmetrics' ) ), 403 );
         }
@@ -2321,8 +2448,8 @@ class ShopMetrics_Admin {
      */
     public function ajax_manual_snapshot() {
         // Verify nonce (use the same nonce as settings page general actions for simplicity)
-        // Ensure 'sm_settings_ajax_nonce' is available where the button will be.
-        check_ajax_referer( 'sm_settings_ajax_nonce', 'nonce' );
+        // Ensure 'shopmetrics_settings_ajax_nonce' is available where the button will be.
+        check_ajax_referer( 'shopmetrics_settings_ajax_nonce', 'nonce' );
 
         // Check user capability
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -2348,8 +2475,8 @@ class ShopMetrics_Admin {
             \ShopMetrics_Logger::get_instance()->info("ShopMetrics Admin: Manual inventory snapshot initiated by user.");
             
             // Define a constant to indicate manual trigger
-            if ( ! defined( 'SM_DOING_MANUAL_SNAPSHOT' ) ) {
-                define( 'SM_DOING_MANUAL_SNAPSHOT', true );
+                    if ( ! defined( 'SHOPMETRICS_DOING_MANUAL_SNAPSHOT' ) ) {
+            define( 'SHOPMETRICS_DOING_MANUAL_SNAPSHOT', true );
             }
 
             \ShopMetrics_Snapshotter::take_inventory_snapshot();
@@ -2371,28 +2498,14 @@ class ShopMetrics_Admin {
     public function display_cart_recovery_page() {
         echo '<div class="wrap">';
         // Removed the Cart Recovery Settings header
-        
-        // Add ajaxurl for vanilla JS
-        echo '<script type="text/javascript">
-            var ajaxurl = "' . esc_url( admin_url('admin-ajax.php') ) . '";
-        </script>';
-        
-        // Check if cart recovery is enabled in the current plan
+        // (Removed inline <script> for ajaxurl; JS uses fmSettings.ajax_url from wp_localize_script)
         $subscription_status = get_option('shopmetrics_subscription_status', '');
         $is_premium_feature = true;
         $show_upgrade_notice = ($subscription_status !== 'active' && $subscription_status !== 'trial');
-        
-        // Load settings for the template
         $settings = get_option('shopmetrics_settings', array());
-        
-        // Explicit global declaration to ensure it's accessible to the template
         $GLOBALS['shopmetricsanalytics_admin'] = $this;
-        
-        // Backup in case $GLOBALS doesn't work properly
         global $shopmetricsanalytics_admin;
         $shopmetricsanalytics_admin = $this;
-        
-        // Load the settings form from the template file (template has its own form tag)
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/settings-cart-recovery.php';
         echo '</div>';
     }
@@ -2404,7 +2517,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_test_recovery_email() {
         // Nonce check for security
-        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_cart_recovery_ajax_nonce' ) ) {
+        		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_cart_recovery_ajax_nonce' ) ) {
             wp_send_json_error( 'Nonce verification failed!', 403 );
             return;
         }
@@ -2535,7 +2648,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_fix_snapshot_schedule() {
         // Verify nonce (use the same nonce as settings page general actions for simplicity)
-        check_ajax_referer( 'sm_settings_ajax_nonce', 'nonce' );
+        check_ajax_referer( 'shopmetrics_settings_ajax_nonce', 'nonce' );
 
         // Check user capability
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -2698,6 +2811,13 @@ class ShopMetrics_Admin {
         }
 
         // Handle Stripe checkout return
+        // SECURITY NOTE:
+        // No nonce is used here because this is a callback from Stripe (external service), not a user-triggered action.
+        // The only effect is to sync subscription status and show a notice; no sensitive data is modified based on user input.
+        // This is safe because:
+        // 1. It's a GET parameter from external service callback
+        // 2. No sensitive data is modified based on user input
+        // 3. The values are sanitized and validated
         if (isset($_GET['stripe_checkout'])) {
             $checkout_status = sanitize_text_field( wp_unslash( $_GET['stripe_checkout'] ) );
             
@@ -2741,7 +2861,7 @@ class ShopMetrics_Admin {
 	 */
 	public function ajax_auto_detect_order_blocks() {
 		// Verify nonce and capability
-		check_ajax_referer('sm_settings_ajax_nonce', 'nonce');
+		        check_ajax_referer('shopmetrics_settings_ajax_nonce', 'nonce');
 		if (!current_user_can('manage_options')) {
 			wp_send_json_error(array('message' => __('Insufficient permissions.', 'shopmetrics')), 403);
 			return;
@@ -2840,22 +2960,15 @@ class ShopMetrics_Admin {
 			return;
 		}
 		
-		?>
-		<script type="text/javascript">
-		(function() {			
-			// Function to patch jQuery once it's available
+		$patch_jquery_js = "(function() {			
 			function patchjQuery() {
 				if (typeof jQuery !== 'undefined') {
 					var $ = jQuery;
-					
-					// Save original methods
 					var origInsertBefore = $.fn.insertBefore;
 					var origAppend = $.fn.append;
 					var origPrepend = $.fn.prepend;
 					var origAfter = $.fn.after;
 					var origBefore = $.fn.before;
-					
-					// Helper to check for circular references
 					function wouldCreateCircular($this, $target) {
 						var circular = false;
 						$this.each(function() {
@@ -2870,8 +2983,6 @@ class ShopMetrics_Admin {
 						});
 						return circular;
 					}
-					
-					// Patch insertBefore
 					$.fn.insertBefore = function(target) {
 						var $target = $(target);
 						if (wouldCreateCircular(this, $target)) {
@@ -2880,8 +2991,6 @@ class ShopMetrics_Admin {
 						}
 						return origInsertBefore.apply(this, arguments);
 					};
-					
-					// Patch append
 					$.fn.append = function(content) {
 						var $content = $(content);
 						if (content && content.nodeType && wouldCreateCircular($content, this)) {
@@ -2890,8 +2999,6 @@ class ShopMetrics_Admin {
 						}
 						return origAppend.apply(this, arguments);
 					};
-					
-					// Patch prepend
 					$.fn.prepend = function(content) {
 						var $content = $(content);
 						if (content && content.nodeType && wouldCreateCircular($content, this)) {
@@ -2900,8 +3007,6 @@ class ShopMetrics_Admin {
 						}
 						return origPrepend.apply(this, arguments);
 					};
-					
-					// Patch after
 					$.fn.after = function(content) {
 						var $content = $(content);
 						if (content && content.nodeType && wouldCreateCircular($content, this)) {
@@ -2910,8 +3015,6 @@ class ShopMetrics_Admin {
 						}
 						return origAfter.apply(this, arguments);
 					};
-					
-					// Patch before
 					$.fn.before = function(content) {
 						var $content = $(content);
 						if (content && content.nodeType && wouldCreateCircular($content, this)) {
@@ -2920,22 +3023,18 @@ class ShopMetrics_Admin {
 						}
 						return origBefore.apply(this, arguments);
 					};
-					
-					// Clear interval once patched
 					clearInterval(patchInterval);
 				}
 			}
-			
-			// Try to patch immediately if jQuery is already loaded
 			if (typeof jQuery !== 'undefined') {
 				patchjQuery();
 			} else {
-				// Set up interval to keep trying until jQuery is available
-				var patchInterval = setInterval(patchjQuery, 50);
+        var patchInterval = setInterval(patchJquery, 50);
 			}
-		})();
-		</script>
-		<?php
+		})();";
+        add_action('admin_enqueue_scripts', function() use ($patch_jquery_js) {
+            wp_add_inline_script('shopmetrics-admin', $patch_jquery_js, 'after');
+        }, 20);
 	}
 
     /**
@@ -2945,7 +3044,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_save_setting() {
         // Check nonce for security
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error(['message' => 'Invalid security token. Please refresh the page and try again.'], 403);
             exit;
         }
@@ -2969,8 +3068,8 @@ class ShopMetrics_Admin {
         $option_map = [
             'api_token' => 'shopmetrics_analytics_api_token',
             'site_identifier' => 'shopmetrics_analytics_site_identifier',
-            'cogs_meta_key' => 'shopmetrics_settings[cogs_meta_key]',
-            'cogs_default_percentage' => 'shopmetrics_settings[cogs_default_percentage]',
+            'cogs_meta_key' => 'shopmetrics_settings',
+            'cogs_default_percentage' => 'shopmetrics_settings',
             'onboarding_completed' => 'shopmetrics_needs_onboarding'
         ];
 
@@ -3011,7 +3110,17 @@ class ShopMetrics_Admin {
         }
 
         // Save the setting
-        $result = update_option($option_name, $setting_value);
+        if ($setting_name === 'cogs_meta_key' || $setting_name === 'cogs_default_percentage') {
+            $settings = get_option('shopmetrics_settings', []);
+            if ($setting_name === 'cogs_meta_key') {
+                $settings['cogs_meta_key'] = $setting_value;
+            } else if ($setting_name === 'cogs_default_percentage') {
+                $settings['cogs_default_percentage'] = $setting_value;
+            }
+            $result = update_option('shopmetrics_settings', $settings);
+        } else {
+            $result = update_option($option_name, $setting_value);
+        }
 
         if ($result) {
             wp_send_json_success(['message' => 'Setting saved successfully.']);
@@ -3026,6 +3135,33 @@ class ShopMetrics_Admin {
      * @since 1.3.0
      */
     // Removed: ajax_sync_subscription - status now updates automatically
+
+    /**
+     * AJAX handler for debugging authentication status.
+     */
+    public function ajax_debug_auth_status() {
+        // Verify nonce
+        if ( ! isset( $_POST['_ajax_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_ajax_nonce'] ) ), 'shopmetrics_api_actions' ) ) {
+            wp_send_json_error( array( 'message' => __( 'Nonce verification failed!', 'shopmetrics' ) ), 403 );
+        }
+
+        // Check user capability
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'shopmetrics' ) ), 403 );
+        }
+        
+        $api_token = get_option( 'shopmetrics_analytics_api_token', '' );
+        $site_identifier = get_option( 'shopmetrics_analytics_site_identifier', '' );
+        
+        $masked_token = !empty($api_token) ? substr($api_token, 0, 6) . '...' . substr($api_token, -4) : 'empty';
+        
+        wp_send_json_success(array(
+            'api_token' => $masked_token,
+            'site_identifier' => $site_identifier,
+            'token_empty' => empty($api_token),
+            'identifier_empty' => empty($site_identifier)
+        ));
+    }
 
     /**
      * AJAX handler for retrieving the current progress of historical sync.
@@ -3045,7 +3181,7 @@ class ShopMetrics_Admin {
             wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'shopmetrics' ) ), 403 );
         }
         
-        $progress_data = get_option( 'sm_historical_sync_progress', '' );
+        $progress_data = get_option( 'shopmetrics_historical_sync_progress', '' );
         \ShopMetrics_Logger::get_instance()->debug("Progress AJAX: Raw progress data from option: " . wp_json_encode($progress_data));
         
         $progress = !empty($progress_data) ? json_decode($progress_data, true) : null;
@@ -3071,7 +3207,7 @@ class ShopMetrics_Admin {
                 $progress['status'] = 'stalled';
                 $progress['message'] = __( 'Synchronization appears to have stalled.', 'shopmetrics' );
                 // Update the stored progress
-                update_option( 'sm_historical_sync_progress', json_encode($progress) );
+                update_option( 'shopmetrics_historical_sync_progress', json_encode($progress) );
             }
         }
         
@@ -3081,10 +3217,10 @@ class ShopMetrics_Admin {
             $should_continue = false;
             
             // Check if we have the fallback flag set
-            if (get_transient('sm_sync_fallback_required') === 'yes') {
+            if (get_transient('shopmetrics_sync_fallback_required') === 'yes') {
                 \ShopMetrics_Logger::get_instance()->info("Progress AJAX: Fallback flag detected, will trigger continuation");
                 $should_continue = true;
-                delete_transient('sm_sync_fallback_required'); // Clear the flag
+                delete_transient('shopmetrics_sync_fallback_required'); // Clear the flag
             }
             
             // Check if there's no scheduled action
@@ -3118,7 +3254,7 @@ class ShopMetrics_Admin {
                     do_action('shopmetrics_analytics_sync_historical_orders');
                     
                     // Get updated progress data after continuation
-                    $updated_progress_data = get_option('sm_historical_sync_progress', '');
+                    $updated_progress_data = get_option('shopmetrics_historical_sync_progress', '');
                     if (!empty($updated_progress_data)) {
                         $progress = json_decode($updated_progress_data, true);
                         \ShopMetrics_Logger::get_instance()->debug("Progress AJAX: Progress data updated after continuation");
@@ -3168,7 +3304,7 @@ class ShopMetrics_Admin {
         
         // Check if sync is in progress and not forcing reset
         if (!$force_reset) {
-            $progress_data = get_option('sm_historical_sync_progress', '');
+            $progress_data = get_option('shopmetrics_historical_sync_progress', '');
             
             if (is_string($progress_data) && !empty($progress_data)) {
                 $progress = json_decode($progress_data, true);
@@ -3189,7 +3325,7 @@ class ShopMetrics_Admin {
         }
         
         // Reset the progress data to a clean state
-        $reset_result = update_option('sm_historical_sync_progress', json_encode([
+        $reset_result = update_option('shopmetrics_historical_sync_progress', json_encode([
             'status' => 'reset',
             'progress' => 0,
             'processed_orders' => 0,
@@ -3257,9 +3393,9 @@ class ShopMetrics_Admin {
             }
             
             // Delete any temporary flags that might be preventing new syncs
-            delete_option('sm_sync_in_progress_lock');
-            delete_option('sm_sync_last_run'); 
-            delete_transient('sm_sync_running');
+                    delete_option('shopmetrics_sync_in_progress_lock');
+        delete_option('shopmetrics_sync_last_run');
+        delete_transient('shopmetrics_sync_running');
             
             // Add a small delay to ensure all actions are properly cleaned up
             sleep(1);
@@ -3288,7 +3424,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_clear_logs() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -3320,7 +3456,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_download_logs() {
         // Verify nonce
-        if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_GET['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -3441,7 +3577,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_rotate_logs() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_die('Security check failed');
         }
         
@@ -3472,8 +3608,15 @@ class ShopMetrics_Admin {
      * AJAX handler for saving analytics consent
      */
     public function ajax_save_analytics_consent() {
-        // Verify nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_save_analytics_consent')) {
+        // Verify nonce - check both possible field names
+        $nonce = null;
+        if (isset($_POST['analytics_consent_nonce'])) {
+            $nonce = sanitize_text_field(wp_unslash($_POST['analytics_consent_nonce']));
+        } elseif (isset($_POST['_ajax_nonce'])) {
+            $nonce = sanitize_text_field(wp_unslash($_POST['_ajax_nonce']));
+        }
+        
+        if (!$nonce || !wp_verify_nonce($nonce, 'shopmetrics_save_analytics_consent')) {
             wp_send_json_error('Security check failed', 403);
             return;
         }
@@ -3503,7 +3646,8 @@ class ShopMetrics_Admin {
                 'message' => $consent ? 
                     __('Analytics consent enabled successfully', 'shopmetrics') : 
                     __('Analytics consent disabled successfully', 'shopmetrics'),
-                'consent' => $consent
+                'consent' => $consent,
+                'reload' => true // Signal frontend to reload to refresh settings
             ]);
         } else {
             \ShopMetrics_Logger::get_instance()->error("Failed to update analytics consent");
@@ -3512,11 +3656,34 @@ class ShopMetrics_Admin {
     }
 
     /**
+     * AJAX handler for getting current settings
+     */
+    public function ajax_get_settings() {
+        // Verify nonce
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
+            wp_send_json_error('Security check failed', 403);
+            return;
+        }
+        
+        // Check permissions
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Insufficient permissions', 403);
+            return;
+        }
+        
+        // Get current settings
+        $settings = get_option('shopmetrics_settings', []);
+        wp_send_json_success($settings);
+    }
+
+
+
+    /**
      * AJAX handler for resetting onboarding wizard
      */
     public function ajax_reset_onboarding() {
         // Verify nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_reset_onboarding')) {
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error('Security check failed', 403);
             return;
         }
@@ -3565,14 +3732,14 @@ class ShopMetrics_Admin {
         $api_actions_nonce = wp_create_nonce('shopmetrics_api_actions');
         $sync_nonce = wp_create_nonce('shopmetrics_sync_nonce');
         
-        echo '<div class="sm-sync-button-container">';
+        echo '<div class="shopmetrics-sync-button-container">';
         echo '<button id="shopmetrics_start_sync" class="button button-primary" ';
         echo 'data-nonce="' . esc_attr($api_actions_nonce) . '" ';
         echo 'data-sync-nonce="' . esc_attr($sync_nonce) . '">';
         echo esc_html__('Sync Historical Data', 'shopmetrics');
         echo '</button>';
         
-        echo '<div class="sm-sync-description" style="margin-top: 10px;">';
+        echo '<div class="shopmetrics-sync-description" style="margin-top: 10px;">';
         echo '<p class="description">' . esc_html__('This will synchronize orders from the past year with ShopMetrics. The process will run in the background and may take some time depending on the number of orders.', 'shopmetrics') . '</p>';
         echo '</div>';
         
@@ -3584,7 +3751,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_test_order_sync() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error('Security check failed', 403);
             return;
         }
@@ -3625,7 +3792,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_check_order_sync() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error('Security check failed', 403);
             return;
         }
@@ -3725,7 +3892,6 @@ class ShopMetrics_Admin {
             <div class="card" style="max-width: 800px;">
                 <h2>PHP Error Testing</h2>
                 <p>Test PHP error tracking functionality. Errors will be logged for debugging.</p>
-                
                 <div style="margin: 20px 0;">
                     <button type="button" id="test-single-error" class="button button-primary">
                         Test Single PHP Error
@@ -3734,71 +3900,19 @@ class ShopMetrics_Admin {
                         Test Multiple Error Scenarios
                     </button>
                 </div>
-                
                 <div id="test-results" style="margin-top: 20px; padding: 10px; background: #f1f1f1; border-radius: 4px; display: none;">
                     <h3>Test Results:</h3>
                     <div id="results-content"></div>
                 </div>
             </div>
         </div>
-
-        <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            const nonce = '<?php echo esc_js($nonce); ?>';
-            const ajaxUrl = '<?php echo esc_js(admin_url('admin-ajax.php')); ?>';
-            
-            function showResults(message, isSuccess = true) {
-                $('#test-results').show();
-                const color = isSuccess ? '#4CAF50' : '#f44336';
-                $('#results-content').append(
-                    '<div style="color: ' + color + '; margin: 5px 0;">' + 
-                    '[' + new Date().toLocaleTimeString() + '] ' + message + 
-                    '</div>'
-                );
-            }
-            
-            $('#test-single-error').click(function() {
-                showResults('Sending test PHP error...', true);
-                
-                $.post(ajaxUrl, {
-                    action: 'shopmetrics_test_php_error',
-                    nonce: nonce
-                }, function(response) {
-                    if (response.success) {
-                        showResults('✅ Test PHP error sent successfully!', true);
-                    } else {
-                        showResults('❌ Test failed: ' + response.data.message, false);
-                    }
-                }).fail(function() {
-                    showResults('❌ AJAX request failed', false);
-                });
-            });
-            
-            $('#test-error-scenarios').click(function() {
-                showResults('Testing multiple PHP error scenarios...', true);
-                
-                $.post(ajaxUrl, {
-                    action: 'shopmetrics_test_error_scenarios',
-                    nonce: nonce
-                }, function(response) {
-                    if (response.success) {
-                        showResults('✅ Multiple error scenarios tested successfully!', true);
-                        if (response.data.results) {
-                            Object.keys(response.data.results).forEach(function(scenario) {
-                                const result = response.data.results[scenario];
-                                showResults('  - ' + scenario + ': ' + (result ? '✅ sent' : '❌ failed'), result);
-                            });
-                        }
-                    } else {
-                        showResults('❌ Test failed: ' + response.data.message, false);
-                    }
-                }).fail(function() {
-                    showResults('❌ AJAX request failed', false);
-                });
-            });
-        });
-        </script>
         <?php
+        // Enqueue the test analytics admin script and pass nonce/ajaxUrl
+        wp_enqueue_script('shopmetrics-test-analytics', plugin_dir_url(dirname(__FILE__)) . 'admin/js/shopmetrics-test-analytics.js', array('jquery'), SHOPMETRICS_VERSION, true);
+        wp_localize_script('shopmetrics-test-analytics', 'shopmetricsTestAnalytics', array(
+            'nonce' => $nonce,
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+        ));
     }
 
     /**
@@ -3806,7 +3920,7 @@ class ShopMetrics_Admin {
      */
     public function ajax_get_billing_history() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error(array('message' => 'Security check failed'), 403);
             return;
         }
@@ -3911,6 +4025,17 @@ class ShopMetrics_Admin {
     }
 
     /**
+     * Renders a hidden dummy field for pages that need settings_fields() but don't have actual fields.
+     * This is required by WordPress Settings API to allow settings_fields() to work.
+     *
+     * @since 1.0.0
+     */
+    public function render_hidden_dummy_field() {
+        // This field is intentionally empty - it's just to satisfy WordPress Settings API requirements
+        echo '<input type="hidden" name="shopmetrics_dummy_field" value="1" style="display: none;" />';
+    }
+
+    /**
      * Add sanitizer:
      */
     public function sanitize_settings_array($input) {
@@ -3950,6 +4075,9 @@ class ShopMetrics_Admin {
             if (array_key_exists($field, $input)) {
                 if ($field === 'cart_recovery_email_sender_email') {
                     $output[$field] = sanitize_email($input[$field]);
+                } elseif ($field === 'low_stock_notification_recipients') {
+                    // Sanitize and validate email list
+                    $output[$field] = $this->sanitize_low_stock_recipients($input[$field]);
                 } else {
                     $output[$field] = sanitize_text_field($input[$field]);
                 }
@@ -3978,35 +4106,7 @@ class ShopMetrics_Admin {
         return $output;
     }
 
-    /**
-     * Add migration logic (e.g. in admin_init):
-     */
-    public function maybe_migrate_old_settings() {
-        $settings = get_option('shopmetrics_settings', false);
-        if ($settings === false) {
-            $settings = array();
-            $settings['enable_visit_tracking'] = get_option('shopmetrics_analytics_enable_visit_tracking', true);
-            $settings['cogs_meta_key'] = get_option('shopmetrics_analytics_cogs_meta_key', '');
-            $settings['selected_order_blocks'] = get_option('shopmetrics_selected_order_blocks', 1);
-            $settings['cogs_default_percentage'] = get_option('shopmetrics_analytics_cogs_default_percentage', null);
-            $settings['enable_low_stock_notifications'] = get_option('shopmetrics_analytics_enable_low_stock_notifications', false);
-            $settings['low_stock_notification_recipients'] = get_option('shopmetrics_analytics_low_stock_notification_recipients', '');
-            $settings['enable_debug_logging'] = get_option('shopmetrics_enable_debug_logging', false);
-            $settings['analytics_consent'] = get_option('shopmetrics_analytics_consent', true);
-            update_option('shopmetrics_settings', $settings);
-            // Удаляем старые опции
-            delete_option('shopmetrics_analytics_enable_visit_tracking');
-            delete_option('shopmetrics_analytics_cogs_meta_key');
-            delete_option('shopmetrics_selected_order_blocks');
-            delete_option('shopmetrics_analytics_cogs_default_percentage');
-            delete_option('shopmetrics_analytics_enable_low_stock_notifications');
-            delete_option('shopmetrics_analytics_low_stock_notification_recipients');
-            delete_option('shopmetrics_enable_debug_logging');
-            delete_option('shopmetrics_analytics_consent');
-            delete_option('shopmetrics_analytics_settings');
-            delete_option('shopmetrics_analytics_settings_group');
-        }
-    }
+
 
     /**
      * AJAX handler for saving multiple settings to shopmetrics_settings (array)
@@ -4015,7 +4115,11 @@ class ShopMetrics_Admin {
      */
     public function handle_ajax_save_settings() {
         // Проверка nonce
-        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'sm_settings_ajax_nonce')) {
+        if (!isset($_POST['_ajax_nonce'])) {
+            wp_send_json_error(['message' => 'No nonce provided.'], 403);
+        }
+        
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
             wp_send_json_error(['message' => 'Invalid security token. Please refresh the page and try again.'], 403);
         }
 
@@ -4025,25 +4129,521 @@ class ShopMetrics_Admin {
         }
 
         // Получаем массив настроек
-        $settings = isset($_POST['shopmetrics_settings']) && is_array($_POST['shopmetrics_settings'])
-            ? array_map('sanitize_text_field', wp_unslash($_POST['shopmetrics_settings']))
-            : [];
+        if (!isset($_POST['shopmetrics_settings'])) {
+            wp_send_json_error(['message' => 'No shopmetrics_settings array in request.'], 400);
+        }
+        
+        if (!is_array($_POST['shopmetrics_settings'])) {
+            wp_send_json_error(['message' => 'shopmetrics_settings is not an array.'], 400);
+        }
+        
+        $settings = array_map('sanitize_text_field', wp_unslash($_POST['shopmetrics_settings']));
 
         if (empty($settings)) {
-            wp_send_json_error(['message' => 'No settings provided.'], 400);
+            wp_send_json_error(['message' => 'Settings array is empty.'], 400);
         }
 
         // Получаем текущие настройки и патчим их
         $current = get_option('shopmetrics_settings', []);
-        $merged = array_merge($current, $settings);
-
+        
+        // Only update the specific fields that were sent, preserve all others
+        $merged = $current;
+        foreach ($settings as $key => $value) {
+            $merged[$key] = $value;
+        }
+        
         // Сохраняем
         $result = update_option('shopmetrics_settings', $merged);
 
-        if ($result) {
+        // WordPress update_option returns false if the value is identical, but that's not an error
+        // We should check if the values are actually different
+        if ($result || $current == $merged) {
             wp_send_json_success(['message' => 'Settings saved successfully.']);
         } else {
             wp_send_json_error(['message' => 'Failed to save settings. The value might be unchanged.']);
         }
     }
+
+    /**
+     * Enqueue all settings page inline JS via wp_add_inline_script.
+     * Only runs on the settings page.
+     */
+    public function enqueue_settings_inline_js($hook_suffix) {
+        if (strpos($hook_suffix, '-settings') === false) return;
+        $handle = $this->plugin_name;
+        $js = "jQuery(document).ready(function($) {
+    // Modal open/close
+    $('.connection-info-icon').on('click', function() {
+        $('#connection-details-modal').fadeIn(200);
+    });
+    $('#close-connection-details').on('click', function() {
+        $('#connection-details-modal').fadeOut(200);
+    });
+    $('#connection-details-modal').on('click', function(e) {
+        if (e.target === this) {
+            $(this).fadeOut(200);
+        }
+    });
+    // Plugin improvement form
+    $('#plugin-improvement-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var consent = form.find('input[name=\"shopmetrics_settings[analytics_consent]\"]:checked').val() || '0';
+        $('#analytics-save-status').text('Saving...');
+        $.post(ajaxurl, {
+            action: 'shopmetrics_save_analytics_consent',
+            consent: consent,
+            analytics_consent_nonce: form.find('input[name=\"analytics_consent_nonce\"]').val()
+        }, function(resp) {
+            if (resp && resp.success) {
+                $('#analytics-save-status').text('Saved!');
+                // Reload page to refresh settings if requested
+                if (resp.data && resp.data.reload) {
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                }
+            } else {
+                $('#analytics-save-status').text('Error saving');
+            }
+        }).fail(function() {
+            $('#analytics-save-status').text('Error saving');
+        });
+    });
+    // Support button
+    $('#shopmetrics-contact-support').on('click', function(e) {
+        e.preventDefault();
+        var subject = encodeURIComponent('ShopMetrics Support Request');
+        var body = encodeURIComponent('Please describe your issue here.');
+        window.location.href = 'mailto:support@financiarme.es?subject=' + subject + '&body=' + body;
+    });
+    // Onboarding reset
+    $('#shopmetrics-reset-onboarding').on('click', function(e) {
+        e.preventDefault();
+        var btn = $(this);
+        btn.prop('disabled', true);
+        $('#reset-onboarding-status').text('Resetting...');
+        $.post(ajaxurl, {
+            action: 'shopmetrics_reset_onboarding',
+            _ajax_nonce: shopmetricsanalytics_admin_params.settings_nonce
+        }, function(resp) {
+            if (resp && resp.success) {
+                $('#reset-onboarding-status').text('Onboarding reset!');
+            } else {
+                $('#reset-onboarding-status').text('Error resetting');
+            }
+            btn.prop('disabled', false);
+        }).fail(function() {
+            $('#reset-onboarding-status').text('Error resetting');
+            btn.prop('disabled', false);
+        });
+    });
+    // Connect button
+    $('#connect-button').on('click', function(e) {
+        e.preventDefault();
+        var btn = $(this);
+        btn.prop('disabled', true);
+        $('#connection-status').show().text('Connecting...');
+        
+        // Get site identifier (use current site URL if empty)
+        var siteIdentifier = $('#site_identifier').val() || window.location.origin;
+        
+        // Call the registration endpoint to get new credentials
+        $.post(ajaxurl, {
+            action: 'shopmetrics_initiate_connection',
+            _ajax_nonce: shopmetricsSettings.api_actions_nonce,
+            site_identifier: siteIdentifier
+        }, function(resp) {
+            if (resp && resp.success && resp.data && resp.data.api_token) {
+                // Save both credentials in a single call
+                $.post(ajaxurl, {
+                    action: 'shopmetrics_save_credentials',
+                    _ajax_nonce: shopmetricsSettings.nonce,
+                    api_token: resp.data.api_token,
+                    site_identifier: resp.data.site_identifier || siteIdentifier
+                }, function(saveResp) {
+                    if (saveResp && saveResp.success) {
+                        console.log('ShopMetrics: Credentials saved successfully, reloading page...');
+                        $('#connection-status').text('Connected! Reloading...');
+                        setTimeout(function() { 
+                            console.log('ShopMetrics: Executing page reload...');
+                            location.reload(); 
+                        }, 1200);
+                    } else {
+                        var errorMsg = saveResp && saveResp.data ? saveResp.data.message : 'Failed to save credentials';
+                        console.error('ShopMetrics: Failed to save credentials:', errorMsg);
+                        $('#connection-status').text('Connection failed: ' + errorMsg);
+                    }
+                    btn.prop('disabled', false);
+                }).fail(function() {
+                    console.error('ShopMetrics: Network error during credential save');
+                    $('#connection-status').text('Connection failed: Network error during credential save');
+                    btn.prop('disabled', false);
+                });
+            } else {
+                $('#connection-status').text('Error connecting: ' + (resp.data || 'Unknown error'));
+                btn.prop('disabled', false);
+            }
+        }).fail(function() {
+            $('#connection-status').text('Error connecting');
+            btn.prop('disabled', false);
+        });
+    });
+});";
+        wp_add_inline_script($handle, $js);
+    }
+
+    /**
+     * Enqueue all Data Sources page inline JS via wp_add_inline_script.
+     */
+    public function enqueue_data_sources_inline_js($hook_suffix) {
+        if (strpos($hook_suffix, '-data-sources') === false) return;
+        $handle = $this->plugin_name;
+        $js = "jQuery(document).ready(function($) {
+    // Handle form submission via AJAX
+    $('#shopmetrics-data-sources-unified-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var submitBtn = $('#shopmetrics-save-data-sources-settings');
+        var statusSpan = $('#shopmetrics-data-sources-save-status');
+        
+        submitBtn.prop('disabled', true);
+        statusSpan.text('Saving...').show();
+        
+        // Collect only the shopmetrics_settings data
+        var formData = new FormData();
+        formData.append('action', 'shopmetrics_save_settings');
+        formData.append('_ajax_nonce', shopmetricsSettings.nonce);
+        
+        // Get all shopmetrics_settings fields from the form
+        $(this).find('input[name^=\"shopmetrics_settings[\"], select[name^=\"shopmetrics_settings[\"], textarea[name^=\"shopmetrics_settings[\"]').each(function() {
+            var name = $(this).attr('name');
+            var value = $(this).val();
+            if ($(this).attr('type') === 'checkbox') {
+                value = $(this).is(':checked') ? $(this).val() : '0';
+            }
+            formData.append(name, value);
+        });
+        
+
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    statusSpan.text('Settings saved successfully!').css('color', 'green');
+                } else {
+                    statusSpan.text('Error: ' + (response.data ? response.data.message : 'Unknown error')).css('color', 'red');
+                }
+            },
+            error: function() {
+                statusSpan.text('Network error. Please try again.').css('color', 'red');
+            },
+            complete: function() {
+                submitBtn.prop('disabled', false);
+                setTimeout(function() { statusSpan.fadeOut(); }, 3000);
+            }
+        });
+    });
+    
+    // Hide future integration sections for initial release
+            $('.shopmetrics-settings-section[data-integration=\"ads-platforms\"], .shopmetrics-settings-section[data-integration=\"accounting-platforms\"]').hide();
+    // Manual snapshot trigger
+    $('#manual-snapshot-trigger').on('click', function(e) {
+        e.preventDefault();
+        var button = $(this);
+        var statusSpan = $('#manual-snapshot-status');
+        button.prop('disabled', true);
+        statusSpan.text('Taking snapshot...').show();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'shopmetrics_manual_snapshot',
+                nonce: button.data('nonce')
+            },
+            success: function(response) {
+                if (response.success) {
+                    statusSpan.text(response.data.message).css('color', 'green');
+                } else {
+                    statusSpan.text(response.data.message).css('color', 'red');
+                }
+            },
+            error: function() {
+                statusSpan.text('An error occurred. Please try again.').css('color', 'red');
+            },
+            complete: function() {
+                button.prop('disabled', false);
+                setTimeout(function() { statusSpan.fadeOut(); }, 5000);
+            }
+        });
+    });
+    // Fix snapshot schedule
+    $('#fix-snapshot-schedule').on('click', function(e) {
+        e.preventDefault();
+        var button = $(this);
+        button.text('Fixing...').prop('disabled', true);
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'shopmetrics_fix_snapshot_schedule',
+                nonce: button.data('nonce')
+            },
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.data.message);
+                    button.text('Fix Schedule').prop('disabled', false);
+                }
+            },
+            error: function() {
+                alert('An error occurred. Please try again.');
+                button.text('Fix Schedule').prop('disabled', false);
+            }
+        });
+    });
+    // Connect buttons for integrations
+    $('.shopmetrics-connect-button').on('click', function(e) {
+        e.preventDefault();
+        alert('Integration coming soon! This feature is currently under development.');
+    });
+});";
+        wp_add_inline_script($handle, $js);
+    }
+
+    /**
+     * Enqueue all Cart Recovery page inline JS via wp_add_inline_script.
+     */
+    public function enqueue_cart_recovery_inline_js($hook_suffix) {
+        if (strpos($hook_suffix, '-cart-recovery') === false) return;
+        $handle = $this->plugin_name;
+        $js = "jQuery(document).ready(function($) {
+    // Handle form submission via AJAX
+    $('#shopmetrics-cart-recovery-unified-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var submitBtn = $('#shopmetrics-save-cart-recovery-settings');
+        var statusSpan = $('#shopmetrics-cart-recovery-save-status');
+        
+        submitBtn.prop('disabled', true);
+        statusSpan.text('Saving...').show();
+        
+        // Collect only the shopmetrics_settings data
+        var formData = new FormData();
+        formData.append('action', 'shopmetrics_save_settings');
+        formData.append('_ajax_nonce', shopmetricsSettings.nonce);
+        
+        // Get all shopmetrics_settings fields from the form
+        $(this).find('input[name^=\"shopmetrics_settings[\"], select[name^=\"shopmetrics_settings[\"], textarea[name^=\"shopmetrics_settings[\"]').each(function() {
+            var name = $(this).attr('name');
+            var value = $(this).val();
+            if ($(this).attr('type') === 'checkbox') {
+                value = $(this).is(':checked') ? $(this).val() : '0';
+            }
+            formData.append(name, value);
+        });
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    statusSpan.text('Settings saved successfully!').css('color', 'green');
+                } else {
+                    statusSpan.text('Error: ' + (response.data ? response.data.message : 'Unknown error')).css('color', 'red');
+                }
+            },
+            error: function() {
+                statusSpan.text('Network error. Please try again.').css('color', 'red');
+            },
+            complete: function() {
+                submitBtn.prop('disabled', false);
+                setTimeout(function() { statusSpan.fadeOut(); }, 3000);
+            }
+        });
+    });
+    
+    // Toggle coupon fields based on checkbox
+    $('#shopmetrics_settings\\\\[cart_recovery_include_coupon\\\\]').change(function() {
+        if ($(this).is(':checked')) {
+            $('.shopmetrics-coupon-field').show();
+        } else {
+            $('.shopmetrics-coupon-field').hide();
+        }
+    });
+    // Test email AJAX is handled in admin/js/shopmetrics-settings.js
+});";
+        wp_add_inline_script($handle, $js);
+    }
+
+    /**
+     * Enqueue all Subscription page inline JS via wp_add_inline_script.
+     */
+    public function enqueue_subscription_inline_js($hook_suffix) {
+        if (strpos($hook_suffix, '-subscription') === false) return;
+        $handle = $this->plugin_name;
+        $js = "jQuery(document).ready(function($) {
+    // Handle customer type change to show/hide VAT field
+    $('input[name=\"shopmetrics_customer_type\"]').on('change', function() {
+        var customerType = $(this).val();
+        var vatField = $('#shopmetrics-vat-number-field');
+        var continueButton = $('#shopmetrics-continue-checkout');
+        if (customerType === 'B2B') {
+            vatField.addClass('show');
+        } else {
+            vatField.removeClass('show');
+            $('#shopmetrics-vat-number').val('');
+        }
+        continueButton.prop('disabled', false);
+    });
+    // Show customer type modal when subscribe button is clicked
+    $('#shopmetrics-subscribe-premium').on('click', function(e) {
+        e.preventDefault();
+        // Track subscription attempt
+        if (typeof ShopMetricsAnalytics !== 'undefined') {
+            ShopMetricsAnalytics.track('subscription_checkout_initiated', { plan: 'premium', source: 'subscription_page' });
+        }
+        $('input[name=\"shopmetrics_customer_type\"][value=\"B2C\"]').prop('checked', true);
+        $('#shopmetrics-vat-number-field').removeClass('show');
+        $('#shopmetrics-vat-number').val('');
+        $('#shopmetrics-continue-checkout').prop('disabled', false);
+        $('#shopmetrics-customer-type-modal').addClass('show');
+    });
+    // Handle continue button in customer type modal
+    $('#shopmetrics-continue-checkout').on('click', function(e) {
+        e.preventDefault();
+        var button = $(this);
+        var statusSpan = $('#shopmetrics-customer-type-status');
+        var customerType = $('input[name=\"shopmetrics_customer_type\"]:checked').val() || 'B2C';
+        var vatNumber = $('#shopmetrics-vat-number').val() ? $('#shopmetrics-vat-number').val().trim() : '';
+        var currency = 'EUR';
+        if (customerType === 'B2B' && vatNumber) {
+            var vatRegex = /^[A-Z]{2}[A-Z0-9]{8,12}$/;
+            if (!vatRegex.test(vatNumber.toUpperCase())) {
+                alert('Please enter a valid VAT number format (e.g., DE123456789)');
+                return;
+            }
+        }
+        button.prop('disabled', true);
+        statusSpan.text('Preparing checkout...');
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'shopmetrics_create_checkout',
+                customer_type: customerType,
+                vat_number: vatNumber,
+                currency: currency,
+                _ajax_nonce: (typeof shopmetricsSettings !== 'undefined' && shopmetricsSettings.nonce) ? shopmetricsSettings.nonce : ''
+            },
+            success: function(response) {
+                if (response.success && response.data.url) {
+                    statusSpan.text('Redirecting to checkout...');
+                    window.location.href = response.data.url;
+                } else {
+                    statusSpan.text('Error');
+                    var errorMessage = response.data && response.data.message ? response.data.message : 'Failed to create checkout session.';
+                    alert('Error: ' + errorMessage);
+                    button.prop('disabled', false);
+                    statusSpan.text('');
+                }
+            },
+            error: function() {
+                statusSpan.text('Error');
+                alert('Network error. Please try again.');
+                button.prop('disabled', false);
+                statusSpan.text('');
+            }
+        });
+    });
+    // Close customer type modal
+    $('.shopmetrics-modal-close').on('click', function() { $('.shopmetrics-modal').removeClass('show'); });
+    $(window).on('click', function(e) { if ($(e.target).hasClass('shopmetrics-modal')) { $(e.target).removeClass('show'); } });
+    $('.shopmetrics-keep-subscription-button').on('click', function() { $('.shopmetrics-modal').removeClass('show'); });
+    
+    // Load billing history on page load
+    loadBillingHistory();
+    
+    // Load billing history (AJAX)
+    function loadBillingHistory() {
+        var container = $('#shopmetrics-billing-history-container');
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'shopmetrics_get_billing_history',
+                nonce: (typeof shopmetricsSettings !== 'undefined' && shopmetricsSettings.nonce) ? shopmetricsSettings.nonce : ''
+            },
+            success: function(response) {
+                if (response.success && response.data.history) {
+                    var history = response.data.history;
+                    var html = '';
+                    if (history.length > 0) {
+                        html = '<table class=\"shopmetrics-billing-table\"><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody>';
+                        history.forEach(function(item) {
+                            html += '<tr><td>' + new Date(item.date * 1000).toLocaleDateString() + '</td><td>' + item.description + '</td><td>' + item.amount + '</td><td>' + item.status + '</td></tr>';
+                        });
+                        html += '</tbody></table>';
+                    } else {
+                        html = '<p>No billing history available.</p>';
+                    }
+                    container.html(html);
+                } else {
+                    container.html('<p>Unable to load billing history at this time.</p>');
+                }
+            },
+            error: function() {
+                container.html('<p>Error loading billing history.</p>');
+            }
+        });
+    }
+});";
+        wp_add_inline_script($handle, $js);
+    }
+
+    /**
+     * AJAX handler for checking current credentials (debugging)
+     *
+     * @since 1.2.0
+     */
+    public function ajax_check_credentials() {
+        // Verify nonce
+        if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_ajax_nonce'])), 'shopmetrics_settings_ajax_nonce')) {
+            wp_send_json_error(['message' => 'Invalid security token.'], 403);
+            exit;
+        }
+
+        // Check user capabilities
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'You do not have permission to check settings.'], 403);
+            exit;
+        }
+
+        $api_token = get_option('shopmetrics_analytics_api_token', '');
+        $site_identifier = get_option('shopmetrics_analytics_site_identifier', '');
+        
+        wp_send_json_success([
+            'api_token' => !empty($api_token) ? substr($api_token, 0, 10) . '...' : 'empty',
+            'site_identifier' => $site_identifier,
+            'has_token' => !empty($api_token),
+            'has_identifier' => !empty($site_identifier)
+        ]);
+    }
 } 
+
+add_action('admin_init', function() {
+    $settings = get_option('shopmetrics_settings', []);
+    if (!isset($settings['enable_visit_tracking'])) {
+        $settings['enable_visit_tracking'] = 1;
+        update_option('shopmetrics_settings', $settings);
+    }
+});

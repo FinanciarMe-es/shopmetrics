@@ -7,17 +7,17 @@
     // Ensure logger is defined before any usage
     window.logger = {
         log: (...args) => {
-            if (typeof fmSettings === 'undefined' || fmSettings.debugLogging) {
+            if (typeof shopmetricsSettings === 'undefined' || shopmetricsSettings.debugLogging) {
                 console.log(...args);
             }
         },
         warn: (...args) => {
-            if (typeof fmSettings === 'undefined' || fmSettings.debugLogging) {
+            if (typeof shopmetricsSettings === 'undefined' || shopmetricsSettings.debugLogging) {
                 console.warn(...args);
             }
         },
         error: (...args) => {
-            if (typeof fmSettings === 'undefined' || fmSettings.debugLogging) {
+            if (typeof shopmetricsSettings === 'undefined' || shopmetricsSettings.debugLogging) {
                 console.error(...args);
             }
         }
@@ -34,34 +34,34 @@
         logger.log('ajaxurl is defined:', ajaxurl);
     }
     
-    // Log fmSettings availability
-    if (typeof fmSettings === 'undefined') {
-        logger.log('fmSettings is not defined!');
+    // Log shopmetricsSettings availability
+    if (typeof shopmetricsSettings === 'undefined') {
+        logger.log('shopmetricsSettings is not defined!');
     } else {
-        logger.log('fmSettings is defined:', fmSettings);
+        logger.log('shopmetricsSettings is defined:', shopmetricsSettings);
     }
 
     $(document).ready(function() {
-        const disconnectButton = $('#sm-disconnect-button');
-        const disconnectStatusSpan = $('#sm-disconnect-status');
-        const manageBillingButton = $('#sm-manage-billing-button');
-        const billingStatusSpan = $('#sm-billing-status');
-        const cancelSubscriptionButton = $('#sm-cancel-subscription-button');
-        const cancelStatusSpan = $('#sm-cancel-status');
+        const disconnectButton = $('#shopmetrics-disconnect-button');
+        const disconnectStatusSpan = $('#shopmetrics-disconnect-status');
+        const manageBillingButton = $('#shopmetrics-manage-billing-button');
+        const billingStatusSpan = $('#shopmetrics-billing-status');
+        const cancelSubscriptionButton = $('#shopmetrics-cancel-subscription-button');
+        const cancelStatusSpan = $('#shopmetrics-cancel-status');
 
         // COGS Meta Key Settings Enhancement
-        const cogsDetectionResultArea = $('#sm_cogs_detection_result_area');
-        const cogsManualSelectArea = $('#sm_cogs_manual_select_area');
-        const cogsMetaKeyDropdown = $('#sm_cogs_meta_key_dropdown');
+        const cogsDetectionResultArea = $('#shopmetrics_cogs_detection_result_area');
+        const cogsManualSelectArea = $('#shopmetrics_cogs_manual_select_area');
+        const cogsMetaKeyDropdown = $('#shopmetrics_cogs_meta_key_dropdown');
         const cogsHiddenInput = $('#shopmetrics_settings_cogs_meta_key_hidden_input');
-        const currentCogsKeyDisplay = $('#sm_current_cogs_key_display');
-        const autoDetectButton = $('#sm_auto_detect_cogs_key_button');
-        const manualSelectButton = $('#sm_manual_select_cogs_key_button');
+        const currentCogsKeyDisplay = $('#shopmetrics_current_cogs_key_display');
+        const autoDetectButton = $('#shopmetrics_auto_detect_cogs_key_button');
+        const manualSelectButton = $('#shopmetrics_manual_select_cogs_key_button');
 
         // Function to update the saved key display and hidden input
         function updateCogsMetaKey(newKeyValue) {
             cogsHiddenInput.val(newKeyValue);
-            currentCogsKeyDisplay.text(newKeyValue ? newKeyValue : (fmSettings.text_not_set || 'Not set')); 
+            currentCogsKeyDisplay.text(newKeyValue ? newKeyValue : (shopmetricsSettings.text_not_set || 'Not set')); 
             if (cogsMetaKeyDropdown.val() !== '_placeholder_' || newKeyValue === '') {
                 cogsDetectionResultArea.hide().empty();
                 cogsManualSelectArea.hide();
@@ -71,38 +71,38 @@
         // Auto-detect COGS Meta Key
         autoDetectButton.on('click', function() {
             cogsManualSelectArea.hide();
-            cogsDetectionResultArea.show().html('<p>' + (fmSettings.text_loading || 'Loading...') + '</p>');
+            cogsDetectionResultArea.show().html('<p>' + (shopmetricsSettings.text_loading || 'Loading...') + '</p>');
 
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'sm_auto_detect_cogs_key',
-                    nonce: fmSettings.nonce
+                    action: 'shopmetrics_auto_detect_cogs_key',
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success) {
                         let html = '<p>' + response.data.message + '</p>';
                         if (response.data.detected_key) {
-                            html += '<p>' + (fmSettings.text_use_this_key || 'Use this key?') + ' ';
-                            html += '<button type="button" class="button button-small sm-use-detected-key" data-key="' + response.data.detected_key + '">' + (fmSettings.text_yes || 'Yes') + '</button> ';
-                            html += '<button type="button" class="button button-small sm-dont-use-detected-key">' + (fmSettings.text_no || 'No') + '</button></p>';
+                            html += '<p>' + (shopmetricsSettings.text_use_this_key || 'Use this key?') + ' ';
+                            html += '<button type="button" class="button button-small shopmetrics-use-detected-key" data-key="' + response.data.detected_key + '">' + (shopmetricsSettings.text_yes || 'Yes') + '</button> ';
+                            html += '<button type="button" class="button button-small shopmetrics-dont-use-detected-key">' + (shopmetricsSettings.text_no || 'No') + '</button></p>';
                         } else {
-                             html += '<p><button type="button" class="button button-small sm-close-detection-area">' + (fmSettings.text_ok || 'OK') + '</button></p>';
+                             html += '<p><button type="button" class="button button-small shopmetrics-close-detection-area">' + (shopmetricsSettings.text_ok || 'OK') + '</button></p>';
                         }
                         cogsDetectionResultArea.html(html);
                     } else {
-                        cogsDetectionResultArea.html('<p class="notice notice-error">' + (response.data.message || fmSettings.error_generic || 'An error occurred.') + '</p>');
+                        cogsDetectionResultArea.html('<p class="notice notice-error">' + (response.data.message || shopmetricsSettings.error_generic || 'An error occurred.') + '</p>');
                     }
                 },
                 error: function() {
-                    cogsDetectionResultArea.html('<p class="notice notice-error">' + (fmSettings.error_generic || 'An AJAX error occurred.') + '</p>');
+                    cogsDetectionResultArea.html('<p class="notice notice-error">' + (shopmetricsSettings.error_generic || 'An AJAX error occurred.') + '</p>');
                 }
             });
         });
 
         // Handle "Yes" to use detected key
-        cogsDetectionResultArea.on('click', '.sm-use-detected-key', function() {
+        cogsDetectionResultArea.on('click', '.shopmetrics-use-detected-key', function() {
             const detectedKey = $(this).data('key');
             updateCogsMetaKey(detectedKey);
             if (cogsManualSelectArea.is(':visible')) {
@@ -112,7 +112,7 @@
         });
 
         // Handle "No" to use detected key or "OK"
-        cogsDetectionResultArea.on('click', '.sm-dont-use-detected-key, .sm-close-detection-area', function() {
+        cogsDetectionResultArea.on('click', '.shopmetrics-dont-use-detected-key, .shopmetrics-close-detection-area', function() {
             cogsDetectionResultArea.hide().empty();
         });
 
@@ -120,14 +120,14 @@
         manualSelectButton.on('click', function() {
             cogsDetectionResultArea.hide().empty();
             cogsManualSelectArea.show();
-            cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (fmSettings.text_loading || 'Loading...') + '</option>');
+            cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (shopmetricsSettings.text_loading || 'Loading...') + '</option>');
 
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'sm_get_all_meta_keys',
-                    nonce: fmSettings.nonce
+                    action: 'shopmetrics_get_all_meta_keys',
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success && response.data.meta_keys) {
@@ -145,14 +145,14 @@
                             cogsMetaKeyDropdown.val('');
                         }
                     } else {
-                        cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (fmSettings.error_loading_keys || 'Error loading keys') + '</option>');
+                        cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (shopmetricsSettings.error_loading_keys || 'Error loading keys') + '</option>');
                         if (response.data && response.data.message) {
                             cogsManualSelectArea.append('<p class="notice notice-error">' + response.data.message + '</p>');
                         }
                     }
                 },
                 error: function() {
-                    cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (fmSettings.error_ajax || 'AJAX Error') + '</option>');
+                    cogsMetaKeyDropdown.html('<option value="_placeholder_">' + (shopmetricsSettings.error_ajax || 'AJAX Error') + '</option>');
                 }
             });
         });
@@ -171,12 +171,13 @@
         const testEmailButton = $('#shopmetrics_test_recovery_email');
         const testEmailResult = $('#shopmetrics_test_email_result');
         
-        // Add direct debugging script immediately after the button
-        jQuery('body').append('<script type="text/javascript">window.logger = window.logger || { log: (...args) => console.log(...args) }; logger.log("Inline script executed! Page loaded.");</script>');
+        // Initialize logger (moved from inline script to proper enqueue)
+        window.logger = window.logger || { log: (...args) => console.log(...args) };
+        logger.log("Settings script loaded. Page loaded.");
         
         logger.log('Test button initialization. Button found:', testEmailButton.length > 0);
-        logger.log('Current page info:', fmSettings.plugin_page);
-        logger.log('Debug timestamp:', fmSettings.debug_timestamp);
+        logger.log('Current page info:', shopmetricsSettings.plugin_page);
+        logger.log('Debug timestamp:', shopmetricsSettings.debug_timestamp);
         
         if (testEmailButton.length) {
             logger.log('Test email button found and initialized');
@@ -186,9 +187,9 @@
                 e.preventDefault();
                 
                 // Directly check for the localized nonce value
-                if (typeof fmSettings === 'undefined' || typeof fmSettings.cart_recovery_nonce === 'undefined') {
+                if (typeof shopmetricsSettings === 'undefined' || typeof shopmetricsSettings.cart_recovery_nonce === 'undefined') {
                     alert('CRITICAL ERROR: The security nonce (cart_recovery_nonce) is missing. Please contact support.');
-                    logger.error('fmSettings object or cart_recovery_nonce is undefined.', fmSettings);
+                    logger.error('shopmetricsSettings object or cart_recovery_nonce is undefined.', shopmetricsSettings);
                     return;
                 }
                 
@@ -206,7 +207,7 @@
                     type: 'POST',
                     data: {
                         action: 'shopmetrics_test_recovery_email',
-                        nonce: fmSettings.cart_recovery_nonce
+                        nonce: shopmetricsSettings.cart_recovery_nonce
                     },
                     success: function(response) {
                         logger.log('AJAX response received:', response);
@@ -311,15 +312,15 @@
                              manageBillingButton.prop('disabled', false);
                              return;
                         }
-                        if (!fmSettings || !fmSettings.stripe_publishable_key) {
+                        if (!shopmetricsSettings || !shopmetricsSettings.stripe_publishable_key) {
                              billingStatusSpan.text('Error: Stripe key missing').css('color', 'red');
-                             logger.error('Stripe Publishable Key not found in fmData.');
+                             logger.error('Stripe Publishable Key not found in shopmetricsSettings.');
                              manageBillingButton.prop('disabled', false);
                              return;
                         }
                         
                         try {
-                            const stripe = Stripe(fmSettings.stripe_publishable_key);
+                            const stripe = Stripe(shopmetricsSettings.stripe_publishable_key);
                             stripe.redirectToCheckout({
                                 sessionId: response.data.sessionId
                             }).then(function (result) {
@@ -397,13 +398,13 @@
         }
 
         // Handle 'Stop Subscription' button click
-        $(document).on('click', '#sm-cancel-subscription-button', function(e) {
+        $(document).on('click', '#shopmetrics-cancel-subscription-button', function(e) {
             e.preventDefault();
             const button = $(this);
-            const statusSpan = $('#sm-subscription-status-message');
+            const statusSpan = $('#shopmetrics-subscription-status-message');
             const nonce = $('#shopmetrics_subscription_actions_nonce').val();
 
-            button.prop('disabled', true).text(fmSettings.text_processing);
+            button.prop('disabled', true).text(shopmetricsSettings.text_processing);
             statusSpan.text('').removeClass('notice notice-error notice-success');
 
             $.post(ajaxurl, {
@@ -414,41 +415,41 @@
                 if (response.success) {
                     statusSpan.text(response.data.message + ' Effective: ' + response.data.cancel_at_display).addClass('notice notice-warning');
                     // Update button and status area (replace cancel button, show pending message)
-                    $('#sm-subscription-management-area').html(
-                        '<p class="description">' + fmSettings.text_pending_cancellation + '</p>' +
-                        '<p><span class="dashicons dashicons-warning"></span> ' + fmSettings.status_pending_cancellation + '</p>' +
+                    $('#shopmetrics-subscription-management-area').html(
+                        '<p class="description">' + shopmetricsSettings.text_pending_cancellation + '</p>' +
+                        '<p><span class="dashicons dashicons-warning"></span> ' + shopmetricsSettings.status_pending_cancellation + '</p>' +
                         '<span class="description">' + response.data.cancel_at_display_full + '</span>' +
-                        '<br><br><button id="sm-reactivate-subscription" class="button button-primary">' + fmSettings.text_reactivate_subscription + '</button>' +
-                        '<span id="sm-subscription-status-message" class="notice"></span>' // Add status span back
+                        '<br><br><button id="shopmetrics-reactivate-subscription" class="button button-primary">' + shopmetricsSettings.text_reactivate_subscription + '</button>' +
+                        '<span id="shopmetrics-subscription-status-message" class="notice"></span>' // Add status span back
                     );
 
                 } else {
-                    statusSpan.text(fmSettings.error_prefix + response.data.message).addClass('notice notice-error');
-                    button.prop('disabled', false).text(fmSettings.text_cancel_subscription); // Re-enable button on error
+                    statusSpan.text(shopmetricsSettings.error_prefix + response.data.message).addClass('notice notice-error');
+                    button.prop('disabled', false).text(shopmetricsSettings.text_cancel_subscription); // Re-enable button on error
                 }
             })
             .fail(function(xhr) {
                 const errorMsg = xhr.responseJSON && xhr.responseJSON.data && xhr.responseJSON.data.message 
                                  ? xhr.responseJSON.data.message 
-                                 : fmSettings.error_generic;
-                statusSpan.text(fmSettings.error_prefix + errorMsg).addClass('notice notice-error');
-                button.prop('disabled', false).text(fmSettings.text_cancel_subscription); // Re-enable button on error
+                                 : shopmetricsSettings.error_generic;
+                statusSpan.text(shopmetricsSettings.error_prefix + errorMsg).addClass('notice notice-error');
+                button.prop('disabled', false).text(shopmetricsSettings.text_cancel_subscription); // Re-enable button on error
             });
         });
 
         // Handle 'Reactivate Subscription' button click (New)
-        $(document).on('click', '#sm-reactivate-subscription', function(e) {
+        $(document).on('click', '#shopmetrics-reactivate-subscription', function(e) {
             e.preventDefault();
             const button = $(this);
-            const statusSpan = $('#sm-reactivate-subscription-status'); // Use the correct status span id
+            const statusSpan = $('#shopmetrics-reactivate-subscription-status'); // Use the correct status span id
             const nonce = button.data('nonce'); // Get nonce from button's data-nonce attribute
 
             // Add confirmation dialog
-            if (!confirm(fmSettings.text_confirm_reactivate)) {
+            if (!confirm(shopmetricsSettings.text_confirm_reactivate)) {
                 return; // Abort if user cancels
             }
 
-            button.prop('disabled', true).text(fmSettings.text_reactivating_subscription); // Use specific text
+            button.prop('disabled', true).text(shopmetricsSettings.text_reactivating_subscription); // Use specific text
             statusSpan.text('').removeClass('notice notice-error notice-success notice-warning'); // Clear existing messages
 
             $.post(ajaxurl, {
@@ -459,14 +460,14 @@
                 if (response.success) {
                     // statusSpan.text(response.data.message).addClass('notice notice-success'); // Status span might not exist after reload
                     // // Update button and status area (replace reactivate button/pending message with active status and cancel button)
-                    // $('#sm-subscription-management-area').html(
-                    //     '<p><span class="dashicons dashicons-yes-alt"></span> ' + fmSettings.status_active + '</p>' +
-                    //     '<button id="sm-cancel-subscription-button" class="button">' + fmSettings.text_cancel_subscription + '</button>' +
-                    //     '<span id="sm-subscription-status-message" class="notice"></span>' // Add status span back
+                    // $('#shopmetrics-subscription-management-area').html(
+                    //     '<p><span class="dashicons dashicons-yes-alt"></span> ' + shopmetricsSettings.status_active + '</p>' +
+                    //     '<button id="shopmetrics-cancel-subscription-button" class="button">' + shopmetricsSettings.text_cancel_subscription + '</button>' +
+                    //     '<span id="shopmetrics-subscription-status-message" class="notice"></span>' // Add status span back
                     // );
 
                     // Get the dedicated status span for reactivation
-                    const reactivateStatusSpan = $('#sm-reactivate-subscription-status');
+                    const reactivateStatusSpan = $('#shopmetrics-reactivate-subscription-status');
                     reactivateStatusSpan.text((response.data.message || 'Success!') + ' Reloading...').css('color', 'green');
                     
                     // Reload the page after delay
@@ -475,39 +476,39 @@
                     }, 2000); // 2 second delay
 
                 } else {
-                    // statusSpan.text(fmSettings.error_prefix + response.data.message).addClass('notice notice-error');
+                    // statusSpan.text(shopmetricsSettings.error_prefix + response.data.message).addClass('notice notice-error');
                     // Use the dedicated status span for errors too
-                    const reactivateStatusSpan = $('#sm-reactivate-subscription-status');
-                    reactivateStatusSpan.text(fmSettings.error_generic + ': ' + (response.data?.message || 'Unknown error')).css('color', 'red');
-                    button.prop('disabled', false).text(fmSettings.text_reactivate_subscription); // Re-enable button on error
+                    const reactivateStatusSpan = $('#shopmetrics-reactivate-subscription-status');
+                    reactivateStatusSpan.text(shopmetricsSettings.error_generic + ': ' + (response.data?.message || 'Unknown error')).css('color', 'red');
+                    button.prop('disabled', false).text(shopmetricsSettings.text_reactivate_subscription); // Re-enable button on error
                 }
             })
             .fail(function(xhr) {
                 const errorMsg = xhr.responseJSON && xhr.responseJSON.data && xhr.responseJSON.data.message 
                                  ? xhr.responseJSON.data.message 
-                                 : fmSettings.error_generic;
-                // statusSpan.text(fmSettings.error_prefix + errorMsg).addClass('notice notice-error');
+                                 : shopmetricsSettings.error_generic;
+                // statusSpan.text(shopmetricsSettings.error_prefix + errorMsg).addClass('notice notice-error');
                 // Use the dedicated status span for AJAX errors
-                 const reactivateStatusSpan = $('#sm-reactivate-subscription-status');
+                 const reactivateStatusSpan = $('#shopmetrics-reactivate-subscription-status');
                  reactivateStatusSpan.text('AJAX Error: ' + errorMsg).css('color', 'red');
-                button.prop('disabled', false).text(fmSettings.text_reactivate_subscription); // Re-enable button on error
+                button.prop('disabled', false).text(shopmetricsSettings.text_reactivate_subscription); // Re-enable button on error
             });
         });
 
         // --- Sync Button Handler --- 
-        $('#sm-sync-button').on('click', function(e) {
+        $('#shopmetrics-sync-button').on('click', function(e) {
             e.preventDefault();
             const $button = $(this);
-            const $statusSpan = $('#sm-sync-status');
+            const $statusSpan = $('#shopmetrics-sync-status');
 
-            // Use the nonce localized in fmSettings
-            const nonce = fmSettings.nonce; 
+            // Use the nonce localized in shopmetricsSettings
+            const nonce = shopmetricsSettings.nonce; 
 
             $button.prop('disabled', true);
             $statusSpan.text('Requesting sync...').css('color', 'orange');
 
             $.ajax({
-                url: fmSettings.ajax_url, 
+                url: shopmetricsSettings.ajax_url, 
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_start_sync', 
@@ -534,8 +535,8 @@
         });
 
         // --- Manual Inventory Snapshot Button Handler ---
-        const manualSnapshotButton = $('#sm-manual-snapshot-button');
-        const manualSnapshotStatusSpan = $('#sm-manual-snapshot-status');
+        const manualSnapshotButton = $('#shopmetrics-manual-snapshot-button');
+        const manualSnapshotStatusSpan = $('#shopmetrics-manual-snapshot-status');
 
         if (manualSnapshotButton.length) {
             manualSnapshotButton.on('click', function(e) {
@@ -544,13 +545,13 @@
                 manualSnapshotButton.prop('disabled', true);
                 manualSnapshotStatusSpan.text('Triggering snapshot...').css('color', 'orange');
 
-                // Use the nonce localized in fmSettings (which corresponds to 'fm_settings_ajax_nonce' action)
+                // Use the nonce localized in shopmetricsSettings (which corresponds to 'fm_settings_ajax_nonce' action)
                 const ajaxData = {
                     action: 'shopmetrics_manual_snapshot',
-                    nonce: fmSettings.nonce // fmSettings.nonce should be available from wp_localize_script
+                    nonce: shopmetricsSettings.nonce // shopmetricsSettings.nonce should be available from wp_localize_script
                 };
 
-                $.post(fmSettings.ajax_url, ajaxData, function(response) {
+                $.post(shopmetricsSettings.ajax_url, ajaxData, function(response) {
                     if (response.success) {
                         manualSnapshotStatusSpan.text(response.data.message || 'Snapshot triggered. Check logs.').css('color', 'green');
                         // Re-enable button after a delay
@@ -576,29 +577,29 @@
             const $status = $('#manual-snapshot-status');
             
             // Disable button and show loading
-            $button.prop('disabled', true).text(fmSettings.text_processing || 'Processing...');
+            $button.prop('disabled', true).text(shopmetricsSettings.text_processing || 'Processing...');
             $status.text('').show().html('<span class="spinner is-active" style="float:none;margin:0;"></span> Triggering snapshot...');
             
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_manual_snapshot',
-                    nonce: fmSettings.nonce
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success) {
-                        $status.removeClass('sm-error-text').addClass('sm-success-text').text(response.data.message);
+                        $status.removeClass('shopmetrics-error-text').addClass('shopmetrics-success-text').text(response.data.message);
                     } else {
-                        $status.removeClass('sm-success-text').addClass('sm-error-text').text(response.data.message || 'Error: Unknown error occurred');
+                        $status.removeClass('shopmetrics-success-text').addClass('shopmetrics-error-text').text(response.data.message || 'Error: Unknown error occurred');
                     }
                 },
                 error: function() {
-                    $status.removeClass('sm-success-text').addClass('sm-error-text').text('Error: Server connection failed');
+                    $status.removeClass('shopmetrics-success-text').addClass('shopmetrics-error-text').text('Error: Server connection failed');
                 },
                 complete: function() {
                     // Re-enable button
-                    $button.prop('disabled', false).text(fmSettings.text_take_snapshot || 'Take Inventory Snapshot Now');
+                    $button.prop('disabled', false).text(shopmetricsSettings.text_take_snapshot || 'Take Inventory Snapshot Now');
                     
                     // Hide status after 10 seconds
                     setTimeout(function() {
@@ -615,23 +616,23 @@
             const originalText = $button.text();
             
             // Disable button and show loading
-            $button.prop('disabled', true).text(fmSettings.text_processing || 'Processing...');
+            $button.prop('disabled', true).text(shopmetricsSettings.text_processing || 'Processing...');
             
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_fix_snapshot_schedule',
-                    nonce: fmSettings.nonce
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success) {
-                        $button.parent().prev('.sm-error-text').replaceWith(
-                            '<p class="sm-success-text">' + response.data.message + '</p>'
+                        $button.parent().prev('.shopmetrics-error-text').replaceWith(
+                            '<p class="shopmetrics-success-text">' + response.data.message + '</p>'
                         );
                         if (response.data.next_snapshot) {
                             $button.parent().after(
-                                '<p><strong>' + (fmSettings.text_next_snapshot || 'Next scheduled snapshot:') + '</strong> ' + 
+                                '<p><strong>' + (shopmetricsSettings.text_next_snapshot || 'Next scheduled snapshot:') + '</strong> ' + 
                                 response.data.next_snapshot + '</p>'
                             );
                         }
@@ -653,24 +654,24 @@
         // --- Phase 6.1.3: Enhanced Subscription Management ---
         
         // Load billing history when page loads
-        if (typeof fmSettings !== 'undefined' && fmSettings.plugin_page === 'subscription') {
+        if (typeof shopmetricsSettings !== 'undefined' && shopmetricsSettings.plugin_page === 'subscription') {
             loadBillingHistory();
             loadSubscriptionDetails();
         }
 
         // Load billing history function
         function loadBillingHistory() {
-            const billingHistoryContainer = $('#sm-billing-history-container');
+            const billingHistoryContainer = $('#shopmetrics-billing-history-container');
             if (billingHistoryContainer.length === 0) return;
 
             billingHistoryContainer.html('<div class="spinner-container"><span class="spinner is-active"></span> Loading billing history...</div>');
 
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_get_billing_history',
-                    nonce: fmSettings.nonce
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success && response.data.history) {
@@ -707,24 +708,24 @@
         // Load subscription details function  
         function loadSubscriptionDetails() {
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_get_subscription_details',
-                    nonce: fmSettings.nonce
+                    nonce: shopmetricsSettings.nonce
                 },
                 success: function(response) {
                     if (response.success) {
                         // Update next billing date if element exists
-                        const nextBillingElement = $('#sm-next-billing-date');
+                        const nextBillingElement = $('#shopmetrics-next-billing-date');
                         if (nextBillingElement.length && response.data.next_billing_date) {
                             const billingDate = new Date(response.data.next_billing_date);
                             nextBillingElement.text(billingDate.toLocaleDateString());
                         }
 
                         // Update pricing display if element exists
-                        const yearlyPriceElement = $('#sm-yearly-price');
-                        const monthlyPriceElement = $('#sm-monthly-equivalent');
+                        const yearlyPriceElement = $('#shopmetrics-yearly-price');
+                        const monthlyPriceElement = $('#shopmetrics-monthly-equivalent');
                         if (yearlyPriceElement.length && response.data.pricing) {
                             yearlyPriceElement.text(response.data.pricing.yearly_price || '€99');
                         }
@@ -740,7 +741,7 @@
         }
 
         // Enhanced cancellation modal (Phase 6.1.3)
-        $(document).on('click', '#sm-cancel-subscription-enhanced', function(e) {
+        $(document).on('click', '#shopmetrics-cancel-subscription-enhanced', function(e) {
             e.preventDefault();
             showCancellationModal();
         });
@@ -748,12 +749,12 @@
         // Show cancellation modal with reason/feedback form
         function showCancellationModal() {
             const modalHtml = `
-                <div id="sm-cancellation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999999;">
+                <div id="shopmetrics-cancellation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999999;">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%;">
                         <h2 style="margin-top: 0;">Cancel Subscription</h2>
                         <p>We're sorry to see you go! Please let us know why you're canceling so we can improve our service:</p>
                         
-                        <form id="sm-cancellation-form">
+                        <form id="shopmetrics-cancellation-form">
                             <h4>Reason for cancellation:</h4>
                             <label><input type="radio" name="reason" value="too_expensive"> Too expensive</label><br>
                             <label><input type="radio" name="reason" value="not_using"> Not using the features</label><br>
@@ -768,11 +769,11 @@
                             <p><strong>Important:</strong> Your subscription will remain active until the end of your current billing period. You will continue to have access to all premium features until then.</p>
                             
                             <div style="text-align: right; margin-top: 20px;">
-                                <button type="button" id="sm-modal-cancel" class="button" style="margin-right: 10px;">Keep Subscription</button>
-                                <button type="submit" id="sm-modal-confirm" class="button button-primary">Confirm Cancellation</button>
+                                <button type="button" id="shopmetrics-modal-cancel" class="button" style="margin-right: 10px;">Keep Subscription</button>
+                                <button type="submit" id="shopmetrics-modal-confirm" class="button button-primary">Confirm Cancellation</button>
                             </div>
                             
-                            <div id="sm-cancellation-status" style="margin-top: 15px; text-align: center;"></div>
+                            <div id="shopmetrics-cancellation-status" style="margin-top: 15px; text-align: center;"></div>
                         </form>
                     </div>
                 </div>
@@ -781,12 +782,12 @@
             $('body').append(modalHtml);
             
             // Handle modal close
-            $('#sm-modal-cancel').on('click', function() {
-                $('#sm-cancellation-modal').remove();
+            $('#shopmetrics-modal-cancel').on('click', function() {
+                $('#shopmetrics-cancellation-modal').remove();
             });
             
             // Handle form submission
-            $('#sm-cancellation-form').on('submit', function(e) {
+            $('#shopmetrics-cancellation-form').on('submit', function(e) {
                 e.preventDefault();
                 processCancellation();
             });
@@ -794,22 +795,22 @@
 
         // Process cancellation with reason and feedback
         function processCancellation() {
-            const form = $('#sm-cancellation-form');
+            const form = $('#shopmetrics-cancellation-form');
             const reason = form.find('input[name="reason"]:checked').val();
             const feedback = form.find('textarea[name="feedback"]').val();
-            const statusDiv = $('#sm-cancellation-status');
-            const submitBtn = $('#sm-modal-confirm');
+            const statusDiv = $('#shopmetrics-cancellation-status');
+            const submitBtn = $('#shopmetrics-modal-confirm');
             
             // Show loading state
             submitBtn.prop('disabled', true).text('Processing...');
             statusDiv.html('<span class="spinner is-active"></span> Processing cancellation...');
             
             $.ajax({
-                url: fmSettings.ajax_url,
+                url: shopmetricsSettings.ajax_url,
                 type: 'POST',
                 data: {
                     action: 'shopmetrics_cancel_subscription',
-                    nonce: fmSettings.nonce,
+                    nonce: shopmetricsSettings.nonce,
                     reason: reason || '',
                     feedback: feedback || ''
                 },
@@ -817,7 +818,7 @@
                     if (response.success) {
                         statusDiv.html('<div style="color: green; font-weight: bold;">✓ ' + response.data.message + '</div>');
                         setTimeout(function() {
-                            $('#sm-cancellation-modal').remove();
+                            $('#shopmetrics-cancellation-modal').remove();
                             window.location.reload();
                         }, 2000);
                     } else {
@@ -833,8 +834,8 @@
         }
 
         // Close modal when clicking outside
-        $(document).on('click', '#sm-cancellation-modal', function(e) {
-            if (e.target.id === 'sm-cancellation-modal') {
+        $(document).on('click', '#shopmetrics-cancellation-modal', function(e) {
+            if (e.target.id === 'shopmetrics-cancellation-modal') {
                 $(this).remove();
             }
         });

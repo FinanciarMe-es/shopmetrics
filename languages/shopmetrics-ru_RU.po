@@ -2465,8 +2465,8 @@ msgstr "Идентификатор сайта или API токен не пре�
 
 #: react-app/src/components/CartDashboard.js:215
 #: react-app/src/components/SalesDashboard.js:90
-msgid "API URL not configured in window.fmData."
-msgstr "API URL не настроен в window.fmData."
+msgid "API URL not configured in window.shopmetricsData."
+msgstr "API URL не настроен в window.shopmetricsData."
 
 #: react-app/src/components/CartDashboard.js:249
 msgid ""

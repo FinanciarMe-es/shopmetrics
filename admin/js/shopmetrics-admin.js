@@ -90,8 +90,8 @@
 						for (var i = 0; i < mutation.addedNodes.length; i++) {
 							var node = mutation.addedNodes[i];
 							if (node.nodeType === 1 && node.classList && 
-								(node.classList.contains('sm-section-header') || 
-								 node.classList.contains('sm-settings-section-title'))) {
+								(node.classList.contains('shopmetrics-section-header') || 
+								 node.classList.contains('shopmetrics-settings-section-title'))) {
 								logger.log('Section DOM modified');
 							}
 						}
@@ -136,10 +136,10 @@
 	 */
 	function initCogsMetaKeyDetection() {
 		// Auto-detect COGS meta key button
-		$('#fm_auto_detect_cogs_key_button').on('click', function(e) {
+		$('#shopmetrics_auto_detect_cogs_key_button').on('click', function(e) {
 			e.preventDefault();
 			
-			const resultArea = $('#fm_cogs_detection_result_area');
+			        const resultArea = $('#shopmetrics_cogs_detection_result_area');
 			resultArea.html('<p>' + shopmetricsanalytics_admin_params.i18n.detecting + '</p>');
 			resultArea.show();
 			
@@ -147,7 +147,7 @@
 				url: ajaxurl,
 				type: 'POST',
 				data: {
-					action: 'fm_auto_detect_cogs_key',
+					action: 'shopmetrics_auto_detect_cogs_key',
 					nonce: shopmetricsanalytics_admin_params.settings_nonce
 				},
 				success: function(response) {
@@ -155,24 +155,24 @@
 						resultArea.html('<p>' + response.data.message + '</p>');
 						
 						if (response.data.detected_key) {
-							resultArea.append('<p><button type="button" class="button button-primary sm-use-detected-key" data-key="' + 
+							resultArea.append('<p><button type="button" class="button button-primary shopmetrics-use-detected-key" data-key="' + 
 								response.data.detected_key + '">' + shopmetricsanalytics_admin_params.i18n.use_this_key + '</button></p>');
 						}
 					} else {
-						resultArea.html('<p class="sm-error-text">' + (response.data ? response.data.message : shopmetricsanalytics_admin_params.i18n.error) + '</p>');
+						resultArea.html('<p class="shopmetrics-error-text">' + (response.data ? response.data.message : shopmetricsanalytics_admin_params.i18n.error) + '</p>');
 					}
 				},
 				error: function() {
-					resultArea.html('<p class="sm-error-text">' + shopmetricsanalytics_admin_params.i18n.ajax_error + '</p>');
+					resultArea.html('<p class="shopmetrics-error-text">' + shopmetricsanalytics_admin_params.i18n.ajax_error + '</p>');
 				}
 			});
 		});
 		
 		// Manual select COGS meta key button
-		$('#fm_manual_select_cogs_key_button').on('click', function(e) {
+		$('#shopmetrics_manual_select_cogs_key_button').on('click', function(e) {
 			e.preventDefault();
 			
-			const manualSelectArea = $('#fm_cogs_manual_select_area');
+			const manualSelectArea = $('#shopmetrics_cogs_manual_select_area');
 			
 			if (manualSelectArea.is(':visible')) {
 				manualSelectArea.hide();
@@ -180,7 +180,7 @@
 			}
 			
 			manualSelectArea.show();
-			const dropdown = $('#fm_cogs_meta_key_dropdown');
+			const dropdown = $('#shopmetrics_cogs_meta_key_dropdown');
 			
 			// If dropdown is already populated, no need to fetch again
 			if (dropdown.find('option').length > 2) {
@@ -194,7 +194,7 @@
 				url: ajaxurl,
 				type: 'POST',
 				data: {
-					action: 'fm_get_all_meta_keys',
+					action: 'shopmetrics_get_all_meta_keys',
 					nonce: shopmetricsanalytics_admin_params.settings_nonce
 				},
 				success: function(response) {
@@ -216,7 +216,7 @@
 		});
 		
 		// Handle selecting key from dropdown
-		$(document).on('change', '#fm_cogs_meta_key_dropdown', function() {
+		$(document).on('change', '#shopmetrics_cogs_meta_key_dropdown', function() {
 			const selectedValue = $(this).val();
 			
 			// Skip the placeholder option
@@ -228,28 +228,28 @@
 			$('#shopmetrics_settings_cogs_meta_key_hidden_input').val(selectedValue);
 			
 			if (selectedValue) {
-				$('#fm_current_cogs_key_display').text(selectedValue);
+				$('#shopmetrics_current_cogs_key_display').text(selectedValue);
 			} else {
-				$('#fm_current_cogs_key_display').text(shopmetricsanalytics_admin_params.i18n.not_set);
+				$('#shopmetrics_current_cogs_key_display').text(shopmetricsanalytics_admin_params.i18n.not_set);
 			}
 		});
 		
 		// Handle clicking "Use this key" button
-		$(document).on('click', '.sm-use-detected-key', function() {
+		$(document).on('click', '.shopmetrics-use-detected-key', function() {
 			const key = $(this).data('key');
 			
 			// Update the hidden input and display
 			$('#shopmetrics_settings_cogs_meta_key_hidden_input').val(key);
-			$('#fm_current_cogs_key_display').text(key);
+			$('#shopmetrics_current_cogs_key_display').text(key);
 			
 			// Show success message
-			$('#fm_cogs_detection_result_area').html(
-				'<p class="sm-success-text">' + shopmetricsanalytics_admin_params.i18n.key_selected.replace('%s', key) + '</p>'
+			            $('#shopmetrics_cogs_detection_result_area').html(
+				'<p class="shopmetrics-success-text">' + shopmetricsanalytics_admin_params.i18n.key_selected.replace('%s', key) + '</p>'
 			);
 			
 			// If manual dropdown is visible, update it too
-			if ($('#fm_cogs_manual_select_area').is(':visible')) {
-				const dropdown = $('#fm_cogs_meta_key_dropdown');
+			if ($('#shopmetrics_cogs_manual_select_area').is(':visible')) {
+				const dropdown = $('#shopmetrics_cogs_meta_key_dropdown');
 				if (dropdown.find('option[value="' + key + '"]').length) {
 					dropdown.val(key);
 				}
@@ -316,7 +316,7 @@
 				url: ajaxurl,
 				type: 'POST',
 				data: {
-					action: 'fm_fix_snapshot_schedule',
+					action: 'shopmetrics_fix_snapshot_schedule',
 					nonce: shopmetricsanalytics_admin_params.settings_nonce
 				},
 				success: function(response) {
@@ -390,8 +390,8 @@
 		}
 
 		// Add reset sync button directly after the sync button (initially hidden)
-		$syncButton.after('<button id="sm-reset-sync-button" class="button" style="margin-left: 10px; display: none;">Reset Sync</button>');
-		const $resetButton = $('#sm-reset-sync-button');
+		$syncButton.after('<button id="shopmetrics-reset-sync-button" class="button" style="margin-left: 10px; display: none;">Reset Sync</button>');
+		const $resetButton = $('#shopmetrics-reset-sync-button');
 
 		// Set up the reset button click handler
 		$resetButton.on('click', function(e) {
@@ -429,11 +429,11 @@
 					if (response.success) {
 						alert('Sync progress reset successfully. You can now start a new sync.' + (isForceReset ? ' (Force reset completed)' : ''));
 						// Hide progress UI, show sync button, hide reset button
-						$('.sm-sync-progress-container').hide();
+						$('.shopmetrics-sync-progress-container').hide();
 						$syncButton.prop('disabled', false).show();
 						$resetButton.prop('disabled', false).text(originalButtonText).hide();
 						// Also hide last sync date
-						$('.sm-last-sync-date').hide();
+						$('.shopmetrics-last-sync-date').hide();
 					} else {
 						var errorMessage = response.data && response.data.message ? response.data.message : 'Unknown error';
 						if (errorMessage.includes('in progress') && !isForceReset) {
@@ -467,7 +467,7 @@
 			$syncButton.prop('disabled', true);
 			
 			// Hide the last sync date during new sync
-			$('.sm-last-sync-date').hide();
+			$('.shopmetrics-last-sync-date').hide();
 			
 			// Show progress UI immediately with initial 0% state
 			showProgressUI({
@@ -619,11 +619,11 @@
 			if (!lastSyncDate) return;
 			
 			// Check if the element already exists
-			let $lastSyncElement = $('.sm-last-sync-date');
+			let $lastSyncElement = $('.shopmetrics-last-sync-date');
 			if ($lastSyncElement.length === 0) {
 				// Create and position the element after the sync button
-				$resetButton.after('<div class="sm-last-sync-date" style="margin-top: 10px; color: #666; font-style: italic;"></div>');
-				$lastSyncElement = $('.sm-last-sync-date');
+				$resetButton.after('<div class="shopmetrics-last-sync-date" style="margin-top: 10px; color: #666; font-style: italic;"></div>');
+				$lastSyncElement = $('.shopmetrics-last-sync-date');
 			}
 			
 			// Update the text and make sure it's visible
@@ -634,7 +634,7 @@
 		 * Hide the progress UI
 		 */
 		function hideProgressUI() {
-			$('.sm-sync-progress-container').hide();
+			$('.shopmetrics-sync-progress-container').hide();
 		}
 
 		/**
@@ -642,34 +642,34 @@
 		 */
 		function showProgressUI(initialData) {
 			// Create or locate the progress container
-			let $progressContainer = $('.sm-sync-progress-container');
+			let $progressContainer = $('.shopmetrics-sync-progress-container');
 			if ($progressContainer.length === 0) {
 				// Create progress container AFTER buttons, not between them
 				// Check if there's already a last sync date element
-				let $lastSyncElement = $('.sm-last-sync-date');
+				let $lastSyncElement = $('.shopmetrics-last-sync-date');
 				
 				// If last sync date exists, insert before it, otherwise after reset button
 				if ($lastSyncElement.length > 0) {
-					$lastSyncElement.before('<div class="sm-sync-progress-container" style="margin-top: 15px; margin-bottom: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;"></div>');
+					$lastSyncElement.before('<div class="shopmetrics-sync-progress-container" style="margin-top: 15px; margin-bottom: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;"></div>');
 				} else {
-					$resetButton.after('<div class="sm-sync-progress-container" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;"></div>');
+					$resetButton.after('<div class="shopmetrics-sync-progress-container" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px;"></div>');
 				}
 				
-				$progressContainer = $('.sm-sync-progress-container');
+				$progressContainer = $('.shopmetrics-sync-progress-container');
 				
 				// Add structure for progress bar and details
 				const progressHTML = `
-					<div class="sm-progress-wrapper">
-						<div class="sm-progress-info">
-							<span class="sm-progress-status">Initializing...</span>
-							<span class="sm-progress-percentage">0%</span>
+					<div class="shopmetrics-progress-wrapper">
+						<div class="shopmetrics-progress-info">
+							<span class="shopmetrics-progress-status">Initializing...</span>
+							<span class="shopmetrics-progress-percentage">0%</span>
 						</div>
-						<div class="sm-progress-bar-container" style="height: 20px; background-color: #f0f0f0; border-radius: 3px; overflow: hidden;">
-							<div class="sm-progress-bar" style="height: 100%; background-color: #2271b1; width: 0%; transition: width 0.5s ease;"></div>
+						<div class="shopmetrics-progress-bar-container" style="height: 20px; background-color: #f0f0f0; border-radius: 3px; overflow: hidden;">
+							<div class="shopmetrics-progress-bar" style="height: 100%; background-color: #2271b1; width: 0%; transition: width 0.5s ease;"></div>
 						</div>
-						<div class="sm-progress-details" style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.9em; color: #666;">
-							<span class="sm-last-synced-date"></span>
-							<span class="sm-progress-count"></span>
+						<div class="shopmetrics-progress-details" style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.9em; color: #666;">
+							<span class="shopmetrics-last-synced-date"></span>
+							<span class="shopmetrics-progress-count"></span>
 						</div>
 					</div>
 				`;
@@ -692,14 +692,14 @@
 		function updateProgressUI(data) {
 			if (!data) return;
 			
-			const $container = $('.sm-sync-progress-container');
+			const $container = $('.shopmetrics-sync-progress-container');
 			if ($container.length === 0) return;
 			
-			const $status = $container.find('.sm-progress-status');
-			const $percentage = $container.find('.sm-progress-percentage');
-			const $bar = $container.find('.sm-progress-bar');
-			const $lastSyncedDate = $container.find('.sm-last-synced-date');
-			const $progressCount = $container.find('.sm-progress-count');
+			const $status = $container.find('.shopmetrics-progress-status');
+			const $percentage = $container.find('.shopmetrics-progress-percentage');
+			const $bar = $container.find('.shopmetrics-progress-bar');
+			const $lastSyncedDate = $container.find('.shopmetrics-last-synced-date');
+			const $progressCount = $container.find('.shopmetrics-progress-count');
 			
 			// Update status message
 			let statusText = '';
@@ -771,22 +771,22 @@
 		setTimeout(function() {
 			try {
 				// Final aggressive DOM structure correction
-				$('.sm-settings-section').each(function() {
+				$('.shopmetrics-settings-section').each(function() {
 					var $section = $(this);
 					
 					// Get text content to preserve
-					var headerText = $section.find('.sm-settings-section-title').first().text() || '';
-					var logoHtml = $section.find('.sm-section-logo').html() || '';
+					var headerText = $section.find('.shopmetrics-settings-section-title').first().text() || '';
+					var logoHtml = $section.find('.shopmetrics-section-logo').html() || '';
 					
 					// Remove all header and title elements completely
-					$section.find('.sm-section-header, .sm-settings-section-title').remove();
+					$section.find('.shopmetrics-section-header, .shopmetrics-settings-section-title').remove();
 					
 					// Add fresh structure at the beginning of the section
 					var newStructure = 
-						'<div class="sm-section-header">' +
-							'<div class="sm-section-logo">' + logoHtml + '</div>' +
+						'<div class="shopmetrics-section-header">' +
+							'<div class="shopmetrics-section-logo">' + logoHtml + '</div>' +
 						'</div>' +
-						'<h2 class="sm-settings-section-title">' + headerText + '</h2>';
+						'<h2 class="shopmetrics-settings-section-title">' + headerText + '</h2>';
 					
 					$section.prepend(newStructure);
 				});
@@ -803,14 +803,14 @@
 		logger.log('Starting DOM Error Diagnostics...');
 		
 		// Check for problematic DOM nesting
-		$('.sm-settings-section-title').each(function(index) {
+		$('.shopmetrics-settings-section-title').each(function(index) {
 			var $title = $(this);
 			var id = 'title-' + index;
 			$title.attr('data-id', id);
 			
 			// Check if the title is inside a header
-			if ($title.parents('.sm-section-header').length > 0) {
-				logger.error('Title with DOM ID ' + id + ' is incorrectly nested inside sm-section-header');
+			if ($title.parents('.shopmetrics-section-header').length > 0) {
+				logger.error('Title with DOM ID ' + id + ' is incorrectly nested inside shopmetrics-section-header');
 			}
 			
 			// Check if the title contains its parent
